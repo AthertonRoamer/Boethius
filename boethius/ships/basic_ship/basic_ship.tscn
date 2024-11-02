@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://dn6elo7vpye1c"]
+
+[ext_resource type="Script" path="res://ships/basic_ship/basic_ship.gd" id="1_233k0"]
+[ext_resource type="Script" path="res://ships/basic_ship/fire.gd" id="2_rncoc"]
+[ext_resource type="PackedScene" uid="uid://do4o0k42eixaw" path="res://ships/ship_state_machine/ship_state_machine.tscn" id="3_q4maa"]
+[ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="4_0rp6a"]
+[ext_resource type="Script" path="res://ships/ship_area/ship_area.gd" id="5_vqcxk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6meb3"]
+radius = 14.0
+height = 58.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kdsvf"]
+radius = 134.004
+
+[node name="BasicShip" type="CharacterBody2D"]
+collision_mask = 0
+script = ExtResource("1_233k0")
+under_player_control = false
+
+[node name="Fire" type="Polygon2D" parent="."]
+position = Vector2(9, 0)
+rotation = 1.58557
+color = Color(0.870615, 0.263861, 0, 1)
+polygon = PackedVector2Array(-8, 11, 0.531879, 35.9961, 8.16165, 10.8806)
+script = ExtResource("2_rncoc")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(11, 0)
+rotation = 1.57532
+color = Color(0.576471, 0, 0, 1)
+polygon = PackedVector2Array(0, -24, -16.8821, 26.0767, 0, 16, 18.1175, 25.9182)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 0)
+rotation = 1.57509
+shape = SubResource("CapsuleShape2D_6meb3")
+
+[node name="ShipStateMachine" parent="." instance=ExtResource("3_q4maa")]
+
+[node name="BoidState" type="Node" parent="ShipStateMachine"]
+script = ExtResource("4_0rp6a")
+first_active_state = true
+
+[node name="ShipArea" type="Area2D" parent="."]
+script = ExtResource("5_vqcxk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipArea"]
+shape = SubResource("CircleShape2D_kdsvf")

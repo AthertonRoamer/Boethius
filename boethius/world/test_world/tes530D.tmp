@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c45yj6q8tsgun"]
+
+[ext_resource type="Script" path="res://world/test_world/test_world.gd" id="1_v873r"]
+[ext_resource type="PackedScene" uid="uid://dn6elo7vpye1c" path="res://ships/basic_ship/basic_ship.tscn" id="2_7xgbe"]
+
+[node name="TestWorld" type="Node2D"]
+script = ExtResource("1_v873r")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-1461, -982, 3125, -987, 3130, 1583, -1466, 1573)
+
+[node name="BasicShip" parent="." instance=ExtResource("2_7xgbe")]
+position = Vector2(549, 314)
+
+[node name="BasicShip2" parent="." instance=ExtResource("2_7xgbe")]
+position = Vector2(497, 280)
+
+[node name="BasicShip3" parent="." instance=ExtResource("2_7xgbe")]
+position = Vector2(541, 243)
+
+[node name="BasicShip4" parent="." instance=ExtResource("2_7xgbe")]
+position = Vector2(628, 277)
