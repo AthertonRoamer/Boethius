@@ -14,6 +14,7 @@ extends CharacterBody2D
 #priorities - hit big ships first, hit small ships first
 
 @export var under_player_control : bool = true
+@export var auto_uses_space_physics : bool = false
 
 @export_group("Physics")
 @export var friction : float = 200
@@ -36,17 +37,24 @@ func _ready() -> void:
 	state_machine = get_node_or_null("ShipStateMachine")
 	if not is_instance_valid(state_machine):
 		push_warning("Ship has no state machine")
+	current_direction = Vector2.RIGHT.rotated(rotation)
 		
 
 func _physics_process(delta) -> void:
 	if under_player_control:
 		register_player_input(delta)
+		compute_physics(delta)
+		
 	else:
 		process_independenly(delta)
-		thrust(delta)
 		
-	compute_physics(delta)
-		
+		if auto_uses_space_physics:
+			physics_thrust(delta)
+			compute_physics(delta)
+		else:
+			thrust()
+
+
 	velocity = current_veloctiy
 	move_and_slide()
 	
@@ -72,8 +80,9 @@ func register_player_input(delta : float) -> void:
 	if Input.is_action_pressed("ship_rotate_counterclockwise"):
 		current_direction = current_direction.rotated(deg_to_rad(-rotation_speed * delta))
 	if Input.is_action_pressed("ship_thrust"):
-		current_veloctiy += current_direction * thrust_accel * delta
-	visual_data.set_item("thrusting", Input.is_action_pressed("ship_thrust"))
+		physics_thrust(delta)
+	else:
+		visual_data.set_item("thrusting", false)
 	
 	
 func process_independenly(delta : float) -> void:
@@ -85,6 +94,11 @@ func update_rotation() -> void:
 	rotation = current_direction.angle() 
 	
 	
-func thrust(delta) -> void:
+func physics_thrust(delta) -> void:
 	current_veloctiy += current_direction * thrust_accel * delta
+	visual_data.set_item("thrusting", true)
+	
+	
+func thrust() -> void:
+	current_veloctiy = current_direction * max_speed
 	visual_data.set_item("thrusting", true)
