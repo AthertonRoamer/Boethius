@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://do4o0k42eixaw"]
+
+[ext_resource type="Script" path="res://ships/ship_state_machine/ship_state_machine.gd" id="1_jia7p"]
+
+[node name="ShipStateMachine" type="Node"]
+script = ExtResource("1_jia7p")
