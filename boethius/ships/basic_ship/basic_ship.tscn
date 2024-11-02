@@ -43,6 +43,7 @@ script = ExtResource("4_0rp6a")
 first_active_state = true
 
 [node name="ShipArea" type="Area2D" parent="."]
+visible = false
 script = ExtResource("5_vqcxk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShipArea"]
