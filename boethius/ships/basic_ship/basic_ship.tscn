@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dn6elo7vpye1c"]
+[gd_scene load_steps=9 format=3 uid="uid://dn6elo7vpye1c"]
 
 [ext_resource type="Script" path="res://ships/basic_ship/basic_ship.gd" id="1_233k0"]
 [ext_resource type="Script" path="res://ships/basic_ship/fire.gd" id="2_rncoc"]
 [ext_resource type="PackedScene" uid="uid://do4o0k42eixaw" path="res://ships/ship_state_machine/ship_state_machine.tscn" id="3_q4maa"]
 [ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="4_0rp6a"]
 [ext_resource type="Script" path="res://ships/ship_area/ship_area.gd" id="5_vqcxk"]
+[ext_resource type="PackedScene" uid="uid://bqldrwjxbl3nl" path="res://ships/obstacle_detector/forward_obstacle_detector/ship_forward_obstacle_detector.tscn" id="6_xhyqe"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6meb3"]
 radius = 14.0
@@ -13,10 +14,11 @@ height = 58.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_kdsvf"]
 radius = 134.004
 
-[node name="BasicShip" type="CharacterBody2D"]
+[node name="BasicShip" type="CharacterBody2D" node_paths=PackedStringArray("front_obstacle_detector")]
 collision_mask = 0
 script = ExtResource("1_233k0")
 under_player_control = false
+front_obstacle_detector = NodePath("ShipForwardObstacleDetector")
 
 [node name="Fire" type="Polygon2D" parent="."]
 position = Vector2(9, 0)
@@ -48,3 +50,5 @@ script = ExtResource("5_vqcxk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShipArea"]
 shape = SubResource("CircleShape2D_kdsvf")
+
+[node name="ShipForwardObstacleDetector" parent="." instance=ExtResource("6_xhyqe")]

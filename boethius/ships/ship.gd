@@ -14,7 +14,10 @@ extends CharacterBody2D
 #priorities - hit big ships first, hit small ships first
 
 @export var under_player_control : bool = true
-@export var auto_uses_space_physics : bool = false
+@export var auto_uses_space_physics : bool = true
+
+@export_group("Ship Components")
+@export var front_obstacle_detector : ShipForwardObstacleDetector
 
 @export_group("Physics")
 @export var friction : float = 200
@@ -41,6 +44,7 @@ func _ready() -> void:
 		
 
 func _physics_process(delta) -> void:
+	reset_visuals()
 	if under_player_control:
 		register_player_input(delta)
 		compute_physics(delta)
@@ -49,10 +53,11 @@ func _physics_process(delta) -> void:
 		process_independenly(delta)
 		
 		if auto_uses_space_physics:
-			physics_thrust(delta)
+			#physics_thrust(delta)
 			compute_physics(delta)
 		else:
-			thrust()
+			#thrust_without_physics()
+			pass
 
 
 	velocity = current_veloctiy
@@ -99,6 +104,19 @@ func physics_thrust(delta) -> void:
 	visual_data.set_item("thrusting", true)
 	
 	
-func thrust() -> void:
+func thrust_without_physics() -> void:
 	current_veloctiy = current_direction * max_speed
 	visual_data.set_item("thrusting", true)
+	
+	
+func thrust(delta) -> void:
+	if auto_uses_space_physics or under_player_control:
+		physics_thrust(delta)
+	else:
+		thrust_without_physics()
+		
+		
+func reset_visuals() -> void:
+	visual_data.set_item("thrusting", false)
+	
+	
