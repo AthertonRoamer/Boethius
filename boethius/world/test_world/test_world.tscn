@@ -12,26 +12,56 @@ polygon = PackedVector2Array(-1461, -982, 3125, -987, 3130, 1583, -1466, 1573)
 
 [node name="BasicShip7" parent="." instance=ExtResource("2_7xgbe")]
 rotation = 1.9282
+auto_uses_space_physics = null
+friction = null
+thrust_accel = null
+rotation_speed = null
+max_speed = null
 
 [node name="BasicShip6" parent="." instance=ExtResource("2_7xgbe")]
 position = Vector2(624, 342)
 rotation = 1.00857
+auto_uses_space_physics = null
+friction = null
+thrust_accel = null
+rotation_speed = null
+max_speed = null
 
 [node name="BasicShip" parent="." instance=ExtResource("2_7xgbe")]
 position = Vector2(549, 314)
 rotation = 1.547
+auto_uses_space_physics = null
+friction = null
+thrust_accel = null
+rotation_speed = null
+max_speed = null
 
 [node name="BasicShip2" parent="." instance=ExtResource("2_7xgbe")]
 position = Vector2(497, 280)
 rotation = 2.65841
+auto_uses_space_physics = null
+friction = null
+thrust_accel = null
+rotation_speed = null
+max_speed = null
 
 [node name="BasicShip3" parent="." instance=ExtResource("2_7xgbe")]
 position = Vector2(541, 243)
 rotation = -2.53245
+auto_uses_space_physics = null
+friction = null
+thrust_accel = null
+rotation_speed = null
+max_speed = null
 
 [node name="BasicShip4" parent="." instance=ExtResource("2_7xgbe")]
 position = Vector2(628, 277)
-under_player_control = true
+under_player_control = null
+auto_uses_space_physics = null
+friction = null
+thrust_accel = null
+rotation_speed = null
+max_speed = null
 
 [node name="Polygon2D2" type="Polygon2D" parent="."]
 color = Color(0.601399, 0.000265874, 0.60159, 1)
@@ -41,3 +71,8 @@ polygon = PackedVector2Array(-21, 11, 12, 11, -4, -22)
 [node name="BasicShip5" parent="." instance=ExtResource("2_7xgbe")]
 position = Vector2(602, 230)
 rotation = -0.65897
+auto_uses_space_physics = null
+friction = null
+thrust_accel = null
+rotation_speed = null
+max_speed = null
