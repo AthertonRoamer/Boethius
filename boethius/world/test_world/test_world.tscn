@@ -22,6 +22,7 @@ motion_mirroring = Vector2(1863.11, 1026.06)
 
 [node name="galaxies" type="Node2D" parent="ParallaxBackground/ParallaxLayer"]
 modulate = Color(1, 1, 1, 0.333333)
+position = Vector2(190, 95)
 
 [node name="Bg-1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/galaxies"]
 modulate = Color(1, 1, 1, 0.972549)
@@ -53,6 +54,7 @@ motion_mirroring = Vector2(1866.7, 1054.11)
 
 [node name="far stars" type="Node2D" parent="ParallaxBackground/ParallaxLayer2"]
 modulate = Color(1, 1, 1, 0.611765)
+position = Vector2(190, 95)
 
 [node name="Bg-2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2/far stars"]
 modulate = Color(1, 1, 1, 0.654902)
@@ -83,6 +85,7 @@ motion_scale = Vector2(0.4, 0.4)
 motion_mirroring = Vector2(1939.91, 1065.17)
 
 [node name="close stars" type="Node2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(190, 95)
 
 [node name="Bg-3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3/close stars"]
 modulate = Color(1, 1, 1, 0.498039)
