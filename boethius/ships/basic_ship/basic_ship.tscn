@@ -1,10 +1,108 @@
-[gd_scene load_steps=8 format=3 uid="uid://dn6elo7vpye1c"]
+[gd_scene load_steps=25 format=3 uid="uid://dn6elo7vpye1c"]
 
 [ext_resource type="Script" path="res://ships/basic_ship/basic_ship.gd" id="1_233k0"]
-[ext_resource type="Script" path="res://ships/basic_ship/fire.gd" id="2_rncoc"]
+[ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_va7p6"]
+[ext_resource type="Texture2D" uid="uid://uf55r0ulcrpc" path="res://Ships.png" id="3_jevru"]
 [ext_resource type="PackedScene" uid="uid://do4o0k42eixaw" path="res://ships/ship_state_machine/ship_state_machine.tscn" id="3_q4maa"]
 [ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="4_0rp6a"]
 [ext_resource type="Script" path="res://ships/ship_area/ship_area.gd" id="5_vqcxk"]
+
+[sub_resource type="Curve" id="Curve_xjb1h"]
+_data = [Vector2(0, 0.615385), 0.0, 0.0, 0, 0, Vector2(0.846667, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gkwdo"]
+curve = SubResource("Curve_xjb1h")
+
+[sub_resource type="Gradient" id="Gradient_xm4th"]
+colors = PackedColorArray(0.245993, 0, 0.0383255, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_isw5s"]
+gradient = SubResource("Gradient_xm4th")
+
+[sub_resource type="Curve" id="Curve_7blia"]
+max_value = 12.0
+_data = [Vector2(0, 12), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0papf"]
+curve = SubResource("Curve_7blia")
+
+[sub_resource type="Curve" id="Curve_i7yo7"]
+_data = [Vector2(0, 0.769231), 0.0, 0.0, 0, 0, Vector2(1, 0.472527), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jvgtt"]
+curve = SubResource("Curve_i7yo7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tccvq"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 10.0
+initial_velocity_min = 84.51
+initial_velocity_max = 98.59
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_jvgtt")
+color_ramp = SubResource("GradientTexture1D_isw5s")
+alpha_curve = SubResource("CurveTexture_gkwdo")
+emission_curve = SubResource("CurveTexture_0papf")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_85xlo"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[sub_resource type="GDScript" id="GDScript_darg2"]
+script/source = "extends GPUParticles2D
+
+
+func _process(_delta: float) -> void:
+	if get_parent() is Ship:
+		visible = get_parent().visual_data.get_item_value(\"thrusting\")
+"
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7728x"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 10.0
+initial_velocity_min = 84.51
+initial_velocity_max = 98.59
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_jvgtt")
+color_ramp = SubResource("GradientTexture1D_isw5s")
+alpha_curve = SubResource("CurveTexture_gkwdo")
+emission_curve = SubResource("CurveTexture_0papf")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_akv2g"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[sub_resource type="GDScript" id="GDScript_0clqa"]
+script/source = "extends GPUParticles2D
+
+
+func _process(_delta: float) -> void:
+	if get_parent() is Ship:
+		visible = get_parent().visual_data.get_item_value(\"thrusting\")
+"
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hth4b"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 10.0
+initial_velocity_min = 145.16
+initial_velocity_max = 145.16
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_jvgtt")
+color_ramp = SubResource("GradientTexture1D_isw5s")
+alpha_curve = SubResource("CurveTexture_gkwdo")
+emission_curve = SubResource("CurveTexture_0papf")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kotcs"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6meb3"]
 radius = 14.0
@@ -16,22 +114,44 @@ radius = 134.004
 [node name="BasicShip" type="CharacterBody2D"]
 collision_mask = 0
 script = ExtResource("1_233k0")
-under_player_control = false
 
-[node name="Fire" type="Polygon2D" parent="."]
-position = Vector2(9, 0)
-rotation = 1.58557
-color = Color(0.870615, 0.263861, 0, 1)
-polygon = PackedVector2Array(-8, 11, 0.531879, 35.9961, 8.16165, 10.8806)
-script = ExtResource("2_rncoc")
+[node name="Fire" type="GPUParticles2D" parent="."]
+position = Vector2(-11, -17)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_tccvq")
+texture = SubResource("CompressedTexture2D_85xlo")
+lifetime = 0.5
+local_coords = true
+script = SubResource("GDScript_darg2")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="Fire2" type="GPUParticles2D" parent="."]
+position = Vector2(-11, 17)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_7728x")
+texture = SubResource("CompressedTexture2D_akv2g")
+lifetime = 0.5
+local_coords = true
+script = SubResource("GDScript_0clqa")
+
+[node name="boost" type="GPUParticles2D" parent="."]
+position = Vector2(-14, 0)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_hth4b")
+texture = SubResource("CompressedTexture2D_kotcs")
+lifetime = 0.5
+local_coords = true
+script = ExtResource("2_va7p6")
+
+[node name="Polygon2D" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(11, 0)
-rotation = 1.57532
-color = Color(0.576471, 0, 0, 1)
-polygon = PackedVector2Array(0, -24, -16.8821, 26.0767, 0, 16, 18.1175, 25.9182)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_jevru")
+hframes = 8
+vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(8, 0)
 rotation = 1.57509
 shape = SubResource("CapsuleShape2D_6meb3")
@@ -48,3 +168,6 @@ script = ExtResource("5_vqcxk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShipArea"]
 shape = SubResource("CircleShape2D_kdsvf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
