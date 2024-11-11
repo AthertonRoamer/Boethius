@@ -22,10 +22,20 @@ extends CharacterBody2D
 @export_group("Physics")
 @export var friction : float = 200
 
-@export_group("Ship mechanics")
+@export_group("Ship stats")
 @export var thrust_accel : float = 440
 @export var rotation_speed : float = 360 #degrees per second
 @export var max_speed : float = 350
+@export var starting_health : int = 100
+
+
+var health : int = starting_health:
+	set(v):
+		if v <= 0:
+			health = 0
+			die()
+		else:
+			health = v
 
 var current_veloctiy : Vector2 = Vector2.ZERO
 var current_direction : Vector2 = Vector2.RIGHT
@@ -118,5 +128,13 @@ func thrust(delta) -> void:
 		
 func reset_visuals() -> void:
 	visual_data.set_item("thrusting", false)
+	
+	
+func take_damage(damage : int, _damage_type : String = "none") -> void:
+	health -= damage
+		
+		
+func die() -> void:
+	queue_free()
 	
 	
