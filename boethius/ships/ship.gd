@@ -24,10 +24,14 @@ extends CharacterBody2D
 @export var rotation_speed : float = 360 #degrees per second
 @export var max_speed : float = 360
 
-@export var boost_accel : float = 1750 
+@export var boost_accel : float = 1750
 @export var boost_max_speed : float = 1000
 @export var speed_interpolation_rate : float = 5.0
 var boosting : bool = false
+
+@export var max_health : int = 100
+@export var starting_health : int = 100
+var health : int = starting_health
 
 var current_veloctiy : Vector2 = Vector2.ZERO
 var current_direction : Vector2 = Vector2.RIGHT
@@ -44,7 +48,7 @@ func _ready() -> void:
 	if not is_instance_valid(state_machine):
 		push_warning("Ship has no state machine")
 	current_direction = Vector2.RIGHT.rotated(rotation)
-		
+
 
 func _physics_process(delta) -> void:
 	if under_player_control:
@@ -64,10 +68,10 @@ func _physics_process(delta) -> void:
 
 	velocity = current_veloctiy
 	move_and_slide()
-	
+
 	update_rotation()
-	
-	
+
+
 func compute_physics(delta : float) -> void:
 	var dir : Vector2 = current_veloctiy.normalized()
 	var speed : float = current_veloctiy.length()
@@ -86,8 +90,8 @@ func compute_physics(delta : float) -> void:
 			speed = min(speed, max_speed)
 	
 	current_veloctiy = dir * speed
-	
-	
+
+
 func register_player_input(delta : float) -> void:
 	var mouse_pos = get_global_mouse_position() 
 	var direction_to_mouse = (mouse_pos - global_position).normalized()
@@ -112,6 +116,7 @@ func boost(delta : float) -> void:
 	visual_data.set_item("thrusting", true)
 	visual_data.set_item("boosting", true)
 
+
 func stop_boost() -> void: 
 	#print("boost stop") 
 	boosting = false
@@ -120,17 +125,24 @@ func stop_boost() -> void:
 func process_independenly(delta : float) -> void:
 	if is_instance_valid(state_machine):
 		state_machine.process_state(delta)
-	
-	
+
+
 func update_rotation() -> void:
 	rotation = current_direction.angle() 
-	
-	
+
+
 func physics_thrust(delta) -> void:
 	current_veloctiy += current_direction * thrust_accel * delta
 	visual_data.set_item("thrusting", true)
-	
-	
+
+
 func thrust() -> void:
 	current_veloctiy = current_direction * max_speed
 	visual_data.set_item("thrusting", true)
+
+
+func take_damage(damage : int, damage_type : String = "none", _damager : Node = null) -> void:
+	health -= damage
+
+func die() -> void:
+	pass

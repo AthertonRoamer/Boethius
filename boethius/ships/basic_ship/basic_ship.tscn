@@ -116,7 +116,7 @@ collision_mask = 0
 script = ExtResource("1_233k0")
 
 [node name="Fire" type="GPUParticles2D" parent="."]
-position = Vector2(-11, -17)
+position = Vector2(-13, -19)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_tccvq")
 texture = SubResource("CompressedTexture2D_85xlo")
@@ -125,7 +125,7 @@ local_coords = true
 script = SubResource("GDScript_darg2")
 
 [node name="Fire2" type="GPUParticles2D" parent="."]
-position = Vector2(-11, 17)
+position = Vector2(-13, 19)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_7728x")
 texture = SubResource("CompressedTexture2D_akv2g")
@@ -134,7 +134,7 @@ local_coords = true
 script = SubResource("GDScript_0clqa")
 
 [node name="boost" type="GPUParticles2D" parent="."]
-position = Vector2(-14, 0)
+position = Vector2(-17, 0)
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_hth4b")
 texture = SubResource("CompressedTexture2D_kotcs")
@@ -145,7 +145,7 @@ script = ExtResource("2_va7p6")
 [node name="Polygon2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(11, 0)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.65, 1.65)
 texture = ExtResource("3_jevru")
 hframes = 8
 vframes = 2
