@@ -11,8 +11,8 @@ func set_up_projectile() -> Projectile:
 	new_projectile.global_position = get_fire_position()
 	new_projectile.direction = projectile_direction
 	return new_projectile
-	
-	
+
+
 func fire() -> void:
 	var new_projectile = set_up_projectile()
 	Main.world.add_child(new_projectile)

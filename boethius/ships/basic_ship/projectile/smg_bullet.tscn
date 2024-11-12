@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://jnajxsxwxoer"]
+
+[ext_resource type="Script" path="res://ships/projectile/projectile.gd" id="1_ji5hh"]
+[ext_resource type="Texture2D" uid="uid://btyjlvpv16u0v" path="res://icon.svg" id="1_vvu6o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2sybg"]
+radius = 6.08276
+
+[node name="smg_bullet" type="Area2D" node_paths=PackedStringArray("duration_timer")]
+script = ExtResource("1_ji5hh")
+speed = 1200.0
+extinguish_on_effect_body = true
+duration_timer = NodePath("lifespan")
+duration = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.78814e-07, -5.96046e-08)
+scale = Vector2(0.09375, 0.09375)
+texture = ExtResource("1_vvu6o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2sybg")
+
+[node name="lifespan" type="Timer" parent="."]
