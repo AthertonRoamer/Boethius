@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://kg500bysbh7k"]
+
+[ext_resource type="Script" path="res://ships/weight_system/weight_debugger/weight_debugger.gd" id="1_2d5ik"]
+
+[node name="WeightDebugger" type="Node2D"]
+position = Vector2(600, 400)
+script = ExtResource("1_2d5ik")
+circle_color = Color(0.212305, 0.212305, 0.212305, 1)
+highest_color = Color(0.500388, 0.59488, 0.988456, 1)

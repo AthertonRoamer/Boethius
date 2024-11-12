@@ -13,11 +13,27 @@ extends CharacterBody2D
 #agression, loneliness, courage/fear, max range to fire, ideal range to fire
 #priorities - hit big ships first, hit small ships first
 
+
 @export var under_player_control : bool = false
-@export var auto_uses_space_physics : bool = false
+@export var auto_uses_space_physics : bool = true
+
+@export_group("Ship Components")
+@export var front_obstacle_detector : ShipForwardObstacleDetector
+
 
 @export_group("Physics")
 @export var friction : float = 200
+
+
+
+
+var health : int = starting_health:
+	set(v):
+		if v <= 0:
+			health = 0
+			die()
+		else:
+			health = v
 
 @export_group("Ship mechanics")
 @export var thrust_accel : float = 750
@@ -31,7 +47,7 @@ var boosting : bool = false
 
 @export var max_health : int = 100
 @export var starting_health : int = 100
-var health : int = starting_health
+
 
 var current_veloctiy : Vector2 = Vector2.ZERO
 var current_direction : Vector2 = Vector2.RIGHT
@@ -51,6 +67,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta) -> void:
+	reset_visuals()
 	if under_player_control:
 		register_player_input(delta)
 		compute_physics(delta)
@@ -60,10 +77,11 @@ func _physics_process(delta) -> void:
 		$Camera2D.enabled = false
 		
 		if auto_uses_space_physics:
-			physics_thrust(delta)
+			#physics_thrust(delta)
 			compute_physics(delta)
 		else:
-			thrust()
+			#thrust_without_physics()
+			pass
 
 
 	velocity = current_veloctiy
@@ -135,14 +153,30 @@ func physics_thrust(delta) -> void:
 	current_veloctiy += current_direction * thrust_accel * delta
 	visual_data.set_item("thrusting", true)
 
-
-func thrust() -> void:
+	
+	
+func thrust_without_physics() -> void:
 	current_veloctiy = current_direction * max_speed
 	visual_data.set_item("thrusting", true)
-
-
-func take_damage(damage : int, damage_type : String = "none", _damager : Node = null) -> void:
+	
+	
+func thrust(delta) -> void:
+	if auto_uses_space_physics or under_player_control:
+		physics_thrust(delta)
+	else:
+		thrust_without_physics()
+		
+		
+func reset_visuals() -> void:
+	visual_data.set_item("thrusting", false)
+	
+	
+func take_damage(damage : int, _damage_type : String = "none") -> void:
 	health -= damage
-
+		
+		
 func die() -> void:
-	pass
+	queue_free()
+	
+	
+

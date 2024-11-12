@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c18gqmsa1rdxr"]
+
+[ext_resource type="Script" path="res://ships/obstacle_detector/obstacle_detector/obstacle_detector.gd" id="1_qrk7h"]
+
+[node name="ObstacleDetector" type="Node2D"]
+script = ExtResource("1_qrk7h")
