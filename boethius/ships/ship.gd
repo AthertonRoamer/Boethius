@@ -59,7 +59,7 @@ var ship_area : ShipArea
 
 
 func _ready() -> void:
-	
+	add_to_group("damageable")
 	state_machine = get_node_or_null("ShipStateMachine")
 	if not is_instance_valid(state_machine):
 		push_warning("Ship has no state machine")
@@ -101,7 +101,7 @@ func compute_physics(delta : float) -> void:
 	if boosting: 
 		speed = min(speed, boost_max_speed) 
 	else:
-		print(speed)
+		#print(speed)
 		if speed > max_speed:
 			speed = lerp(speed, max_speed, speed_interpolation_rate * delta)
 		else:
@@ -125,6 +125,9 @@ func register_player_input(delta : float) -> void:
 	elif Input.is_action_just_released("ship_boost") and boosting: 
 		visual_data.set_item("boosting", false)
 		stop_boost()
+	
+	if Input.is_action_just_pressed("ship_shoot"):
+		shoot()
 
 
 func boost(delta : float) -> void: 
@@ -177,5 +180,6 @@ func take_damage(damage : int, _damage_type : String = "none") -> void:
 		
 func die() -> void:
 	queue_free()
-	
-	
+
+func shoot():
+	pass

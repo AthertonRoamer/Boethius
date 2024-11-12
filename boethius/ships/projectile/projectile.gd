@@ -66,9 +66,12 @@ func update_position_with_gravity(delta) -> void:
 	
 	
 func extinguish() -> void:
+	print("hit")
 	queue_free()
 	
 	
+	
 func _on_duration_timer_timeout() -> void:
+	print("time")
 	extinguish()
 	

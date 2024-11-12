@@ -1,21 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwsnjtqbugh5m"]
+[gd_scene load_steps=6 format=3 uid="uid://cwsnjtqbugh5m"]
 
 [ext_resource type="Script" path="res://menu/main_menu.gd" id="1_xafnf"]
 [ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://BOETHIUS_THEME.tres" id="2_d516e"]
 [ext_resource type="Script" path="res://menu/parallax_layer.gd" id="3_ucpy2"]
-[ext_resource type="Texture2D" uid="uid://dt1ef2aumghcv" path="res://Bg-4.png" id="4_gpetu"]
-[ext_resource type="Texture2D" uid="uid://bmy8sr4gs7hc0" path="res://Bg-2.png" id="5_8kk6i"]
-[ext_resource type="Texture2D" uid="uid://085obbgrlag0" path="res://Bg-3.png" id="6_boo2d"]
+[ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space.tscn" id="3_wy4o3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modkm"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="Gradient" id="Gradient_vlg2c"]
-offsets = PackedFloat32Array(0, 0.422078, 0.987013)
-colors = PackedColorArray(0.0552138, 2.98937e-08, 0.0013355, 1, 0, 0, 0, 1, 3.30899e-08, 0, 0.0585003, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_1lcwh"]
-gradient = SubResource("Gradient_vlg2c")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -77,106 +68,20 @@ text = "Space Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-scroll_base_scale = Vector2(2, 2)
-scroll_ignore_camera_zoom = true
+[node name="space" parent="." instance=ExtResource("3_wy4o3")]
 
-[node name="Polygon2D" type="TextureRect" parent="ParallaxBackground"]
-offset_left = -10.0
-offset_top = -236.0
-offset_right = 1477.0
-offset_bottom = 908.0
-scale = Vector2(1.37304, 1.47156)
-texture = SubResource("GradientTexture2D_1lcwh")
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-modulate = Color(1, 1, 1, 0.670588)
-motion_scale = Vector2(20, 20)
-motion_mirroring = Vector2(1863.11, 1026.06)
+[node name="ParallaxLayer" parent="space" index="1"]
 script = ExtResource("3_ucpy2")
+SPEED = 40
 
-[node name="galaxies" type="Node2D" parent="ParallaxBackground/ParallaxLayer"]
-modulate = Color(1, 1, 1, 0.333333)
-position = Vector2(60, 92)
-
-[node name="Bg-1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/galaxies"]
-texture_filter = 1
-position = Vector2(402, 171)
-texture = ExtResource("4_gpetu")
-
-[node name="Bg-2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/galaxies"]
-texture_filter = 1
-position = Vector2(1310, 181)
-texture = ExtResource("4_gpetu")
-
-[node name="Bg-3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/galaxies"]
-texture_filter = 1
-position = Vector2(406, 673)
-texture = ExtResource("4_gpetu")
-
-[node name="Bg-4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/galaxies"]
-texture_filter = 1
-position = Vector2(1355, 695)
-texture = ExtResource("4_gpetu")
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.3, 0.3)
-motion_mirroring = Vector2(1866.7, 1054.11)
+[node name="ParallaxLayer2" parent="space" index="2"]
 script = ExtResource("3_ucpy2")
-SPEED = 25
+SPEED = 50
 
-[node name="far stars" type="Node2D" parent="ParallaxBackground/ParallaxLayer2"]
-modulate = Color(1, 1, 1, 0.611765)
-position = Vector2(190, 95)
-
-[node name="Bg-2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2/far stars"]
-texture_filter = 1
-position = Vector2(301, 173)
-texture = ExtResource("5_8kk6i")
-
-[node name="Bg-3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2/far stars"]
-texture_filter = 1
-position = Vector2(1229, 173)
-texture = ExtResource("5_8kk6i")
-
-[node name="Bg-4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2/far stars"]
-texture_filter = 1
-position = Vector2(298, 686)
-texture = ExtResource("5_8kk6i")
-
-[node name="Bg-5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2/far stars"]
-texture_filter = 1
-position = Vector2(1241, 692)
-texture = ExtResource("5_8kk6i")
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
-modulate = Color(1, 1, 1, 0.733333)
-motion_scale = Vector2(0.4, 0.4)
-motion_mirroring = Vector2(1939.91, 1065.17)
+[node name="ParallaxLayer3" parent="space" index="3"]
 script = ExtResource("3_ucpy2")
-SPEED = 30
-
-[node name="close stars" type="Node2D" parent="ParallaxBackground/ParallaxLayer3"]
-position = Vector2(190, 95)
-
-[node name="Bg-3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3/close stars"]
-texture_filter = 1
-position = Vector2(266, 163)
-texture = ExtResource("6_boo2d")
-
-[node name="Bg-4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3/close stars"]
-texture_filter = 1
-position = Vector2(1185, 174)
-texture = ExtResource("6_boo2d")
-
-[node name="Bg-5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3/close stars"]
-texture_filter = 1
-position = Vector2(299, 696)
-texture = ExtResource("6_boo2d")
-
-[node name="Bg-6" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3/close stars"]
-texture_filter = 1
-position = Vector2(1277, 715)
-texture = ExtResource("6_boo2d")
+SPEED = 60
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+
+[editable path="space"]
