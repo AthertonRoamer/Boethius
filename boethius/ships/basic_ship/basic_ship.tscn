@@ -1,5 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dn6elo7vpye1c"]
-
+[gd_scene load_steps=27 format=3 uid="uid://dn6elo7vpye1c"]
 
 [ext_resource type="Script" path="res://ships/basic_ship/basic_ship.gd" id="1_233k0"]
 [ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_va7p6"]
@@ -117,10 +116,7 @@ radius = 134.004
 [node name="BasicShip" type="CharacterBody2D" node_paths=PackedStringArray("front_obstacle_detector")]
 collision_mask = 0
 script = ExtResource("1_233k0")
-
-under_player_control = false
 front_obstacle_detector = NodePath("ShipForwardObstacleDetector")
-
 
 [node name="Fire" type="GPUParticles2D" parent="."]
 position = Vector2(-13, -19)
@@ -179,11 +175,9 @@ script = ExtResource("5_vqcxk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShipArea"]
 shape = SubResource("CircleShape2D_kdsvf")
 
-
 [node name="ShipForwardObstacleDetector" parent="." instance=ExtResource("6_xhyqe")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
-
