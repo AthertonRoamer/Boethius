@@ -1,22 +1,85 @@
-[gd_scene load_steps=8 format=3 uid="uid://c45yj6q8tsgun"]
+[gd_scene load_steps=10 format=3 uid="uid://cwsnjtqbugh5m"]
 
-[ext_resource type="Script" path="res://world/test_world/test_world.gd" id="1_v873r"]
-[ext_resource type="Texture2D" uid="uid://jex0o2mi7jjm" path="res://Bg-1.png" id="2_7cmxf"]
-[ext_resource type="PackedScene" uid="uid://dn6elo7vpye1c" path="res://ships/basic_ship/basic_ship.tscn" id="2_7xgbe"]
-[ext_resource type="Texture2D" uid="uid://bmy8sr4gs7hc0" path="res://Bg-2.png" id="3_mh2ag"]
-[ext_resource type="Texture2D" uid="uid://085obbgrlag0" path="res://Bg-3.png" id="4_h6a7h"]
+[ext_resource type="Script" path="res://menu/main_menu.gd" id="1_xafnf"]
+[ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://BOETHIUS_THEME.tres" id="2_d516e"]
+[ext_resource type="Script" path="res://menu/parallax_layer.gd" id="3_ucpy2"]
+[ext_resource type="Texture2D" uid="uid://jex0o2mi7jjm" path="res://Bg-1.png" id="4_g3o6u"]
+[ext_resource type="Texture2D" uid="uid://bmy8sr4gs7hc0" path="res://Bg-2.png" id="5_8kk6i"]
+[ext_resource type="Texture2D" uid="uid://085obbgrlag0" path="res://Bg-3.png" id="6_boo2d"]
 
-[sub_resource type="Gradient" id="Gradient_6aexn"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modkm"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Gradient" id="Gradient_vlg2c"]
 offsets = PackedFloat32Array(0, 0.422078, 0.987013)
 colors = PackedColorArray(0.0552138, 2.98937e-08, 0.0013355, 1, 0, 0, 0, 1, 3.30899e-08, 0, 0.0585003, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_mkbar"]
-gradient = SubResource("Gradient_6aexn")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1lcwh"]
+gradient = SubResource("Gradient_vlg2c")
 
-[node name="TestWorld" type="Node2D"]
-script = ExtResource("1_v873r")
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xafnf")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -169.0
+offset_top = -134.0
+offset_right = 270.0
+offset_bottom = 158.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Button" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = -26.0
+offset_right = 61.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_d516e")
+theme_override_font_sizes/font_size = 40
+text = "Start"
+flat = true
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -275.0
+offset_top = 70.0
+offset_right = 289.0
+offset_bottom = 272.0
+grow_horizontal = 2
+theme = ExtResource("2_d516e")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_modkm")
+text = "Space Game"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2(2, 2)
+scroll_ignore_camera_zoom = true
 
 [node name="Polygon2D" type="TextureRect" parent="ParallaxBackground"]
 offset_left = -10.0
@@ -24,11 +87,13 @@ offset_top = -236.0
 offset_right = 1477.0
 offset_bottom = 908.0
 scale = Vector2(1.37304, 1.47156)
-texture = SubResource("GradientTexture2D_mkbar")
+texture = SubResource("GradientTexture2D_1lcwh")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.2, 0.2)
+motion_scale = Vector2(20, 20)
 motion_mirroring = Vector2(1863.11, 1026.06)
+script = ExtResource("3_ucpy2")
+SPEED = 5
 
 [node name="galaxies" type="Node2D" parent="ParallaxBackground/ParallaxLayer"]
 modulate = Color(1, 1, 1, 0.333333)
@@ -38,29 +103,31 @@ position = Vector2(60, 92)
 modulate = Color(1, 1, 1, 0.972549)
 texture_filter = 1
 position = Vector2(402, 171)
-texture = ExtResource("2_7cmxf")
+texture = ExtResource("4_g3o6u")
 
 [node name="Bg-2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/galaxies"]
 modulate = Color(1, 1, 1, 0.972549)
 texture_filter = 1
 position = Vector2(1310, 181)
-texture = ExtResource("2_7cmxf")
+texture = ExtResource("4_g3o6u")
 
 [node name="Bg-3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/galaxies"]
 modulate = Color(1, 1, 1, 0.972549)
 texture_filter = 1
 position = Vector2(406, 673)
-texture = ExtResource("2_7cmxf")
+texture = ExtResource("4_g3o6u")
 
 [node name="Bg-4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/galaxies"]
 modulate = Color(1, 1, 1, 0.972549)
 texture_filter = 1
 position = Vector2(1355, 695)
-texture = ExtResource("2_7cmxf")
+texture = ExtResource("4_g3o6u")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.3, 0.3)
 motion_mirroring = Vector2(1866.7, 1054.11)
+script = ExtResource("3_ucpy2")
+SPEED = 15
 
 [node name="far stars" type="Node2D" parent="ParallaxBackground/ParallaxLayer2"]
 modulate = Color(1, 1, 1, 0.611765)
@@ -70,29 +137,31 @@ position = Vector2(190, 95)
 modulate = Color(1, 1, 1, 0.654902)
 texture_filter = 1
 position = Vector2(301, 173)
-texture = ExtResource("3_mh2ag")
+texture = ExtResource("5_8kk6i")
 
 [node name="Bg-3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2/far stars"]
 modulate = Color(1, 1, 1, 0.654902)
 texture_filter = 1
 position = Vector2(1229, 173)
-texture = ExtResource("3_mh2ag")
+texture = ExtResource("5_8kk6i")
 
 [node name="Bg-4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2/far stars"]
 modulate = Color(1, 1, 1, 0.654902)
 texture_filter = 1
 position = Vector2(298, 686)
-texture = ExtResource("3_mh2ag")
+texture = ExtResource("5_8kk6i")
 
 [node name="Bg-5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2/far stars"]
 modulate = Color(1, 1, 1, 0.654902)
 texture_filter = 1
 position = Vector2(1241, 692)
-texture = ExtResource("3_mh2ag")
+texture = ExtResource("5_8kk6i")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.4, 0.4)
 motion_mirroring = Vector2(1939.91, 1065.17)
+script = ExtResource("3_ucpy2")
+SPEED = 25
 
 [node name="close stars" type="Node2D" parent="ParallaxBackground/ParallaxLayer3"]
 position = Vector2(190, 95)
@@ -101,54 +170,24 @@ position = Vector2(190, 95)
 modulate = Color(1, 1, 1, 0.498039)
 texture_filter = 1
 position = Vector2(266, 163)
-texture = ExtResource("4_h6a7h")
+texture = ExtResource("6_boo2d")
 
 [node name="Bg-4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3/close stars"]
 modulate = Color(1, 1, 1, 0.498039)
 texture_filter = 1
 position = Vector2(1185, 174)
-texture = ExtResource("4_h6a7h")
+texture = ExtResource("6_boo2d")
 
 [node name="Bg-5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3/close stars"]
 modulate = Color(1, 1, 1, 0.498039)
 texture_filter = 1
 position = Vector2(299, 696)
-texture = ExtResource("4_h6a7h")
+texture = ExtResource("6_boo2d")
 
 [node name="Bg-6" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3/close stars"]
 modulate = Color(1, 1, 1, 0.498039)
 texture_filter = 1
 position = Vector2(1277, 715)
-texture = ExtResource("4_h6a7h")
+texture = ExtResource("6_boo2d")
 
-[node name="BasicShip7" parent="." instance=ExtResource("2_7xgbe")]
-rotation = 1.9282
-
-[node name="BasicShip6" parent="." instance=ExtResource("2_7xgbe")]
-position = Vector2(624, 342)
-rotation = 1.00857
-
-[node name="BasicShip5" parent="." instance=ExtResource("2_7xgbe")]
-position = Vector2(602, 230)
-rotation = -0.65897
-
-[node name="BasicShip2" parent="." instance=ExtResource("2_7xgbe")]
-position = Vector2(497, 280)
-rotation = 2.65841
-
-[node name="BasicShip3" parent="." instance=ExtResource("2_7xgbe")]
-position = Vector2(541, 243)
-rotation = -2.53245
-
-[node name="BasicShip4" parent="." instance=ExtResource("2_7xgbe")]
-position = Vector2(628, 277)
-
-[node name="BasicShip" parent="." instance=ExtResource("2_7xgbe")]
-position = Vector2(549, 314)
-rotation = 1.547
-under_player_control = true
-
-[node name="Polygon2D2" type="Polygon2D" parent="."]
-color = Color(0.601399, 0.000265874, 0.60159, 1)
-offset = Vector2(600, 300)
-polygon = PackedVector2Array(-21, 11, 12, 11, -4, -22)
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
