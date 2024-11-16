@@ -28,7 +28,7 @@ extends CharacterBody2D
 
 @export var max_health : int = 100
 @export var starting_health : int = 100
-var health : int = starting_health:
+var health : float = starting_health:
 
 	set(v):
 		if v <= 0:
@@ -46,6 +46,7 @@ var health : int = starting_health:
 @export var boost_accel : float = 1750
 @export var boost_max_speed : float = 1000
 @export var speed_interpolation_rate : float = 5.0
+@export var rotation_speed : float = 180
 var thrust_determinant : float = -0.1 #determines how close ai has to be to target direction to thrust
 var boosting : bool = false
 

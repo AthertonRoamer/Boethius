@@ -12,8 +12,7 @@ func shoot():
 func register_player_input(delta : float) -> void:
 	if aim_mode:
 		var mouse_pos = get_global_mouse_position() 
-		var direction_to_mouse = global_position.direction_to(mouse_pos)
-		var target_rotation = direction_to_mouse.angle() 
+		var direction_to_mouse = global_position.direction_to(mouse_pos) 
 		var rsign : float = sign(current_direction.angle_to(direction_to_mouse))
 		if abs(current_direction.angle_to(direction_to_mouse)) < deg_to_rad(aim_speed) * delta:
 			current_direction = direction_to_mouse
