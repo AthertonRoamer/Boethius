@@ -44,6 +44,11 @@ ship_shoot={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="ShipLayer"
+2d_physics/layer_2="PhysicsLayer"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
