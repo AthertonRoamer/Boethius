@@ -26,8 +26,8 @@ extends CharacterBody2D
 
 
 
-@export var starting_health : int = 100
-var health : int = starting_health:
+@export var starting_health : float = 100
+var health : float = starting_health:
 	set(v):
 		if v <= 0:
 			health = 0
@@ -37,7 +37,6 @@ var health : int = starting_health:
 
 @export_group("Ship mechanics")
 @export var thrust_accel : float = 750
-@export var rotation_speed : float = 360 #degrees per second
 @export var max_speed : float = 360
 
 @export var boost_accel : float = 1750
@@ -122,13 +121,14 @@ func register_player_input(delta : float) -> void:
 		visual_data.set_item("thrusting", false)
 	
 	if Input.is_action_pressed("ship_boost"): 
-		boost(delta) 
+		boost(delta)
 	elif Input.is_action_just_released("ship_boost") and boosting: 
 		visual_data.set_item("boosting", false)
 		stop_boost()
 	
-	if Input.is_action_just_pressed("ship_shoot"):
+	if Input.is_action_pressed("ship_shoot"):
 		shoot()
+	
 
 
 func boost(delta : float) -> void: 
@@ -175,7 +175,7 @@ func reset_visuals() -> void:
 	visual_data.set_item("thrusting", false)
 	
 	
-func take_damage(damage : int, _damage_type : String = "none") -> void:
+func take_damage(damage : float, _damage_type : String = "none") -> void:
 	print("health before: ", health)
 	health -= damage
 	print("health after: ", health)

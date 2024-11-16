@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c45yj6q8tsgun"]
+[gd_scene load_steps=5 format=3 uid="uid://c45yj6q8tsgun"]
 
 [ext_resource type="Script" path="res://world/test_world/test_world.gd" id="1_v873r"]
 [ext_resource type="PackedScene" uid="uid://dn6elo7vpye1c" path="res://ships/basic_ship/basic_ship.tscn" id="2_7xgbe"]
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space.tscn" id="2_m21cc"]
+[ext_resource type="PackedScene" uid="uid://drotwycof3eg7" path="res://ships/laser_ship/laser_ship.tscn" id="4_jkhxg"]
 
 [node name="TestWorld" type="Node2D"]
 script = ExtResource("1_v873r")
@@ -30,17 +31,19 @@ rotation = -0.65897
 [node name="enemy3" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(497, 280)
 rotation = 2.65841
-scale = Vector2(1, 1)
 
 [node name="enemy2" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(541, 243)
 rotation = -2.53245
-scale = Vector2(1, 1)
 
 [node name="enemy" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(628, 277)
 
 [node name="player" parent="ships" instance=ExtResource("2_7xgbe")]
+position = Vector2(549, 314)
+rotation = 1.547
+
+[node name="LaserShip" parent="ships" instance=ExtResource("4_jkhxg")]
 position = Vector2(549, 314)
 rotation = 1.547
 under_player_control = true
