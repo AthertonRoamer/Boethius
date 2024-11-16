@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://ships/basic_ship/fire.gd" id="2_rncoc"]
 [ext_resource type="PackedScene" uid="uid://do4o0k42eixaw" path="res://ships/ship_state_machine/ship_state_machine.tscn" id="3_q4maa"]
 [ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="4_0rp6a"]
-[ext_resource type="Script" path="res://ships/generic_states/idle.gd" id="5_fvppf"]
+[ext_resource type="Script" path="res://ships/generic_states/circle.gd" id="5_fvppf"]
 [ext_resource type="Script" path="res://ships/ship_area/ship_area.gd" id="5_vqcxk"]
 [ext_resource type="PackedScene" uid="uid://bqldrwjxbl3nl" path="res://ships/obstacle_detector/forward_obstacle_detector/ship_forward_obstacle_detector.tscn" id="6_xhyqe"]
 
@@ -45,8 +45,9 @@ shape = SubResource("CapsuleShape2D_6meb3")
 script = ExtResource("4_0rp6a")
 first_active_state = true
 
-[node name="Idle" type="Node" parent="ShipStateMachine"]
+[node name="Circle" type="Node" parent="ShipStateMachine"]
 script = ExtResource("5_fvppf")
+id = "circle"
 
 [node name="ShipArea" type="Area2D" parent="."]
 visible = false

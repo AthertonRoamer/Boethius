@@ -36,7 +36,7 @@ func apply_obstacle_data() -> void:
 
 
 func get_direction_from_weight_system() -> Vector2:
-	return Vector2.RIGHT
+	return get_ship().weight_system.get_heaviest_weight().normal
 	
 	
 func rotate_ship() -> void:

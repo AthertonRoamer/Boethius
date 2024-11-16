@@ -44,9 +44,12 @@ var visual_data : VisualDataManager = VisualDataManager.new()
 
 var state_machine : ShipStateMachine
 var ship_area : ShipArea
+var obstacle_detector : ObstacleDetector = ObstacleDetector.new()
+var weight_system : WeightSystem = WeightSystem.new()
 
 
 func _ready() -> void:
+	add_child(obstacle_detector)
 	state_machine = get_node_or_null("ShipStateMachine")
 	if not is_instance_valid(state_machine):
 		push_warning("Ship has no state machine")
