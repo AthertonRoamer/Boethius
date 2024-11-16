@@ -13,12 +13,12 @@ extends CharacterBody2D
 #agression, loneliness, courage/fear, max range to fire, ideal range to fire
 #priorities - hit big ships first, hit small ships first
 
+@export var debug_output : bool = false
 
 @export var under_player_control : bool = false
 @export var auto_uses_space_physics : bool = true
 
 @export_group("Ship Components")
-@export var front_obstacle_detector : ShipForwardObstacleDetector
 
 
 @export_group("Physics")
@@ -26,12 +26,16 @@ extends CharacterBody2D
 
 
 
-@export var starting_health : float = 100
-var health : float = starting_health:
+@export var max_health : int = 100
+@export var starting_health : int = 100
+var health : int = starting_health:
+
 	set(v):
 		if v <= 0:
 			health = 0
 			die()
+		elif v > max_health:
+			health = v
 		else:
 			health = v
 
@@ -42,11 +46,8 @@ var health : float = starting_health:
 @export var boost_accel : float = 1750
 @export var boost_max_speed : float = 1000
 @export var speed_interpolation_rate : float = 5.0
+var thrust_determinant : float = -0.1 #determines how close ai has to be to target direction to thrust
 var boosting : bool = false
-
-@export var max_health : int = 100
-
-
 
 
 var current_veloctiy : Vector2 = Vector2.ZERO
@@ -56,10 +57,16 @@ var visual_data : VisualDataManager = VisualDataManager.new()
 
 var state_machine : ShipStateMachine
 var ship_area : ShipArea
+var obstacle_detector : ObstacleDetector = ObstacleDetector.new()
+var weight_system : WeightSystem = WeightSystem.new()
 
 
 func _ready() -> void:
+
+	add_child(obstacle_detector)
+
 	add_to_group("damageable")
+
 	state_machine = get_node_or_null("ShipStateMachine")
 	if not is_instance_valid(state_machine):
 		push_warning("Ship has no state machine")
@@ -71,11 +78,11 @@ func _physics_process(delta) -> void:
 	if under_player_control:
 		register_player_input(delta)
 		compute_physics(delta)
-		
+
 	else:
 		process_independenly(delta)
 		$Camera2D.enabled = false
-		
+
 		if auto_uses_space_physics:
 			#physics_thrust(delta)
 			compute_physics(delta)
@@ -96,22 +103,22 @@ func compute_physics(delta : float) -> void:
 	#apply friction
 	speed -= friction * delta
 	speed = max(0, speed)
-	
+
 	#enforce max speed
-	if boosting: 
-		speed = min(speed, boost_max_speed) 
+	if boosting:
+		speed = min(speed, boost_max_speed)
 	else:
 		#print(speed)
 		if speed > max_speed:
 			speed = lerp(speed, max_speed, speed_interpolation_rate * delta)
 		else:
 			speed = min(speed, max_speed)
-	
+
 	current_veloctiy = dir * speed
 
 
 func register_player_input(delta : float) -> void:
-	var mouse_pos = get_global_mouse_position() 
+	var mouse_pos = get_global_mouse_position()
 	var direction_to_mouse = (mouse_pos - global_position).normalized()
 	current_direction = direction_to_mouse
 
@@ -119,10 +126,14 @@ func register_player_input(delta : float) -> void:
 		physics_thrust(delta)
 	else:
 		visual_data.set_item("thrusting", false)
-	
-	if Input.is_action_pressed("ship_boost"): 
+
+	 
+
+
+	if Input.is_action_pressed("ship_boost"):
 		boost(delta)
-	elif Input.is_action_just_released("ship_boost") and boosting: 
+	elif Input.is_action_just_released("ship_boost") and boosting:
+
 		visual_data.set_item("boosting", false)
 		stop_boost()
 	
@@ -131,16 +142,16 @@ func register_player_input(delta : float) -> void:
 	
 
 
-func boost(delta : float) -> void: 
-	#print("boost") 
-	boosting = true 
-	current_veloctiy += current_direction * boost_accel * delta 
+func boost(delta : float) -> void:
+	#print("boost")
+	boosting = true
+	current_veloctiy += current_direction * boost_accel * delta
 	visual_data.set_item("thrusting", true)
 	visual_data.set_item("boosting", true)
 
 
-func stop_boost() -> void: 
-	#print("boost stop") 
+func stop_boost() -> void:
+	#print("boost stop")
 	boosting = false
 
 
@@ -150,20 +161,20 @@ func process_independenly(delta : float) -> void:
 
 
 func update_rotation() -> void:
-	rotation = current_direction.angle() 
+	rotation = current_direction.angle()
 
 
 func physics_thrust(delta) -> void:
 	current_veloctiy += current_direction * thrust_accel * delta
 	visual_data.set_item("thrusting", true)
 
-	
-	
+
+
 func thrust_without_physics() -> void:
 	current_veloctiy = current_direction * max_speed
 	visual_data.set_item("thrusting", true)
-	
-	
+
+
 func thrust(delta) -> void:
 	if auto_uses_space_physics or under_player_control:
 		physics_thrust(delta)
@@ -171,15 +182,21 @@ func thrust(delta) -> void:
 		thrust_without_physics()
 		
 		
+func rotate_toward_direction(target_direction : Vector2, delta : float, rotation_speed_deg : float = rotation_speed) -> void:
+	var rsign : int = sign(current_direction.angle_to(target_direction))
+	var rspeed : float = deg_to_rad(rotation_speed_deg)
+	if abs(current_direction.angle_to(target_direction)) < rspeed * delta:
+		current_direction = target_direction #if you have more than enough rotation speed to get to the desired direction, you just rotate straight to it and not past it
+	current_direction = current_direction.rotated(rspeed * delta * rsign)
+
+
 func reset_visuals() -> void:
 	visual_data.set_item("thrusting", false)
-	
-	
+
+
+
 func take_damage(damage : float, _damage_type : String = "none") -> void:
-	print("health before: ", health)
 	health -= damage
-	print("health after: ", health)
-	print("damage: ", damage)
 		
 		
 func die() -> void:

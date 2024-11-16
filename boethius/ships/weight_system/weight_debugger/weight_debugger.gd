@@ -14,6 +14,8 @@ func _process(_delta: float) -> void:
 	queue_redraw()
 	
 	
+	
+	
 func _draw() -> void:
 	draw_rect(Rect2(-position.x, -position.y, 2000, 2000), Color.BLACK)
 	draw_circle(Vector2.ZERO, scale_factor, circle_color, false)
