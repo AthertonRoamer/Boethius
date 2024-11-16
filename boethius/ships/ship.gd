@@ -26,7 +26,7 @@ extends CharacterBody2D
 
 
 
-
+@export var starting_health : int = 100
 var health : int = starting_health:
 	set(v):
 		if v <= 0:
@@ -46,7 +46,8 @@ var health : int = starting_health:
 var boosting : bool = false
 
 @export var max_health : int = 100
-@export var starting_health : int = 100
+
+
 
 
 var current_veloctiy : Vector2 = Vector2.ZERO
@@ -175,7 +176,10 @@ func reset_visuals() -> void:
 	
 	
 func take_damage(damage : int, _damage_type : String = "none") -> void:
+	print("health before: ", health)
 	health -= damage
+	print("health after: ", health)
+	print("damage: ", damage)
 		
 		
 func die() -> void:

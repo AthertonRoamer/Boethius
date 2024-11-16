@@ -12,6 +12,7 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_6aexn")
 
 [node name="space" type="ParallaxBackground"]
+visible = false
 
 [node name="Polygon2D" type="TextureRect" parent="."]
 offset_left = -10.0
@@ -22,7 +23,7 @@ scale = Vector2(1.37304, 1.47156)
 texture = SubResource("GradientTexture2D_mkbar")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(0.7, 0.7)
+motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(1863.11, 1026.06)
 
 [node name="galaxies" type="Node2D" parent="ParallaxLayer"]
@@ -54,8 +55,8 @@ position = Vector2(1355, 695)
 texture = ExtResource("1_y6uhp")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
-modulate = Color(1, 1, 1, 0.419608)
-motion_scale = Vector2(0.75, 0.75)
+modulate = Color(1, 1, 1, 0.247059)
+motion_scale = Vector2(0.15, 0.15)
 motion_mirroring = Vector2(1866.7, 1054.11)
 
 [node name="far stars" type="Node2D" parent="ParallaxLayer2"]
@@ -82,8 +83,8 @@ position = Vector2(1241, 692)
 texture = ExtResource("2_54sqj")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
-modulate = Color(1, 1, 1, 0.67451)
-motion_scale = Vector2(0.8, 0.8)
+modulate = Color(1, 1, 1, 0.411765)
+motion_scale = Vector2(0.2, 0.2)
 motion_mirroring = Vector2(1939.91, 1065.17)
 
 [node name="close stars" type="Node2D" parent="ParallaxLayer3"]
