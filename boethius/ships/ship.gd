@@ -13,25 +13,27 @@ extends CharacterBody2D
 #agression, loneliness, courage/fear, max range to fire, ideal range to fire
 #priorities - hit big ships first, hit small ships first
 
+@export var debug_output : bool = false
 
 @export var under_player_control : bool = false
 @export var auto_uses_space_physics : bool = true
 
 @export_group("Ship Components")
-@export var front_obstacle_detector : ShipForwardObstacleDetector
 
 
 @export_group("Physics")
 @export var friction : float = 200
 
 
-
+@export var max_health : int = 100
 @export var starting_health : int = 100
 var health : int = starting_health:
 	set(v):
 		if v <= 0:
 			health = 0
 			die()
+		elif v > max_health:
+			health = v
 		else:
 			health = v
 
@@ -43,11 +45,8 @@ var health : int = starting_health:
 @export var boost_accel : float = 1750
 @export var boost_max_speed : float = 1000
 @export var speed_interpolation_rate : float = 5.0
+var thrust_determinant : float = -0.1 #determines how close ai has to be to target direction to thrust
 var boosting : bool = false
-
-@export var max_health : int = 100
-
-
 
 
 var current_veloctiy : Vector2 = Vector2.ZERO
@@ -175,6 +174,14 @@ func thrust(delta) -> void:
 		physics_thrust(delta)
 	else:
 		thrust_without_physics()
+		
+		
+func rotate_toward_direction(target_direction : Vector2, delta : float, rotation_speed_deg : float = rotation_speed) -> void:
+	var rsign : int = sign(current_direction.angle_to(target_direction))
+	var rspeed : float = deg_to_rad(rotation_speed_deg)
+	if abs(current_direction.angle_to(target_direction)) < rspeed * delta:
+		current_direction = target_direction #if you have more than enough rotation speed to get to the desired direction, you just rotate straight to it and not past it
+	current_direction = current_direction.rotated(rspeed * delta * rsign)
 
 
 func reset_visuals() -> void:
@@ -182,11 +189,7 @@ func reset_visuals() -> void:
 
 
 func take_damage(damage : int, _damage_type : String = "none") -> void:
-	print("health before: ", health)
 	health -= damage
-
-	print("health after: ", health)
-	print("damage: ", damage)
 		
 		
 func die() -> void:
@@ -194,4 +197,3 @@ func die() -> void:
 
 func shoot():
 	pass
-

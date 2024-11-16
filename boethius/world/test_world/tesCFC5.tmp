@@ -1,12 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c45yj6q8tsgun"]
+[gd_scene load_steps=4 format=3 uid="uid://c45yj6q8tsgun"]
 
 [ext_resource type="Script" path="res://world/test_world/test_world.gd" id="1_v873r"]
 [ext_resource type="PackedScene" uid="uid://dn6elo7vpye1c" path="res://ships/basic_ship/basic_ship.tscn" id="2_7xgbe"]
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space.tscn" id="2_m21cc"]
-[ext_resource type="Script" path="res://world/test_world/thingy.gd" id="3_rq17g"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifjiw"]
-size = Vector2(62, 473)
 
 [node name="TestWorld" type="Node2D"]
 script = ExtResource("1_v873r")
@@ -17,7 +13,6 @@ script = ExtResource("1_v873r")
 color = Color(0.601399, 0.000265874, 0.60159, 1)
 offset = Vector2(600, 300)
 polygon = PackedVector2Array(-21, 11, 12, 11, -4, -22)
-script = ExtResource("3_rq17g")
 
 [node name="ships" type="Node2D" parent="."]
 
@@ -39,7 +34,6 @@ rotation = 2.65841
 [node name="enemy2" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(541, 243)
 rotation = -2.53245
-debug_output = true
 
 [node name="enemy" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(628, 277)
@@ -48,15 +42,3 @@ position = Vector2(628, 277)
 position = Vector2(549, 314)
 rotation = 1.547
 under_player_control = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(373, 299)
-collision_layer = 3
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_ifjiw")
-
-[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(-33, -238, 30, -238, 31, 237, -31, 236)
