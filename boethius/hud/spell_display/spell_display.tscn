@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5i6jq0j1qily"]
+
+[ext_resource type="Script" path="res://hud/spell_display/spell_display.gd" id="1_0x56n"]
+[ext_resource type="Texture2D" uid="uid://duxl2eo07rqk5" path="res://hud/spell_display/filler_spell_display_background.png" id="1_yo8ts"]
+[ext_resource type="Texture2D" uid="uid://h6stvujpky4k" path="res://player/ui.png" id="3_koj20"]
+[ext_resource type="Theme" uid="uid://cpi07ggflsyl5" path="res://NEWTON_THEME.tres" id="4_ifx7y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa2b5"]
+atlas = ExtResource("3_koj20")
+region = Rect2(103, 4, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ucbm"]
+atlas = ExtResource("3_koj20")
+region = Rect2(71, 4, 17, 17)
+
+[node name="SpellDisplay" type="TextureRect"]
+custom_minimum_size = Vector2(40, 40)
+anchors_preset = -1
+anchor_left = -0.01
+anchor_top = -0.019
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.52
+offset_top = 12.312
+offset_right = -1136.0
+offset_bottom = -632.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yo8ts")
+script = ExtResource("1_0x56n")
+spell_selected_background = SubResource("AtlasTexture_pa2b5")
+spell_deselected_background = SubResource("AtlasTexture_5ucbm")
+spell_available_modulate = Color(1, 1, 1, 1)
+spell_unavailable_modulate = Color(0.278431, 0.278431, 0.270588, 1)
+
+[node name="SpellTextureHolder" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TimeTillAvailableDiaplay" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+theme = ExtResource("4_ifx7y")
+horizontal_alignment = 1
+vertical_alignment = 1
