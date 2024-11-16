@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dn6elo7vpye1c"]
+[gd_scene load_steps=30 format=3 uid="uid://dn6elo7vpye1c"]
 
 [ext_resource type="Script" path="res://ships/basic_ship/basic_ship.gd" id="1_233k0"]
 [ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_va7p6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="4_0rp6a"]
 [ext_resource type="Script" path="res://ships/generic_states/circle.gd" id="5_fvppf"]
 [ext_resource type="Script" path="res://ships/ship_area/ship_area.gd" id="5_vqcxk"]
+[ext_resource type="Script" path="res://ships/generic_states/follow_mouse.gd" id="7_3msbn"]
 [ext_resource type="Script" path="res://ships/basic_ship/gun_1.gd" id="9_fj7sh"]
 [ext_resource type="PackedScene" uid="uid://jnajxsxwxoer" path="res://ships/basic_ship/projectile/smg_bullet.tscn" id="10_0nv4q"]
 [ext_resource type="Script" path="res://ships/basic_ship/ship_weight_debugger.gd" id="10_rbxp2"]
@@ -168,6 +169,9 @@ script = ExtResource("4_0rp6a")
 [node name="Circle" type="Node" parent="ShipStateMachine"]
 script = ExtResource("5_fvppf")
 id = "circle"
+
+[node name="FollowMouse" type="Node" parent="ShipStateMachine"]
+script = ExtResource("7_3msbn")
 first_active_state = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -194,7 +198,6 @@ projectile_scene = ExtResource("10_0nv4q")
 fire_position_node = NodePath(".")
 
 [node name="ShipWeightDebugger" type="Node2D" parent="."]
-visible = false
 script = ExtResource("10_rbxp2")
 highest_color = Color(0, 0, 0.686275, 1)
 scale_factor = 50.0

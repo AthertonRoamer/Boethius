@@ -21,15 +21,13 @@ func select_desired_direction() -> void:
 	
 	if distance_to_center > outer_radius:
 		desired_direction = get_ship().global_position.direction_to(center_point)
+		direction_changed = true
 	elif distance_to_center > radius:
 		var rsign : int = -sign(get_ship().current_direction.angle_to(get_ship().global_position.direction_to(center_point)))
 		desired_direction = get_ship().global_position.direction_to(center_point).rotated(deg_to_rad(preferred_angle_deviance * rsign))
-	if not desired_direction.is_equal_approx(get_ship().current_direction):
-		if get_ship().auto_uses_space_physics and not desired_direction.is_equal_approx(get_ship().velocity.normalized()):
-				#adjust desired direction for physics
-				desired_direction += -get_ship().velocity.normalized()
-				desired_direction = desired_direction.normalized()
-			
-			
+		direction_changed = true
+	#adjust_direction_for_physics()
+
+
 func should_rotate() -> bool:
 	return get_ship().current_direction.normalized().dot(desired_direction) < boundary_correction_determinant and super()
