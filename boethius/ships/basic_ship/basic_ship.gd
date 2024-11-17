@@ -12,3 +12,7 @@ func shoot():
 	gun2.projectile_direction = direction_to_mouse
 	gun1.fire()
 	gun2.fire()
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	queue_free()
