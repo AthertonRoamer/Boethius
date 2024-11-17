@@ -108,9 +108,8 @@ emission_curve = SubResource("CurveTexture_0papf")
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kotcs"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6meb3"]
-radius = 14.0
-height = 58.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhbn1"]
+size = Vector2(17.9998, 86.9949)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kdsvf"]
 radius = 134.004
@@ -157,9 +156,10 @@ frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(8, 0)
+position = Vector2(9.49357, -0.00217402)
 rotation = 1.57509
-shape = SubResource("CapsuleShape2D_6meb3")
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_dhbn1")
 
 [node name="ShipStateMachine" parent="." instance=ExtResource("4_wmond")]
 

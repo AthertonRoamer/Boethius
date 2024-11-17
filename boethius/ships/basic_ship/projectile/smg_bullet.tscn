@@ -38,6 +38,7 @@ particles_anim_loop = false
 [node name="smg_bullet" type="Area2D" node_paths=PackedStringArray("duration_timer")]
 script = ExtResource("1_ji5hh")
 speed = 1600.0
+damage = 50
 extinguish_on_effect_body = true
 duration_timer = NodePath("lifespan")
 duration = 10.0
