@@ -50,6 +50,7 @@ var health : float = starting_health:
 var thrust_determinant : float = -0.1 #determines how close ai has to be to target direction to thrust
 var boosting : bool = false
 
+var dying = false
 
 var current_veloctiy : Vector2 = Vector2.ZERO
 var current_direction : Vector2 = Vector2.RIGHT
@@ -77,8 +78,10 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	reset_visuals()
 	if under_player_control:
-		register_player_input(delta)
+		if !dying:
+			register_player_input(delta)
 		compute_physics(delta)
+
 
 	else:
 		process_independenly(delta)
@@ -118,6 +121,7 @@ func compute_physics(delta : float) -> void:
 	current_veloctiy = dir * speed
 
 
+
 func register_player_input(delta : float) -> void:
 	var mouse_pos = get_global_mouse_position()
 	var direction_to_mouse = (mouse_pos - global_position).normalized()
@@ -127,17 +131,15 @@ func register_player_input(delta : float) -> void:
 		physics_thrust(delta)
 	else:
 		visual_data.set_item("thrusting", false)
-		
+    
 	if Input.is_action_pressed("ship_boost"):
 		boost(delta)
 	elif Input.is_action_just_released("ship_boost") and boosting:
-
 		visual_data.set_item("boosting", false)
 		stop_boost()
-	
 	if Input.is_action_pressed("ship_shoot"):
 		shoot()
-	
+
 
 
 func boost(delta : float) -> void:
@@ -178,8 +180,8 @@ func thrust(delta) -> void:
 		physics_thrust(delta)
 	else:
 		thrust_without_physics()
-		
-		
+
+
 func rotate_toward_direction(target_direction : Vector2, delta : float, rotation_speed_deg : float = rotation_speed) -> void:
 	var rsign : int = sign(current_direction.angle_to(target_direction))
 	var rspeed : float = deg_to_rad(rotation_speed_deg)
@@ -190,6 +192,7 @@ func rotate_toward_direction(target_direction : Vector2, delta : float, rotation
 
 func reset_visuals() -> void:
 	visual_data.set_item("thrusting", false)
+	visual_data.set_item("boosting", false)
 
 
 
@@ -198,7 +201,11 @@ func take_damage(damage : float, _damage_type : String = "none") -> void:
 		
 		
 func die() -> void:
-	queue_free()
+	dying = true
+	reset_visuals()
+	#current_veloctiy = Vector2.ZERO
+	$AnimationPlayer.play("death")
+
 
 func shoot():
 	pass
