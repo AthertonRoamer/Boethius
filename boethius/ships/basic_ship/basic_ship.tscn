@@ -198,6 +198,7 @@ projectile_scene = ExtResource("10_0nv4q")
 fire_position_node = NodePath(".")
 
 [node name="ShipWeightDebugger" type="Node2D" parent="."]
+visible = false
 script = ExtResource("10_rbxp2")
 highest_color = Color(0, 0, 0.686275, 1)
 scale_factor = 50.0

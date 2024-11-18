@@ -8,6 +8,11 @@ var aim_mode = false
 
 func shoot():
 	gun1.fire()
+	
+	
+func release_laser() -> void:
+	gun1.release_laser()
+
 
 func register_player_input(delta : float) -> void:
 	if aim_mode:
@@ -40,3 +45,4 @@ func register_player_input(delta : float) -> void:
 		shoot()
 	else:
 		aim_mode = false
+		release_laser()

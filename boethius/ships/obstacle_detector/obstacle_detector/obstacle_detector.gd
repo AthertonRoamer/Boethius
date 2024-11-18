@@ -2,7 +2,7 @@ class_name ObstacleDetector
 extends Node2D
 
 @export var ray_count : int = 16
-@export var ray_length : float = 300
+@export var ray_length : float = 400
 
 var rays : Array[RayCast2D]
 
@@ -20,7 +20,7 @@ func add_ray(angle : float = 0) -> void:
 	var dir : Vector2 = Vector2.RIGHT.rotated(angle)
 	var point : Vector2 = dir * ray_length
 	var ray : RayCast2D = RayCast2D.new()
-	ray.set_collision_mask_value(1, false)
+	#ray.set_collision_mask_value(1, false)
 	ray.set_collision_mask_value(2, true)
 	ray.target_position = point
 	add_child(ray)

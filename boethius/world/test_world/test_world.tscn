@@ -47,11 +47,11 @@ position = Vector2(628, 277)
 [node name="player" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(549, 314)
 rotation = 1.547
+under_player_control = true
 
 [node name="LaserShip" parent="ships" instance=ExtResource("4_jkhxg")]
 position = Vector2(549, 314)
 rotation = 1.547
-under_player_control = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(373, 299)
