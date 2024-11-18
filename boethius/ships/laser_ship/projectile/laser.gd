@@ -25,9 +25,6 @@ var is_casting: bool = false :
 func _ready():
 	is_casting = false
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		self.is_casting = event.pressed
 
 func _physics_process(delta: float) -> void:
 	var cast_point := target_position

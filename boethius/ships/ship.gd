@@ -16,7 +16,7 @@ extends CharacterBody2D
 @export var debug_output : bool = false
 
 @export var under_player_control : bool = false
-@export var auto_uses_space_physics : bool = true
+@export var auto_uses_space_physics : bool = false
 
 @export_group("Ship Components")
 
@@ -46,7 +46,7 @@ var health : float = starting_health:
 @export var boost_accel : float = 1750
 @export var boost_max_speed : float = 1000
 @export var speed_interpolation_rate : float = 5.0
-@export var rotation_speed : float = 180
+@export var rotation_speed : float = 360
 var thrust_determinant : float = -0.1 #determines how close ai has to be to target direction to thrust
 var boosting : bool = false
 
@@ -131,6 +131,7 @@ func register_player_input(delta : float) -> void:
 		physics_thrust(delta)
 	else:
 		visual_data.set_item("thrusting", false)
+    
 	if Input.is_action_pressed("ship_boost"):
 		boost(delta)
 	elif Input.is_action_just_released("ship_boost") and boosting:
