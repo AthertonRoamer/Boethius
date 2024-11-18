@@ -3,6 +3,7 @@ extends State
 
 var desired_direction : Vector2 = Vector2.RIGHT #the literal direction the ship is trying to go right now, after obstacles and everything has been taken into account
 var direction_changed : bool = false
+var rotate_determinant : float = 0.95
 
 func get_ship() -> Ship:
 	return state_machine.ship
@@ -50,8 +51,8 @@ func should_thrust(thrust_determinant : float = get_ship().thrust_determinant) -
 	return get_ship().current_direction.dot(desired_direction) > thrust_determinant
 	
 	
-func should_rotate() -> bool:
-	return not desired_direction.is_equal_approx(get_ship().current_direction)
+func should_rotate(r_determinant : float = rotate_determinant) -> bool:
+	return get_ship().current_direction.normalized().dot(desired_direction) < r_determinant
 	
 	
 func adjust_direction_for_physics() -> void:

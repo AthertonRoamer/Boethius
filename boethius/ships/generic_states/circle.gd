@@ -26,8 +26,3 @@ func select_desired_direction() -> void:
 		var rsign : int = -sign(get_ship().current_direction.angle_to(get_ship().global_position.direction_to(center_point)))
 		desired_direction = get_ship().global_position.direction_to(center_point).rotated(deg_to_rad(preferred_angle_deviance * rsign))
 		direction_changed = true
-	#adjust_direction_for_physics()
-
-
-func should_rotate() -> bool:
-	return get_ship().current_direction.normalized().dot(desired_direction) < boundary_correction_determinant and super()
