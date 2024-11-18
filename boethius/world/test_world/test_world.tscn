@@ -25,31 +25,25 @@ script = ExtResource("3_rq17g")
 
 [node name="enemy6" parent="ships" instance=ExtResource("2_7xgbe")]
 rotation = 1.9282
-auto_uses_space_physics = false
 
 [node name="enemy5" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(624, 342)
 rotation = 1.00857
-auto_uses_space_physics = false
 
 [node name="enemy4" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(602, 230)
 rotation = -0.65897
-auto_uses_space_physics = false
 
 [node name="enemy3" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(497, 280)
 rotation = 2.65841
-auto_uses_space_physics = false
 
 [node name="enemy2" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(541, 243)
 rotation = -2.53245
-auto_uses_space_physics = false
 
 [node name="enemy" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(628, 277)
-auto_uses_space_physics = false
 
 [node name="player" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(549, 314)
@@ -57,12 +51,8 @@ rotation = 1.547
 under_player_control = true
 
 [node name="LaserShip" parent="ships" instance=ExtResource("4_jkhxg")]
-
 position = Vector2(549, 314)
 rotation = 1.547
-
-under_player_control = true
-
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(373, 299)

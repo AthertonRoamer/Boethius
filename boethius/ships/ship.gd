@@ -47,6 +47,7 @@ var health : float = starting_health:
 @export var boost_max_speed : float = 1000
 @export var speed_interpolation_rate : float = 5.0
 @export var rotation_speed : float = 360
+@export var sight_range : float = 300
 var thrust_determinant : float = -0.1 #determines how close ai has to be to target direction to thrust
 var boosting : bool = false
 
@@ -66,14 +67,18 @@ var weight_system : WeightSystem = WeightSystem.new()
 func _ready() -> void:
 
 	add_child(obstacle_detector)
-
 	add_to_group("damageable")
+	
+	set_collision_mask_value(1, false)
+	set_collision_mask_value(2, true)
 
 	state_machine = get_node_or_null("ShipStateMachine")
 	if not is_instance_valid(state_machine):
 		push_warning("Ship has no state machine")
 	current_direction = Vector2.RIGHT.rotated(rotation)
-
+	
+	if is_instance_valid(ship_area):
+		ship_area.sight_range = sight_range
 
 func _physics_process(delta) -> void:
 	reset_visuals()
@@ -131,7 +136,7 @@ func register_player_input(delta : float) -> void:
 		physics_thrust(delta)
 	else:
 		visual_data.set_item("thrusting", false)
-    
+	
 	if Input.is_action_pressed("ship_boost"):
 		boost(delta)
 	elif Input.is_action_just_released("ship_boost") and boosting:
@@ -204,7 +209,7 @@ func die() -> void:
 	dying = true
 	reset_visuals()
 	#current_veloctiy = Vector2.ZERO
-	$AnimationPlayer.play("death")
+	queue_free()
 
 
 func shoot():

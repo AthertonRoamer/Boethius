@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://drotwycof3eg7"]
+[gd_scene load_steps=28 format=3 uid="uid://drotwycof3eg7"]
 
 [ext_resource type="Script" path="res://ships/laser_ship/laser_ship.gd" id="1_c0m2i"]
 [ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_1wkbu"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="5_6hr4c"]
 [ext_resource type="Script" path="res://ships/generic_states/circle.gd" id="6_3jnss"]
 [ext_resource type="Script" path="res://ships/ship_area/ship_area.gd" id="7_310yp"]
-[ext_resource type="PackedScene" uid="uid://bqldrwjxbl3nl" path="res://ships/obstacle_detector/forward_obstacle_detector/ship_forward_obstacle_detector.tscn" id="8_jnndr"]
 [ext_resource type="Script" path="res://ships/laser_ship/laser_shot.gd" id="9_fhhbm"]
 [ext_resource type="PackedScene" uid="uid://dnur25oatr5ml" path="res://laser.tscn" id="11_v0eli"]
 
@@ -165,10 +164,10 @@ shape = SubResource("RectangleShape2D_dhbn1")
 
 [node name="BoidState" type="Node" parent="ShipStateMachine"]
 script = ExtResource("5_6hr4c")
-first_active_state = true
 
 [node name="Circle" type="Node" parent="ShipStateMachine"]
 script = ExtResource("6_3jnss")
+first_active_state = true
 
 [node name="ShipArea" type="Area2D" parent="."]
 visible = false
@@ -176,8 +175,6 @@ script = ExtResource("7_310yp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShipArea"]
 shape = SubResource("CircleShape2D_kdsvf")
-
-[node name="ShipForwardObstacleDetector" parent="." instance=ExtResource("8_jnndr")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
