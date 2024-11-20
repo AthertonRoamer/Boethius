@@ -46,3 +46,13 @@ func register_player_input(delta : float) -> void:
 	else:
 		aim_mode = false
 		release_laser()
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	queue_free()
+
+
+func die() -> void:
+	dying = true
+	reset_visuals()
+	$AnimationPlayer.play("death")

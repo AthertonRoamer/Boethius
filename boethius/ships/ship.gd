@@ -42,6 +42,8 @@ var health : float = starting_health:
 @export_group("Ship mechanics")
 @export var thrust_accel : float = 750
 @export var max_speed : float = 360
+@export var no_thrust_max_speed : float = 600
+
 
 @export var boost_accel : float = 1750
 @export var boost_max_speed : float = 1000
@@ -75,6 +77,8 @@ func _ready() -> void:
 	add_child(obstacle_detector)
 	add_to_group("damageable")
 	
+	add_to_group("knockable")
+	
 	set_collision_mask_value(1, false)
 	set_collision_mask_value(2, true)
 
@@ -91,7 +95,7 @@ func _physics_process(delta) -> void:
 	if under_player_control:
 		if !dying:
 			register_player_input(delta)
-		compute_physics(delta)
+			compute_physics(delta)
 
 
 	else:
@@ -157,8 +161,9 @@ func boost(delta : float) -> void:
 	#print("boost")
 	boosting = true
 	current_veloctiy += current_direction * boost_accel * delta
-	visual_data.set_item("thrusting", true)
-	visual_data.set_item("boosting", true)
+	if !dying:
+		visual_data.set_item("thrusting", true)
+		visual_data.set_item("boosting", true)
 
 
 func stop_boost() -> void:
@@ -177,13 +182,15 @@ func update_rotation() -> void:
 
 func physics_thrust(delta) -> void:
 	current_veloctiy += current_direction * thrust_accel * delta
-	visual_data.set_item("thrusting", true)
+	if !dying:
+		visual_data.set_item("thrusting", true)
 
 
 
 func thrust_without_physics() -> void:
-	current_veloctiy = current_direction * max_speed
-	visual_data.set_item("thrusting", true)
+	current_veloctiy = current_direction * no_thrust_max_speed
+	if !dying:
+		visual_data.set_item("thrusting", true)
 
 
 func thrust(delta) -> void:
@@ -206,11 +213,15 @@ func reset_visuals() -> void:
 	visual_data.set_item("boosting", false)
 
 
+func take_knockback(knock : Vector2) -> void:
+	current_veloctiy += knock
+	#print("boom")
+
 
 func take_damage(damage : float, _damage_type : String = "none") -> void:
 	health -= damage
-		
-		
+
+
 func die() -> void:
 	dying = true
 	reset_visuals()

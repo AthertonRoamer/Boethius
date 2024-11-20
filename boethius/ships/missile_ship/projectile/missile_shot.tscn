@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://cw5rrrkmrt6lu"]
+
+[ext_resource type="Script" path="res://ships/projectile/projectile.gd" id="1_3k55i"]
+[ext_resource type="Texture2D" uid="uid://be7nkfmsti5gy" path="res://Projectiles.png" id="2_avd8r"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_g0ebo"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_n0d7x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.653333, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_iwvrl"]
+curve = SubResource("Curve_n0d7x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1brg8"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 2.528
+initial_velocity_min = 102.15
+initial_velocity_max = 215.05
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_iwvrl")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_daedc"]
+radius = 2.0
+height = 50.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_61q2t"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[node name="missile_shot" type="Area2D" node_paths=PackedStringArray("duration_timer")]
+script = ExtResource("1_3k55i")
+speed = 1000.0
+damage = 50
+extinguish_on_effect_body = true
+duration_timer = NodePath("lifespan")
+duration = 10.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_g0ebo")
+position = Vector2(-8, 0)
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_1brg8")
+texture = ExtResource("2_avd8r")
+lifetime = 0.3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("2_avd8r")
+hframes = 8
+vframes = 2
+frame = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_daedc")
+
+[node name="lifespan" type="Timer" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+material = SubResource("CanvasItemMaterial_61q2t")
+position = Vector2(18, 0)
+texture = ExtResource("2_avd8r")
