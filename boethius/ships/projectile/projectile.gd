@@ -13,6 +13,7 @@ extends Area2D
 @export var impact_knockback : int = 300
 @export var gravity_accel : float = 35
 
+var dying = false
 
 var hit_entities : Array[Node] = []
 var velocity : Vector2
@@ -57,7 +58,10 @@ func _process(delta):
 	
 	
 func update_position(delta) -> void:
-	position += velocity * delta
+	if !dying:
+		position += velocity * delta
+	else:
+		velocity = Vector2.ZERO
 	
 	
 func update_position_with_gravity(delta) -> void:
@@ -66,10 +70,13 @@ func update_position_with_gravity(delta) -> void:
 	
 	
 func extinguish() -> void:
-	queue_free()
-	
-	
-	
+	$AnimationPlayer.play("blow up")
+	dying = true
+
+
 func _on_duration_timer_timeout() -> void:
 	extinguish()
-	
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	queue_free()

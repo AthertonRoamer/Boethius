@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c45yj6q8tsgun"]
+[gd_scene load_steps=19 format=3 uid="uid://c45yj6q8tsgun"]
 
 [ext_resource type="Script" path="res://world/test_world/test_world.gd" id="1_v873r"]
 [ext_resource type="PackedScene" uid="uid://dn6elo7vpye1c" path="res://ships/basic_ship/basic_ship.tscn" id="2_7xgbe"]
@@ -6,9 +6,105 @@
 [ext_resource type="Script" path="res://world/test_world/thingy.gd" id="3_rq17g"]
 [ext_resource type="PackedScene" uid="uid://drotwycof3eg7" path="res://ships/laser_ship/laser_ship.tscn" id="4_jkhxg"]
 [ext_resource type="Script" path="res://world/test_world/asteroid.gd" id="5_qj85c"]
+[ext_resource type="PackedScene" uid="uid://bscew46ntriov" path="res://ships/missile_ship/missile_ship.tscn" id="6_nns0m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifjiw"]
 size = Vector2(62, 473)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qrql7"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_18wkq"]
+colors = PackedColorArray(1, 1, 1, 1, 0.470076, 0.470076, 0.470075, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rq5xr"]
+gradient = SubResource("Gradient_18wkq")
+
+[sub_resource type="Curve" id="Curve_l65xm"]
+_data = [Vector2(0.746667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sn6dt"]
+curve = SubResource("Curve_l65xm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u04fs"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_min = 86.02
+initial_velocity_max = 150.54
+gravity = Vector3(0, 0, 0)
+damping_max = 100.0
+scale_curve = SubResource("CurveTexture_sn6dt")
+color = Color(0.286184, 2.30306e-05, 0.253394, 1)
+color_ramp = SubResource("GradientTexture1D_rq5xr")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_evaq6"]
+load_path = "res://.godot/imported/Projectiles.png-b307ba4bad30a73c32d866812224e064.ctex"
+
+[sub_resource type="Animation" id="Animation_3y2ss"]
+resource_name = "crumble"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("death:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Polygon2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_sj4q2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("death:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Polygon2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r8kvh"]
+_data = {
+"RESET": SubResource("Animation_sj4q2"),
+"crumble": SubResource("Animation_3y2ss")
+}
 
 [node name="TestWorld" type="Node2D"]
 script = ExtResource("1_v873r")
@@ -44,15 +140,14 @@ rotation = -2.53245
 
 [node name="enemy" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(628, 277)
-
-[node name="player" parent="ships" instance=ExtResource("2_7xgbe")]
-position = Vector2(549, 314)
-rotation = 1.547
 under_player_control = true
 
 [node name="LaserShip" parent="ships" instance=ExtResource("4_jkhxg")]
 position = Vector2(549, 314)
 rotation = 1.547
+
+[node name="MissileShip" parent="ships" instance=ExtResource("6_nns0m")]
+position = Vector2(765, 346)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(373, 299)
@@ -65,7 +160,25 @@ visible = false
 shape = SubResource("RectangleShape2D_ifjiw")
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
-z_index = 5
-z_as_relative = false
 color = Color(0.152941, 0, 0.133333, 1)
 polygon = PackedVector2Array(-33, -238, 30, -238, 31, 237, -31, 236)
+
+[node name="death" type="GPUParticles2D" parent="StaticBody2D"]
+z_index = 5
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_qrql7")
+scale = Vector2(1.3, 2.5)
+emitting = false
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_u04fs")
+texture = SubResource("CompressedTexture2D_evaq6")
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.75
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StaticBody2D"]
+libraries = {
+"": SubResource("AnimationLibrary_r8kvh")
+}
+
+[connection signal="animation_finished" from="StaticBody2D/AnimationPlayer" to="StaticBody2D" method="_on_animation_player_animation_finished"]

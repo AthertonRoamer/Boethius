@@ -1,8 +1,12 @@
-class_name BasicShip
+class_name MissileShip
 extends Ship
 
 @onready var gun1 = $gun1
 @onready var gun2 = $gun2
+@onready var gun3 = $gun3
+@onready var gun4 = $gun4
+@onready var gun5 = $gun5
+@onready var gun6 = $gun6
 
 
 func shoot():
@@ -10,22 +14,24 @@ func shoot():
 	var direction_to_mouse = (mouse_pos - global_position).normalized()
 	gun1.projectile_direction = direction_to_mouse
 	gun2.projectile_direction = direction_to_mouse
+	gun3.projectile_direction = direction_to_mouse
+	gun4.projectile_direction = direction_to_mouse
+	gun5.projectile_direction = direction_to_mouse
+	gun6.projectile_direction = direction_to_mouse
+	
 	gun1.fire()
 	gun2.fire()
+	gun3.fire()
+	gun4.fire()
+	gun5.fire()
+	gun6.fire()
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
-	match _anim_name:
-		"dmg"   : $AnimationPlayer.play("RESET")
-		"death" : queue_free()
-
-
+	queue_free()
+	
+	
 func die() -> void:
 	dying = true
 	reset_visuals()
 	$AnimationPlayer.play("death")
-
-
-func take_damage(damage : float, _damage_type : String = "none") -> void:
-	#$AnimationPlayer.play("dmg")
-	health -= damage
