@@ -55,3 +55,10 @@ func _process(delta) -> void:
 		
 func process_state(delta : float) -> void:
 	active_state.process_state(delta)
+	
+	
+func get_state(state_id : String) -> State:
+	if states.has(state_id):
+		return states[state_id]
+	else:
+		return null

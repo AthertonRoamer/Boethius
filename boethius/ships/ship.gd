@@ -49,9 +49,14 @@ var health : float = starting_health:
 @export var boost_max_speed : float = 1000
 @export var speed_interpolation_rate : float = 5.0
 @export var rotation_speed : float = 360
-@export var sight_range : float = 300
+@export var sight_range : float = 400
 var thrust_determinant : float = -0.1 #determines how close ai has to be to target direction to thrust
 var boosting : bool = false
+
+@export_group("Alignment")
+enum Faction {PLAYER, ENEMY}
+@export var faction : Faction = Faction.ENEMY
+
 
 var dying = false
 
@@ -67,7 +72,8 @@ var weight_system : WeightSystem = WeightSystem.new()
 
 
 func _ready() -> void:
-
+	if under_player_control:
+		faction = Faction.PLAYER
 	add_child(obstacle_detector)
 	add_to_group("damageable")
 	
@@ -225,3 +231,5 @@ func die() -> void:
 
 func shoot():
 	pass
+	
+	

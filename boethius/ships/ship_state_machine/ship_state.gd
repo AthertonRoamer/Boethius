@@ -22,6 +22,7 @@ func process_state(delta : float) -> void:
 		get_ship().rotate_toward_direction(desired_direction, delta)
 	if should_thrust():
 		get_ship().thrust(delta)
+	consider_changing_state()
 	
 	
 func select_desired_direction() -> void:
@@ -61,3 +62,7 @@ func adjust_direction_for_physics() -> void:
 				#adjust desired direction for physics
 				desired_direction += -get_ship().velocity.normalized()
 				desired_direction = desired_direction.normalized()
+				
+				
+func consider_changing_state() -> void:
+	pass
