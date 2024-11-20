@@ -1,15 +1,16 @@
-[gd_scene load_steps=32 format=3 uid="uid://drotwycof3eg7"]
+[gd_scene load_steps=34 format=3 uid="uid://bscew46ntriov"]
 
-[ext_resource type="Script" path="res://ships/laser_ship/laser_ship.gd" id="1_c0m2i"]
-[ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_1wkbu"]
-[ext_resource type="Texture2D" uid="uid://uf55r0ulcrpc" path="res://Ships.png" id="3_yiycb"]
-[ext_resource type="PackedScene" uid="uid://do4o0k42eixaw" path="res://ships/ship_state_machine/ship_state_machine.tscn" id="4_wmond"]
-[ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="5_6hr4c"]
-[ext_resource type="Script" path="res://ships/generic_states/circle.gd" id="6_3jnss"]
-[ext_resource type="Script" path="res://ships/ship_area/ship_area.gd" id="7_310yp"]
-[ext_resource type="Script" path="res://ships/laser_ship/laser_shot.gd" id="9_fhhbm"]
-[ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_particles.tscn" id="10_cu7xc"]
-[ext_resource type="PackedScene" uid="uid://dnur25oatr5ml" path="res://laser.tscn" id="11_v0eli"]
+[ext_resource type="Script" path="res://ships/missile_ship/missile_ship.gd" id="1_wggi2"]
+[ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_nafab"]
+[ext_resource type="Texture2D" uid="uid://uf55r0ulcrpc" path="res://Ships.png" id="3_5etvw"]
+[ext_resource type="PackedScene" uid="uid://do4o0k42eixaw" path="res://ships/ship_state_machine/ship_state_machine.tscn" id="4_0ncx7"]
+[ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="5_e2hr5"]
+[ext_resource type="Script" path="res://ships/generic_states/circle.gd" id="6_so4bc"]
+[ext_resource type="Script" path="res://ships/generic_states/follow_mouse.gd" id="7_gupu5"]
+[ext_resource type="PackedScene" uid="uid://b16d8fcohve56" path="res://ships/ship_area/ship_area.tscn" id="8_1jvke"]
+[ext_resource type="Script" path="res://ships/missile_ship/missile.gd" id="9_rlx12"]
+[ext_resource type="PackedScene" uid="uid://cw5rrrkmrt6lu" path="res://ships/missile_ship/projectile/missile_shot.tscn" id="10_gjd6h"]
+[ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_particles.tscn" id="11_ne02d"]
 
 [sub_resource type="Curve" id="Curve_xjb1h"]
 _data = [Vector2(0, 0.615385), 0.0, 0.0, 0, 0, Vector2(0.846667, 0), 0.0, 0.0, 0, 0]
@@ -108,11 +109,14 @@ emission_curve = SubResource("CurveTexture_0papf")
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kotcs"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhbn1"]
-size = Vector2(17.9998, 86.9949)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1b6b"]
+size = Vector2(15.9956, 29.9826)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kdsvf"]
-radius = 134.004
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjxn0"]
+size = Vector2(13.0085, 22.9869)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35usg"]
+size = Vector2(86.0423, 3.99997)
 
 [sub_resource type="Animation" id="Animation_kcaef"]
 length = 0.001
@@ -247,12 +251,12 @@ _data = {
 "death": SubResource("Animation_wcilg")
 }
 
-[node name="LaserShip" type="CharacterBody2D"]
+[node name="MissileShip" type="CharacterBody2D"]
 collision_mask = 2
-script = ExtResource("1_c0m2i")
+script = ExtResource("1_wggi2")
 
 [node name="Fire" type="GPUParticles2D" parent="."]
-position = Vector2(-32, -15)
+position = Vector2(-17, -34)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_tccvq")
 texture = SubResource("CompressedTexture2D_85xlo")
@@ -261,7 +265,7 @@ local_coords = true
 script = SubResource("GDScript_darg2")
 
 [node name="Fire2" type="GPUParticles2D" parent="."]
-position = Vector2(-31, 15)
+position = Vector2(-17, 35)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_7728x")
 texture = SubResource("CompressedTexture2D_akv2g")
@@ -270,62 +274,111 @@ local_coords = true
 script = SubResource("GDScript_0clqa")
 
 [node name="boost" type="GPUParticles2D" parent="."]
-position = Vector2(-36, 0)
+position = Vector2(-13, 0)
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_hth4b")
 texture = SubResource("CompressedTexture2D_kotcs")
 lifetime = 0.5
 local_coords = true
-script = ExtResource("2_1wkbu")
+script = ExtResource("2_nafab")
 
 [node name="Polygon2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(11, 0)
 scale = Vector2(1.65, 1.65)
-texture = ExtResource("3_yiycb")
+texture = ExtResource("3_5etvw")
 hframes = 8
 vframes = 2
-frame = 4
+frame = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(9.49357, -0.00217402)
+position = Vector2(0.982834, -0.00222015)
+rotation = 1.57509
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_h1b6b")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0.499989, 34.5021)
 rotation = 1.57509
 scale = Vector2(0.999999, 0.999999)
-shape = SubResource("RectangleShape2D_dhbn1")
+shape = SubResource("RectangleShape2D_jjxn0")
 
-[node name="ShipStateMachine" parent="." instance=ExtResource("4_wmond")]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-5.96046e-08, -35)
+rotation = 1.57509
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_jjxn0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-2.04714, -0.0216684)
+rotation = 1.57509
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_35usg")
+
+[node name="ShipStateMachine" parent="." instance=ExtResource("4_0ncx7")]
 
 [node name="BoidState" type="Node" parent="ShipStateMachine"]
-script = ExtResource("5_6hr4c")
+script = ExtResource("5_e2hr5")
 
 [node name="Circle" type="Node" parent="ShipStateMachine"]
-script = ExtResource("6_3jnss")
+script = ExtResource("6_so4bc")
+id = "circle"
+
+[node name="FollowMouse" type="Node" parent="ShipStateMachine"]
+script = ExtResource("7_gupu5")
 first_active_state = true
-
-[node name="ShipArea" type="Area2D" parent="."]
-visible = false
-script = ExtResource("7_310yp")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipArea"]
-shape = SubResource("CircleShape2D_kdsvf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
 
-[node name="gun1" type="Node2D" parent="."]
-position = Vector2(53, 0)
-script = ExtResource("9_fhhbm")
+[node name="ShipArea" parent="." instance=ExtResource("8_1jvke")]
 
-[node name="laser" parent="gun1" instance=ExtResource("11_v0eli")]
+[node name="gun1" type="Node2D" parent="." node_paths=PackedStringArray("fire_position_node")]
+position = Vector2(12, -35)
+script = ExtResource("9_rlx12")
+projectile_scene = ExtResource("10_gjd6h")
+fire_position_node = NodePath(".")
+
+[node name="gun2" type="Node2D" parent="." node_paths=PackedStringArray("fire_position_node")]
+position = Vector2(12, 25)
+script = ExtResource("9_rlx12")
+projectile_scene = ExtResource("10_gjd6h")
+fire_position_node = NodePath(".")
+
+[node name="gun3" type="Node2D" parent="." node_paths=PackedStringArray("fire_position_node")]
+position = Vector2(12, 35)
+script = ExtResource("9_rlx12")
+projectile_scene = ExtResource("10_gjd6h")
+fire_position_node = NodePath(".")
+
+[node name="gun4" type="Node2D" parent="." node_paths=PackedStringArray("fire_position_node")]
+position = Vector2(12, 45)
+script = ExtResource("9_rlx12")
+projectile_scene = ExtResource("10_gjd6h")
+fire_position_node = NodePath(".")
+
+[node name="gun5" type="Node2D" parent="." node_paths=PackedStringArray("fire_position_node")]
+position = Vector2(12, -45)
+script = ExtResource("9_rlx12")
+projectile_scene = ExtResource("10_gjd6h")
+fire_position_node = NodePath(".")
+
+[node name="gun6" type="Node2D" parent="." node_paths=PackedStringArray("fire_position_node")]
+position = Vector2(12, -25)
+script = ExtResource("9_rlx12")
+projectile_scene = ExtResource("10_gjd6h")
+fire_position_node = NodePath(".")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_c27cd")
 }
 
-[node name="death" parent="." instance=ExtResource("10_cu7xc")]
+[node name="death" parent="." instance=ExtResource("11_ne02d")]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
