@@ -11,3 +11,15 @@ var sight_range : float = 1:
 func _ready() -> void:
 	if get_parent() is Ship:
 		get_parent().ship_area = self
+
+func get_visible_enemies() -> Array:
+	return get_visible_ships_by_faction(Ship.Faction.ENEMY)
+	
+	
+func get_visible_allies() -> Array:
+	return get_visible_ships_by_faction(Ship.Faction.PLAYER)
+	
+	
+func get_visible_ships_by_faction(faction : Ship.Faction) -> Array:
+	return get_overlapping_bodies().filter(func(body): return body is Ship and body.faction == faction)
+	
