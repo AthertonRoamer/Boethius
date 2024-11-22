@@ -71,6 +71,7 @@ func update_position_with_gravity(delta) -> void:
 	
 func extinguish() -> void:
 	$AnimationPlayer.play("blow up")
+	
 	dying = true
 
 
