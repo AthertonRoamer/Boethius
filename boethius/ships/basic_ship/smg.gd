@@ -12,14 +12,17 @@ func set_up_projectile() -> Projectile:
 	new_projectile.rotation = projectile_direction.angle()
 	return new_projectile
 
+
 func fire() -> void:
 	shooting = true
 	if time_since_last_shot >= shot_interval:
 		smg_fire()
 
+
 func _physics_process(delta: float) -> void:
 	#if shooting:
 	time_since_last_shot += delta
+
 
 func smg_fire():
 	time_since_last_shot = 0.0

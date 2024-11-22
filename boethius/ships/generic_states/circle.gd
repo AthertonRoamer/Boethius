@@ -3,7 +3,7 @@ extends ShipState
 
 var center_point : Vector2 = Vector2(600, 300)
 var radius : float = 150
-var outer_radius : float = 500
+var outer_radius : float = 300
 
 var boundary_correction_determinant : float = 0.95 
 

@@ -1,7 +1,7 @@
 class_name WeightSystem
 extends RefCounted
 
-var weight_count : int = 32
+var weight_count : int = 16
 var weights : Array[Weight]
 
 func _init() -> void:
