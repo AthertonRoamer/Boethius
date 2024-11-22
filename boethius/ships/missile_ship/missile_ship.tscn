@@ -294,7 +294,6 @@ frame = 6
 visible = false
 position = Vector2(0.982834, -0.00222015)
 rotation = 1.57509
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_h1b6b")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
