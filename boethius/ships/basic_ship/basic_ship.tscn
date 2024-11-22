@@ -771,17 +771,21 @@ shape = SubResource("RectangleShape2D_35usg")
 [node name="BoidState" type="Node" parent="ShipStateMachine"]
 script = ExtResource("4_0rp6a")
 
+
+[node name="FollowMouse" type="Node" parent="ShipStateMachine"]
+script = ExtResource("7_3msbn")
+id = "follow_mouse"
+first_active_state = true
+
+
 [node name="Circle" type="Node" parent="ShipStateMachine"]
 script = ExtResource("5_fvppf")
 id = "circle"
 
-[node name="FollowMouse" type="Node" parent="ShipStateMachine"]
-script = ExtResource("7_3msbn")
-
 [node name="Defend" type="Node" parent="ShipStateMachine"]
 script = ExtResource("8_nfa8o")
 id = "defend"
-first_active_state = true
+
 
 [node name="Shoot" type="Node" parent="ShipStateMachine"]
 script = ExtResource("9_w5jbb")

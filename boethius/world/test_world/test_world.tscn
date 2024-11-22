@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c45yj6q8tsgun"]
+[gd_scene load_steps=20 format=3 uid="uid://c45yj6q8tsgun"]
 
 [ext_resource type="Script" path="res://world/test_world/test_world.gd" id="1_v873r"]
 [ext_resource type="PackedScene" uid="uid://dn6elo7vpye1c" path="res://ships/basic_ship/basic_ship.tscn" id="2_7xgbe"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://drotwycof3eg7" path="res://ships/laser_ship/laser_ship.tscn" id="4_jkhxg"]
 [ext_resource type="Script" path="res://world/test_world/asteroid.gd" id="5_qj85c"]
 [ext_resource type="PackedScene" uid="uid://bscew46ntriov" path="res://ships/missile_ship/missile_ship.tscn" id="6_nns0m"]
+[ext_resource type="Script" path="res://world/test_world/circle.gd" id="8_ytme6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifjiw"]
 size = Vector2(62, 473)
@@ -121,18 +122,22 @@ script = ExtResource("3_rq17g")
 
 [node name="enemy6" parent="ships" instance=ExtResource("2_7xgbe")]
 rotation = 1.9282
+benched = true
 
 [node name="enemy5" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(624, 342)
 rotation = 1.00857
+benched = true
 
 [node name="enemy4" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(602, 230)
 rotation = -0.65897
+benched = true
 
 [node name="enemy3" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(497, 280)
 rotation = 2.65841
+benched = true
 
 [node name="enemy2" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(541, 243)
@@ -148,6 +153,7 @@ rotation = 1.547
 
 [node name="MissileShip" parent="ships" instance=ExtResource("6_nns0m")]
 position = Vector2(765, 346)
+benched = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(373, 299)
@@ -180,5 +186,8 @@ explosiveness = 0.75
 libraries = {
 "": SubResource("AnimationLibrary_r8kvh")
 }
+
+[node name="Circle" type="Node2D" parent="."]
+script = ExtResource("8_ytme6")
 
 [connection signal="animation_finished" from="StaticBody2D/AnimationPlayer" to="StaticBody2D" method="_on_animation_player_animation_finished"]

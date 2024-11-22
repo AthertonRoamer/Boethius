@@ -14,9 +14,10 @@ extends CharacterBody2D
 #priorities - hit big ships first, hit small ships first
 
 @export var debug_output : bool = false
+@export var benched : bool = false
 
 @export var under_player_control : bool = false
-@export var auto_uses_space_physics : bool = false
+@export var auto_uses_space_physics : bool = true
 
 @export_group("Ship Components")
 
@@ -50,7 +51,7 @@ var health : float = starting_health:
 @export var speed_interpolation_rate : float = 5.0
 @export var rotation_speed : float = 360
 @export var sight_range : float = 400
-var thrust_determinant : float = -0.1 #determines how close ai has to be to target direction to thrust
+var thrust_determinant : float = 0.1 #determines how close ai has to be to target direction to thrust
 var boosting : bool = false
 
 @export_group("Alignment")
@@ -72,6 +73,8 @@ var weight_system : WeightSystem = WeightSystem.new()
 
 
 func _ready() -> void:
+	if benched:
+		queue_free()
 	if under_player_control:
 		faction = Faction.PLAYER
 	add_child(obstacle_detector)
@@ -89,6 +92,8 @@ func _ready() -> void:
 	
 	if is_instance_valid(ship_area):
 		ship_area.sight_range = sight_range
+		
+
 
 func _physics_process(delta) -> void:
 	reset_visuals()
