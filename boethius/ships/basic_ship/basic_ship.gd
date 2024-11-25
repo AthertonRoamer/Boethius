@@ -6,10 +6,14 @@ extends Ship
 
 
 func shoot():
-	var mouse_pos = get_global_mouse_position() 
-	var direction_to_mouse = (mouse_pos - global_position).normalized()
-	gun1.projectile_direction = direction_to_mouse
-	gun2.projectile_direction = direction_to_mouse
+	if under_player_control:
+		var mouse_pos = get_global_mouse_position() 
+		var direction_to_mouse = (mouse_pos - global_position).normalized()
+		gun1.projectile_direction = direction_to_mouse
+		gun2.projectile_direction = direction_to_mouse
+	else:
+		gun1.projectile_direction = current_direction
+		gun2.projectile_direction = current_direction
 	gun1.fire()
 	gun2.fire()
 
@@ -29,3 +33,13 @@ func die() -> void:
 func take_damage(damage : float, _damage_type : String = "none") -> void:
 	#$AnimationPlayer.play("dmg")
 	health -= damage
+	
+	
+#func _draw() -> void:
+	#if not under_player_control:
+		#draw_line(Vector2.ZERO, current_direction.rotated(-rotation) * 10000, Color.ORANGE)
+	
+	
+#func _process(_delta: float) -> void:
+	#if not under_player_control:
+		#queue_redraw()

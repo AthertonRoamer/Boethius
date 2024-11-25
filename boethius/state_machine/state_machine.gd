@@ -8,6 +8,7 @@ signal state_changed
 
 var initial_state_id : String = ""
 var active_state : State
+var previous_state_id : String = ""
 
 var states : Dictionary = {}
 #form::  key: state_id (String), value: state (EntityState)
@@ -19,6 +20,7 @@ func _ready() -> void:
 		active = false
 	if is_instance_valid(active_state):
 		active_state.activate()
+		previous_state_id = active_state.id
 	else:
 		push_warning("StateMachine has no initial state")
 		active = false
@@ -41,6 +43,7 @@ func set_state(state_id : String = initial_state_id) -> void: #sets state from a
 	if state_id != "" and states.has(state_id):
 		if state_id != active_state.id:
 			active_state.deactivate()
+			previous_state_id = active_state.id
 			active_state = states[state_id]
 			active_state.activate()
 			state_changed.emit()
