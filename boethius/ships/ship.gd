@@ -210,7 +210,8 @@ func rotate_toward_direction(target_direction : Vector2, delta : float, rotation
 	var rspeed : float = deg_to_rad(rotation_speed_deg)
 	if abs(current_direction.angle_to(target_direction)) < rspeed * delta:
 		current_direction = target_direction #if you have more than enough rotation speed to get to the desired direction, you just rotate straight to it and not past it
-	current_direction = current_direction.rotated(rspeed * delta * rsign)
+	else:
+		current_direction = current_direction.rotated(rspeed * delta * rsign)
 
 
 func reset_visuals() -> void:

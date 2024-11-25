@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://drotwycof3eg7"]
+[gd_scene load_steps=34 format=3 uid="uid://drotwycof3eg7"]
 
 [ext_resource type="Script" path="res://ships/laser_ship/laser_ship.gd" id="1_c0m2i"]
 [ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_1wkbu"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="5_6hr4c"]
 [ext_resource type="Script" path="res://ships/generic_states/circle.gd" id="6_3jnss"]
 [ext_resource type="Script" path="res://ships/ship_area/ship_area.gd" id="7_310yp"]
+[ext_resource type="Script" path="res://ships/generic_states/defend.gd" id="7_uck4j"]
+[ext_resource type="Script" path="res://ships/generic_states/shoot.gd" id="8_6cqnh"]
 [ext_resource type="Script" path="res://ships/laser_ship/laser_shot.gd" id="9_fhhbm"]
 [ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_particles.tscn" id="10_cu7xc"]
 [ext_resource type="PackedScene" uid="uid://dnur25oatr5ml" path="res://laser.tscn" id="11_v0eli"]
@@ -302,6 +304,12 @@ script = ExtResource("5_6hr4c")
 [node name="Circle" type="Node" parent="ShipStateMachine"]
 script = ExtResource("6_3jnss")
 first_active_state = true
+
+[node name="Defend" type="Node" parent="ShipStateMachine"]
+script = ExtResource("7_uck4j")
+
+[node name="Shoot" type="Node" parent="ShipStateMachine"]
+script = ExtResource("8_6cqnh")
 
 [node name="ShipArea" type="Area2D" parent="."]
 visible = false
