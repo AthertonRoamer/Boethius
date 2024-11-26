@@ -4,7 +4,7 @@ extends RayCast2D
 @onready var collision_particles_2: GPUParticles2D = $CollisionParticles
 @onready var beam_particle_2d: GPUParticles2D = $BeamParticles
 
-var dmg = 225
+var dmg : float = 100
 
 var is_casting: bool = false :
 	set(value): 

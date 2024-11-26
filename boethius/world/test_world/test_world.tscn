@@ -124,9 +124,7 @@ script = ExtResource("3_rq17g")
 position = Vector2(170, 281)
 
 [node name="enemy6" parent="ships" instance=ExtResource("2_7xgbe")]
-
 position = Vector2(1002, 221)
-
 rotation = 1.9282
 
 [node name="enemy5" parent="ships" instance=ExtResource("2_7xgbe")]
@@ -141,25 +139,23 @@ rotation = -0.65897
 position = Vector2(993, 336)
 rotation = 2.65841
 
-
 [node name="enemy2" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(996, 82.0001)
 rotation = -2.53245
 
-
 [node name="LaserShip" parent="ships" instance=ExtResource("4_jkhxg")]
 position = Vector2(549, 314)
 rotation = 1.547
-under_player_control = true
 
 [node name="MissileShip" parent="ships" instance=ExtResource("6_nns0m")]
 position = Vector2(765, 346)
 
-[node name="enemy" parent="ships" instance=ExtResource("2_7xgbe")]
+[node name="Allies" type="Node2D" parent="ships"]
+
+[node name="enemy7" parent="ships/Allies" instance=ExtResource("2_7xgbe")]
 position = Vector2(628, 277)
 under_player_control = true
-
-[node name="Allies" type="Node2D" parent="ships"]
+faction = 0
 
 [node name="BasicShip" parent="ships/Allies" instance=ExtResource("2_7xgbe")]
 position = Vector2(969, 97)
@@ -176,7 +172,6 @@ faction = 0
 [node name="BasicShip4" parent="ships/Allies" instance=ExtResource("2_7xgbe")]
 position = Vector2(1068, 95)
 faction = 0
-
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(373, 299)

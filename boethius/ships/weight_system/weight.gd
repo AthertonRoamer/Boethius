@@ -13,8 +13,9 @@ func reset() -> void:
 	
 	
 func register_normal(other_normal : Vector2, weight : float = 1) -> void:
-	if other_normal.dot(normal) > 0:
-		value += other_normal.dot(normal) * weight
+	var new_value : float = (other_normal.dot(normal)) * weight
+	if new_value > 0 or true:
+		value += new_value
 
 
 func register_blocked_normal(blocked_normal : Vector2, angle : float = -1) -> void:
