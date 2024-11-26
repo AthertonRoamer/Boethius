@@ -121,41 +121,53 @@ script = ExtResource("3_rq17g")
 [node name="ships" type="Node2D" parent="."]
 
 [node name="enemy6" parent="ships" instance=ExtResource("2_7xgbe")]
+position = Vector2(3, 8)
 rotation = 1.9282
-benched = true
 
 [node name="enemy5" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(624, 342)
 rotation = 1.00857
-benched = true
 
 [node name="enemy4" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(602, 230)
 rotation = -0.65897
-benched = true
 
 [node name="enemy3" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(497, 280)
 rotation = 2.65841
-benched = true
 
 [node name="LaserShip" parent="ships" instance=ExtResource("4_jkhxg")]
 position = Vector2(549, 314)
 rotation = 1.547
-benched = true
 
 [node name="MissileShip" parent="ships" instance=ExtResource("6_nns0m")]
 position = Vector2(765, 346)
-benched = true
 
 [node name="enemy2" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(541, 243)
 rotation = -2.53245
-scale = Vector2(1, 1)
 
 [node name="enemy" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(628, 277)
 under_player_control = true
+
+[node name="Allies" type="Node2D" parent="ships"]
+
+[node name="BasicShip" parent="ships/Allies" instance=ExtResource("2_7xgbe")]
+position = Vector2(969, 97)
+faction = 0
+
+[node name="BasicShip2" parent="ships/Allies" instance=ExtResource("2_7xgbe")]
+position = Vector2(972, 44)
+faction = 0
+
+[node name="BasicShip3" parent="ships/Allies" instance=ExtResource("2_7xgbe")]
+position = Vector2(1077, 53)
+faction = 0
+
+[node name="BasicShip4" parent="ships/Allies" instance=ExtResource("2_7xgbe")]
+position = Vector2(1068, 95)
+faction = 0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(373, 299)
