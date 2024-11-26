@@ -131,7 +131,7 @@ load_path = "res://.godot/imported/Projectiles.png-b307ba4bad30a73c32d866812224e
 [node name="smg_bullet" type="Area2D" node_paths=PackedStringArray("duration_timer")]
 script = ExtResource("1_ji5hh")
 speed = 1600.0
-damage = 10
+damage = 1
 extinguish_on_effect_body = true
 duration_timer = NodePath("lifespan")
 duration = 10.0

@@ -12,7 +12,7 @@ var preferred_angle_deviance : float = 80
 var thrust_determinant : float = -0.5
 
 func _init() -> void:
-	id = "circle_state"
+	id = "circle"
 	
 	
 func select_desired_direction() -> void:

@@ -1,12 +1,10 @@
-class_name ShootState
-extends ShipState
+class_name LaserShootState
+extends ShootState
 
-var target : Node2D
-var shoot_angle_threshhold : float = TAU / 360 #radians
-var estimated_target_radius : float = 40
+func deactivate() -> void:
+	super()
+	get_ship().release_laser()
 
-func _init() -> void:
-	id = "shoot"
 
 func process_state(delta : float) -> void:
 	if not is_instance_valid(target):
@@ -20,11 +18,6 @@ func process_state(delta : float) -> void:
 	if abs(get_ship().current_direction.angle_to(direction_to_target)) <= shoot_angle_threshhold:
 		get_ship().shoot()
 	else:
+		get_ship().release_laser()
 		get_ship().rotate_toward_direction(direction_to_target, delta)
 	consider_changing_state()
-		
-		
-func consider_changing_state() -> void:
-	if not get_ship().ship_area.get_visible_enemies().has(target):
-		state_machine.set_state(state_machine.previous_state_id)
-	
