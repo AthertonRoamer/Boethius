@@ -886,7 +886,6 @@ script = ExtResource("4_0rp6a")
 script = ExtResource("7_3msbn")
 id = "follow_mouse"
 
-
 [node name="Circle" type="Node" parent="ShipStateMachine"]
 script = ExtResource("5_fvppf")
 id = "circle"
@@ -894,9 +893,7 @@ id = "circle"
 [node name="Defend" type="Node" parent="ShipStateMachine"]
 script = ExtResource("8_nfa8o")
 id = "defend"
-
 first_active_state = true
-
 
 [node name="Shoot" type="Node" parent="ShipStateMachine"]
 script = ExtResource("9_w5jbb")
@@ -922,7 +919,6 @@ projectile_scene = ExtResource("10_0nv4q")
 fire_position_node = NodePath(".")
 
 [node name="ShipWeightDebugger" type="Node2D" parent="."]
-visible = false
 script = ExtResource("10_rbxp2")
 highest_color = Color(0, 0, 0.686275, 1)
 scale_factor = 50.0
