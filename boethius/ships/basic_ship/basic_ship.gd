@@ -5,6 +5,15 @@ extends Ship
 @onready var gun2 = $gun2
 
 
+func _ready() -> void:
+	super()
+	if faction == Faction.ENEMY:
+		$ship_sprite.frame = 1
+		$damage_shader.frame = 1
+	else:
+		$ship_sprite.frame = 0
+		$damage_shader.frame = 0
+
 func shoot():
 	if under_player_control:
 		var mouse_pos = get_global_mouse_position() 
@@ -31,7 +40,7 @@ func die() -> void:
 
 
 func take_damage(damage : float, _damage_type : String = "none") -> void:
-	#$AnimationPlayer.play("dmg")
+	$AnimationPlayer.play("dmg")
 	health -= damage
 	
 	

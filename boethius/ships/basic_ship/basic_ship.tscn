@@ -1,10 +1,13 @@
-[gd_scene load_steps=40 format=3 uid="uid://dn6elo7vpye1c"]
+[gd_scene load_steps=54 format=3 uid="uid://dn6elo7vpye1c"]
 
 [ext_resource type="Script" path="res://ships/basic_ship/basic_ship.gd" id="1_233k0"]
+[ext_resource type="Gradient" uid="uid://dxbpa3wy4kkya" path="res://player_boost_gradient.tres" id="2_jep4j"]
 [ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_va7p6"]
 [ext_resource type="Shader" path="res://ships/basic_ship/damage.gdshader" id="3_g8lak"]
 [ext_resource type="PackedScene" uid="uid://do4o0k42eixaw" path="res://ships/ship_state_machine/ship_state_machine.tscn" id="3_q4maa"]
 [ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="4_0rp6a"]
+[ext_resource type="Script" path="res://ships/basic_ship/enemy_fire.gd" id="4_4jsor"]
+[ext_resource type="Script" path="res://ships/basic_ship/enemy_boost.gd" id="4_th7u7"]
 [ext_resource type="Script" path="res://ships/generic_states/circle.gd" id="5_fvppf"]
 [ext_resource type="Script" path="res://ships/generic_states/follow_mouse.gd" id="7_3msbn"]
 [ext_resource type="PackedScene" uid="uid://b16d8fcohve56" path="res://ships/ship_area/ship_area.tscn" id="8_05l4c"]
@@ -22,11 +25,9 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_gkwdo"]
 curve = SubResource("Curve_xjb1h")
 
-[sub_resource type="Gradient" id="Gradient_xm4th"]
-colors = PackedColorArray(0.245993, 0, 0.0383255, 1, 0, 0, 0, 1)
-
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_isw5s"]
-gradient = SubResource("Gradient_xm4th")
+resource_local_to_scene = true
+gradient = ExtResource("2_jep4j")
 
 [sub_resource type="Curve" id="Curve_7blia"]
 max_value = 12.0
@@ -43,7 +44,8 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_jvgtt"]
 curve = SubResource("Curve_i7yo7")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tccvq"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wjaof"]
+resource_local_to_scene = true
 particle_flag_disable_z = true
 direction = Vector3(-1, 0, 0)
 spread = 10.0
@@ -57,19 +59,21 @@ color_ramp = SubResource("GradientTexture1D_isw5s")
 alpha_curve = SubResource("CurveTexture_gkwdo")
 emission_curve = SubResource("CurveTexture_0papf")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_85xlo"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c4a68"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
-[sub_resource type="GDScript" id="GDScript_darg2"]
+[sub_resource type="GDScript" id="GDScript_81evh"]
 script/source = "extends GPUParticles2D
 
 
 func _process(_delta: float) -> void:
 	if get_parent() is Ship:
-		visible = get_parent().visual_data.get_item_value(\"thrusting\")
+		if get_parent().faction == get_parent().Faction.PLAYER:
+			visible = get_parent().visual_data.get_item_value(\"thrusting\")
 "
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7728x"]
+resource_local_to_scene = true
 particle_flag_disable_z = true
 direction = Vector3(-1, 0, 0)
 spread = 10.0
@@ -92,10 +96,12 @@ script/source = "extends GPUParticles2D
 
 func _process(_delta: float) -> void:
 	if get_parent() is Ship:
-		visible = get_parent().visual_data.get_item_value(\"thrusting\")
+		if get_parent().faction == get_parent().Faction.PLAYER:
+			visible = get_parent().visual_data.get_item_value(\"thrusting\")
 "
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hth4b"]
+resource_local_to_scene = true
 particle_flag_disable_z = true
 direction = Vector3(-1, 0, 0)
 spread = 10.0
@@ -110,6 +116,78 @@ alpha_curve = SubResource("CurveTexture_gkwdo")
 emission_curve = SubResource("CurveTexture_0papf")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kotcs"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[sub_resource type="Gradient" id="Gradient_phvpi"]
+colors = PackedColorArray(0.0470588, 0.901961, 0.94902, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wemo8"]
+gradient = SubResource("Gradient_phvpi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_645os"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 10.0
+initial_velocity_min = 84.51
+initial_velocity_max = 98.59
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_jvgtt")
+color_ramp = SubResource("GradientTexture1D_wemo8")
+alpha_curve = SubResource("CurveTexture_gkwdo")
+emission_curve = SubResource("CurveTexture_0papf")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c75ca"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[sub_resource type="Gradient" id="Gradient_5uipf"]
+colors = PackedColorArray(0.0470588, 0.901961, 0.94902, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8v2pm"]
+gradient = SubResource("Gradient_5uipf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_80dav"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 10.0
+initial_velocity_min = 84.51
+initial_velocity_max = 98.59
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_jvgtt")
+color_ramp = SubResource("GradientTexture1D_8v2pm")
+alpha_curve = SubResource("CurveTexture_gkwdo")
+emission_curve = SubResource("CurveTexture_0papf")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u3dir"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[sub_resource type="Gradient" id="Gradient_wujah"]
+colors = PackedColorArray(0.0470588, 0.901961, 0.94902, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ghfwd"]
+gradient = SubResource("Gradient_wujah")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rhjb0"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 10.0
+initial_velocity_min = 145.16
+initial_velocity_max = 145.16
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_jvgtt")
+color_ramp = SubResource("GradientTexture1D_ghfwd")
+alpha_curve = SubResource("CurveTexture_gkwdo")
+emission_curve = SubResource("CurveTexture_0papf")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v8vlh"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_alpew"]
@@ -164,38 +242,38 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Fire:visible")
+tracks/2/path = NodePath("player_fire1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Fire2:visible")
+tracks/3/path = NodePath("player_fire2:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("boost:visible")
+tracks/4/path = NodePath("player_boost:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -248,7 +326,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("boost:position")
+tracks/9/path = NodePath("player_boost:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -260,7 +338,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("boost:rotation")
+tracks/10/path = NodePath("player_boost:rotation")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -272,7 +350,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("boost:scale")
+tracks/11/path = NodePath("player_boost:scale")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -284,7 +362,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Fire:position")
+tracks/12/path = NodePath("player_fire1:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -296,7 +374,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Fire:rotation")
+tracks/13/path = NodePath("player_fire1:rotation")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -308,7 +386,7 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Fire:scale")
+tracks/14/path = NodePath("player_fire1:scale")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -320,7 +398,7 @@ tracks/14/keys = {
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("Fire2:position")
+tracks/15/path = NodePath("player_fire2:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -332,7 +410,7 @@ tracks/15/keys = {
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Fire2:rotation")
+tracks/16/path = NodePath("player_fire2:rotation")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
@@ -344,7 +422,7 @@ tracks/16/keys = {
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("Fire2:scale")
+tracks/17/path = NodePath("player_fire2:scale")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
@@ -444,7 +522,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Fire:visible")
+tracks/2/path = NodePath("player_fire1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -456,7 +534,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Fire2:visible")
+tracks/3/path = NodePath("player_fire2:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -468,7 +546,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("boost:visible")
+tracks/4/path = NodePath("player_boost:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -544,7 +622,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("boost:position")
+tracks/4/path = NodePath("player_boost:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -556,7 +634,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("boost:rotation")
+tracks/5/path = NodePath("player_boost:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -568,7 +646,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("boost:scale")
+tracks/6/path = NodePath("player_boost:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -580,7 +658,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Fire:position")
+tracks/7/path = NodePath("player_fire1:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -592,7 +670,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Fire:rotation")
+tracks/8/path = NodePath("player_fire1:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -604,7 +682,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Fire:scale")
+tracks/9/path = NodePath("player_fire1:scale")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -616,7 +694,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Fire2:position")
+tracks/10/path = NodePath("player_fire2:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -628,7 +706,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Fire2:rotation")
+tracks/11/path = NodePath("player_fire2:rotation")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -640,7 +718,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Fire2:scale")
+tracks/12/path = NodePath("player_fire2:scale")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -709,16 +787,18 @@ _data = {
 collision_mask = 2
 script = ExtResource("1_233k0")
 
-[node name="Fire" type="GPUParticles2D" parent="."]
+[node name="player_fire1" type="GPUParticles2D" parent="."]
+visible = false
 position = Vector2(-13, -19)
 amount = 50
-process_material = SubResource("ParticleProcessMaterial_tccvq")
-texture = SubResource("CompressedTexture2D_85xlo")
+process_material = SubResource("ParticleProcessMaterial_wjaof")
+texture = SubResource("CompressedTexture2D_c4a68")
 lifetime = 0.5
 local_coords = true
-script = SubResource("GDScript_darg2")
+script = SubResource("GDScript_81evh")
 
-[node name="Fire2" type="GPUParticles2D" parent="."]
+[node name="player_fire2" type="GPUParticles2D" parent="."]
+visible = false
 position = Vector2(-13, 19)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_7728x")
@@ -727,7 +807,8 @@ lifetime = 0.5
 local_coords = true
 script = SubResource("GDScript_0clqa")
 
-[node name="boost" type="GPUParticles2D" parent="."]
+[node name="player_boost" type="GPUParticles2D" parent="."]
+visible = false
 position = Vector2(-17, 0)
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_hth4b")
@@ -735,6 +816,36 @@ texture = SubResource("CompressedTexture2D_kotcs")
 lifetime = 0.5
 local_coords = true
 script = ExtResource("2_va7p6")
+
+[node name="enemy_fire1" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(-13, -19)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_645os")
+texture = SubResource("CompressedTexture2D_c75ca")
+lifetime = 0.5
+local_coords = true
+script = ExtResource("4_4jsor")
+
+[node name="enemy_fire2" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(-13, 19)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_80dav")
+texture = SubResource("CompressedTexture2D_u3dir")
+lifetime = 0.5
+local_coords = true
+script = ExtResource("4_4jsor")
+
+[node name="enemy_boost" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(-17, 0)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_rhjb0")
+texture = SubResource("CompressedTexture2D_v8vlh")
+lifetime = 0.5
+local_coords = true
+script = ExtResource("4_th7u7")
 
 [node name="ship_sprite" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -775,6 +886,7 @@ script = ExtResource("4_0rp6a")
 script = ExtResource("7_3msbn")
 id = "follow_mouse"
 
+
 [node name="Circle" type="Node" parent="ShipStateMachine"]
 script = ExtResource("5_fvppf")
 id = "circle"
@@ -782,7 +894,9 @@ id = "circle"
 [node name="Defend" type="Node" parent="ShipStateMachine"]
 script = ExtResource("8_nfa8o")
 id = "defend"
+
 first_active_state = true
+
 
 [node name="Shoot" type="Node" parent="ShipStateMachine"]
 script = ExtResource("9_w5jbb")
