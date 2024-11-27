@@ -7,4 +7,4 @@
 
 [resource]
 script = ExtResource("1_065vn")
-ships = Array[ExtResource("2_r2f5f")]([ExtResource("3_sm0lf"), ExtResource("3_sm0lf"), ExtResource("3_sm0lf"), ExtResource("4_t15nx"), ExtResource("4_t15nx")])
+ships = Array[ExtResource("2_r2f5f")]([ExtResource("3_sm0lf"), ExtResource("3_sm0lf"), ExtResource("3_sm0lf"), ExtResource("4_t15nx"), ExtResource("4_t15nx"), ExtResource("3_sm0lf"), ExtResource("3_sm0lf"), ExtResource("3_sm0lf")])
