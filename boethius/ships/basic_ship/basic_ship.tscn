@@ -1,10 +1,9 @@
-[gd_scene load_steps=52 format=3 uid="uid://dn6elo7vpye1c"]
+[gd_scene load_steps=54 format=3 uid="uid://dn6elo7vpye1c"]
 
 [ext_resource type="Script" path="res://ships/basic_ship/basic_ship.gd" id="1_233k0"]
 [ext_resource type="Gradient" uid="uid://dxbpa3wy4kkya" path="res://art/player_boost_gradient.tres" id="2_jep4j"]
 [ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_va7p6"]
 [ext_resource type="Script" path="res://ships/basic_ship/fire.gd" id="3_eog6w"]
-[ext_resource type="Shader" path="res://ships/basic_ship/damage.gdshader" id="3_g8lak"]
 [ext_resource type="PackedScene" uid="uid://do4o0k42eixaw" path="res://ships/ship_state_machine/ship_state_machine.tscn" id="3_q4maa"]
 [ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="4_0rp6a"]
 [ext_resource type="Script" path="res://ships/basic_ship/enemy_fire.gd" id="4_4jsor"]
@@ -16,13 +15,8 @@
 [ext_resource type="Script" path="res://ships/basic_ship/smg.gd" id="9_fj7sh"]
 [ext_resource type="Script" path="res://ships/generic_states/shoot.gd" id="9_w5jbb"]
 [ext_resource type="PackedScene" uid="uid://jnajxsxwxoer" path="res://ships/basic_ship/projectile/smg_bullet.tscn" id="10_0nv4q"]
-
-[ext_resource type="Script" path="res://ships/basic_ship/ship_weight_debugger.gd" id="10_rbxp2"]
 [ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_explosion.tscn" id="12_m6u1j"]
-
-[ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_particles.tscn" id="12_m6u1j"]
 [ext_resource type="PackedScene" uid="uid://bw1jqqaydcxqo" path="res://ships/weight_system/weight_debugger/ship_weight_debugger.tscn" id="17_jn7rj"]
-
 
 [sub_resource type="Curve" id="Curve_xjb1h"]
 _data = [Vector2(0, 0.615385), 0.0, 0.0, 0, 0, Vector2(0.846667, 0), 0.0, 0.0, 0, 0]
@@ -179,18 +173,101 @@ load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.cte
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_alpew"]
 load_path = "res://.godot/imported/Ships.png-a79435ddc1b1eeee2f87818eaaed4e55.ctex"
 
+[sub_resource type="Shader" id="Shader_yo7lj"]
+code = "// Flashing Shader
+// Overlays/Mixes between an animated color A and color B (alpha of each controls mix amount)
+shader_type canvas_item;
+
+// Color A: grey by default
+uniform vec4 color_a:source_color = vec4(0.7, 0.7, 0.7, 1.0);
+
+// Color B: White by default
+uniform vec4 color_b:source_color = vec4(1.0, 1.0, 1.0, 1.0);
+
+// if enabled, color_a and color_b alpha will affect transparency
+uniform bool colors_affect_alpha = false;
+
+// Whether to enable the animation or simply mix in color_a only
+uniform float flash_amount:hint_range(0.0, 1.0, 0.1) = 1.0;
+
+// if flash_amount is true, flash_speed controls the speed of the animation between color_a and color_b
+uniform float flash_speed = 1.0;
+
+// transparency, like modulate
+uniform float transparency:hint_range(0.0, 1.0, 0.01) = 1.0;
+
+// Intensity of the shader
+uniform float intensity:hint_range(0.0, 1.0, 0.1) = 1.0;
+
+
+float anim() {
+	return (sin(TIME * flash_speed) + 1.0) / 2.0;
+}
+
+// returns a mix between color_a and color_b, based on TIME
+// see the anim() function
+vec4 get_shader_color() {
+	if (flash_amount > 0.0) {
+		float f = anim();
+		return mix(color_a, color_b, f * flash_amount);
+	}else {
+		return color_a;
+	}
+}
+
+void fragment() {
+	// get input color and alpha from the texture
+	vec4 in_color = texture(TEXTURE, UV);
+	float in_alpha = in_color.a;
+
+	// get the shader color (some mix between color_a and color_b)
+	vec4 shader_rgba = get_shader_color();
+	vec3 shader_color = shader_rgba.rgb;
+	float shader_alpha = shader_rgba.a;
+
+	// rgb color mixes between in_color and shader_color * by shader_alpha
+	// this way, color_a can have a different \"intensity\" than color_b
+	//
+	// wrap in vec4 and plug in the in_alpha since we don't generally want to retain that from the texture
+	vec4 out_color = vec4(mix(in_color.rgb, shader_color, shader_alpha), in_alpha);
+
+	// if affect_alpha is true, we will modulate transparency by our color_a/b
+	if (colors_affect_alpha) {
+		out_color.a = in_alpha * shader_alpha;
+	}
+
+	out_color.a *= transparency;
+
+	// finally, use mix to control intensity of the entire effect
+	COLOR = mix(in_color, out_color, intensity);
+}"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_67vke"]
 resource_local_to_scene = true
-shader = ExtResource("3_g8lak")
-shader_parameter/color_a = Color(0.439216, 0.054902, 0.196078, 1)
+shader = SubResource("Shader_yo7lj")
+shader_parameter/color_a = Color(0.4, 0.0588235, 0.192157, 1)
 shader_parameter/color_b = Color(0.4, 0.0588235, 0.192157, 1)
 shader_parameter/colors_affect_alpha = true
-shader_parameter/flash_amount = 1.0
-shader_parameter/flash_speed = 0.0
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_speed = 1.0
 shader_parameter/transparency = 0.0
 shader_parameter/intensity = 1.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_snwgn"]
+load_path = "res://.godot/imported/Ships.png-a79435ddc1b1eeee2f87818eaaed4e55.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_csi4d"]
+resource_local_to_scene = true
+shader = SubResource("Shader_yo7lj")
+shader_parameter/color_a = Color(1, 1, 1, 1)
+shader_parameter/color_b = Color(1, 1, 1, 0.376471)
+shader_parameter/colors_affect_alpha = true
+shader_parameter/flash_amount = 1.0
+shader_parameter/flash_speed = 4.0
+shader_parameter/transparency = 0.2
+shader_parameter/intensity = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b12hb"]
 load_path = "res://.godot/imported/Ships.png-a79435ddc1b1eeee2f87818eaaed4e55.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h1b6b"]
@@ -500,6 +577,16 @@ texture = SubResource("CompressedTexture2D_snwgn")
 hframes = 8
 vframes = 2
 
+[node name="selected_shader" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_csi4d")
+position = Vector2(11, 0)
+scale = Vector2(1.65, 1.65)
+texture = SubResource("CompressedTexture2D_b12hb")
+hframes = 8
+vframes = 2
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(11.9936, -0.00217438)
@@ -559,11 +646,9 @@ libraries = {
 "": SubResource("AnimationLibrary_rwwpy")
 }
 
-
 [node name="death" parent="." instance=ExtResource("12_m6u1j")]
 
 [node name="ShipWeightDebugger" parent="." instance=ExtResource("17_jn7rj")]
 visible = false
-
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

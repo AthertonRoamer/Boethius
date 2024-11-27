@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://art/icon.svg"
 
+[autoload]
+
+Hud="*res://hud/hud.tscn"
+
 [display]
 
 window/size/mode=2
