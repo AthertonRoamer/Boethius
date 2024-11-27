@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c45yj6q8tsgun"]
+[gd_scene load_steps=22 format=3 uid="uid://c45yj6q8tsgun"]
 
 [ext_resource type="Script" path="res://world/test_world/test_world.gd" id="1_v873r"]
 [ext_resource type="PackedScene" uid="uid://dn6elo7vpye1c" path="res://ships/basic_ship/basic_ship.tscn" id="2_7xgbe"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://world/test_world/asteroid.gd" id="5_qj85c"]
 [ext_resource type="PackedScene" uid="uid://bscew46ntriov" path="res://ships/missile_ship/missile_ship.tscn" id="6_nns0m"]
 [ext_resource type="Script" path="res://world/test_world/circle.gd" id="8_ytme6"]
+[ext_resource type="Script" path="res://ships/spawn_point/spawn_point.gd" id="9_1jm1p"]
+[ext_resource type="Resource" uid="uid://dg1dskw58rjv3" path="res://ships/ship_data/test_fleet.tres" id="10_uv0cs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifjiw"]
 size = Vector2(62, 473)
@@ -122,26 +124,32 @@ script = ExtResource("3_rq17g")
 
 [node name="enemy" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(170, 281)
+benched = true
 
 [node name="enemy6" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(1002, 221)
 rotation = 1.9282
+benched = true
 
 [node name="enemy5" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(1019, 508)
 rotation = 1.00857
+benched = true
 
 [node name="enemy4" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(1009, 402)
 rotation = -0.65897
+benched = true
 
 [node name="enemy3" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(993, 336)
 rotation = 2.65841
+benched = true
 
 [node name="enemy2" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(996, 82.0001)
 rotation = -2.53245
+benched = true
 
 [node name="LaserShip" parent="ships" instance=ExtResource("4_jkhxg")]
 position = Vector2(549, 314)
@@ -159,18 +167,22 @@ faction = 0
 
 [node name="BasicShip" parent="ships/Allies" instance=ExtResource("2_7xgbe")]
 position = Vector2(969, 97)
+benched = true
 faction = 0
 
 [node name="BasicShip2" parent="ships/Allies" instance=ExtResource("2_7xgbe")]
 position = Vector2(972, 44)
+benched = true
 faction = 0
 
 [node name="BasicShip3" parent="ships/Allies" instance=ExtResource("2_7xgbe")]
 position = Vector2(1077, 53)
+benched = true
 faction = 0
 
 [node name="BasicShip4" parent="ships/Allies" instance=ExtResource("2_7xgbe")]
 position = Vector2(1068, 95)
+benched = true
 faction = 0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -208,5 +220,10 @@ libraries = {
 [node name="Circle" type="Node2D" parent="."]
 visible = false
 script = ExtResource("8_ytme6")
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(528, 48)
+script = ExtResource("9_1jm1p")
+fleet = ExtResource("10_uv0cs")
 
 [connection signal="animation_finished" from="StaticBody2D/AnimationPlayer" to="StaticBody2D" method="_on_animation_player_animation_finished"]

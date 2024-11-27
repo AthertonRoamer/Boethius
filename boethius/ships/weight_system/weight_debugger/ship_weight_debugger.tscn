@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw1jqqaydcxqo"]
+
+[ext_resource type="Script" path="res://ships/basic_ship/ship_weight_debugger.gd" id="1_3bjdh"]
+
+[node name="ShipWeightDebugger" type="Node2D"]
+script = ExtResource("1_3bjdh")
+highest_color = Color(0, 0, 0.686275, 1)
+scale_factor = 50.0

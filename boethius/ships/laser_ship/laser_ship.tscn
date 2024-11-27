@@ -6,12 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://do4o0k42eixaw" path="res://ships/ship_state_machine/ship_state_machine.tscn" id="4_wmond"]
 [ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="5_6hr4c"]
 [ext_resource type="Script" path="res://ships/generic_states/circle.gd" id="6_3jnss"]
-[ext_resource type="Script" path="res://ships/ship_area/ship_area.gd" id="7_310yp"]
 [ext_resource type="Script" path="res://ships/generic_states/defend.gd" id="7_uck4j"]
 [ext_resource type="Script" path="res://ships/laser_ship/laser_ship_shoot.gd" id="8_sdqbw"]
 [ext_resource type="Script" path="res://ships/laser_ship/laser_shot.gd" id="9_fhhbm"]
 [ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_particles.tscn" id="10_cu7xc"]
 [ext_resource type="PackedScene" uid="uid://dnur25oatr5ml" path="res://laser.tscn" id="11_v0eli"]
+[ext_resource type="PackedScene" uid="uid://b16d8fcohve56" path="res://ships/ship_area/ship_area.tscn" id="12_hjqmc"]
+[ext_resource type="PackedScene" uid="uid://bw1jqqaydcxqo" path="res://ships/weight_system/weight_debugger/ship_weight_debugger.tscn" id="13_pblyv"]
 
 [sub_resource type="Curve" id="Curve_xjb1h"]
 _data = [Vector2(0, 0.615385), 0.0, 0.0, 0, 0, Vector2(0.846667, 0), 0.0, 0.0, 0, 0]
@@ -112,9 +113,6 @@ load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.cte
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhbn1"]
 size = Vector2(17.9998, 86.9949)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_kdsvf"]
-radius = 134.004
 
 [sub_resource type="Animation" id="Animation_kcaef"]
 length = 0.001
@@ -253,6 +251,7 @@ _data = {
 collision_mask = 2
 script = ExtResource("1_c0m2i")
 rotation_speed = 90.0
+sight_range = 1000.0
 
 [node name="Fire" type="GPUParticles2D" parent="."]
 position = Vector2(-32, -15)
@@ -309,15 +308,8 @@ script = ExtResource("6_3jnss")
 script = ExtResource("7_uck4j")
 first_active_state = true
 
-[node name="Shoot" type="Node" parent="ShipStateMachine"]
+[node name="LaserShoot" type="Node" parent="ShipStateMachine"]
 script = ExtResource("8_sdqbw")
-
-[node name="ShipArea" type="Area2D" parent="."]
-visible = false
-script = ExtResource("7_310yp")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipArea"]
-shape = SubResource("CircleShape2D_kdsvf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
@@ -336,5 +328,9 @@ libraries = {
 }
 
 [node name="death" parent="." instance=ExtResource("10_cu7xc")]
+
+[node name="ShipArea" parent="." instance=ExtResource("12_hjqmc")]
+
+[node name="ShipWeightDebugger" parent="." instance=ExtResource("13_pblyv")]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
