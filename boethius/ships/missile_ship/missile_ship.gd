@@ -25,13 +25,3 @@ func shoot():
 	gun4.fire()
 	gun5.fire()
 	gun6.fire()
-
-
-func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
-	queue_free()
-	
-	
-func die() -> void:
-	dying = true
-	reset_visuals()
-	$AnimationPlayer.play("death")

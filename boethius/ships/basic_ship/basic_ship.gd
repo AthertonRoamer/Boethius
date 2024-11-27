@@ -5,6 +5,7 @@ extends Ship
 @onready var gun2 = $gun2
 
 
+
 func _ready() -> void:
 	super()
 	if faction == Faction.ENEMY:
@@ -15,16 +16,20 @@ func _ready() -> void:
 		$damage_shader.frame = 0
 
 func shoot():
-	if under_player_control:
-		var mouse_pos = get_global_mouse_position() 
-		var direction_to_mouse = (mouse_pos - global_position).normalized()
-		gun1.projectile_direction = direction_to_mouse
-		gun2.projectile_direction = direction_to_mouse
-	else:
-		gun1.projectile_direction = current_direction
-		gun2.projectile_direction = current_direction
 	gun1.fire()
 	gun2.fire()
+
+
+func begin_shooting_constantly() -> void:
+	gun1.begin_firing_constantly()
+	gun2.begin_firing_constantly()
+	
+	
+func stop_shooting_constantly() -> void:
+	gun1.stop_firing_constantly()
+	gun2.stop_firing_constantly()
+	
+	
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
@@ -33,10 +38,8 @@ func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 		"death" : queue_free()
 
 
-func die() -> void:
-	dying = true
-	reset_visuals()
-	$AnimationPlayer.play("death")
+
+
 
 
 func take_damage(damage : float, _damage_type : String = "none") -> void:

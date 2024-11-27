@@ -1,17 +1,17 @@
-[gd_scene load_steps=34 format=3 uid="uid://drotwycof3eg7"]
+[gd_scene load_steps=33 format=3 uid="uid://drotwycof3eg7"]
 
 [ext_resource type="Script" path="res://ships/laser_ship/laser_ship.gd" id="1_c0m2i"]
 [ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_1wkbu"]
-[ext_resource type="Texture2D" uid="uid://uf55r0ulcrpc" path="res://Ships.png" id="3_yiycb"]
+[ext_resource type="Texture2D" uid="uid://uf55r0ulcrpc" path="res://art/Ships.png" id="3_yiycb"]
 [ext_resource type="PackedScene" uid="uid://do4o0k42eixaw" path="res://ships/ship_state_machine/ship_state_machine.tscn" id="4_wmond"]
 [ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="5_6hr4c"]
 [ext_resource type="Script" path="res://ships/generic_states/circle.gd" id="6_3jnss"]
-[ext_resource type="Script" path="res://ships/ship_area/ship_area.gd" id="7_310yp"]
 [ext_resource type="Script" path="res://ships/generic_states/defend.gd" id="7_uck4j"]
 [ext_resource type="Script" path="res://ships/laser_ship/laser_ship_shoot.gd" id="8_sdqbw"]
 [ext_resource type="Script" path="res://ships/laser_ship/laser_shot.gd" id="9_fhhbm"]
-[ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_particles.tscn" id="10_cu7xc"]
+[ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_explosion.tscn" id="10_cu7xc"]
 [ext_resource type="PackedScene" uid="uid://dnur25oatr5ml" path="res://laser.tscn" id="11_v0eli"]
+[ext_resource type="PackedScene" uid="uid://b16d8fcohve56" path="res://ships/ship_area/ship_area.tscn" id="12_bn20r"]
 
 [sub_resource type="Curve" id="Curve_xjb1h"]
 _data = [Vector2(0, 0.615385), 0.0, 0.0, 0, 0, Vector2(0.846667, 0), 0.0, 0.0, 0, 0]
@@ -112,9 +112,6 @@ load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.cte
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhbn1"]
 size = Vector2(17.9998, 86.9949)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_kdsvf"]
-radius = 134.004
 
 [sub_resource type="Animation" id="Animation_kcaef"]
 length = 0.001
@@ -312,13 +309,6 @@ first_active_state = true
 [node name="Shoot" type="Node" parent="ShipStateMachine"]
 script = ExtResource("8_sdqbw")
 
-[node name="ShipArea" type="Area2D" parent="."]
-visible = false
-script = ExtResource("7_310yp")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipArea"]
-shape = SubResource("CircleShape2D_kdsvf")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
 position_smoothing_enabled = true
@@ -336,5 +326,7 @@ libraries = {
 }
 
 [node name="death" parent="." instance=ExtResource("10_cu7xc")]
+
+[node name="ShipArea" parent="." instance=ExtResource("12_bn20r")]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

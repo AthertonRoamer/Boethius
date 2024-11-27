@@ -12,7 +12,7 @@ extends CharacterBody2D
 #ai weights
 #agression, loneliness, courage/fear, max range to fire, ideal range to fire
 #priorities - hit big ships first, hit small ships first
-
+@export var explosion_scene : PackedScene
 @export var debug_output : bool = false
 @export var benched : bool = false
 
@@ -24,9 +24,7 @@ extends CharacterBody2D
 
 @export_group("Physics")
 @export var friction : float = 200
-
-
-
+@export var inertia : float = 1
 @export var max_health : int = 100
 @export var starting_health : int = 100
 var health : float = starting_health:
@@ -59,7 +57,6 @@ enum Faction {PLAYER, ENEMY}
 @export var faction : Faction = Faction.ENEMY
 
 
-var dying = false
 
 var current_veloctiy : Vector2 = Vector2.ZERO
 var current_direction : Vector2 = Vector2.RIGHT
@@ -84,7 +81,9 @@ func _ready() -> void:
 	
 	set_collision_mask_value(1, false)
 	set_collision_mask_value(2, true)
-
+	
+	health = starting_health
+	
 	state_machine = get_node_or_null("ShipStateMachine")
 	if not is_instance_valid(state_machine):
 		push_warning("Ship has no state machine")
@@ -98,9 +97,8 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	reset_visuals()
 	if under_player_control:
-		if !dying:
-			register_player_input(delta)
-			compute_physics(delta)
+		register_player_input(delta)
+		compute_physics(delta)
 
 
 	else:
@@ -157,8 +155,12 @@ func register_player_input(delta : float) -> void:
 	elif Input.is_action_just_released("ship_boost") and boosting:
 		visual_data.set_item("boosting", false)
 		stop_boost()
-	if Input.is_action_pressed("ship_shoot"):
-		shoot()
+	#if Input.is_action_pressed("ship_shoot"):
+		#shoot()
+	if Input.is_action_just_pressed("ship_shoot"):
+		begin_shooting_constantly()
+	if Input.is_action_just_released("ship_shoot"):
+		stop_shooting_constantly()
 
 
 
@@ -166,9 +168,8 @@ func boost(delta : float) -> void:
 	#print("boost")
 	boosting = true
 	current_veloctiy += current_direction * boost_accel * delta
-	if !dying:
-		visual_data.set_item("thrusting", true)
-		visual_data.set_item("boosting", true)
+	visual_data.set_item("thrusting", true)
+	visual_data.set_item("boosting", true)
 
 
 func stop_boost() -> void:
@@ -187,15 +188,13 @@ func update_rotation() -> void:
 
 func physics_thrust(delta) -> void:
 	current_veloctiy += current_direction * thrust_accel * delta
-	if !dying:
-		visual_data.set_item("thrusting", true)
+	visual_data.set_item("thrusting", true)
 
 
 
 func thrust_without_physics() -> void:
 	current_veloctiy = current_direction * no_thrust_max_speed
-	if !dying:
-		visual_data.set_item("thrusting", true)
+	visual_data.set_item("thrusting", true)
 
 
 func thrust(delta) -> void:
@@ -220,7 +219,7 @@ func reset_visuals() -> void:
 
 
 func take_knockback(knock : Vector2) -> void:
-	current_veloctiy += knock
+	current_veloctiy += knock/inertia
 	#print("boom")
 
 
@@ -229,9 +228,10 @@ func take_damage(damage : float, _damage_type : String = "none") -> void:
 
 
 func die() -> void:
-	dying = true
 	reset_visuals()
-	#current_veloctiy = Vector2.ZERO
+	var explosion = explosion_scene.instantiate()
+	explosion.global_position = global_position
+	Main.world.add_child(explosion)
 	queue_free()
 
 
@@ -239,3 +239,9 @@ func shoot():
 	pass
 	
 	
+func begin_shooting_constantly() -> void:
+	pass
+	
+	
+func stop_shooting_constantly() -> void:
+	pass

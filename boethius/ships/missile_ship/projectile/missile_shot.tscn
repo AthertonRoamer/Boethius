@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cw5rrrkmrt6lu"]
 
 [ext_resource type="Script" path="res://ships/projectile/projectile.gd" id="1_3k55i"]
-[ext_resource type="Texture2D" uid="uid://be7nkfmsti5gy" path="res://Projectiles.png" id="2_avd8r"]
+[ext_resource type="Texture2D" uid="uid://be7nkfmsti5gy" path="res://art/Projectiles.png" id="2_avd8r"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_g0ebo"]
 particles_animation = true

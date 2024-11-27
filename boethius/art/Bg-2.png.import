@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duxl2eo07rqk5"
-path="res://.godot/imported/filler_spell_display_background.png-f4893d7bd9fd57bab01c418dbbf1ffc6.ctex"
+uid="uid://bmy8sr4gs7hc0"
+path="res://.godot/imported/Bg-2.png-1dc47d3a8468622fd9c0f8982dc0134f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/spell_display/filler_spell_display_background.png"
-dest_files=["res://.godot/imported/filler_spell_display_background.png-f4893d7bd9fd57bab01c418dbbf1ffc6.ctex"]
+source_file="res://art/Bg-2.png"
+dest_files=["res://.godot/imported/Bg-2.png-1dc47d3a8468622fd9c0f8982dc0134f.ctex"]
 
 [params]
 

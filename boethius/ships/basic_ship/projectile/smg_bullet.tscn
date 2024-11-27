@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://jnajxsxwxoer"]
 
-[ext_resource type="Script" path="res://ships/projectile/projectile.gd" id="1_ji5hh"]
-[ext_resource type="Texture2D" uid="uid://be7nkfmsti5gy" path="res://Projectiles.png" id="2_q0c1d"]
+[ext_resource type="Script" path="res://ships/basic_ship/projectile/smg_bullet.gd" id="1_7oadl"]
+[ext_resource type="Texture2D" uid="uid://be7nkfmsti5gy" path="res://art/Projectiles.png" id="2_q0c1d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_daedc"]
 radius = 2.0
@@ -99,7 +99,7 @@ _data = {
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3ctt8"]
 particles_animation = true
 particles_anim_h_frames = 8
-particles_anim_v_frames = 2
+particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="Gradient" id="Gradient_qq4gb"]
@@ -129,9 +129,9 @@ color_ramp = SubResource("GradientTexture1D_ov85m")
 load_path = "res://.godot/imported/Projectiles.png-b307ba4bad30a73c32d866812224e064.ctex"
 
 [node name="smg_bullet" type="Area2D" node_paths=PackedStringArray("duration_timer")]
-script = ExtResource("1_ji5hh")
+script = ExtResource("1_7oadl")
 speed = 1600.0
-damage = 1
+damage = 5
 extinguish_on_effect_body = true
 duration_timer = NodePath("lifespan")
 duration = 10.0
@@ -142,8 +142,7 @@ texture_filter = 1
 scale = Vector2(1.75, 1.75)
 texture = ExtResource("2_q0c1d")
 hframes = 8
-vframes = 2
-frame = 3
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
