@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ShipData" load_steps=3 format=3 uid="uid://dqm4uojftwqoo"]
+
+[ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="1_h1og6"]
+[ext_resource type="PackedScene" uid="uid://dn6elo7vpye1c" path="res://ships/basic_ship/basic_ship.tscn" id="2_fcerk"]
+
+[resource]
+script = ExtResource("1_h1og6")
+ship_scene = ExtResource("2_fcerk")
