@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://drotwycof3eg7"]
+[gd_scene load_steps=34 format=3 uid="uid://drotwycof3eg7"]
 
 [ext_resource type="Script" path="res://ships/laser_ship/laser_ship.gd" id="1_c0m2i"]
 [ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_1wkbu"]
@@ -11,10 +11,8 @@
 [ext_resource type="Script" path="res://ships/laser_ship/laser_shot.gd" id="9_fhhbm"]
 [ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_explosion.tscn" id="10_cu7xc"]
 [ext_resource type="PackedScene" uid="uid://dnur25oatr5ml" path="res://laser.tscn" id="11_v0eli"]
-
 [ext_resource type="PackedScene" uid="uid://b16d8fcohve56" path="res://ships/ship_area/ship_area.tscn" id="12_hjqmc"]
 [ext_resource type="PackedScene" uid="uid://bw1jqqaydcxqo" path="res://ships/weight_system/weight_debugger/ship_weight_debugger.tscn" id="13_pblyv"]
-
 
 [sub_resource type="Curve" id="Curve_xjb1h"]
 _data = [Vector2(0, 0.615385), 0.0, 0.0, 0, 0, Vector2(0.846667, 0), 0.0, 0.0, 0, 0]
@@ -145,7 +143,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Fire:visible")
+tracks/2/path = NodePath("boosts/Fire:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -157,7 +155,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Fire2:visible")
+tracks/3/path = NodePath("boosts/Fire2:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -169,7 +167,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("boost:visible")
+tracks/4/path = NodePath("boosts/boost:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -209,7 +207,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Fire:visible")
+tracks/2/path = NodePath("boosts/Fire:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -221,7 +219,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Fire2:visible")
+tracks/3/path = NodePath("boosts/Fire2:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -233,7 +231,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("boost:visible")
+tracks/4/path = NodePath("boosts/boost:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -255,7 +253,9 @@ script = ExtResource("1_c0m2i")
 rotation_speed = 90.0
 sight_range = 1000.0
 
-[node name="Fire" type="GPUParticles2D" parent="."]
+[node name="boosts" type="Node2D" parent="."]
+
+[node name="Fire" type="GPUParticles2D" parent="boosts"]
 position = Vector2(-32, -15)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_tccvq")
@@ -264,7 +264,7 @@ lifetime = 0.5
 local_coords = true
 script = SubResource("GDScript_darg2")
 
-[node name="Fire2" type="GPUParticles2D" parent="."]
+[node name="Fire2" type="GPUParticles2D" parent="boosts"]
 position = Vector2(-31, 15)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_7728x")
@@ -273,7 +273,7 @@ lifetime = 0.5
 local_coords = true
 script = SubResource("GDScript_0clqa")
 
-[node name="boost" type="GPUParticles2D" parent="."]
+[node name="boost" type="GPUParticles2D" parent="boosts"]
 position = Vector2(-36, 0)
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_hth4b")
@@ -331,10 +331,8 @@ libraries = {
 
 [node name="death" parent="." instance=ExtResource("10_cu7xc")]
 
-
 [node name="ShipArea" parent="." instance=ExtResource("12_hjqmc")]
 
 [node name="ShipWeightDebugger" parent="." instance=ExtResource("13_pblyv")]
-
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
