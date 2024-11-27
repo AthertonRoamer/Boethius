@@ -1,7 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://cwsnjtqbugh5m"]
 
 [ext_resource type="Script" path="res://menu/main_menu.gd" id="1_xafnf"]
-[ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://art/BOETHIUS_THEME.tres" id="2_d516e"]
+
+[ext_resource type="Theme" uid="uid://pmellcn6m86b" path="res://boethius_theme1.tres" id="2_d516e"]
+
 [ext_resource type="Script" path="res://menu/parallax_layer.gd" id="3_ucpy2"]
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space.tscn" id="3_wy4o3"]
 

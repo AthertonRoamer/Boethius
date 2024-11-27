@@ -11,7 +11,10 @@
 [ext_resource type="Script" path="res://ships/laser_ship/laser_shot.gd" id="9_fhhbm"]
 [ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_explosion.tscn" id="10_cu7xc"]
 [ext_resource type="PackedScene" uid="uid://dnur25oatr5ml" path="res://laser.tscn" id="11_v0eli"]
-[ext_resource type="PackedScene" uid="uid://b16d8fcohve56" path="res://ships/ship_area/ship_area.tscn" id="12_bn20r"]
+
+[ext_resource type="PackedScene" uid="uid://b16d8fcohve56" path="res://ships/ship_area/ship_area.tscn" id="12_hjqmc"]
+[ext_resource type="PackedScene" uid="uid://bw1jqqaydcxqo" path="res://ships/weight_system/weight_debugger/ship_weight_debugger.tscn" id="13_pblyv"]
+
 
 [sub_resource type="Curve" id="Curve_xjb1h"]
 _data = [Vector2(0, 0.615385), 0.0, 0.0, 0, 0, Vector2(0.846667, 0), 0.0, 0.0, 0, 0]
@@ -250,6 +253,7 @@ _data = {
 collision_mask = 2
 script = ExtResource("1_c0m2i")
 rotation_speed = 90.0
+sight_range = 1000.0
 
 [node name="Fire" type="GPUParticles2D" parent="."]
 position = Vector2(-32, -15)
@@ -306,7 +310,7 @@ script = ExtResource("6_3jnss")
 script = ExtResource("7_uck4j")
 first_active_state = true
 
-[node name="Shoot" type="Node" parent="ShipStateMachine"]
+[node name="LaserShoot" type="Node" parent="ShipStateMachine"]
 script = ExtResource("8_sdqbw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -327,6 +331,10 @@ libraries = {
 
 [node name="death" parent="." instance=ExtResource("10_cu7xc")]
 
-[node name="ShipArea" parent="." instance=ExtResource("12_bn20r")]
+
+[node name="ShipArea" parent="." instance=ExtResource("12_hjqmc")]
+
+[node name="ShipWeightDebugger" parent="." instance=ExtResource("13_pblyv")]
+
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

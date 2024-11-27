@@ -1,4 +1,4 @@
-#class_name ShipWeightDegugger
+class_name VisibleShipWeightDegugger
 extends WeightDebugger
 
 func _ready() -> void:

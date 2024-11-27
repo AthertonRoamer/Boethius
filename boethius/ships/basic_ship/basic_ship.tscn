@@ -16,8 +16,13 @@
 [ext_resource type="Script" path="res://ships/basic_ship/smg.gd" id="9_fj7sh"]
 [ext_resource type="Script" path="res://ships/generic_states/shoot.gd" id="9_w5jbb"]
 [ext_resource type="PackedScene" uid="uid://jnajxsxwxoer" path="res://ships/basic_ship/projectile/smg_bullet.tscn" id="10_0nv4q"]
+
 [ext_resource type="Script" path="res://ships/basic_ship/ship_weight_debugger.gd" id="10_rbxp2"]
 [ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_explosion.tscn" id="12_m6u1j"]
+
+[ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_particles.tscn" id="12_m6u1j"]
+[ext_resource type="PackedScene" uid="uid://bw1jqqaydcxqo" path="res://ships/weight_system/weight_debugger/ship_weight_debugger.tscn" id="17_jn7rj"]
+
 
 [sub_resource type="Curve" id="Curve_xjb1h"]
 _data = [Vector2(0, 0.615385), 0.0, 0.0, 0, 0, Vector2(0.846667, 0), 0.0, 0.0, 0, 0]
@@ -549,15 +554,16 @@ script = ExtResource("9_fj7sh")
 projectile_scene = ExtResource("10_0nv4q")
 fire_position_node = NodePath(".")
 
-[node name="ShipWeightDebugger" type="Node2D" parent="."]
-visible = false
-script = ExtResource("10_rbxp2")
-highest_color = Color(0, 0, 0.686275, 1)
-scale_factor = 50.0
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_rwwpy")
 }
+
+
+[node name="death" parent="." instance=ExtResource("12_m6u1j")]
+
+[node name="ShipWeightDebugger" parent="." instance=ExtResource("17_jn7rj")]
+visible = false
+
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
