@@ -121,11 +121,7 @@ script = ExtResource("3_rq17g")
 
 [node name="ships" type="Node2D" parent="."]
 
-[node name="player" parent="ships" instance=ExtResource("2_7xgbe")]
-position = Vector2(165, -109)
-rotation = 1.00857
-under_player_control = true
-faction = 0
+
 
 [node name="wall" type="StaticBody2D" parent="."]
 position = Vector2(550, 84)
@@ -168,10 +164,12 @@ position = Vector2(141, 178)
 script = ExtResource("9_1jm1p")
 fleet = ExtResource("10_uv0cs")
 
+
 [node name="SpawnPoint2" type="Node2D" parent="."]
 position = Vector2(913, 210)
 script = ExtResource("9_1jm1p")
 fleet = ExtResource("10_uv0cs")
 faction = 1
+
 
 [connection signal="animation_finished" from="wall/AnimationPlayer" to="wall" method="_on_animation_player_animation_finished"]
