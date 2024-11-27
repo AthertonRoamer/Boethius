@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ships/missile_ship/missile_ship.gd" id="1_wggi2"]
 [ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_nafab"]
-[ext_resource type="Texture2D" uid="uid://uf55r0ulcrpc" path="res://Ships.png" id="3_5etvw"]
+[ext_resource type="Texture2D" uid="uid://uf55r0ulcrpc" path="res://art/Ships.png" id="3_5etvw"]
 [ext_resource type="PackedScene" uid="uid://do4o0k42eixaw" path="res://ships/ship_state_machine/ship_state_machine.tscn" id="4_0ncx7"]
 [ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="5_e2hr5"]
 [ext_resource type="Script" path="res://ships/generic_states/circle.gd" id="6_so4bc"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b16d8fcohve56" path="res://ships/ship_area/ship_area.tscn" id="8_1jvke"]
 [ext_resource type="Script" path="res://ships/missile_ship/missile.gd" id="9_rlx12"]
 [ext_resource type="PackedScene" uid="uid://cw5rrrkmrt6lu" path="res://ships/missile_ship/projectile/missile_shot.tscn" id="10_gjd6h"]
-[ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_particles.tscn" id="11_ne02d"]
+[ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_explosion.tscn" id="11_ne02d"]
 
 [sub_resource type="Curve" id="Curve_xjb1h"]
 _data = [Vector2(0, 0.615385), 0.0, 0.0, 0, 0, Vector2(0.846667, 0), 0.0, 0.0, 0, 0]

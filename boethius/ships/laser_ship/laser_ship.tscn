@@ -1,18 +1,20 @@
-[gd_scene load_steps=34 format=3 uid="uid://drotwycof3eg7"]
+[gd_scene load_steps=33 format=3 uid="uid://drotwycof3eg7"]
 
 [ext_resource type="Script" path="res://ships/laser_ship/laser_ship.gd" id="1_c0m2i"]
 [ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_1wkbu"]
-[ext_resource type="Texture2D" uid="uid://uf55r0ulcrpc" path="res://Ships.png" id="3_yiycb"]
+[ext_resource type="Texture2D" uid="uid://uf55r0ulcrpc" path="res://art/Ships.png" id="3_yiycb"]
 [ext_resource type="PackedScene" uid="uid://do4o0k42eixaw" path="res://ships/ship_state_machine/ship_state_machine.tscn" id="4_wmond"]
 [ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="5_6hr4c"]
 [ext_resource type="Script" path="res://ships/generic_states/circle.gd" id="6_3jnss"]
 [ext_resource type="Script" path="res://ships/generic_states/defend.gd" id="7_uck4j"]
 [ext_resource type="Script" path="res://ships/laser_ship/laser_ship_shoot.gd" id="8_sdqbw"]
 [ext_resource type="Script" path="res://ships/laser_ship/laser_shot.gd" id="9_fhhbm"]
-[ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_particles.tscn" id="10_cu7xc"]
+[ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_explosion.tscn" id="10_cu7xc"]
 [ext_resource type="PackedScene" uid="uid://dnur25oatr5ml" path="res://laser.tscn" id="11_v0eli"]
+
 [ext_resource type="PackedScene" uid="uid://b16d8fcohve56" path="res://ships/ship_area/ship_area.tscn" id="12_hjqmc"]
 [ext_resource type="PackedScene" uid="uid://bw1jqqaydcxqo" path="res://ships/weight_system/weight_debugger/ship_weight_debugger.tscn" id="13_pblyv"]
+
 
 [sub_resource type="Curve" id="Curve_xjb1h"]
 _data = [Vector2(0, 0.615385), 0.0, 0.0, 0, 0, Vector2(0.846667, 0), 0.0, 0.0, 0, 0]
@@ -329,8 +331,10 @@ libraries = {
 
 [node name="death" parent="." instance=ExtResource("10_cu7xc")]
 
+
 [node name="ShipArea" parent="." instance=ExtResource("12_hjqmc")]
 
 [node name="ShipWeightDebugger" parent="." instance=ExtResource("13_pblyv")]
+
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
