@@ -121,26 +121,7 @@ script = ExtResource("3_rq17g")
 
 [node name="ships" type="Node2D" parent="."]
 
-[node name="enemy5" parent="ships" instance=ExtResource("2_7xgbe")]
-position = Vector2(1019, 508)
-rotation = 1.00857
-benched = true
 
-[node name="ships_Allies#BasicShip" parent="." instance=ExtResource("2_7xgbe")]
-position = Vector2(1706, 53)
-
-[node name="ships_Allies#BasicShip2" parent="." instance=ExtResource("2_7xgbe")]
-position = Vector2(1741, 129)
-
-[node name="ships_Allies#BasicShip3" parent="." instance=ExtResource("2_7xgbe")]
-position = Vector2(1077, 53)
-benched = true
-faction = 0
-
-[node name="ships_Allies#BasicShip4" parent="." instance=ExtResource("2_7xgbe")]
-position = Vector2(1068, 95)
-benched = true
-faction = 0
 
 [node name="wall" type="StaticBody2D" parent="."]
 position = Vector2(550, 84)
@@ -179,8 +160,16 @@ visible = false
 script = ExtResource("8_ytme6")
 
 [node name="SpawnPoint" type="Node2D" parent="."]
-position = Vector2(528, 48)
+position = Vector2(141, 178)
 script = ExtResource("9_1jm1p")
 fleet = ExtResource("10_uv0cs")
+
+
+[node name="SpawnPoint2" type="Node2D" parent="."]
+position = Vector2(913, 210)
+script = ExtResource("9_1jm1p")
+fleet = ExtResource("10_uv0cs")
+faction = 1
+
 
 [connection signal="animation_finished" from="wall/AnimationPlayer" to="wall" method="_on_animation_player_animation_finished"]

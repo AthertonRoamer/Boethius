@@ -250,6 +250,7 @@ _data = {
 [node name="LaserShip" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_c0m2i")
+explosion_scene = ExtResource("10_cu7xc")
 rotation_speed = 90.0
 sight_range = 1000.0
 
@@ -334,5 +335,8 @@ libraries = {
 [node name="ShipArea" parent="." instance=ExtResource("12_hjqmc")]
 
 [node name="ShipWeightDebugger" parent="." instance=ExtResource("13_pblyv")]
+
+visible = false
+
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
