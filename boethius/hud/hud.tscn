@@ -1,12 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://1fj0xyx7nvb3"]
+[gd_scene load_steps=3 format=3 uid="uid://1fj0xyx7nvb3"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_qhvqj"]
+[ext_resource type="PackedScene" uid="uid://djnsx488gvmqb" path="res://hud/respawn_button/respawn_button.tscn" id="2_llokv"]
 
-[node name="Hud" type="CanvasLayer"]
+[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("respawn_button")]
+layer = -1
 script = ExtResource("1_qhvqj")
+respawn_button = NodePath("Control/RespawnButton")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RespawnButton" parent="Control" instance=ExtResource("2_llokv")]
+layout_mode = 1
+anchor_top = 0.742
+anchor_bottom = 0.742
+offset_top = -30.074
+offset_bottom = 29.926
+grow_horizontal = 1
+grow_vertical = 1

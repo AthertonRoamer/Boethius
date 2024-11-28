@@ -22,7 +22,9 @@ func open_level(level_scene : PackedScene) -> void:
 	
 	
 func close_active_level() -> void:
-	active_level.queue_free()
+	if is_instance_valid(active_level):
+		active_level.queue_free()
+	active_level = null
 	
 	
 func reload_active_level() -> void:

@@ -16,7 +16,14 @@ extends CharacterBody2D
 @export var debug_output : bool = false
 @export var benched : bool = false
 
-@export var under_player_control : bool = false
+signal under_player_control_changed(under_player_control : bool)
+
+@export var under_player_control : bool = false:
+	set(v):
+		if v != under_player_control:
+			under_player_control = v
+			under_player_control_changed.emit(under_player_control)
+			
 @export var auto_uses_space_physics : bool = true
 
 @export_group("Ship Components")
@@ -51,6 +58,7 @@ var health : float = starting_health:
 @export var sight_range : float = 400
 var thrust_determinant : float = 0.1 #determines how close ai has to be to target direction to thrust
 var boosting : bool = false
+@export var radius : float = 30
 
 @export_group("Alignment")
 enum Faction {PLAYER, ENEMY}
@@ -68,6 +76,12 @@ var ship_area : ShipArea
 var obstacle_detector : ObstacleDetector = ObstacleDetector.new()
 var weight_system : WeightSystem = WeightSystem.new()
 
+signal selected_changed(selected : bool)
+var selected : bool = false:
+	set(v):
+		if v != selected:
+			selected = v
+			selected_changed.emit(selected)
 
 func _ready() -> void:
 	if benched:
@@ -91,7 +105,7 @@ func _ready() -> void:
 	
 	if is_instance_valid(ship_area):
 		ship_area.sight_range = sight_range
-		
+	Main.world.ship_database.register_ship(self)
 
 
 func _physics_process(delta) -> void:
@@ -231,7 +245,15 @@ func die() -> void:
 	reset_visuals()
 	var explosion = explosion_scene.instantiate()
 	explosion.global_position = global_position
-	Main.world.add_child(explosion)
+	if is_instance_valid(Main.world):
+		Main.world.add_child(explosion)
+	if under_player_control:
+		Main.world.command_mode.enter()
+	if selected:
+		Main.world.command_mode.deselect_ship(self)
+	Main.world.ship_database.remove_ship(self)
+	Main.world.outcome_tracker.handle_event(OutcomeTracker.Event.SHIP_DESTROYED)
+
 	queue_free()
 
 
@@ -244,4 +266,8 @@ func begin_shooting_constantly() -> void:
 	
 	
 func stop_shooting_constantly() -> void:
+	pass
+
+
+func _exit_tree() -> void:
 	pass
