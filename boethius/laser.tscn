@@ -5,7 +5,7 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oiaqo"]
 particles_animation = true
 particles_anim_h_frames = 8
-particles_anim_v_frames = 2
+particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="Curve" id="Curve_ub4bo"]
@@ -37,7 +37,7 @@ load_path = "res://.godot/imported/Projectiles.png-b307ba4bad30a73c32d866812224e
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_flk2t"]
 particles_animation = true
 particles_anim_h_frames = 8
-particles_anim_v_frames = 2
+particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e8clp"]
@@ -55,13 +55,14 @@ load_path = "res://.godot/imported/Projectiles.png-b307ba4bad30a73c32d866812224e
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_svrvs"]
 particles_animation = true
 particles_anim_h_frames = 8
-particles_anim_v_frames = 2
+particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8n6jn"]
 particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
 initial_velocity_min = 209.68
 initial_velocity_max = 209.68
 gravity = Vector3(0, 0, 0)
@@ -81,13 +82,11 @@ script = ExtResource("1_3nrop")
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(100, 0, 0, 0)
-width = 25.0
 default_color = Color(1, 0.0196078, 0.27451, 1)
 
 [node name="CastingParticles" type="GPUParticles2D" parent="."]
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_oiaqo")
-emitting = false
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_6p8fh")
 texture = SubResource("CompressedTexture2D_bbwma")
@@ -96,7 +95,6 @@ lifetime = 0.3
 [node name="CollisionParticles" type="GPUParticles2D" parent="."]
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_flk2t")
-emitting = false
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_e8clp")
 texture = SubResource("CompressedTexture2D_ci06n")
@@ -105,7 +103,6 @@ lifetime = 0.3
 [node name="BeamParticles" type="GPUParticles2D" parent="."]
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_svrvs")
-emitting = false
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_8n6jn")
 texture = SubResource("CompressedTexture2D_m7uos")

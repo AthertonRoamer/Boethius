@@ -11,9 +11,11 @@ func _ready() -> void:
 	if faction == Faction.ENEMY:
 		$ship_sprite.frame = 5
 		$damage_shader.frame = 5
+		$gun1/laser.blue()
 	else:
 		$ship_sprite.frame = 4
 		$damage_shader.frame = 4
+		$gun1/laser.red()
 
 func shoot():
 	gun1.fire()
@@ -55,3 +57,13 @@ func register_player_input(delta : float) -> void:
 	else:
 		aim_mode = false
 		release_laser()
+
+
+func take_damage(damage : float, _damage_type : String = "none") -> void:
+	$AnimationPlayer.play("dmg")
+	health -= damage
+
+
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
+	match _anim_name:
+		"dmg"   : $AnimationPlayer.play("RESET")
