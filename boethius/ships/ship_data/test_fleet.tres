@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://ships/ship_data/fleet_data.gd" id="1_065vn"]
 [ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="2_r2f5f"]
 [ext_resource type="Resource" uid="uid://dqm4uojftwqoo" path="res://ships/basic_ship/basic_ship_data.tres" id="3_sm0lf"]
-[ext_resource type="Resource" uid="uid://q27pgqwrmx7c" path="res://ships/laser_ship/laser_ship_data.tres" id="4_t15nx"]
+[ext_resource type="Resource" uid="uid://q27pgqwrmx7c" path="res://ships/laser_ship/laser_ship_data.tres" id="4_gysf7"]
 
 [resource]
 script = ExtResource("1_065vn")
-ships = Array[ExtResource("2_r2f5f")]([ExtResource("3_sm0lf"), ExtResource("3_sm0lf"), ExtResource("3_sm0lf"), ExtResource("4_t15nx"), ExtResource("4_t15nx"), ExtResource("3_sm0lf"), ExtResource("3_sm0lf"), ExtResource("3_sm0lf")])
+ships = Array[ExtResource("2_r2f5f")]([ExtResource("3_sm0lf"), ExtResource("3_sm0lf"), ExtResource("3_sm0lf"), ExtResource("3_sm0lf"), ExtResource("4_gysf7"), ExtResource("4_gysf7")])
