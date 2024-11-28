@@ -22,10 +22,10 @@
 _data = [Vector2(0, 0.615385), 0.0, 0.0, 0, 0, Vector2(0.846667, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_gkwdo"]
+[sub_resource type="CurveTexture" id="CurveTexture_48ebc"]
 curve = SubResource("Curve_xjb1h")
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_isw5s"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3w1nc"]
 resource_local_to_scene = true
 gradient = ExtResource("2_jep4j")
 
@@ -34,14 +34,14 @@ max_value = 12.0
 _data = [Vector2(0, 12), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_0papf"]
+[sub_resource type="CurveTexture" id="CurveTexture_4q0gf"]
 curve = SubResource("Curve_7blia")
 
 [sub_resource type="Curve" id="Curve_i7yo7"]
 _data = [Vector2(0, 0.769231), 0.0, 0.0, 0, 0, Vector2(1, 0.472527), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_jvgtt"]
+[sub_resource type="CurveTexture" id="CurveTexture_wyopl"]
 curve = SubResource("Curve_i7yo7")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wjaof"]
@@ -54,10 +54,10 @@ initial_velocity_max = 98.59
 gravity = Vector3(0, 0, 0)
 scale_min = 0.05
 scale_max = 0.05
-scale_curve = SubResource("CurveTexture_jvgtt")
-color_ramp = SubResource("GradientTexture1D_isw5s")
-alpha_curve = SubResource("CurveTexture_gkwdo")
-emission_curve = SubResource("CurveTexture_0papf")
+scale_curve = SubResource("CurveTexture_wyopl")
+color_ramp = SubResource("GradientTexture1D_3w1nc")
+alpha_curve = SubResource("CurveTexture_48ebc")
+emission_curve = SubResource("CurveTexture_4q0gf")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c4a68"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
@@ -72,10 +72,10 @@ initial_velocity_max = 98.59
 gravity = Vector3(0, 0, 0)
 scale_min = 0.05
 scale_max = 0.05
-scale_curve = SubResource("CurveTexture_jvgtt")
-color_ramp = SubResource("GradientTexture1D_isw5s")
-alpha_curve = SubResource("CurveTexture_gkwdo")
-emission_curve = SubResource("CurveTexture_0papf")
+scale_curve = SubResource("CurveTexture_wyopl")
+color_ramp = SubResource("GradientTexture1D_3w1nc")
+alpha_curve = SubResource("CurveTexture_48ebc")
+emission_curve = SubResource("CurveTexture_4q0gf")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_akv2g"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
@@ -90,10 +90,10 @@ initial_velocity_max = 145.16
 gravity = Vector3(0, 0, 0)
 scale_min = 0.05
 scale_max = 0.05
-scale_curve = SubResource("CurveTexture_jvgtt")
-color_ramp = SubResource("GradientTexture1D_isw5s")
-alpha_curve = SubResource("CurveTexture_gkwdo")
-emission_curve = SubResource("CurveTexture_0papf")
+scale_curve = SubResource("CurveTexture_wyopl")
+color_ramp = SubResource("GradientTexture1D_3w1nc")
+alpha_curve = SubResource("CurveTexture_48ebc")
+emission_curve = SubResource("CurveTexture_4q0gf")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kotcs"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
@@ -101,7 +101,7 @@ load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.cte
 [sub_resource type="Gradient" id="Gradient_phvpi"]
 colors = PackedColorArray(0.0470588, 0.901961, 0.94902, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_wemo8"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y7vnx"]
 gradient = SubResource("Gradient_phvpi")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_645os"]
@@ -114,10 +114,10 @@ initial_velocity_max = 98.59
 gravity = Vector3(0, 0, 0)
 scale_min = 0.05
 scale_max = 0.05
-scale_curve = SubResource("CurveTexture_jvgtt")
-color_ramp = SubResource("GradientTexture1D_wemo8")
-alpha_curve = SubResource("CurveTexture_gkwdo")
-emission_curve = SubResource("CurveTexture_0papf")
+scale_curve = SubResource("CurveTexture_wyopl")
+color_ramp = SubResource("GradientTexture1D_y7vnx")
+alpha_curve = SubResource("CurveTexture_48ebc")
+emission_curve = SubResource("CurveTexture_4q0gf")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c75ca"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
@@ -125,7 +125,7 @@ load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.cte
 [sub_resource type="Gradient" id="Gradient_5uipf"]
 colors = PackedColorArray(0.0470588, 0.901961, 0.94902, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_8v2pm"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0oqqn"]
 gradient = SubResource("Gradient_5uipf")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_80dav"]
@@ -138,10 +138,10 @@ initial_velocity_max = 98.59
 gravity = Vector3(0, 0, 0)
 scale_min = 0.05
 scale_max = 0.05
-scale_curve = SubResource("CurveTexture_jvgtt")
-color_ramp = SubResource("GradientTexture1D_8v2pm")
-alpha_curve = SubResource("CurveTexture_gkwdo")
-emission_curve = SubResource("CurveTexture_0papf")
+scale_curve = SubResource("CurveTexture_wyopl")
+color_ramp = SubResource("GradientTexture1D_0oqqn")
+alpha_curve = SubResource("CurveTexture_48ebc")
+emission_curve = SubResource("CurveTexture_4q0gf")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u3dir"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
@@ -149,7 +149,7 @@ load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.cte
 [sub_resource type="Gradient" id="Gradient_wujah"]
 colors = PackedColorArray(0.0470588, 0.901961, 0.94902, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ghfwd"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2p8iq"]
 gradient = SubResource("Gradient_wujah")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rhjb0"]
@@ -162,10 +162,10 @@ initial_velocity_max = 145.16
 gravity = Vector3(0, 0, 0)
 scale_min = 0.05
 scale_max = 0.05
-scale_curve = SubResource("CurveTexture_jvgtt")
-color_ramp = SubResource("GradientTexture1D_ghfwd")
-alpha_curve = SubResource("CurveTexture_gkwdo")
-emission_curve = SubResource("CurveTexture_0papf")
+scale_curve = SubResource("CurveTexture_wyopl")
+color_ramp = SubResource("GradientTexture1D_2p8iq")
+alpha_curve = SubResource("CurveTexture_48ebc")
+emission_curve = SubResource("CurveTexture_4q0gf")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v8vlh"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
