@@ -27,6 +27,12 @@ var is_casting: bool = false :
 func _ready():
 	is_casting = false
 
+func blue():
+	$Line2D.default_color = Color(0.04,0.90,0.94)#enemy color
+
+func red():
+	$Line2D.default_color = Color(1.00,0.01,0.27)#player color
+
 
 func _physics_process(delta: float) -> void:
 	var cast_point := target_position
@@ -49,9 +55,9 @@ func _physics_process(delta: float) -> void:
 		
 func appear() -> void:
 	var tween = create_tween()
-	tween.tween_property($Line2D, "width", 3.0, 0.1)
+	tween.tween_property($Line2D, "width", 4, 0.5)
 
 
 func disapear() -> void:
 	var tween = create_tween()
-	tween.tween_property($Line2D, "width", 0, 0.1)
+	tween.tween_property($Line2D, "width", 0, 0.5)

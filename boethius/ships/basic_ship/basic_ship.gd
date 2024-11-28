@@ -35,23 +35,8 @@ func stop_shooting_constantly() -> void:
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	match _anim_name:
 		"dmg"   : $AnimationPlayer.play("RESET")
-		"death" : queue_free()
-
-
-
-
 
 
 func take_damage(damage : float, _damage_type : String = "none") -> void:
 	$AnimationPlayer.play("dmg")
 	health -= damage
-	
-	
-#func _draw() -> void:
-	#if not under_player_control:
-		#draw_line(Vector2.ZERO, current_direction.rotated(-rotation) * 10000, Color.ORANGE)
-	
-	
-#func _process(_delta: float) -> void:
-	#if not under_player_control:
-		#queue_redraw()

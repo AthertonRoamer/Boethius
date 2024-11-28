@@ -174,6 +174,7 @@ load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.cte
 load_path = "res://.godot/imported/Ships.png-74a1d1c2e36bfcc43ac3dde5394bd1ec.ctex"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1yxi2"]
+resource_local_to_scene = true
 shader = ExtResource("8_ujmjc")
 shader_parameter/color_a = Color(0.4, 0.0588235, 0.192157, 1)
 shader_parameter/color_b = Color(0.4, 0.0588235, 0.192157, 1)
@@ -187,6 +188,7 @@ shader_parameter/intensity = 1.0
 load_path = "res://.godot/imported/Ships.png-74a1d1c2e36bfcc43ac3dde5394bd1ec.ctex"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dwwlo"]
+resource_local_to_scene = true
 shader = ExtResource("8_ujmjc")
 shader_parameter/color_a = Color(1, 1, 1, 1)
 shader_parameter/color_b = Color(1, 1, 1, 0.427451)
@@ -333,6 +335,12 @@ lifetime = 0.5
 local_coords = true
 script = ExtResource("7_hsh0v")
 
+[node name="gun1" type="Node2D" parent="."]
+position = Vector2(45, 0)
+script = ExtResource("9_fhhbm")
+
+[node name="laser" parent="gun1" instance=ExtResource("11_v0eli")]
+
 [node name="ship_sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(11, 0)
@@ -390,12 +398,6 @@ visible = false
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
 
-[node name="gun1" type="Node2D" parent="."]
-position = Vector2(53, 0)
-script = ExtResource("9_fhhbm")
-
-[node name="laser" parent="gun1" instance=ExtResource("11_v0eli")]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_c27cd")
@@ -409,3 +411,5 @@ libraries = {
 visible = false
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+
+[editable path="gun1/laser"]
