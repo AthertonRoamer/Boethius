@@ -468,7 +468,6 @@ frame = 1
 visible = false
 position = Vector2(1.14441e-05, 0)
 rotation = 1.57509
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_a51ba")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]

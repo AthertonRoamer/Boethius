@@ -1,13 +1,19 @@
-[gd_scene load_steps=35 format=3 uid="uid://drotwycof3eg7"]
+
+[gd_scene load_steps=52 format=3 uid="uid://drotwycof3eg7"]
+
 
 [ext_resource type="Script" path="res://ships/laser_ship/laser_ship.gd" id="1_c0m2i"]
 [ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_1wkbu"]
-[ext_resource type="Texture2D" uid="uid://uf55r0ulcrpc" path="res://art/Ships.png" id="3_yiycb"]
+[ext_resource type="Gradient" uid="uid://dxbpa3wy4kkya" path="res://art/player_boost_gradient.tres" id="3_il3i3"]
+[ext_resource type="Script" path="res://ships/basic_ship/fire.gd" id="3_ufpq8"]
 [ext_resource type="PackedScene" uid="uid://do4o0k42eixaw" path="res://ships/ship_state_machine/ship_state_machine.tscn" id="4_wmond"]
 [ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="5_6hr4c"]
 [ext_resource type="Script" path="res://ships/generic_states/circle.gd" id="6_3jnss"]
+[ext_resource type="Script" path="res://ships/basic_ship/enemy_fire.gd" id="6_7mwx7"]
+[ext_resource type="Script" path="res://ships/basic_ship/enemy_boost.gd" id="7_hsh0v"]
 [ext_resource type="Script" path="res://ships/generic_states/defend.gd" id="7_uck4j"]
 [ext_resource type="Script" path="res://ships/laser_ship/laser_ship_shoot.gd" id="8_sdqbw"]
+[ext_resource type="Shader" path="res://ships/basic_ship/damage.gdshader" id="8_ujmjc"]
 [ext_resource type="Script" path="res://ships/laser_ship/laser_shot.gd" id="9_fhhbm"]
 [ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_explosion.tscn" id="10_cu7xc"]
 [ext_resource type="Script" path="res://ships/ship_camera.gd" id="10_cytbv"]
@@ -15,35 +21,34 @@
 [ext_resource type="PackedScene" uid="uid://b16d8fcohve56" path="res://ships/ship_area/ship_area.tscn" id="12_hjqmc"]
 [ext_resource type="PackedScene" uid="uid://bw1jqqaydcxqo" path="res://ships/weight_system/weight_debugger/ship_weight_debugger.tscn" id="13_pblyv"]
 
-[sub_resource type="Curve" id="Curve_xjb1h"]
+[sub_resource type="Curve" id="Curve_yxqlr"]
 _data = [Vector2(0, 0.615385), 0.0, 0.0, 0, 0, Vector2(0.846667, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_gkwdo"]
-curve = SubResource("Curve_xjb1h")
-
-[sub_resource type="Gradient" id="Gradient_xm4th"]
-colors = PackedColorArray(0.245993, 0, 0.0383255, 1, 0, 0, 0, 1)
+curve = SubResource("Curve_yxqlr")
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_isw5s"]
-gradient = SubResource("Gradient_xm4th")
+resource_local_to_scene = true
+gradient = ExtResource("3_il3i3")
 
-[sub_resource type="Curve" id="Curve_7blia"]
+[sub_resource type="Curve" id="Curve_hsk2t"]
 max_value = 12.0
 _data = [Vector2(0, 12), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_0papf"]
-curve = SubResource("Curve_7blia")
+curve = SubResource("Curve_hsk2t")
 
-[sub_resource type="Curve" id="Curve_i7yo7"]
+[sub_resource type="Curve" id="Curve_7vg7l"]
 _data = [Vector2(0, 0.769231), 0.0, 0.0, 0, 0, Vector2(1, 0.472527), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_jvgtt"]
-curve = SubResource("Curve_i7yo7")
+curve = SubResource("Curve_7vg7l")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tccvq"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vlgpv"]
+resource_local_to_scene = true
 particle_flag_disable_z = true
 direction = Vector3(-1, 0, 0)
 spread = 10.0
@@ -57,19 +62,11 @@ color_ramp = SubResource("GradientTexture1D_isw5s")
 alpha_curve = SubResource("CurveTexture_gkwdo")
 emission_curve = SubResource("CurveTexture_0papf")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_85xlo"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1wrxk"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
-[sub_resource type="GDScript" id="GDScript_darg2"]
-script/source = "extends GPUParticles2D
-
-
-func _process(_delta: float) -> void:
-	if get_parent() is Ship:
-		visible = get_parent().visual_data.get_item_value(\"thrusting\")
-"
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7728x"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_phtgj"]
+resource_local_to_scene = true
 particle_flag_disable_z = true
 direction = Vector3(-1, 0, 0)
 spread = 10.0
@@ -83,19 +80,11 @@ color_ramp = SubResource("GradientTexture1D_isw5s")
 alpha_curve = SubResource("CurveTexture_gkwdo")
 emission_curve = SubResource("CurveTexture_0papf")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_akv2g"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3cncx"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
-[sub_resource type="GDScript" id="GDScript_0clqa"]
-script/source = "extends GPUParticles2D
-
-
-func _process(_delta: float) -> void:
-	if get_parent() is Ship:
-		visible = get_parent().visual_data.get_item_value(\"thrusting\")
-"
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hth4b"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dy30d"]
+resource_local_to_scene = true
 particle_flag_disable_z = true
 direction = Vector3(-1, 0, 0)
 spread = 10.0
@@ -109,8 +98,109 @@ color_ramp = SubResource("GradientTexture1D_isw5s")
 alpha_curve = SubResource("CurveTexture_gkwdo")
 emission_curve = SubResource("CurveTexture_0papf")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kotcs"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jkj2t"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[sub_resource type="Gradient" id="Gradient_uhvo8"]
+colors = PackedColorArray(0.0470588, 0.901961, 0.94902, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wemo8"]
+gradient = SubResource("Gradient_uhvo8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h5bc7"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 10.0
+initial_velocity_min = 84.51
+initial_velocity_max = 98.59
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_jvgtt")
+color_ramp = SubResource("GradientTexture1D_wemo8")
+alpha_curve = SubResource("CurveTexture_gkwdo")
+emission_curve = SubResource("CurveTexture_0papf")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_msvgx"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[sub_resource type="Gradient" id="Gradient_k6x6r"]
+colors = PackedColorArray(0.0470588, 0.901961, 0.94902, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8v2pm"]
+gradient = SubResource("Gradient_k6x6r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g6eht"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 10.0
+initial_velocity_min = 84.51
+initial_velocity_max = 98.59
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_jvgtt")
+color_ramp = SubResource("GradientTexture1D_8v2pm")
+alpha_curve = SubResource("CurveTexture_gkwdo")
+emission_curve = SubResource("CurveTexture_0papf")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ecx3j"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[sub_resource type="Gradient" id="Gradient_1dilt"]
+colors = PackedColorArray(0.0470588, 0.901961, 0.94902, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ghfwd"]
+gradient = SubResource("Gradient_1dilt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_suo74"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 10.0
+initial_velocity_min = 145.16
+initial_velocity_max = 145.16
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_jvgtt")
+color_ramp = SubResource("GradientTexture1D_ghfwd")
+alpha_curve = SubResource("CurveTexture_gkwdo")
+emission_curve = SubResource("CurveTexture_0papf")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_swx17"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fbxjp"]
+load_path = "res://.godot/imported/Ships.png-74a1d1c2e36bfcc43ac3dde5394bd1ec.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1yxi2"]
+shader = ExtResource("8_ujmjc")
+shader_parameter/color_a = Color(0.4, 0.0588235, 0.192157, 1)
+shader_parameter/color_b = Color(0.4, 0.0588235, 0.192157, 1)
+shader_parameter/colors_affect_alpha = false
+shader_parameter/flash_amount = 1.0
+shader_parameter/flash_speed = 1.0
+shader_parameter/transparency = 0.0
+shader_parameter/intensity = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5anmw"]
+load_path = "res://.godot/imported/Ships.png-74a1d1c2e36bfcc43ac3dde5394bd1ec.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dwwlo"]
+shader = ExtResource("8_ujmjc")
+shader_parameter/color_a = Color(1, 1, 1, 1)
+shader_parameter/color_b = Color(1, 1, 1, 0.427451)
+shader_parameter/colors_affect_alpha = false
+shader_parameter/flash_amount = 1.0
+shader_parameter/flash_speed = 4.0
+shader_parameter/transparency = 0.25
+shader_parameter/intensity = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hgflo"]
+load_path = "res://.godot/imported/Ships.png-74a1d1c2e36bfcc43ac3dde5394bd1ec.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhbn1"]
 size = Vector2(17.9998, 86.9949)
@@ -132,7 +222,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Polygon2D:visible")
+tracks/1/path = NodePath("ship_sprite:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -144,152 +234,135 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("boosts/Fire:visible")
+tracks/2/path = NodePath("damage_shader:material:shader_parameter/transparency")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("boosts/Fire2:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("boosts/boost:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_wcilg"]
-resource_name = "death"
-length = 0.5
+[sub_resource type="Animation" id="Animation_3h235"]
+resource_name = "dmg"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("death:emitting")
+tracks/0/path = NodePath("damage_shader:material:shader_parameter/transparency")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Polygon2D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("boosts/Fire:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("boosts/Fire2:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("boosts/boost:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [0.5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c27cd"]
 _data = {
 "RESET": SubResource("Animation_kcaef"),
-"death": SubResource("Animation_wcilg")
+"dmg": SubResource("Animation_3h235")
 }
 
 [node name="LaserShip" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_c0m2i")
 explosion_scene = ExtResource("10_cu7xc")
+debug_output = true
 rotation_speed = 90.0
 sight_range = 1000.0
 radius = 60.0
 
 [node name="boosts" type="Node2D" parent="."]
 
-[node name="Fire" type="GPUParticles2D" parent="boosts"]
+[node name="player_fire1" type="GPUParticles2D" parent="boosts"]
+visible = false
 position = Vector2(-32, -15)
 amount = 50
-process_material = SubResource("ParticleProcessMaterial_tccvq")
-texture = SubResource("CompressedTexture2D_85xlo")
+process_material = SubResource("ParticleProcessMaterial_vlgpv")
+texture = SubResource("CompressedTexture2D_1wrxk")
 lifetime = 0.5
 local_coords = true
-script = SubResource("GDScript_darg2")
+script = ExtResource("3_ufpq8")
 
-[node name="Fire2" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-31, 15)
+[node name="player_fire2" type="GPUParticles2D" parent="boosts"]
+visible = false
+position = Vector2(-32, 15)
 amount = 50
-process_material = SubResource("ParticleProcessMaterial_7728x")
-texture = SubResource("CompressedTexture2D_akv2g")
+process_material = SubResource("ParticleProcessMaterial_phtgj")
+texture = SubResource("CompressedTexture2D_3cncx")
 lifetime = 0.5
 local_coords = true
-script = SubResource("GDScript_0clqa")
+script = ExtResource("3_ufpq8")
 
-[node name="boost" type="GPUParticles2D" parent="boosts"]
+[node name="player_boost" type="GPUParticles2D" parent="boosts"]
+visible = false
 position = Vector2(-36, 0)
 amount = 100
-process_material = SubResource("ParticleProcessMaterial_hth4b")
-texture = SubResource("CompressedTexture2D_kotcs")
+process_material = SubResource("ParticleProcessMaterial_dy30d")
+texture = SubResource("CompressedTexture2D_jkj2t")
 lifetime = 0.5
 local_coords = true
 script = ExtResource("2_1wkbu")
 
-[node name="Polygon2D" type="Sprite2D" parent="."]
+[node name="enemy_fire1" type="GPUParticles2D" parent="boosts"]
+visible = false
+position = Vector2(-31, -15)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_h5bc7")
+texture = SubResource("CompressedTexture2D_msvgx")
+lifetime = 0.5
+local_coords = true
+script = ExtResource("6_7mwx7")
+
+[node name="enemy_fire2" type="GPUParticles2D" parent="boosts"]
+visible = false
+position = Vector2(-32, 15)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_g6eht")
+texture = SubResource("CompressedTexture2D_ecx3j")
+lifetime = 0.5
+local_coords = true
+script = ExtResource("6_7mwx7")
+
+[node name="enemy_boost" type="GPUParticles2D" parent="boosts"]
+visible = false
+position = Vector2(-36, 0)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_suo74")
+texture = SubResource("CompressedTexture2D_swx17")
+lifetime = 0.5
+local_coords = true
+script = ExtResource("7_hsh0v")
+
+[node name="ship_sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(11, 0)
 scale = Vector2(1.65, 1.65)
-texture = ExtResource("3_yiycb")
+texture = SubResource("CompressedTexture2D_fbxjp")
+hframes = 8
+vframes = 2
+frame = 4
+
+[node name="damage_shader" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_1yxi2")
+position = Vector2(11, 0)
+scale = Vector2(1.65, 1.65)
+texture = SubResource("CompressedTexture2D_5anmw")
+hframes = 8
+vframes = 2
+frame = 4
+
+[node name="selected_shader" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_dwwlo")
+position = Vector2(11, 0)
+scale = Vector2(1.65, 1.65)
+texture = SubResource("CompressedTexture2D_hgflo")
 hframes = 8
 vframes = 2
 frame = 4

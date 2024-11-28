@@ -1,11 +1,14 @@
 [gd_scene load_steps=25 format=3 uid="uid://c45yj6q8tsgun"]
 
 [ext_resource type="Script" path="res://world/test_world/test_world.gd" id="1_v873r"]
-[ext_resource type="PackedScene" uid="uid://dn6elo7vpye1c" path="res://ships/basic_ship/basic_ship.tscn" id="2_7xgbe"]
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space.tscn" id="2_m21cc"]
 [ext_resource type="Script" path="res://world/test_world/thingy.gd" id="3_rq17g"]
 [ext_resource type="Script" path="res://world/test_world/asteroid.gd" id="5_qj85c"]
+
 [ext_resource type="Script" path="res://ships/ship_data/fleet_data.gd" id="8_5kkxw"]
+
+[ext_resource type="PackedScene" uid="uid://dn6elo7vpye1c" path="res://ships/basic_ship/basic_ship.tscn" id="8_wksr0"]
+
 [ext_resource type="Script" path="res://world/test_world/circle.gd" id="8_ytme6"]
 [ext_resource type="Script" path="res://ships/spawn_point/spawn_point.gd" id="9_1jm1p"]
 [ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="9_gk5pd"]
@@ -130,10 +133,12 @@ script = ExtResource("3_rq17g")
 
 [node name="ships" type="Node2D" parent="."]
 
+
 [node name="player" parent="ships" instance=ExtResource("2_7xgbe")]
 position = Vector2(165, -109)
 rotation = 1.00857
 faction = 0
+
 
 [node name="wall" type="StaticBody2D" parent="."]
 position = Vector2(550, 84)
@@ -182,9 +187,15 @@ script = ExtResource("9_1jm1p")
 fleet = ExtResource("10_uv0cs")
 faction = 1
 
+
 [node name="CommandCamera" type="Camera2D" parent="."]
 position = Vector2(554, 85)
 enabled = false
 zoom = Vector2(0.5, 0.5)
+
+[node name="BasicShip" parent="." instance=ExtResource("8_wksr0")]
+under_player_control = true
+faction = 0
+
 
 [connection signal="animation_finished" from="wall/AnimationPlayer" to="wall" method="_on_animation_player_animation_finished"]

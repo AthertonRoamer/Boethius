@@ -6,6 +6,15 @@ extends Ship
 var aim_mode = false
 @export var aim_speed = 90.0
 
+func _ready() -> void:
+	super()
+	if faction == Faction.ENEMY:
+		$ship_sprite.frame = 5
+		$damage_shader.frame = 5
+	else:
+		$ship_sprite.frame = 4
+		$damage_shader.frame = 4
+
 func shoot():
 	gun1.fire()
 	
@@ -46,7 +55,3 @@ func register_player_input(delta : float) -> void:
 	else:
 		aim_mode = false
 		release_laser()
-
-
-func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
-	queue_free()
