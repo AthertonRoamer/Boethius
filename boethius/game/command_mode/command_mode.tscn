@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://blrn07vtcshw0"]
+
+[ext_resource type="Script" path="res://game/command_mode/command_mode.gd" id="1_i2mud"]
+[ext_resource type="PackedScene" uid="uid://bdxag6qp27tib" path="res://game/command_mode/ship_selector/ship_selector.tscn" id="2_frwhp"]
+
+[node name="CommandMode" type="Node2D"]
+script = ExtResource("1_i2mud")
+selected_color = Color(0.851769, 0.851769, 0.851769, 1)
+occupied_color = Color(0.476844, 0.644697, 1, 1)
+
+[node name="ShipSelector" parent="." node_paths=PackedStringArray("command_mode") instance=ExtResource("2_frwhp")]
+command_mode = NodePath("..")

@@ -1,4 +1,6 @@
+
 [gd_scene load_steps=52 format=3 uid="uid://drotwycof3eg7"]
+
 
 [ext_resource type="Script" path="res://ships/laser_ship/laser_ship.gd" id="1_c0m2i"]
 [ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_1wkbu"]
@@ -14,6 +16,7 @@
 [ext_resource type="Shader" path="res://ships/basic_ship/damage.gdshader" id="8_ujmjc"]
 [ext_resource type="Script" path="res://ships/laser_ship/laser_shot.gd" id="9_fhhbm"]
 [ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_explosion.tscn" id="10_cu7xc"]
+[ext_resource type="Script" path="res://ships/ship_camera.gd" id="10_cytbv"]
 [ext_resource type="PackedScene" uid="uid://dnur25oatr5ml" path="res://laser.tscn" id="11_v0eli"]
 [ext_resource type="PackedScene" uid="uid://b16d8fcohve56" path="res://ships/ship_area/ship_area.tscn" id="12_hjqmc"]
 [ext_resource type="PackedScene" uid="uid://bw1jqqaydcxqo" path="res://ships/weight_system/weight_debugger/ship_weight_debugger.tscn" id="13_pblyv"]
@@ -270,6 +273,7 @@ explosion_scene = ExtResource("10_cu7xc")
 debug_output = true
 rotation_speed = 90.0
 sight_range = 1000.0
+radius = 60.0
 
 [node name="boosts" type="Node2D" parent="."]
 
@@ -389,6 +393,7 @@ script = ExtResource("8_sdqbw")
 visible = false
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
+script = ExtResource("10_cytbv")
 
 [node name="gun1" type="Node2D" parent="."]
 position = Vector2(53, 0)
