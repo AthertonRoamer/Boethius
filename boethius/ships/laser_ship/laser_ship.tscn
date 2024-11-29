@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://drotwycof3eg7"]
+[gd_scene load_steps=54 format=3 uid="uid://drotwycof3eg7"]
 
 [ext_resource type="Script" path="res://ships/laser_ship/laser_ship.gd" id="1_c0m2i"]
 [ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_1wkbu"]
@@ -205,6 +205,9 @@ load_path = "res://.godot/imported/Ships.png-74a1d1c2e36bfcc43ac3dde5394bd1ec.ct
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhbn1"]
 size = Vector2(17.9998, 86.9949)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qy7qy"]
+radius = 42.0119
+
 [sub_resource type="Animation" id="Animation_kcaef"]
 length = 0.001
 tracks/0/type = "value"
@@ -380,6 +383,10 @@ position = Vector2(9.49357, -0.00217402)
 rotation = 1.57509
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_dhbn1")
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qy7qy")
 
 [node name="ShipStateMachine" parent="." instance=ExtResource("4_wmond")]
 
