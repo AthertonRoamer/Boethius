@@ -565,6 +565,7 @@ _data = {
 collision_mask = 2
 script = ExtResource("1_233k0")
 explosion_scene = ExtResource("12_m6u1j")
+rotation_speed = 180.0
 
 [node name="boosts" type="Node2D" parent="."]
 
@@ -637,6 +638,7 @@ hframes = 8
 vframes = 2
 
 [node name="damage_shader" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_67vke")
 position = Vector2(11, 0)
@@ -646,6 +648,7 @@ hframes = 8
 vframes = 2
 
 [node name="selected_shader" parent="." instance=ExtResource("8_2xw5y")]
+visible = false
 material = SubResource("ShaderMaterial_w7ic4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
