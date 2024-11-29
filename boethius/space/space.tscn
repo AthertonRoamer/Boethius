@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cu478du4hoeu4"]
+[gd_scene load_steps=7 format=3 uid="uid://cu478du4hoeu4"]
 
-[ext_resource type="Texture2D" uid="uid://dt1ef2aumghcv" path="res://art/Bg-4.png" id="1_y6uhp"]
-[ext_resource type="Texture2D" uid="uid://bmy8sr4gs7hc0" path="res://art/Bg-2.png" id="2_54sqj"]
-[ext_resource type="Texture2D" uid="uid://085obbgrlag0" path="res://art/Bg-3.png" id="3_hm8ef"]
+[ext_resource type="Script" path="res://space/space.gd" id="1_rmjwj"]
+[ext_resource type="Texture2D" uid="uid://dt1ef2aumghcv" path="res://art/Bg-4.png" id="2_x43vv"]
+[ext_resource type="Texture2D" uid="uid://bmy8sr4gs7hc0" path="res://art/Bg-2.png" id="3_4yw07"]
+[ext_resource type="Texture2D" uid="uid://085obbgrlag0" path="res://art/Bg-3.png" id="4_4eqhw"]
 
 [sub_resource type="Gradient" id="Gradient_6aexn"]
 offsets = PackedFloat32Array(0, 0.422078, 0.987013)
@@ -12,6 +13,7 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_6aexn")
 
 [node name="space" type="ParallaxBackground"]
+script = ExtResource("1_rmjwj")
 
 [node name="Polygon2D" type="TextureRect" parent="."]
 offset_left = -10.0
@@ -33,25 +35,25 @@ position = Vector2(60, 92)
 modulate = Color(1, 1, 1, 0.972549)
 texture_filter = 1
 position = Vector2(402, 171)
-texture = ExtResource("1_y6uhp")
+texture = ExtResource("2_x43vv")
 
 [node name="Bg-2" type="Sprite2D" parent="ParallaxLayer/galaxies"]
 modulate = Color(1, 1, 1, 0.972549)
 texture_filter = 1
 position = Vector2(1310, 181)
-texture = ExtResource("1_y6uhp")
+texture = ExtResource("2_x43vv")
 
 [node name="Bg-3" type="Sprite2D" parent="ParallaxLayer/galaxies"]
 modulate = Color(1, 1, 1, 0.972549)
 texture_filter = 1
 position = Vector2(406, 673)
-texture = ExtResource("1_y6uhp")
+texture = ExtResource("2_x43vv")
 
 [node name="Bg-4" type="Sprite2D" parent="ParallaxLayer/galaxies"]
 modulate = Color(1, 1, 1, 0.972549)
 texture_filter = 1
 position = Vector2(1355, 695)
-texture = ExtResource("1_y6uhp")
+texture = ExtResource("2_x43vv")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
 modulate = Color(1, 1, 1, 0.247059)
@@ -64,22 +66,22 @@ position = Vector2(190, 95)
 [node name="Bg-2" type="Sprite2D" parent="ParallaxLayer2/far stars"]
 texture_filter = 1
 position = Vector2(301, 173)
-texture = ExtResource("2_54sqj")
+texture = ExtResource("3_4yw07")
 
 [node name="Bg-3" type="Sprite2D" parent="ParallaxLayer2/far stars"]
 texture_filter = 1
 position = Vector2(1229, 173)
-texture = ExtResource("2_54sqj")
+texture = ExtResource("3_4yw07")
 
 [node name="Bg-4" type="Sprite2D" parent="ParallaxLayer2/far stars"]
 texture_filter = 1
 position = Vector2(298, 686)
-texture = ExtResource("2_54sqj")
+texture = ExtResource("3_4yw07")
 
 [node name="Bg-5" type="Sprite2D" parent="ParallaxLayer2/far stars"]
 texture_filter = 1
 position = Vector2(1241, 692)
-texture = ExtResource("2_54sqj")
+texture = ExtResource("3_4yw07")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
 modulate = Color(1, 1, 1, 0.411765)
@@ -92,19 +94,19 @@ position = Vector2(190, 95)
 [node name="Bg-3" type="Sprite2D" parent="ParallaxLayer3/close stars"]
 texture_filter = 1
 position = Vector2(266, 163)
-texture = ExtResource("3_hm8ef")
+texture = ExtResource("4_4eqhw")
 
 [node name="Bg-4" type="Sprite2D" parent="ParallaxLayer3/close stars"]
 texture_filter = 1
 position = Vector2(1185, 174)
-texture = ExtResource("3_hm8ef")
+texture = ExtResource("4_4eqhw")
 
 [node name="Bg-5" type="Sprite2D" parent="ParallaxLayer3/close stars"]
 texture_filter = 1
 position = Vector2(299, 696)
-texture = ExtResource("3_hm8ef")
+texture = ExtResource("4_4eqhw")
 
 [node name="Bg-6" type="Sprite2D" parent="ParallaxLayer3/close stars"]
 texture_filter = 1
 position = Vector2(1277, 715)
-texture = ExtResource("3_hm8ef")
+texture = ExtResource("4_4eqhw")
