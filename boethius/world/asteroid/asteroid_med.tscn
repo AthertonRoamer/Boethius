@@ -10,7 +10,7 @@ radius = 90.0056
 [node name="asteriod_med" type="RigidBody2D"]
 collision_layer = 3
 collision_mask = 3
-inertia = 5.0
+mass = 10.0
 script = ExtResource("1_er1yf")
 explosion_scene = ExtResource("2_byfne")
 friction = 1.0
@@ -27,8 +27,8 @@ frame = 1
 visible = false
 scale = Vector2(1.65, 1.65)
 polygon = PackedVector2Array(-20, -50, -53, -16, -54, -16, -55, 22, -55, 28, -49, 28, -40, 53, -40, 57, -1, 59, 3, 59, 16, 52, 25, 52, 54, 27, 56, 27, 35, -26, 35, -30, 3, -45, 3, -48, -20, -51)
-disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-9, 13)
 shape = SubResource("CircleShape2D_nkv0v")
+disabled = true

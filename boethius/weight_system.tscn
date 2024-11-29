@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dswe5lee5jfjn"]
-
-[ext_resource type="Script" path="res://ships/weight_system/weight_system.gd" id="1_470n3"]
-
-[node name="WeightSystem" type="Node2D"]
-script = ExtResource("1_470n3")

@@ -1,6 +1,8 @@
 class_name Level
 extends World
 
+signal setup_complete
+
 @export var command_mode_camera : Camera2D
 var command_mode : CommandMode
 var command_mode_scene : PackedScene = preload("res://game/command_mode/command_mode.tscn")
@@ -15,3 +17,4 @@ func _ready() -> void:
 	command_mode.level = self
 	add_child(command_mode)
 	add_child(outcome_tracker)
+	setup_complete.emit()

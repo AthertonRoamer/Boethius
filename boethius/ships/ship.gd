@@ -52,7 +52,9 @@ var health : float = starting_health:
 @export var no_thrust_max_speed : float = 600
 
 @export var crashable = true
+
 @export var crash_speed_dmg : float = 900
+
 
 @export var boost_accel : float = 600
 @export var boost_max_speed : float = 1000
@@ -259,14 +261,15 @@ func check_for_crash():
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		#print("Collided with: ", collision.get_collider().name)
-		if collision.get_collider().is_in_group("crashable"):
+
+		if is_instance_valid(collision.get_collider()) and collision.get_collider().is_in_group("crashable"):
 			if current_veloctiy.length() > crash_speed_dmg:
 				die()
 				collision.get_collider().play_crash_sound()
 			collision.get_collider().play_hit_sound()
 			var knock_angle = collision.get_normal()
 			take_knockback(knock_angle * current_veloctiy.length()* 1.1)
-			#collision.get_collider().take_knockback(mass * -knock_angle)
+			collision.get_collider().take_knockback(mass * -knock_angle)
 			return
 
 

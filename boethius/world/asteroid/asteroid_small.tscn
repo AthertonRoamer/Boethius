@@ -1,17 +1,17 @@
 [gd_scene load_steps=7 format=3 uid="uid://ckgqun7x0sidn"]
 
-[ext_resource type="Script" path="res://world/asteroid/asteroid.gd" id="1_65biu"]
+[ext_resource type="Script" path="res://world/asteroid/space_object.gd" id="1_xnjgr"]
 [ext_resource type="PackedScene" uid="uid://br3i5ma5yi5bq" path="res://death_explosion_heavy.tscn" id="2_r3dem"]
 [ext_resource type="Texture2D" uid="uid://cj2ag0woa1wd5" path="res://art/Asteriods.png" id="3_q1d4r"]
 [ext_resource type="AudioStream" uid="uid://c1ijpkbhq0p7p" path="res://sound/asteroids/hit-rock-01-266301.mp3" id="4_y3dyg"]
 [ext_resource type="AudioStream" uid="uid://cviamot3hrq4u" path="res://sound/asteroids/small-rock-break-194553.mp3" id="5_fkqub"]
 [ext_resource type="AudioStream" uid="uid://b76un645dsr03" path="res://sound/asteroids/hit-rock-03-266305.mp3" id="6_d4qfw"]
 
-[node name="asteriod_small" type="CharacterBody2D"]
+[node name="asteriod_small" type="RigidBody2D"]
 collision_layer = 3
-script = ExtResource("1_65biu")
+mass = 2.0
+script = ExtResource("1_xnjgr")
 explosion_scene = ExtResource("2_r3dem")
-inertia = 10.0
 friction = 1.0
 max_speed = 200.0
 

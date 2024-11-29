@@ -13,3 +13,11 @@ func get_command_mode() -> CommandMode:
 		return null
 	else:
 		return get_active_level().command_mode
+		
+		
+func _ready() -> void:
+	Hud.activate()
+	
+	
+func _exit_tree() -> void:
+	Hud.deactivate()

@@ -1,16 +1,19 @@
 [gd_scene load_steps=7 format=3 uid="uid://c0ed21k063o7l"]
 
-[ext_resource type="Script" path="res://world/asteroid/asteroid.gd" id="1_kj10j"]
 [ext_resource type="Texture2D" uid="uid://c8aajy3gtn3kb" path="res://art/Space station.png" id="1_pxsfa"]
+[ext_resource type="Script" path="res://space_station/space_station.gd" id="1_vhj2i"]
 [ext_resource type="PackedScene" uid="uid://br3i5ma5yi5bq" path="res://death_explosion_heavy.tscn" id="2_v53r3"]
 [ext_resource type="AudioStream" uid="uid://c1ijpkbhq0p7p" path="res://sound/asteroids/hit-rock-01-266301.mp3" id="4_f0uvr"]
 [ext_resource type="AudioStream" uid="uid://cviamot3hrq4u" path="res://sound/asteroids/small-rock-break-194553.mp3" id="5_qwgjk"]
 [ext_resource type="AudioStream" uid="uid://cp8inmyfwktwf" path="res://sound/ships/080884_bullet-hit-39872.mp3" id="6_vegux"]
 
-[node name="SpaceStation" type="CharacterBody2D"]
+[node name="SpaceStation" type="RigidBody2D"]
 collision_layer = 3
-script = ExtResource("1_kj10j")
+mass = 100.0
+script = ExtResource("1_vhj2i")
 explosion_scene = ExtResource("2_v53r3")
+friction = 1.0
+max_speed = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

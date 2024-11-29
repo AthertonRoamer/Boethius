@@ -3,8 +3,10 @@
 [ext_resource type="Script" path="res://menu/main_menu.gd" id="1_xafnf"]
 [ext_resource type="Theme" uid="uid://pmellcn6m86b" path="res://boethius_theme1.tres" id="2_d516e"]
 [ext_resource type="Script" path="res://menu/parallax_layer.gd" id="3_ucpy2"]
+
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space.tscn" id="3_wy4o3"]
 [ext_resource type="AudioStream" uid="uid://b5d2o6jp8ma40" path="res://sound/music/Interstellar Reverie.mp3" id="5_vn04c"]
+
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modkm"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
