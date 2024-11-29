@@ -47,14 +47,16 @@ var health : float = starting_health:
 			health = v
 
 @export_group("Ship mechanics")
-@export var thrust_accel : float = 750
+@export var thrust_accel : float = 500
 @export var max_speed : float = 360
 @export var no_thrust_max_speed : float = 600
 
 @export var crashable = true
-@export var crash_speed_dmg : float = 600
 
-@export var boost_accel : float = 800
+@export var crash_speed_dmg : float = 900
+
+
+@export var boost_accel : float = 600
 @export var boost_max_speed : float = 1000
 @export var speed_interpolation_rate : float = 5.0
 @export var rotation_speed : float = 360
@@ -163,7 +165,17 @@ func register_player_input(delta : float) -> void:
 	var mouse_pos = get_global_mouse_position()
 	var direction_to_mouse = (mouse_pos - global_position).normalized()
 	current_direction = direction_to_mouse
-
+	
+	
+	if Input.is_action_just_pressed("ship_boost"):
+		$boost.play()
+		$thrust.play()
+	if Input.is_action_just_pressed("ship_thrust"):
+		$thrust.play()
+	if Input.is_action_just_released("ship_thrust") or Input.is_action_just_released("ship_boost"):
+		if !Input.is_action_pressed("ship_thrust"):
+			$thrust.stop()
+	
 	if Input.is_action_pressed("ship_thrust"):
 		physics_thrust(delta)
 	else:
@@ -249,16 +261,16 @@ func check_for_crash():
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		#print("Collided with: ", collision.get_collider().name)
+
 		if is_instance_valid(collision.get_collider()) and collision.get_collider().is_in_group("crashable"):
-			crash()
+			if current_veloctiy.length() > crash_speed_dmg:
+				die()
+				collision.get_collider().play_crash_sound()
+			collision.get_collider().play_hit_sound()
 			var knock_angle = collision.get_normal()
 			take_knockback(knock_angle * current_veloctiy.length()* 1.1)
 			collision.get_collider().take_knockback(mass * -knock_angle)
-
-func crash():
-		if current_veloctiy.length() > crash_speed_dmg:
-			die()
-		current_veloctiy = Vector2.ZERO
+			return
 
 
 

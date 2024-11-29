@@ -12,8 +12,8 @@
 [ext_resource type="Resource" uid="uid://dg1dskw58rjv3" path="res://ships/ship_data/test_fleet.tres" id="10_uv0cs"]
 [ext_resource type="PackedScene" uid="uid://fpde8apg7q2f" path="res://world/asteroid/asteroid_big.tscn" id="11_oejgr"]
 [ext_resource type="PackedScene" uid="uid://c0ed21k063o7l" path="res://space_station/space_station.tscn" id="12_8v163"]
-[ext_resource type="PackedScene" uid="uid://bos66mom7yrro" path="res://world/asteroid/asteroid_med.tscn" id="13_sfm1s"]
 [ext_resource type="PackedScene" uid="uid://ckgqun7x0sidn" path="res://world/asteroid/asteroid_small.tscn" id="14_djxwq"]
+[ext_resource type="AudioStream" uid="uid://dl7ppg3ro4gdu" path="res://sound/music/Interstellar Reverie (1).mp3" id="14_hiq3a"]
 
 [sub_resource type="Resource" id="Resource_0080v"]
 script = ExtResource("8_5kkxw")
@@ -33,6 +33,7 @@ polygon = PackedVector2Array(-21, 11, 12, 11, -4, -22)
 script = ExtResource("3_rq17g")
 
 [node name="ships" type="Node2D" parent="."]
+
 
 [node name="Circle" type="Node2D" parent="."]
 visible = false
@@ -59,12 +60,6 @@ zoom = Vector2(0.5, 0.5)
 [node name="asteriod_big" parent="crashables" instance=ExtResource("11_oejgr")]
 position = Vector2(554, -74)
 
-[node name="asteriod_med" parent="crashables" instance=ExtResource("13_sfm1s")]
-position = Vector2(0, -178)
-
-[node name="asteriod_med2" parent="crashables" instance=ExtResource("13_sfm1s")]
-position = Vector2(1039, 143)
-
 [node name="asteriod_small" parent="crashables" instance=ExtResource("14_djxwq")]
 position = Vector2(1136, 572)
 
@@ -82,3 +77,8 @@ position = Vector2(190, 208)
 
 [node name="SpaceStation" parent="crashables" instance=ExtResource("12_8v163")]
 position = Vector2(562, 747)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_hiq3a")
+volume_db = -19.81
+autoplay = true

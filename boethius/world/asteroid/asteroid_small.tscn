@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckgqun7x0sidn"]
+[gd_scene load_steps=7 format=3 uid="uid://ckgqun7x0sidn"]
 
 [ext_resource type="Script" path="res://world/asteroid/space_object.gd" id="1_xnjgr"]
 [ext_resource type="PackedScene" uid="uid://br3i5ma5yi5bq" path="res://death_explosion_heavy.tscn" id="2_r3dem"]
 [ext_resource type="Texture2D" uid="uid://cj2ag0woa1wd5" path="res://art/Asteriods.png" id="3_q1d4r"]
+[ext_resource type="AudioStream" uid="uid://c1ijpkbhq0p7p" path="res://sound/asteroids/hit-rock-01-266301.mp3" id="4_y3dyg"]
+[ext_resource type="AudioStream" uid="uid://cviamot3hrq4u" path="res://sound/asteroids/small-rock-break-194553.mp3" id="5_fkqub"]
+[ext_resource type="AudioStream" uid="uid://b76un645dsr03" path="res://sound/asteroids/hit-rock-03-266305.mp3" id="6_d4qfw"]
 
 [node name="asteriod_small" type="RigidBody2D"]
 collision_layer = 3
@@ -23,3 +26,19 @@ frame = 2
 visible = false
 scale = Vector2(1.65, 1.65)
 polygon = PackedVector2Array(-5, -18, -13, -15, -15, -15, -19, 0, -20, 0, -14, 17, -14, 19, -6, 18, 8, 18, 19, 6, 20, 6, 11, -14, 11, -17, -5, -20)
+
+[node name="hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_y3dyg")
+
+[node name="destroy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_fkqub")
+volume_db = -11.886
+
+[node name="damage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_d4qfw")
+volume_db = -5.333
+max_distance = 1000.0
+
+[node name="sound_timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="sound_timer" to="." method="_on_sound_timer_timeout"]

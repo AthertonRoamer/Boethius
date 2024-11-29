@@ -1,4 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://br3i5ma5yi5bq"]
+[gd_scene load_steps=15 format=3 uid="uid://br3i5ma5yi5bq"]
+
+[ext_resource type="AudioStream" uid="uid://lsutx5hfgs5t" path="res://sound/ships/large-underwater-explosion-190270.mp3" id="1_5aq63"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3jfg7"]
 particles_animation = true
@@ -110,5 +112,11 @@ script = SubResource("GDScript_uccxh")
 libraries = {
 "": SubResource("AnimationLibrary_ctj3y")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_5aq63")
+volume_db = -4.0
+autoplay = true
+stream_paused = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
