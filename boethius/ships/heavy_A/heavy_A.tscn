@@ -278,7 +278,6 @@ max_health = 1500
 starting_health = 1200
 thrust_accel = 300.0
 max_speed = 100.0
-boost_accel = 600.0
 boost_max_speed = 300.0
 rotation_speed = 50.0
 

@@ -33,11 +33,24 @@ func _physics_process(delta: float) -> void:
 	speed = max(0, speed)
 	speed = min(speed, max_speed)
 	velocity = dir * speed
-	move_and_slide()
+	#move_and_slide()
 
+var sound_ready = true
+func play_hit_sound():
+	if sound_ready:
+		$hit.play()
+		sound_ready = false
+		$sound_timer.start()
+
+func play_crash_sound():
+	if sound_ready:
+		$destroy.play()
+		sound_ready = false
+		$sound_timer.start()
 
 func take_damage(damage : float, _damage_type : String = "none") -> void:
 	health -= damage
+	$damage.play() 
 
 func take_knockback(knock : Vector2) -> void:
 	#velocity += knock/inertia
@@ -49,3 +62,7 @@ func die() -> void:
 	if is_instance_valid(Main.world):
 		Main.world.add_child(explosion)
 	queue_free()
+
+
+func _on_sound_timer_timeout() -> void:
+	sound_ready = true

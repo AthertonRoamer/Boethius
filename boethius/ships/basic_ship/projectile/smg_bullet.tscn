@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://jnajxsxwxoer"]
+[gd_scene load_steps=20 format=3 uid="uid://jnajxsxwxoer"]
 
 [ext_resource type="Script" path="res://ships/basic_ship/projectile/smg_bullet.gd" id="1_7oadl"]
 [ext_resource type="Texture2D" uid="uid://be7nkfmsti5gy" path="res://art/Projectiles.png" id="2_q0c1d"]
+[ext_resource type="AudioStream" uid="uid://c0oqy72wmmsvj" path="res://sound/weapons/futuristic-smg-sound-effect-100378.mp3" id="3_qf60r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_daedc"]
 radius = 2.0
@@ -186,5 +187,11 @@ texture = SubResource("CompressedTexture2D_nalc4")
 one_shot = true
 speed_scale = 4.0
 explosiveness = 0.75
+
+[node name="shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qf60r")
+volume_db = -17.333
+autoplay = true
+max_distance = 500.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

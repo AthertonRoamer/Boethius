@@ -1,12 +1,242 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwsnjtqbugh5m"]
+[gd_scene load_steps=16 format=3 uid="uid://cwsnjtqbugh5m"]
 
 [ext_resource type="Script" path="res://menu/main_menu.gd" id="1_xafnf"]
 [ext_resource type="Theme" uid="uid://pmellcn6m86b" path="res://boethius_theme1.tres" id="2_d516e"]
 [ext_resource type="Script" path="res://menu/parallax_layer.gd" id="3_ucpy2"]
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space.tscn" id="3_wy4o3"]
+[ext_resource type="AudioStream" uid="uid://b5d2o6jp8ma40" path="res://sound/music/Interstellar Reverie.mp3" id="5_vn04c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modkm"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Animation" id="Animation_s57wl"]
+resource_name = "Mitnik"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MITNIK:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MITNIK:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(640, -250), Vector2(640, 150)]
+}
+
+[sub_resource type="Animation" id="Animation_ewvkw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MITNIK:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Button:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("space game:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MITNIK:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, -250)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("3:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 1500)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MITNIK:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("3:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pdq3v"]
+resource_name = "3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(640, 1500), Vector2(675, 200)]
+}
+
+[sub_resource type="Animation" id="Animation_plqhw"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fkw5g"]
+resource_name = "finish"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MITNIK:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fx3n2"]
+resource_name = "menu"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("space game:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ugu2b"]
+_data = {
+"3": SubResource("Animation_pdq3v"),
+"Mitnik": SubResource("Animation_s57wl"),
+"RESET": SubResource("Animation_ewvkw"),
+"fade": SubResource("Animation_plqhw"),
+"finish": SubResource("Animation_fkw5g"),
+"menu": SubResource("Animation_fx3n2")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f0bbg"]
+
+[sub_resource type="Environment" id="Environment_h5ig4"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 2.0
+glow_bloom = 0.5
+glow_hdr_threshold = 0.8
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -18,20 +248,20 @@ grow_vertical = 2
 script = ExtResource("1_xafnf")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -169.0
-offset_top = -134.0
-offset_right = 270.0
-offset_bottom = 158.0
+offset_left = -902.0
+offset_top = -861.0
+offset_right = 2840.0
+offset_bottom = 1793.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -46,11 +276,13 @@ offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_d516e")
-theme_override_font_sizes/font_size = 40
+theme_override_colors/font_color = Color(0.117647, 0.341176, 0.611765, 1)
+theme_override_font_sizes/font_size = 80
 text = "Start"
 flat = true
 
-[node name="Label" type="Label" parent="."]
+[node name="space game" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 5
@@ -62,13 +294,19 @@ offset_right = 289.0
 offset_bottom = 272.0
 grow_horizontal = 2
 theme = ExtResource("2_d516e")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 120
 theme_override_styles/normal = SubResource("StyleBoxFlat_modkm")
 text = "Space Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="space" parent="." instance=ExtResource("3_wy4o3")]
+
+[node name="Polygon2D" parent="space" index="0"]
+offset_left = -13.0
+offset_top = -278.0
+offset_right = 1474.0
+offset_bottom = 866.0
 
 [node name="ParallaxLayer" parent="space" index="1"]
 script = ExtResource("3_ucpy2")
@@ -82,6 +320,62 @@ SPEED = 50
 script = ExtResource("3_ucpy2")
 SPEED = 60
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_vn04c")
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ugu2b")
+}
+
+[node name="load_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="MITNIK" type="Label" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_f0bbg")
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 64.0
+offset_top = -250.0
+offset_right = 734.0
+offset_bottom = -82.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_d516e")
+theme_override_font_sizes/font_size = 186
+theme_override_styles/normal = SubResource("StyleBoxFlat_modkm")
+text = "Mitnik"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="3" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 64.0
+offset_top = 1500.0
+offset_right = 628.0
+offset_bottom = 1702.0
+grow_horizontal = 2
+theme = ExtResource("2_d516e")
+theme_override_colors/font_color = Color(0.117647, 0.341176, 0.611765, 1)
+theme_override_font_sizes/font_size = 186
+theme_override_styles/normal = SubResource("StyleBoxFlat_modkm")
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h5ig4")
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="load_timer" to="." method="_on_load_timer_timeout"]
 
 [editable path="space"]

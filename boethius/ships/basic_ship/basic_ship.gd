@@ -37,4 +37,5 @@ func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 
 func take_damage(damage : float, _damage_type : String = "none") -> void:
 	$AnimationPlayer.play("dmg")
+	$damage.play()
 	health -= damage

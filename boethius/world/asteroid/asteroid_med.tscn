@@ -24,6 +24,7 @@ hframes = 3
 frame = 1
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 scale = Vector2(1.65, 1.65)
 polygon = PackedVector2Array(-20, -50, -53, -16, -54, -16, -55, 22, -55, 28, -49, 28, -40, 53, -40, 57, -1, 59, 3, 59, 16, 52, 25, 52, 54, 27, 56, 27, 35, -26, 35, -30, 3, -45, 3, -48, -20, -51)
 disabled = true
