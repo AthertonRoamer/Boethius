@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dn6elo7vpye1c"]
+[gd_scene load_steps=57 format=3 uid="uid://dn6elo7vpye1c"]
 
 [ext_resource type="Script" path="res://ships/basic_ship/basic_ship.gd" id="1_233k0"]
 [ext_resource type="Gradient" uid="uid://dxbpa3wy4kkya" path="res://art/player_boost_gradient.tres" id="2_jep4j"]
@@ -344,6 +344,9 @@ size = Vector2(10.0042, 57.9952)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_35usg"]
 size = Vector2(44.0039, 21.0041)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vw84g"]
+radius = 29.0172
+
 [sub_resource type="Animation" id="Animation_esfsr"]
 length = 0.001
 tracks/0/type = "value"
@@ -563,6 +566,7 @@ _data = {
 
 [node name="BasicShip" type="CharacterBody2D"]
 collision_mask = 2
+motion_mode = 1
 script = ExtResource("1_233k0")
 explosion_scene = ExtResource("12_m6u1j")
 rotation_speed = 180.0
@@ -652,17 +656,20 @@ visible = false
 material = SubResource("ShaderMaterial_w7ic4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(11.9936, -0.00217438)
 rotation = 1.57509
 shape = SubResource("RectangleShape2D_h1b6b")
+disabled = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-1.54508, -0.000193357)
 rotation = 1.57509
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_35usg")
+disabled = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vw84g")
 
 [node name="ShipStateMachine" parent="." instance=ExtResource("3_q4maa")]
 
