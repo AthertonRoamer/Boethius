@@ -34,7 +34,6 @@ script = ExtResource("3_rq17g")
 
 [node name="ships" type="Node2D" parent="."]
 
-
 [node name="Circle" type="Node2D" parent="."]
 visible = false
 script = ExtResource("8_ytme6")

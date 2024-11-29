@@ -3,20 +3,33 @@
 [ext_resource type="Script" path="res://menu/main_menu.gd" id="1_xafnf"]
 [ext_resource type="Theme" uid="uid://pmellcn6m86b" path="res://boethius_theme1.tres" id="2_d516e"]
 [ext_resource type="Script" path="res://menu/parallax_layer.gd" id="3_ucpy2"]
-
-[ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space.tscn" id="3_wy4o3"]
+[ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space/space.tscn" id="3_wy4o3"]
 [ext_resource type="AudioStream" uid="uid://b5d2o6jp8ma40" path="res://sound/music/Interstellar Reverie.mp3" id="5_vn04c"]
-
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modkm"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Animation" id="Animation_pdq3v"]
+resource_name = "3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-282, 1101), Vector2(-282, -70.665)]
+}
 
 [sub_resource type="Animation" id="Animation_s57wl"]
 resource_name = "Mitnik"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MITNIK:visible")
+tracks/0/path = NodePath("Control/MITNIK:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -28,14 +41,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MITNIK:position")
+tracks/1/path = NodePath("Control/MITNIK:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(640, -250), Vector2(640, 150)]
+"values": [Vector2(-335, -500), Vector2(-335, -120.68)]
 }
 
 [sub_resource type="Animation" id="Animation_ewvkw"]
@@ -43,7 +56,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MITNIK:visible")
+tracks/0/path = NodePath("Control/MITNIK:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -91,31 +104,31 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MITNIK:position")
+tracks/4/path = NodePath("Control/MITNIK:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(640, -250)]
+"values": [Vector2(5883, -1991)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("3:position")
+tracks/5/path = NodePath("Control/3:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(640, 1500)]
+"values": [Vector2(8430, 5752)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("MITNIK:modulate")
+tracks/6/path = NodePath("Control/MITNIK:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -127,7 +140,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("3:modulate")
+tracks/7/path = NodePath("Control/3:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -135,21 +148,6 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_pdq3v"]
-resource_name = "3"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("3:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(640, 1500), Vector2(675, 200)]
 }
 
 [sub_resource type="Animation" id="Animation_plqhw"]
@@ -172,7 +170,7 @@ resource_name = "finish"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MITNIK:modulate")
+tracks/0/path = NodePath("Control/MITNIK:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -184,7 +182,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("3:modulate")
+tracks/1/path = NodePath("Control/3:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -231,14 +229,14 @@ _data = {
 "menu": SubResource("Animation_fx3n2")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f0bbg"]
-
 [sub_resource type="Environment" id="Environment_h5ig4"]
 background_mode = 3
 glow_enabled = true
 glow_intensity = 2.0
 glow_bloom = 0.5
 glow_hdr_threshold = 0.8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f0bbg"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -335,18 +333,34 @@ libraries = {
 wait_time = 2.0
 one_shot = true
 
-[node name="MITNIK" type="Label" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h5ig4")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MITNIK" type="Label" parent="Control"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_f0bbg")
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = 64.0
-offset_top = -250.0
-offset_right = 734.0
-offset_bottom = -82.0
+anchor_bottom = 0.5
+offset_left = 5883.0
+offset_top = -1991.0
+offset_right = 6553.0
+offset_bottom = -1823.0
 grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_d516e")
 theme_override_font_sizes/font_size = 186
@@ -355,17 +369,20 @@ text = "Mitnik"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="3" type="Label" parent="."]
+[node name="3" type="Label" parent="Control"]
 texture_filter = 1
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = 64.0
-offset_top = 1500.0
-offset_right = 628.0
-offset_bottom = 1702.0
+anchor_bottom = 0.5
+offset_left = 8430.0
+offset_top = 5752.0
+offset_right = 8994.0
+offset_bottom = 5954.0
 grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("2_d516e")
 theme_override_colors/font_color = Color(0.117647, 0.341176, 0.611765, 1)
 theme_override_font_sizes/font_size = 186
@@ -373,9 +390,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_modkm")
 text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_h5ig4")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="load_timer" to="." method="_on_load_timer_timeout"]
