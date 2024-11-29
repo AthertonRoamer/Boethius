@@ -32,6 +32,7 @@ signal under_player_control_changed(under_player_control : bool)
 @export_group("Physics")
 @export var friction : float = 200
 @export var inertia : float = 1
+@export var mass : float = 100
 @export var max_health : int = 100
 @export var starting_health : int = 100
 var health : float = starting_health:
@@ -50,8 +51,10 @@ var health : float = starting_health:
 @export var max_speed : float = 360
 @export var no_thrust_max_speed : float = 600
 
+@export var crashable = false
+@export var crash_speed_dmg : float = 600
 
-@export var boost_accel : float = 1750
+@export var boost_accel : float = 800
 @export var boost_max_speed : float = 1000
 @export var speed_interpolation_rate : float = 5.0
 @export var rotation_speed : float = 360
@@ -113,7 +116,7 @@ func _physics_process(delta) -> void:
 	if under_player_control:
 		register_player_input(delta)
 		compute_physics(delta)
-
+		
 
 	else:
 		process_independenly(delta)
@@ -125,6 +128,8 @@ func _physics_process(delta) -> void:
 		else:
 			#thrust_without_physics()
 			pass
+	if crashable:
+		check_for_crash()
 
 
 	velocity = current_veloctiy
@@ -239,6 +244,22 @@ func take_knockback(knock : Vector2) -> void:
 
 func take_damage(damage : float, _damage_type : String = "none") -> void:
 	health -= damage
+
+func check_for_crash():
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		#print("Collided with: ", collision.get_collider().name)
+		if collision.get_collider().is_in_group("crashable"):
+			crash()
+			#var knock_angle = collision.get_normal()
+			#take_knockback(knock_angle * current_veloctiy.length()* 1.1)
+			#collision.get_collider().take_knockback(mass * -knock_angle)
+
+func crash():
+		if current_veloctiy.length() > crash_speed_dmg:
+			die()
+		current_veloctiy = Vector2.ZERO
+
 
 
 func die() -> void:

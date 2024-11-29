@@ -1,6 +1,4 @@
-
-[gd_scene load_steps=52 format=3 uid="uid://drotwycof3eg7"]
-
+[gd_scene load_steps=53 format=3 uid="uid://drotwycof3eg7"]
 
 [ext_resource type="Script" path="res://ships/laser_ship/laser_ship.gd" id="1_c0m2i"]
 [ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_1wkbu"]
@@ -271,9 +269,10 @@ _data = {
 [node name="LaserShip" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_c0m2i")
+aim_speed = 60.0
 explosion_scene = ExtResource("10_cu7xc")
 debug_output = true
-rotation_speed = 90.0
+rotation_speed = 60.0
 sight_range = 1000.0
 radius = 60.0
 
