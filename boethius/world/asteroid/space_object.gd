@@ -55,8 +55,6 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	
 	state.set_linear_velocity(velocity)
 
-func take_damage(damage : float, _damage_type : String = "none") -> void:
-	health -= damage
 
 func take_knockback(knock : Vector2) -> void:
 	velocity += knock/mass
@@ -68,3 +66,20 @@ func die() -> void:
 	if is_instance_valid(Main.world):
 		Main.world.add_child(explosion)
 	queue_free()
+
+var sound_ready = true
+func play_hit_sound():
+	if sound_ready:
+		$hit.play()
+		sound_ready = false
+		$sound_timer.start()
+
+func play_crash_sound():
+	if sound_ready:
+		$destroy.play()
+		sound_ready = false
+		$sound_timer.start()
+
+func take_damage(damage : float, _damage_type : String = "none") -> void:
+	health -= damage
+	$damage.play() 
