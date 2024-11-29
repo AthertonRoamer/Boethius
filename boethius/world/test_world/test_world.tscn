@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://c45yj6q8tsgun"]
+[gd_scene load_steps=16 format=3 uid="uid://c45yj6q8tsgun"]
 
 [ext_resource type="Script" path="res://world/test_world/test_world.gd" id="1_v873r"]
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space.tscn" id="2_m21cc"]
 [ext_resource type="Script" path="res://world/test_world/thingy.gd" id="3_rq17g"]
+[ext_resource type="PackedScene" uid="uid://dn6elo7vpye1c" path="res://ships/basic_ship/basic_ship.tscn" id="4_k6qyn"]
 [ext_resource type="Script" path="res://ships/ship_data/fleet_data.gd" id="8_5kkxw"]
 [ext_resource type="Script" path="res://world/test_world/circle.gd" id="8_ytme6"]
 [ext_resource type="Script" path="res://ships/spawn_point/spawn_point.gd" id="9_1jm1p"]
@@ -33,6 +34,9 @@ script = ExtResource("3_rq17g")
 
 [node name="ships" type="Node2D" parent="."]
 
+[node name="BasicShip" parent="ships" instance=ExtResource("4_k6qyn")]
+faction = 0
+
 [node name="Circle" type="Node2D" parent="."]
 visible = false
 script = ExtResource("8_ytme6")
@@ -41,11 +45,14 @@ script = ExtResource("8_ytme6")
 position = Vector2(-415, 143)
 script = ExtResource("9_1jm1p")
 fleet = SubResource("Resource_0080v")
+enabled = false
 
 [node name="SpawnPoint2" type="Node2D" parent="."]
 position = Vector2(1459, 121)
 script = ExtResource("9_1jm1p")
 fleet = ExtResource("10_uv0cs")
+faction = 1
+enabled = false
 
 [node name="CommandCamera" type="Camera2D" parent="."]
 position = Vector2(554, 85)
