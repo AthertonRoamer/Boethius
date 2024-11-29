@@ -59,7 +59,7 @@ func take_damage(damage : float, _damage_type : String = "none") -> void:
 	health -= damage
 
 func take_knockback(knock : Vector2) -> void:
-	velocity += knock/inertia
+	velocity += knock/mass
 	pass
 
 func die() -> void:
