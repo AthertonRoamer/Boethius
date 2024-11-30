@@ -20,8 +20,10 @@ func _ready() -> void:
 	super()
 	if wielder.faction == wielder.Faction.PLAYER:
 		$Sprite2D.frame = 2
+		set_collision_mask_value(5,true)
 	else:
 		$Sprite2D.frame = 3
+		set_collision_mask_value(4,true)
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:

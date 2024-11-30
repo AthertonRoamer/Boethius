@@ -1,16 +1,20 @@
 extends CanvasLayer
 
 @export var respawn_button : Button
+@export var shieldbar : ProgressBar
+@export var healthbar : ProgressBar 
+@export var overheatbar : ProgressBar
+@export var healthpanel : Panel
 
 func _ready() -> void:
-	deactivate()
-	
-	
+	#deactivate()
+	pass
+
 func activate() -> void:
-	visible = true
+	self.visible = true
 	layer = 2
-	
-	
+
+
 func deactivate() -> void:
-	visible = false
+	self.visible = false
 	layer = -1

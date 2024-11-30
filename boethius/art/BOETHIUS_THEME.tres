@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://ctdduf6tq2qx6"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://ctdduf6tq2qx6"]
 
 [ext_resource type="FontFile" uid="uid://b7fshl57fxwb4" path="res://menu/upheavtt.ttf" id="1_3d3ym"]
+[ext_resource type="FontFile" uid="uid://bdsft0luywd14" path="res://menu/04B_20__.TTF" id="2_2p4en"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2hbm"]
 bg_color = Color(0.270588, 0.0117647, 0.152941, 1)
@@ -28,6 +29,12 @@ border_color = Color(0.223529, 0.290196, 0.313726, 1)
 corner_detail = 5
 anti_aliasing = false
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q24yv"]
+bg_color = Color(0.152941, 0, 0.133333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8xpp"]
+bg_color = Color(0.270588, 0.0117647, 0.152941, 1)
+
 [resource]
 Button/colors/font_color = Color(0.4, 0.0588235, 0.192157, 1)
 Button/colors/font_focus_color = Color(1, 0.0196078, 0.27451, 1)
@@ -45,3 +52,7 @@ Label/constants/outline_size = 2
 Label/fonts/font = ExtResource("1_3d3ym")
 Label/styles/normal = SubResource("StyleBoxFlat_bpdow")
 Panel/styles/panel = SubResource("StyleBoxFlat_aypim")
+ProgressBar/colors/font_color = Color(1, 0.0196078, 0.27451, 1)
+ProgressBar/fonts/font = ExtResource("2_2p4en")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_q24yv")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_p8xpp")

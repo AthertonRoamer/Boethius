@@ -9,7 +9,7 @@ var dmg : float = 100
 
 
 var is_casting: bool = false :
-	set(value): 
+	set(value):
 		is_casting = value
 		
 		beam_particle_2d.emitting = is_casting
@@ -33,7 +33,6 @@ func blue():
 func red():
 	$Line2D.default_color = Color(1.00,0.01,0.27)#player color
 
-
 func _physics_process(delta: float) -> void:
 	var cast_point := target_position
 	force_raycast_update()
@@ -52,7 +51,7 @@ func _physics_process(delta: float) -> void:
 	beam_particle_2d.process_material.emission_box_extents.x = cast_point.length() * 0.5
 	
 
-		
+
 func appear() -> void:
 	var tween = create_tween()
 	tween.tween_property($Line2D, "width", 4, 0.5)

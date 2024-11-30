@@ -1,12 +1,177 @@
-[gd_scene load_steps=3 format=3 uid="uid://1fj0xyx7nvb3"]
+[gd_scene load_steps=22 format=3 uid="uid://1fj0xyx7nvb3"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_qhvqj"]
 [ext_resource type="PackedScene" uid="uid://djnsx488gvmqb" path="res://hud/respawn_button/respawn_button.tscn" id="2_llokv"]
+[ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://art/BOETHIUS_THEME.tres" id="3_myje1"]
+[ext_resource type="FontFile" uid="uid://b7fshl57fxwb4" path="res://menu/upheavtt.ttf" id="3_qwfqa"]
+[ext_resource type="FontFile" uid="uid://bdsft0luywd14" path="res://menu/04B_20__.TTF" id="4_brprb"]
 
-[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("respawn_button")]
-layer = -1
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2hbm"]
+bg_color = Color(0.270588, 0.0117647, 0.152941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a73l1"]
+bg_color = Color(0.152941, 0, 0.133333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1mytw"]
+bg_color = Color(0.270588, 0.0117647, 0.152941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpdow"]
+bg_color = Color(0.152941, 0, 0.133333, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aypim"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.12549, 0.180392, 0.215686, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.223529, 0.290196, 0.313726, 1)
+corner_detail = 5
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q24yv"]
+bg_color = Color(0.152941, 0, 0.133333, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8xpp"]
+bg_color = Color(0.270588, 0.0117647, 0.152941, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.152941, 0, 0.133333, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_x8t2k"]
+Button/colors/font_color = Color(0.4, 0.0588235, 0.192157, 1)
+Button/colors/font_focus_color = Color(1, 0.0196078, 0.27451, 1)
+Button/colors/font_hover_color = Color(1, 0.0196078, 0.27451, 1)
+Button/colors/font_hover_pressed_color = Color(1, 0.0196078, 0.27451, 1)
+Button/colors/font_pressed_color = Color(0.4, 0.0588235, 0.192157, 1)
+Button/colors/icon_focus_color = Color(1, 0.0196078, 0.27451, 1)
+Button/fonts/font = ExtResource("3_qwfqa")
+Button/styles/hover = SubResource("StyleBoxFlat_t2hbm")
+Button/styles/normal = SubResource("StyleBoxFlat_a73l1")
+Button/styles/pressed = SubResource("StyleBoxFlat_1mytw")
+Label/colors/font_color = Color(0.4, 0.0588235, 0.192157, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 2
+Label/fonts/font = ExtResource("3_qwfqa")
+Label/styles/normal = SubResource("StyleBoxFlat_bpdow")
+Panel/styles/panel = SubResource("StyleBoxFlat_aypim")
+ProgressBar/colors/font_color = Color(1, 0.0196078, 0.27451, 1)
+ProgressBar/fonts/font = ExtResource("4_brprb")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_q24yv")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_p8xpp")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2bry"]
+bg_color = Color(0.12549, 0.129412, 0.172549, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.211765, 0.215686, 0.294118, 1)
+corner_radius_top_right = 100
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_usl6j"]
+Button/colors/font_color = Color(0.4, 0.0588235, 0.192157, 1)
+Button/colors/font_focus_color = Color(1, 0.0196078, 0.27451, 1)
+Button/colors/font_hover_color = Color(1, 0.0196078, 0.27451, 1)
+Button/colors/font_hover_pressed_color = Color(1, 0.0196078, 0.27451, 1)
+Button/colors/font_pressed_color = Color(0.4, 0.0588235, 0.192157, 1)
+Button/colors/icon_focus_color = Color(1, 0.0196078, 0.27451, 1)
+Button/fonts/font = ExtResource("3_qwfqa")
+Button/styles/hover = SubResource("StyleBoxFlat_t2hbm")
+Button/styles/normal = SubResource("StyleBoxFlat_a73l1")
+Button/styles/pressed = SubResource("StyleBoxFlat_1mytw")
+Label/colors/font_color = Color(0.4, 0.0588235, 0.192157, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 2
+Label/fonts/font = ExtResource("3_qwfqa")
+Label/styles/normal = SubResource("StyleBoxFlat_bpdow")
+Panel/styles/panel = SubResource("StyleBoxFlat_aypim")
+ProgressBar/colors/font_color = Color(1, 0.0196078, 0.27451, 1)
+ProgressBar/fonts/font = ExtResource("4_brprb")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_q24yv")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_p8xpp")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjh4n"]
+bg_color = Color(0.156863, 0.0156863, 0.282353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jkry"]
+bg_color = Color(0.117647, 0.341176, 0.611765, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rl2q3"]
+
+[sub_resource type="Theme" id="Theme_c6l3o"]
+Button/colors/font_color = Color(0.4, 0.0588235, 0.192157, 1)
+Button/colors/font_focus_color = Color(1, 0.0196078, 0.27451, 1)
+Button/colors/font_hover_color = Color(1, 0.0196078, 0.27451, 1)
+Button/colors/font_hover_pressed_color = Color(1, 0.0196078, 0.27451, 1)
+Button/colors/font_pressed_color = Color(0.4, 0.0588235, 0.192157, 1)
+Button/colors/icon_focus_color = Color(1, 0.0196078, 0.27451, 1)
+Button/fonts/font = ExtResource("3_qwfqa")
+Button/styles/hover = SubResource("StyleBoxFlat_t2hbm")
+Button/styles/normal = SubResource("StyleBoxFlat_a73l1")
+Button/styles/pressed = SubResource("StyleBoxFlat_1mytw")
+Label/colors/font_color = Color(0.4, 0.0588235, 0.192157, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 2
+Label/fonts/font = ExtResource("3_qwfqa")
+Label/styles/normal = SubResource("StyleBoxFlat_bpdow")
+Panel/styles/panel = SubResource("StyleBoxFlat_aypim")
+ProgressBar/colors/font_color = Color(1, 0.0196078, 0.27451, 1)
+ProgressBar/fonts/font = ExtResource("4_brprb")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_q24yv")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_p8xpp")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jubun"]
+bg_color = Color(0.12549, 0.129412, 0.172549, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.211765, 0.215686, 0.294118, 1)
+corner_radius_top_left = 100
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lg2tp"]
+bg_color = Color(0.12549, 0.129412, 0.172549, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.211765, 0.215686, 0.294118, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+anti_aliasing = false
+
+[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("respawn_button", "shieldbar", "healthbar", "overheatbar", "healthpanel")]
+layer = 5
 script = ExtResource("1_qhvqj")
 respawn_button = NodePath("Control/RespawnButton")
+shieldbar = NodePath("Control/healthpanel/shieldbar")
+healthbar = NodePath("Control/healthpanel/healthbar")
+overheatbar = NodePath("Control/overheatpanel/overheatbar")
+healthpanel = NodePath("Control/healthpanel")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -19,6 +184,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RespawnButton" parent="Control" instance=ExtResource("2_llokv")]
+visible = false
 layout_mode = 1
 anchor_top = 0.742
 anchor_bottom = 0.742
@@ -26,3 +192,167 @@ offset_top = -30.074
 offset_bottom = 29.926
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="healthpanel" type="Panel" parent="Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -125.0
+offset_right = 248.0
+grow_vertical = 0
+theme = SubResource("Theme_x8t2k")
+theme_override_styles/panel = SubResource("StyleBoxFlat_j2bry")
+
+[node name="shieldbar" type="ProgressBar" parent="Control/healthpanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = -91.0
+offset_right = 173.0
+offset_bottom = -67.0
+grow_vertical = 0
+theme = SubResource("Theme_usl6j")
+theme_override_styles/background = SubResource("StyleBoxFlat_wjh4n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5jkry")
+value = 50.0
+show_percentage = false
+
+[node name="shields" type="Label" parent="Control/healthpanel/shieldbar"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_right = 143.0
+offset_bottom = -28.0
+grow_vertical = 0
+theme = ExtResource("3_myje1")
+theme_override_colors/font_color = Color(0.117647, 0.341176, 0.611765, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_rl2q3")
+text = "Shields"
+
+[node name="healthbar" type="ProgressBar" parent="Control/healthpanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = -43.0
+offset_right = 173.0
+offset_bottom = -19.0
+grow_vertical = 0
+theme = ExtResource("3_myje1")
+value = 50.0
+show_percentage = false
+
+[node name="health" type="Label" parent="Control/healthpanel/healthbar"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+offset_right = 143.0
+offset_bottom = -26.0
+grow_vertical = 0
+theme = ExtResource("3_myje1")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_rl2q3")
+text = "health
+"
+
+[node name="radarpanel" type="Panel" parent="Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -235.0
+offset_top = -173.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_c6l3o")
+theme_override_styles/panel = SubResource("StyleBoxFlat_jubun")
+
+[node name="radar" type="Label" parent="Control/radarpanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -154.0
+offset_top = -152.0
+offset_right = -11.0
+offset_bottom = -130.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_myje1")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_rl2q3")
+text = "Radar"
+
+[node name="overheatpanel" type="Panel" parent="Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -93.0
+offset_right = 117.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_myje1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_lg2tp")
+
+[node name="overheatbar" type="ProgressBar" parent="Control/overheatpanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -68.0
+offset_top = -40.0
+offset_right = 72.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_myje1")
+value = 50.0
+show_percentage = false
+
+[node name="overheated" type="Label" parent="Control/overheatpanel/overheatbar"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -71.5
+offset_top = -53.0
+offset_right = 71.5
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_myje1")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_rl2q3")
+text = "OVERHEATED"
