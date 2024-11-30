@@ -2,6 +2,8 @@ class_name CommandMode
 extends Node2D
 
 signal enabled_changed(enabled : bool)
+signal entered_ship(ship : Ship)
+signal exited_ship(ship : Ship)
 
 var level : Level
 var enabled : bool = false
@@ -21,7 +23,10 @@ func enter() -> void:
 		level.command_mode_camera.enabled = true
 		enabled_changed.emit(enabled)
 		if is_instance_valid(occupied_ship):
-			occupied_ship.under_player_control = false
+			if occupied_ship.under_player_control:
+				occupied_ship.under_player_control = false
+				exited_ship.emit(occupied_ship)
+				
 	
 	
 func exit() -> void:
@@ -32,6 +37,7 @@ func exit() -> void:
 		queue_redraw()
 		enabled_changed.emit(enabled)
 		occupied_ship.under_player_control = true
+		entered_ship.emit(occupied_ship)
 		
 		
 func select_ship(ship : Ship) -> void:
