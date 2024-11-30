@@ -38,6 +38,10 @@ func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 
 
 func take_damage(damage : float, _damage_type : String = "none") -> void:
+	health -= damage
+	if under_player_control:
+		Hud.healthbar.value = health
+		if health < (max_health/2):
+			Hud.low_health_warning()
 	$AnimationPlayer.play("dmg")
 	$damage.play()
-	health -= damage

@@ -12,7 +12,7 @@ extends CharacterBody2D
 #ai weights
 #agression, loneliness, courage/fear, max range to fire, ideal range to fire
 #priorities - hit big ships first, hit small ships first
-@export var explosion_scene : PackedScene
+@export var explosion_scene : PackedScene = preload("res://death_explosion.tscn")
 @export var debug_output : bool = false
 @export var benched : bool = false
 
@@ -35,6 +35,7 @@ signal under_player_control_changed(under_player_control : bool)
 @export var mass : float = 100
 @export var max_health : int = 100
 @export var starting_health : int = 100
+
 var health : float = starting_health:
 
 	set(v):
@@ -198,6 +199,11 @@ func register_player_input(delta : float) -> void:
 		stop_shooting_constantly()
 
 
+func set_up_HUD():
+	Hud.healthbar.max_value = max_health
+	Hud.healthbar.value = health
+	
+
 
 func boost(delta : float) -> void:
 	#print("boost")
@@ -260,6 +266,9 @@ func take_knockback(knock : Vector2) -> void:
 
 func take_damage(damage : float, _damage_type : String = "none") -> void:
 	health -= damage
+	if under_player_control:
+		Hud.healthbar.value = health
+
 
 func check_for_crash():
 	for i in get_slide_collision_count():
@@ -268,7 +277,7 @@ func check_for_crash():
 
 		if is_instance_valid(collision.get_collider()) and collision.get_collider().is_in_group("crashable"):
 			if current_veloctiy.length() > crash_speed_dmg:
-				die()
+				take_damage(max_health)
 				collision.get_collider().play_crash_sound()
 			collision.get_collider().play_hit_sound()
 			var knock_angle = collision.get_normal()
@@ -281,12 +290,15 @@ func check_for_crash():
 
 func die() -> void:
 	reset_visuals()
-	var explosion = explosion_scene.instantiate()
-	explosion.global_position = global_position
 	if is_instance_valid(Main.world):
+		var explosion = explosion_scene.instantiate()
+		explosion.global_position = global_position
 		Main.world.add_child(explosion)
-	if under_player_control:
-		Main.world.command_mode.enter()
+		if !under_player_control:
+			explosion.blow_up()
+		elif under_player_control:
+			explosion.blow_up_cam()
+			Hud.reset_animations()
 	if selected:
 		Main.world.command_mode.deselect_ship(self)
 	Main.world.ship_database.remove_ship(self)
@@ -301,8 +313,8 @@ func shoot():
 	
 func begin_shooting_constantly() -> void:
 	pass
-	
-	
+
+
 func stop_shooting_constantly() -> void:
 	pass
 

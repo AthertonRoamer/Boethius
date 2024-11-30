@@ -1,7 +1,6 @@
-[gd_scene load_steps=53 format=3 uid="uid://i2xcw82s5paj"]
+[gd_scene load_steps=52 format=3 uid="uid://i2xcw82s5paj"]
 
 [ext_resource type="Script" path="res://ships/heavy_A/heavy_a.gd" id="1_lro4a"]
-[ext_resource type="PackedScene" uid="uid://br3i5ma5yi5bq" path="res://death_explosion_heavy.tscn" id="2_curlg"]
 [ext_resource type="Gradient" uid="uid://dxbpa3wy4kkya" path="res://art/player_boost_gradient.tres" id="3_6y6sg"]
 [ext_resource type="Script" path="res://ships/basic_ship/fire.gd" id="4_qyuif"]
 [ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="5_yg480"]
@@ -272,7 +271,6 @@ _data = {
 [node name="heavy_A" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_lro4a")
-explosion_scene = ExtResource("2_curlg")
 inertia = 15.0
 max_health = 1500
 starting_health = 1200

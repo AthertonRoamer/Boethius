@@ -278,7 +278,6 @@ loop = true
 collision_mask = 2
 script = ExtResource("1_c0m2i")
 aim_speed = 60.0
-explosion_scene = ExtResource("10_cu7xc")
 debug_output = true
 rotation_speed = 60.0
 sight_range = 1000.0
