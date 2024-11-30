@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 
+
 @export var max_health : int = 1000
 @export var starting_health : int = 1000
 @export var allignment : Ship.Faction = Ship.Faction.ENEMY
@@ -61,3 +62,4 @@ func play_crash_sound():
 
 func _on_sound_timer_timeout() -> void:
 	sound_ready = true
+

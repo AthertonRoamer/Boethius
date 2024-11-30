@@ -5,10 +5,12 @@ extends CanvasLayer
 @export var healthbar : ProgressBar 
 @export var overheatbar : ProgressBar
 @export var healthpanel : Panel
+
 @export var overheat : Label
 
 func _ready() -> void:
 	deactivate()
+
 
 func activate() -> void:
 	self.visible = true

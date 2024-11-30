@@ -21,7 +21,12 @@ func _ready() -> void:
 	overheat_timer.timeout.connect(_on_overheat_timer_timeout)
 	overheat_timer.one_shot = true
 
-
+	
+	if is_instance_valid(Main.world.command_mode):
+		Main.world.command_mode.entered_ship.connect(_on_ship_entered)
+	
+	
+	
 
 func _process(delta: float) -> void:
 	#update time values here
@@ -56,3 +61,9 @@ func _on_overheat_timer_timeout() -> void:
 	cool_down_completed.emit()
 	if is_instance_valid(ship) and ship.debug_output:
 		print("cooled down")
+		
+		
+func _on_ship_entered(ship : Ship) -> void:
+	#if wielder == ship
+	#update progress bar based on ship
+	pass

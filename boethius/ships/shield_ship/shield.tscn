@@ -6,12 +6,15 @@
 [ext_resource type="AudioStream" uid="uid://cviamot3hrq4u" path="res://sound/asteroids/small-rock-break-194553.mp3" id="4_d0np0"]
 [ext_resource type="AudioStream" uid="uid://cw0h1trbh5r42" path="res://sound/asteroids/hit-rock-02-266304.mp3" id="5_yirv7"]
 
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_1s124"]
 radius = 32.0624
 
 [node name="shield" type="CharacterBody2D"]
+
 collision_layer = 0
 collision_mask = 0
+
 script = ExtResource("1_f3noq")
 
 [node name="shield_image" type="Sprite2D" parent="."]
@@ -24,6 +27,7 @@ hframes = 2
 visible = false
 scale = Vector2(10, 10)
 shape = SubResource("CircleShape2D_1s124")
+
 
 [node name="hit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_jl6k2")
@@ -41,3 +45,4 @@ max_distance = 1000.0
 one_shot = true
 
 [connection signal="timeout" from="sound_timer" to="." method="_on_sound_timer_timeout"]
+
