@@ -19,10 +19,14 @@ func _ready() -> void:
 
 func shoot():
 	gun1.fire()
-	
-	
+	$shoot.play()
+	$beam.play()
+
+
 func release_laser() -> void:
 	gun1.release_laser()
+	$shoot.stop()
+	$beam.stop()
 
 
 func register_player_input(delta : float) -> void:
