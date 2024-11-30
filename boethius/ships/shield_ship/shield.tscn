@@ -1,14 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bonw3e76ml24p"]
+[gd_scene load_steps=7 format=3 uid="uid://bonw3e76ml24p"]
 
 [ext_resource type="Texture2D" uid="uid://bu58dpa1lockc" path="res://art/Shield.png" id="1_aqndv"]
 [ext_resource type="Script" path="res://ships/shield_ship/shield.gd" id="1_f3noq"]
+[ext_resource type="AudioStream" uid="uid://c1ijpkbhq0p7p" path="res://sound/asteroids/hit-rock-01-266301.mp3" id="3_jl6k2"]
+[ext_resource type="AudioStream" uid="uid://cviamot3hrq4u" path="res://sound/asteroids/small-rock-break-194553.mp3" id="4_d0np0"]
+[ext_resource type="AudioStream" uid="uid://cw0h1trbh5r42" path="res://sound/asteroids/hit-rock-02-266304.mp3" id="5_yirv7"]
+
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1s124"]
 radius = 32.0624
 
 [node name="shield" type="CharacterBody2D"]
-collision_layer = 16
-collision_mask = 17
+
+collision_layer = 0
+collision_mask = 0
+
 script = ExtResource("1_f3noq")
 
 [node name="shield_image" type="Sprite2D" parent="."]
@@ -21,3 +27,22 @@ hframes = 2
 visible = false
 scale = Vector2(10, 10)
 shape = SubResource("CircleShape2D_1s124")
+
+
+[node name="hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_jl6k2")
+
+[node name="destroy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_d0np0")
+volume_db = -11.886
+
+[node name="damage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_yirv7")
+volume_db = -5.333
+max_distance = 1000.0
+
+[node name="sound_timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="sound_timer" to="." method="_on_sound_timer_timeout"]
+

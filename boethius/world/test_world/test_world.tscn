@@ -85,4 +85,10 @@ autoplay = true
 
 [node name="shield" parent="." instance=ExtResource("15_pdo6v")]
 z_index = 2
+
+position = Vector2(-1538, 881)
+
+[node name="shield2" parent="." instance=ExtResource("15_pdo6v")]
 position = Vector2(-699, 881)
+allignment = 0
+

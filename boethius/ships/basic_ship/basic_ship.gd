@@ -16,6 +16,7 @@ func _ready() -> void:
 		$ship_sprite.frame = 0
 		$damage_shader.frame = 0
 
+
 func shoot():
 	gun1.fire()
 	gun2.fire()

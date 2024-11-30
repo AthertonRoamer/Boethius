@@ -111,6 +111,10 @@ func _ready() -> void:
 	if is_instance_valid(ship_area):
 		ship_area.sight_range = sight_range
 	Main.world.ship_database.register_ship(self)
+	if faction == Faction.ENEMY:
+		set_collision_mask_value(5,true)
+	else:
+		set_collision_mask_value(4,true)
 
 
 func _physics_process(delta) -> void:
@@ -269,7 +273,8 @@ func check_for_crash():
 			collision.get_collider().play_hit_sound()
 			var knock_angle = collision.get_normal()
 			take_knockback(knock_angle * current_veloctiy.length()* 1.1)
-			collision.get_collider().take_knockback(mass * -knock_angle)
+			if collision.get_collider().is_in_group("knockable"):
+				collision.get_collider().take_knockback(mass * -knock_angle)
 			return
 
 
