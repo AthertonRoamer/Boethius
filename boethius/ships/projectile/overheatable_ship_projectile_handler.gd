@@ -20,9 +20,9 @@ func _ready() -> void:
 	overheat_timer.wait_time = full_cool_down_time
 	overheat_timer.timeout.connect(_on_overheat_timer_timeout)
 	overheat_timer.one_shot = true
-	
-	
-	
+
+
+
 func _process(delta: float) -> void:
 	#update time values here
 	super(delta) 
@@ -41,12 +41,15 @@ func _process(delta: float) -> void:
 				time_spent_shooting = max(0, time_spent_shooting - cool_down_rate)
 	if is_instance_valid(ship) and ship.debug_output and not overheated:
 		print(time_spent_shooting)
+	
+	if overheated:
+		Hud.overheatbar
 
 
 func can_fire() -> bool:
 	return not overheated
-	
-	
+
+
 func _on_overheat_timer_timeout() -> void:
 	overheated = false
 	time_spent_shooting = 0

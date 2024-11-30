@@ -12,9 +12,9 @@ func _ready() -> void:
 		$ship_sprite.frame = 1
 		$damage_shader.frame = 1
 	else:
-		set_collision_mask_value(5,true)
 		$ship_sprite.frame = 0
 		$damage_shader.frame = 0
+
 
 func shoot():
 	gun1.fire()
