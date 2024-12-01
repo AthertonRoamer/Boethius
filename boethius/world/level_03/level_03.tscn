@@ -18,9 +18,9 @@
 [ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://art/BOETHIUS_THEME.tres" id="16_vubwj"]
 [ext_resource type="Script" path="res://world/level_01/label.gd" id="17_vjp1w"]
 
-[sub_resource type="Resource" id="Resource_jfoqa"]
+[sub_resource type="Resource" id="Resource_phfip"]
 script = ExtResource("4_n21wl")
-ships = Array[ExtResource("5_p4syx")]([ExtResource("6_asjol")])
+ships = Array[ExtResource("5_p4syx")]([])
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_px787"]
 normal = Vector2(0.0126572, 0.99992)
@@ -46,7 +46,7 @@ metadata/_edit_horizontal_guides_ = [-396.0]
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(910, 536)
 script = ExtResource("3_cg26g")
-fleet = SubResource("Resource_jfoqa")
+fleet = SubResource("Resource_phfip")
 
 [node name="SpawnPoint2" type="Node2D" parent="."]
 position = Vector2(3335, 530)
