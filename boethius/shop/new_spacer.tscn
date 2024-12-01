@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://balvu1rygmluj"]
+
+[node name="NewSpacer" type="Control"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 3
+anchors_preset = 0

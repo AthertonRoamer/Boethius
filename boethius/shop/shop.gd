@@ -9,6 +9,7 @@ var ship_info_scene : PackedScene = preload("res://shop/ship_info.tscn")
 
 @export var available_ships : Array[ShipData] = []
 @export var info_holder : InfoHolder
+@export var grid_container : GridContainer
 
 @export var starting_credits : int = 1000
 @export var cred_label : CreditsLabel
@@ -25,7 +26,7 @@ func _ready() -> void:
 		var bs : ShipButtonSystem = ship_button_system.instantiate()
 		bs.ship_data = s
 		bs.shop = self
-		$Control/GridContainer.add_child(bs)
+		grid_container.add_child(bs)
 		var si : ShipInfo = ship_info_scene.instantiate()
 		si.ship_data = s
 		info_holder.add_child(si)
