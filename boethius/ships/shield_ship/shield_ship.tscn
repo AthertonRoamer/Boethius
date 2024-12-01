@@ -556,6 +556,10 @@ loop = true
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_yupw2")
+max_speed = 100.0
+no_thrust_max_speed = 100.0
+crash_speed_dmg = 300.0
+boost_max_speed = 300.0
 
 [node name="boosts" type="Node2D" parent="."]
 

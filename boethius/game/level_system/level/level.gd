@@ -2,6 +2,8 @@ class_name Level
 extends World
 
 signal setup_complete
+signal beginning_game
+signal starting
 
 @export var command_mode_camera : Camera2D
 var command_mode : CommandMode
@@ -33,6 +35,7 @@ func reslove_next_phase() -> void:
 	match phase_index:
 		0: #shop phase
 			get_tree().paused = true
+			command_mode.pre_game_deactivate()
 			shop.activate()
 		1: #spawn 
 			shop.deactivate()
@@ -41,10 +44,13 @@ func reslove_next_phase() -> void:
 			enemy_spawn.spawn()
 			reslove_next_phase()
 		2: #plan phase
+			beginning_game.emit()
 			get_tree().paused = false
 			command_mode.pre_game_activate()
 		3:
+			starting.emit()
 			movement_permitted = true
 			command_mode.pre_game_deactivate()
 			get_tree().paused = false
+			
 	

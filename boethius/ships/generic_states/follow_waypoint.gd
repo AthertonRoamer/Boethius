@@ -49,7 +49,7 @@ func consider_changing_state() -> void:
 
 func _on_waypoint_deleted(wp : WayPoint) -> void:
 	if wp == waypoint:
-		if waypoint.has_next_waypoint():
+		if waypoint.has_next_waypoint() and waypoint != waypoint.next_waypoint:
 			waypoint = waypoint.next_waypoint
 		else:
 			following = false

@@ -27,6 +27,7 @@ var not_available = false
 func pre_game_activate() -> void:
 	$CanvasLayer.layer = 4
 	process_mode = ProcessMode.PROCESS_MODE_ALWAYS
+	$CanvasLayer.visible = true
 	enter()
 	
 	

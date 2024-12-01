@@ -12,4 +12,5 @@ func _ready() -> void:
 		
 func spawn() -> void:
 	if enabled:
-		fleet.call_deferred("launch", global_position, faction)
+		#fleet.call_deferred("launch", global_position, faction)
+		fleet.launch(global_position, faction)

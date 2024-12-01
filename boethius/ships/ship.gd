@@ -249,6 +249,8 @@ func register_player_input(delta : float) -> void:
 func set_up_HUD():
 	Hud.healthbar.max_value = max_health
 	Hud.healthbar.value = health
+	Hud.boostbar.max_value = full_boost_spent_time
+
 	
 
 
@@ -351,7 +353,7 @@ func die() -> void:
 	if selected:
 		Main.world.command_mode.deselect_ship(self)
 	Main.world.ship_database.remove_ship(self)
-	Main.world.outcome_tracker.handle_event(OutcomeTracker.Event.SHIP_DESTROYED)
+	#Main.world.outcome_tracker.handle_event(OutcomeTracker.Event.SHIP_DESTROYED)
 
 	queue_free()
 

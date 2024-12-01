@@ -176,7 +176,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/healthpanel/warning:modulate")
+tracks/0/path = NodePath("ControlShip/healthpanel/warning:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -204,7 +204,7 @@ length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/healthpanel/warning:modulate")
+tracks/0/path = NodePath("ControlShip/healthpanel/warning:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -237,7 +237,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/overheatpanel/warning2:modulate")
+tracks/0/path = NodePath("ControlShip/overheatpanel/warning2:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -273,7 +273,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Control/overheatpanel/overheatbar/overheated:visible")
+tracks/3/path = NodePath("ControlShip/overheatpanel/overheatbar/overheated:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -289,7 +289,7 @@ length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/overheatpanel/warning2:modulate")
+tracks/0/path = NodePath("ControlShip/overheatpanel/warning2:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -325,7 +325,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Control/overheatpanel/overheatbar/overheated:visible")
+tracks/3/path = NodePath("ControlShip/overheatpanel/overheatbar/overheated:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -351,13 +351,13 @@ data = PackedByteArray("//PkZAAgnbk6AKzgAJ+hnowFTGACTHUHVOu9ibX3fYGgHMQQwgE1EZzL
 layer = 5
 script = ExtResource("1_qhvqj")
 respawn_button = NodePath("Control/RespawnButton")
-shieldbar = NodePath("Control/healthpanel/shieldbar")
-healthbar = NodePath("Control/healthpanel/healthbar")
-overheatbar = NodePath("Control/overheatpanel/overheatbar")
-healthpanel = NodePath("Control/healthpanel")
-boostbar = NodePath("Control/boostpanel/boostbar")
+shieldbar = NodePath("ControlShip/healthpanel/shieldbar")
+healthbar = NodePath("ControlShip/healthpanel/healthbar")
+overheatbar = NodePath("ControlShip/overheatpanel/overheatbar")
+healthpanel = NodePath("ControlShip/healthpanel")
+boostbar = NodePath("ControlShip/boostpanel/boostbar")
 
-[node name="Control" type="Control" parent="."]
+[node name="ControlShip" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -366,18 +366,9 @@ offset_right = 2.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="RespawnButton" parent="Control" instance=ExtResource("2_llokv")]
-visible = false
-layout_mode = 1
-anchor_top = 0.742
-anchor_bottom = 0.742
-offset_top = -30.074
-offset_bottom = 29.926
-grow_horizontal = 1
-grow_vertical = 1
-
-[node name="healthpanel" type="Panel" parent="Control"]
+[node name="healthpanel" type="Panel" parent="ControlShip"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 2
@@ -391,7 +382,7 @@ scale = Vector2(1.3, 1.3)
 theme = SubResource("Theme_x8t2k")
 theme_override_styles/panel = SubResource("StyleBoxFlat_j2bry")
 
-[node name="shieldbar" type="ProgressBar" parent="Control/healthpanel"]
+[node name="shieldbar" type="ProgressBar" parent="ControlShip/healthpanel"]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 1
@@ -409,7 +400,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_5jkry")
 value = 50.0
 show_percentage = false
 
-[node name="shields" type="Label" parent="Control/healthpanel/shieldbar"]
+[node name="shields" type="Label" parent="ControlShip/healthpanel/shieldbar"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 2
@@ -425,7 +416,7 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_rl2q3")
 text = "Shields"
 
-[node name="warning" type="ColorRect" parent="Control/healthpanel"]
+[node name="warning" type="ColorRect" parent="ControlShip/healthpanel"]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 1
@@ -440,7 +431,7 @@ grow_vertical = 0
 scale = Vector2(5, 5)
 color = Color(0.858824, 0.0784314, 0.278431, 1)
 
-[node name="healthbar" type="ProgressBar" parent="Control/healthpanel"]
+[node name="healthbar" type="ProgressBar" parent="ControlShip/healthpanel"]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 1
@@ -456,7 +447,7 @@ theme = ExtResource("3_myje1")
 value = 50.0
 show_percentage = false
 
-[node name="health" type="Label" parent="Control/healthpanel/healthbar"]
+[node name="health" type="Label" parent="ControlShip/healthpanel/healthbar"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 2
@@ -472,7 +463,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_rl2q3")
 text = "health
 "
 
-[node name="overheatpanel" type="Panel" parent="Control"]
+[node name="overheatpanel" type="Panel" parent="ControlShip"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 7
@@ -490,7 +481,7 @@ scale = Vector2(1.5, 1.5)
 theme = ExtResource("3_myje1")
 theme_override_styles/panel = SubResource("StyleBoxFlat_lg2tp")
 
-[node name="warning2" type="ColorRect" parent="Control/overheatpanel"]
+[node name="warning2" type="ColorRect" parent="ControlShip/overheatpanel"]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 1
@@ -508,7 +499,7 @@ grow_vertical = 0
 scale = Vector2(5, 5)
 color = Color(0.858824, 0.0784314, 0.278431, 1)
 
-[node name="overheatbar" type="ProgressBar" parent="Control/overheatpanel"]
+[node name="overheatbar" type="ProgressBar" parent="ControlShip/overheatpanel"]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 1
@@ -527,7 +518,7 @@ theme = ExtResource("3_myje1")
 value = 50.0
 show_percentage = false
 
-[node name="overheated" type="Label" parent="Control/overheatpanel/overheatbar"]
+[node name="overheated" type="Label" parent="ControlShip/overheatpanel/overheatbar"]
 visible = false
 texture_filter = 1
 layout_mode = 1
@@ -548,7 +539,7 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_rl2q3")
 text = "OVERHEATED"
 
-[node name="weapon" type="Label" parent="Control/overheatpanel/overheatbar"]
+[node name="weapon" type="Label" parent="ControlShip/overheatpanel/overheatbar"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 7
@@ -568,7 +559,7 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_rl2q3")
 text = "WEAPON"
 
-[node name="boostpanel" type="Panel" parent="Control"]
+[node name="boostpanel" type="Panel" parent="ControlShip"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 3
@@ -586,7 +577,7 @@ scale = Vector2(1.5, 1.5)
 theme = SubResource("Theme_c6l3o")
 theme_override_styles/panel = SubResource("StyleBoxFlat_jubun")
 
-[node name="boost" type="Label" parent="Control/boostpanel"]
+[node name="boost" type="Label" parent="ControlShip/boostpanel"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 3
@@ -606,7 +597,7 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_rl2q3")
 text = "boost"
 
-[node name="boostbar" type="ProgressBar" parent="Control/boostpanel"]
+[node name="boostbar" type="ProgressBar" parent="ControlShip/boostpanel"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -654,5 +645,25 @@ pitch_scale = 3.0
 [node name="overheat_timer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RespawnButton" parent="Control" instance=ExtResource("2_llokv")]
+layout_mode = 1
+anchor_top = 0.742
+anchor_bottom = 0.742
+offset_left = -71.0
+offset_top = -26.816
+offset_right = 69.0
+offset_bottom = 33.184
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="timeout" from="overheat_timer" to="." method="_on_overheat_timer_timeout"]

@@ -38,6 +38,11 @@ func stop_shooting_constantly() -> void:
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	match _anim_name:
 		"dmg"   : $AnimationPlayer.play("RESET")
+		
+		
+func set_up_HUD():
+	super()
+	Hud.overheatbar.max_value = $gun1.time_required_to_overheat
 
 
 func take_damage(damage : float, _damage_type : String = "none") -> void:

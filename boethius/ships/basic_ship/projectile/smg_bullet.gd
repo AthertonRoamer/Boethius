@@ -18,6 +18,7 @@ func update_position(delta) -> void:
 
 func _ready() -> void:
 	super()
+	faction = wielder.faction
 	if wielder.faction == Ship.Faction.PLAYER:
 		$Sprite2D.frame = 2
 

@@ -49,7 +49,8 @@ func _on_start_game_pressed() -> void:
 	for ship in fleet_dict:
 		for i in range(0, fleet_dict[ship]):
 			player_fleet.ships.append(ship)
-	Main.world.reslove_next_phase()
+	if player_fleet.ships.size() > 0:
+		Main.world.reslove_next_phase()
 	
 	
 func purchase_ship(ship : ShipData) -> bool:

@@ -29,8 +29,8 @@ func _ready() -> void:
 	add_to_group("damageable")
 	add_to_group("knockable")
 	add_to_group("crashable")
-	set_collision_mask_value(4, true)
-	set_collision_mask_value(5, true)
+	#set_collision_mask_value(4, true)
+	#set_collision_mask_value(5, true)
 
 #func _physics_process(delta: float) -> void:
 	#var dir : Vector2 = velocity.normalized()
