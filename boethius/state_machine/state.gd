@@ -6,6 +6,9 @@ extends Node
 
 var state_machine : StateMachine
 var active : bool = false
+var satisfied : bool = false
+
+
 
 func _ready() -> void:
 	if get_parent() is StateMachine:
@@ -17,10 +20,13 @@ func _ready() -> void:
 
 func activate() -> void:
 	active = true
+	satisfied = false
 
 
 func deactivate() -> void:
 	active = false
+	if not satisfied:
+		state_machine.past_states.push_back(id)
 
 
 func process_state(_delta : float) -> void:

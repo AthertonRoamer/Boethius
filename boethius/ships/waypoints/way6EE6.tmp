@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c784tgkn7s1w3"]
+
+[ext_resource type="Script" path="res://ships/waypoints/waypoint.gd" id="1_h50fm"]
+
+[node name="Waypoint" type="Node2D"]
+position = Vector2(100, 100)
+script = ExtResource("1_h50fm")

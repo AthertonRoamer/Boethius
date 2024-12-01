@@ -12,7 +12,8 @@ func _init() -> void:
 
 func process_state(delta : float) -> void:
 	if not is_instance_valid(target):
-		state_machine.set_state(state_machine.previous_state_id)
+		satisfied = true
+		state_machine.set_state(state_machine.past_states.pop_back())
 		return
 	
 	#compute shoot threshhold
@@ -28,5 +29,7 @@ func process_state(delta : float) -> void:
 		
 func consider_changing_state() -> void:
 	if not get_ship().ship_area.get_visible_enemies().has(target):
-		state_machine.set_state(state_machine.previous_state_id)
+		satisfied = true
+		state_machine.set_state(state_machine.past_states.pop_back())
+		
 	
