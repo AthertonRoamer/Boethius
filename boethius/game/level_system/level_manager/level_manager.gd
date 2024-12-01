@@ -36,7 +36,8 @@ func transfer_to_next_level() -> void:
 	level_index += 1
 	if level_list.size() >= level_index + 1 and level_list[level_index] != null and level_list[level_index].can_instantiate():
 		close_active_level()
-		open_level(level_list[level_index])
+		#open_level(level_list[level_index])
+		call_deferred("open_level", level_list[level_index])
 	else:
 		if is_instance_valid(Main.main):
 			close_active_level()

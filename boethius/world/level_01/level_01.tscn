@@ -118,7 +118,7 @@ position = Vector2(-1485, 133)
 [node name="Shop" parent="." instance=ExtResource("10_i1h3j")]
 visible = false
 available_ships = Array[ExtResource("5_sundt")]([ExtResource("6_nqohm")])
-starting_credits = 100
+starting_credits = 300
 
 [node name="Label" type="Label" parent="."]
 offset_left = 1819.0
