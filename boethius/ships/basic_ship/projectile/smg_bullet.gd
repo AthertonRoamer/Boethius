@@ -18,7 +18,7 @@ func update_position(delta) -> void:
 
 func _ready() -> void:
 	super()
-	if wielder.faction == wielder.Faction.PLAYER:
+	if wielder.faction == Ship.Faction.PLAYER:
 		$Sprite2D.frame = 2
 
 		set_collision_mask_value(4,true)

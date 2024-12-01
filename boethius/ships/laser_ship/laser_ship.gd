@@ -54,15 +54,16 @@ func register_player_input(delta : float) -> void:
 		visual_data.set_item("boosting", false)
 		stop_boost()
 	
-	if Input.is_action_pressed("ship_shoot"):
+	if Input.is_action_just_pressed("ship_shoot"):
 		aim_mode = true
 		begin_shooting_constantly()
-	else:
-		aim_mode = false
-		release_laser()
+	#else:
+		#aim_mode = false
+		#release_laser()
 	
 	if Input.is_action_just_released("ship_shoot"):
 		stop_shooting_constantly()
+		aim_mode = false
 
 
 func take_damage(damage : float, _damage_type : String = "none") -> void:
@@ -75,4 +76,8 @@ func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 		"dmg"   : $AnimationPlayer.play("RESET")
 
 func begin_shooting_constantly() -> void:
-	pass
+	if !gun1.overheated:
+		gun1.begin_firing_constantly()
+	
+func stop_shooting_constantly():
+	gun1.stop_firing_constantly()

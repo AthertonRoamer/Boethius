@@ -16,8 +16,8 @@ var phase_index : int = 0
 
 func _init() -> void:
 	Main.world = self
-	
-	
+
+
 func _ready() -> void:
 	command_mode = command_mode_scene.instantiate()
 	command_mode.level = self

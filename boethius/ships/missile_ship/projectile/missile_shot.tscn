@@ -6,7 +6,7 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_g0ebo"]
 particles_animation = true
 particles_anim_h_frames = 8
-particles_anim_v_frames = 2
+particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="Curve" id="Curve_n0d7x"]
@@ -57,8 +57,7 @@ texture_filter = 1
 scale = Vector2(1.75, 1.75)
 texture = ExtResource("2_avd8r")
 hframes = 8
-vframes = 2
-frame = 10
+frame = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -68,6 +67,7 @@ shape = SubResource("CapsuleShape2D_daedc")
 [node name="lifespan" type="Timer" parent="."]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 material = SubResource("CanvasItemMaterial_61q2t")
 position = Vector2(18, 0)
 texture = ExtResource("2_avd8r")

@@ -1,4 +1,4 @@
-class_name HeavyA
+class_name HeavyB
 extends Ship
 
 @onready var gun1 = $gun1
@@ -8,11 +8,11 @@ extends Ship
 func _ready() -> void:
 	super()
 	if faction == Faction.ENEMY:
-		$ship_sprite.frame = 3
-		$damage_shader.frame = 3
+		$ship_sprite.frame = 7
+		$damage_shader.frame = 7
 	else:
-		$ship_sprite.frame = 1
-		$damage_shader.frame = 1
+		$ship_sprite.frame = 5
+		$damage_shader.frame = 5
 
 func register_player_input(delta : float) -> void:
 	var mouse_pos = get_global_mouse_position() 

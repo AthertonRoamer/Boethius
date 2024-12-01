@@ -35,8 +35,8 @@ func can_fire() -> bool:
 
 func begin_firing_constantly() -> void:
 	firing_constantly = true
-	
-	
+
+
 func stop_firing_constantly() -> void:
 	firing_constantly = false
 	

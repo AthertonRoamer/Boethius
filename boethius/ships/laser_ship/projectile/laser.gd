@@ -1,5 +1,7 @@
 extends RayCast2D
 
+
+
 @onready var casting_particles: GPUParticles2D = $CastingParticles
 @onready var collision_particles_2: GPUParticles2D = $CollisionParticles
 @onready var beam_particle_2d: GPUParticles2D = $BeamParticles
@@ -27,11 +29,15 @@ var is_casting: bool = false :
 func _ready():
 	is_casting = false
 
+
+
 func blue():
 	$Line2D.default_color = Color(0.04,0.90,0.94)#enemy color
+	set_collision_mask_value(5,true)
 
 func red():
 	$Line2D.default_color = Color(1.00,0.01,0.27)#player color
+	set_collision_mask_value(4,true)
 
 func _physics_process(delta: float) -> void:
 	var cast_point := target_position
