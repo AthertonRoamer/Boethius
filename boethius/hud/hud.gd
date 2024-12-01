@@ -14,12 +14,12 @@ func _ready() -> void:
 
 
 func activate() -> void:
-	self.visible = true
+	$ControlShip.visible = true
 	layer = 2
 
 
 func deactivate() -> void:
-	self.visible = false
+	$ControlShip.visible = false
 	layer = -1
 
 var overheatable = true

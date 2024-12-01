@@ -40,6 +40,3 @@ func reset() -> void:
 func _on_command_mode_enabled_changed(e : bool) -> void:
 	if e:
 		reset()
-
-
-

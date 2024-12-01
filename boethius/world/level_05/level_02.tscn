@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cew7qnbancpu0"]
+[gd_scene load_steps=23 format=3 uid="uid://cew7qnbancpu0"]
 
 [ext_resource type="Script" path="res://world/level_01/level_01.gd" id="1_ssdab"]
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space/space.tscn" id="2_kobk7"]
@@ -6,16 +6,24 @@
 [ext_resource type="Script" path="res://ships/ship_data/fleet_data.gd" id="4_4vtl1"]
 [ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="5_1e4yr"]
 [ext_resource type="Resource" uid="uid://dqm4uojftwqoo" path="res://ships/basic_ship/basic_ship_data.tres" id="6_eqtaf"]
-[ext_resource type="Resource" uid="uid://dg1dskw58rjv3" path="res://ships/ship_data/test_fleet.tres" id="7_jp1qi"]
+[ext_resource type="Resource" uid="uid://d2naw84oj8aqq" path="res://ships/heavy_A/heavy_a.tres" id="7_ux3ua"]
+[ext_resource type="Resource" uid="uid://i0eo73472dnx" path="res://ships/heavy_B/heavy_b.tres" id="8_3fx77"]
 [ext_resource type="Script" path="res://game/command_mode/command_camera/command_camera.gd" id="8_kjlp6"]
+[ext_resource type="Resource" uid="uid://ckwk02fa62a07" path="res://ships/shield_ship/shield_ship_data.tres" id="9_1gpqn"]
 [ext_resource type="PackedScene" uid="uid://ckgqun7x0sidn" path="res://world/asteroid/asteroid_small.tscn" id="9_mjika"]
 [ext_resource type="PackedScene" uid="uid://fpde8apg7q2f" path="res://world/asteroid/asteroid_big.tscn" id="10_tyrc3"]
+[ext_resource type="Resource" uid="uid://q27pgqwrmx7c" path="res://ships/laser_ship/laser_ship_data.tres" id="10_xwjll"]
 [ext_resource type="PackedScene" uid="uid://bos66mom7yrro" path="res://world/asteroid/asteroid_med.tscn" id="11_t863x"]
 [ext_resource type="PackedScene" uid="uid://dcjqjmcyqvlhh" path="res://shop/shop.tscn" id="12_n5h1o"]
+[ext_resource type="PackedScene" uid="uid://bb1kkjqy42iqn" path="res://orders/OrderMaker.tscn" id="16_qs5io"]
 
 [sub_resource type="Resource" id="Resource_jfoqa"]
 script = ExtResource("4_4vtl1")
 ships = Array[ExtResource("5_1e4yr")]([ExtResource("6_eqtaf")])
+
+[sub_resource type="Resource" id="Resource_yly2n"]
+script = ExtResource("4_4vtl1")
+ships = Array[ExtResource("5_1e4yr")]([ExtResource("7_ux3ua"), ExtResource("8_3fx77"), ExtResource("7_ux3ua"), ExtResource("9_1gpqn"), ExtResource("9_1gpqn"), ExtResource("10_xwjll"), ExtResource("10_xwjll"), ExtResource("10_xwjll"), ExtResource("6_eqtaf"), ExtResource("6_eqtaf"), ExtResource("6_eqtaf"), ExtResource("6_eqtaf"), ExtResource("6_eqtaf"), ExtResource("6_eqtaf"), ExtResource("6_eqtaf"), ExtResource("6_eqtaf"), ExtResource("6_eqtaf"), ExtResource("6_eqtaf"), ExtResource("6_eqtaf")])
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_px787"]
 normal = Vector2(0.0126572, 0.99992)
@@ -45,7 +53,7 @@ fleet = SubResource("Resource_jfoqa")
 [node name="SpawnPoint2" type="Node2D" parent="."]
 position = Vector2(3335, 530)
 script = ExtResource("3_k5fev")
-fleet = ExtResource("7_jp1qi")
+fleet = SubResource("Resource_yly2n")
 faction = 1
 
 [node name="CommandCamera" type="Camera2D" parent="."]
@@ -104,6 +112,21 @@ position = Vector2(-12, 522)
 [node name="asteriod_small5" parent="asteroids" instance=ExtResource("9_mjika")]
 position = Vector2(201, 361)
 
+[node name="asteriod_small8" parent="asteroids" instance=ExtResource("9_mjika")]
+position = Vector2(493, 186)
+
+[node name="asteriod_small9" parent="asteroids" instance=ExtResource("9_mjika")]
+position = Vector2(524, -389)
+
+[node name="asteriod_small10" parent="asteroids" instance=ExtResource("9_mjika")]
+position = Vector2(-360, -236)
+
+[node name="asteriod_small11" parent="asteroids" instance=ExtResource("9_mjika")]
+position = Vector2(-773, 675)
+
+[node name="asteriod_small12" parent="asteroids" instance=ExtResource("9_mjika")]
+position = Vector2(964, 482)
+
 [node name="asteriod_small6" parent="asteroids" instance=ExtResource("9_mjika")]
 position = Vector2(-157, 301)
 
@@ -113,9 +136,26 @@ position = Vector2(-193, 70)
 [node name="asteriod_big" parent="asteroids" instance=ExtResource("10_tyrc3")]
 position = Vector2(-70, -279)
 
+[node name="asteriod_big2" parent="asteroids" instance=ExtResource("10_tyrc3")]
+position = Vector2(433, 772)
+
+[node name="asteriod_big3" parent="asteroids" instance=ExtResource("10_tyrc3")]
+position = Vector2(-613, 201)
+
+[node name="asteriod_big4" parent="asteroids" instance=ExtResource("10_tyrc3")]
+position = Vector2(801, -131)
+
 [node name="asteriod_med" parent="asteroids" instance=ExtResource("11_t863x")]
-position = Vector2(-317, -588)
+position = Vector2(-505, -557)
+
+[node name="asteriod_med2" parent="asteroids" instance=ExtResource("11_t863x")]
+position = Vector2(-299, 674)
+
+[node name="asteriod_med3" parent="asteroids" instance=ExtResource("11_t863x")]
+position = Vector2(662, -619)
 
 [node name="Shop" parent="." instance=ExtResource("12_n5h1o")]
-available_ships = Array[ExtResource("5_1e4yr")]([ExtResource("6_eqtaf")])
-starting_credits = 500
+starting_credits = 8000
+
+[node name="OrderMaker" parent="." instance=ExtResource("16_qs5io")]
+position = Vector2(2200, 656)

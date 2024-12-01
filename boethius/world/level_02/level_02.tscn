@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://css6jwh8kh5rw"]
+[gd_scene load_steps=19 format=3 uid="uid://css6jwh8kh5rw"]
 
 [ext_resource type="Script" path="res://world/level_01/level_01.gd" id="1_cmk76"]
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space/space.tscn" id="2_v4h50"]
@@ -6,16 +6,20 @@
 [ext_resource type="Script" path="res://ships/ship_data/fleet_data.gd" id="4_t068e"]
 [ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="5_c2ncp"]
 [ext_resource type="Resource" uid="uid://dqm4uojftwqoo" path="res://ships/basic_ship/basic_ship_data.tres" id="6_dnk4g"]
-[ext_resource type="Resource" uid="uid://dg1dskw58rjv3" path="res://ships/ship_data/test_fleet.tres" id="7_2sv6h"]
 [ext_resource type="Script" path="res://game/command_mode/command_camera/command_camera.gd" id="8_k40sr"]
 [ext_resource type="PackedScene" uid="uid://ckgqun7x0sidn" path="res://world/asteroid/asteroid_small.tscn" id="9_jp3on"]
 [ext_resource type="PackedScene" uid="uid://fpde8apg7q2f" path="res://world/asteroid/asteroid_big.tscn" id="10_67e7n"]
 [ext_resource type="PackedScene" uid="uid://dcjqjmcyqvlhh" path="res://shop/shop.tscn" id="10_c63vd"]
 [ext_resource type="PackedScene" uid="uid://bos66mom7yrro" path="res://world/asteroid/asteroid_med.tscn" id="11_xkc1a"]
+[ext_resource type="PackedScene" uid="uid://bb1kkjqy42iqn" path="res://orders/OrderMaker.tscn" id="12_jxssc"]
 
 [sub_resource type="Resource" id="Resource_jfoqa"]
 script = ExtResource("4_t068e")
 ships = Array[ExtResource("5_c2ncp")]([ExtResource("6_dnk4g")])
+
+[sub_resource type="Resource" id="Resource_45vps"]
+script = ExtResource("4_t068e")
+ships = Array[ExtResource("5_c2ncp")]([ExtResource("6_dnk4g"), ExtResource("6_dnk4g"), ExtResource("6_dnk4g"), ExtResource("6_dnk4g"), ExtResource("6_dnk4g")])
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_px787"]
 normal = Vector2(0.0126572, 0.99992)
@@ -45,7 +49,7 @@ fleet = SubResource("Resource_jfoqa")
 [node name="SpawnPoint2" type="Node2D" parent="."]
 position = Vector2(3335, 530)
 script = ExtResource("3_gie60")
-fleet = ExtResource("7_2sv6h")
+fleet = SubResource("Resource_45vps")
 faction = 1
 
 [node name="CommandCamera" type="Camera2D" parent="."]
@@ -118,4 +122,7 @@ position = Vector2(-317, -588)
 
 [node name="Shop" parent="." instance=ExtResource("10_c63vd")]
 available_ships = Array[ExtResource("5_c2ncp")]([ExtResource("6_dnk4g")])
-starting_credits = 500
+starting_credits = 300
+
+[node name="OrderMaker" parent="." instance=ExtResource("12_jxssc")]
+position = Vector2(2127, 680)

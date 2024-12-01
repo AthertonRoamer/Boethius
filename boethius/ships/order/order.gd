@@ -11,5 +11,13 @@ func follow_waypoint(waypoint : WayPoint) -> void:
 
 
 func go_to_point(point):
-	ship.state_machine.set_state("circle")
-	ship.state_machine.get_state("circle").center_point = point
+	if ship.state_machine.get_state("circle") != null:
+		ship.state_machine.get_state("circle").center_point = point
+		ship.state_machine.set_state("circle")
+		
+		
+func defend_point(point):
+	if ship.state_machine.get_state("defend") != null:
+		ship.state_machine.get_state("defend").center_point = point
+		ship.state_machine.set_state("defend")
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://jgxqujibaj5b"]
+[gd_scene load_steps=21 format=3 uid="uid://jgxqujibaj5b"]
 
 [ext_resource type="Script" path="res://world/tutorial/tutorial.gd" id="1_7bpfg"]
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space/space.tscn" id="1_cxtyd"]
@@ -6,8 +6,6 @@
 [ext_resource type="Script" path="res://ships/ship_data/fleet_data.gd" id="3_nl68g"]
 [ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="4_6j5rt"]
 [ext_resource type="Resource" uid="uid://dqm4uojftwqoo" path="res://ships/basic_ship/basic_ship_data.tres" id="5_cpdi7"]
-[ext_resource type="Resource" uid="uid://q27pgqwrmx7c" path="res://ships/laser_ship/laser_ship_data.tres" id="6_213rj"]
-[ext_resource type="Resource" uid="uid://c8x7n5cg4twr8" path="res://ships/missile_ship/missile_ship_data.tres" id="7_3q2n5"]
 [ext_resource type="Resource" uid="uid://dg1dskw58rjv3" path="res://ships/ship_data/test_fleet.tres" id="8_ux3v0"]
 [ext_resource type="Script" path="res://game/command_mode/command_camera/command_camera.gd" id="9_knugc"]
 [ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://art/BOETHIUS_THEME.tres" id="9_ygtd7"]
@@ -15,11 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://bos66mom7yrro" path="res://world/asteroid/asteroid_med.tscn" id="13_243x6"]
 [ext_resource type="PackedScene" uid="uid://dcjqjmcyqvlhh" path="res://shop/shop.tscn" id="13_acpwn"]
 [ext_resource type="PackedScene" uid="uid://fpde8apg7q2f" path="res://world/asteroid/asteroid_big.tscn" id="14_txbab"]
+[ext_resource type="Script" path="res://world/tutorial/tutorial_order.gd" id="15_8d6cj"]
 [ext_resource type="PackedScene" uid="uid://dn6elo7vpye1c" path="res://ships/basic_ship/basic_ship.tscn" id="16_aai64"]
 
-[sub_resource type="Resource" id="Resource_o0kur"]
+[sub_resource type="Resource" id="Resource_b00q4"]
 script = ExtResource("3_nl68g")
-ships = Array[ExtResource("4_6j5rt")]([ExtResource("5_cpdi7"), ExtResource("5_cpdi7"), ExtResource("5_cpdi7"), ExtResource("5_cpdi7"), ExtResource("5_cpdi7"), ExtResource("6_213rj"), ExtResource("7_3q2n5")])
+ships = Array[ExtResource("4_6j5rt")]([ExtResource("5_cpdi7"), ExtResource("5_cpdi7"), ExtResource("5_cpdi7")])
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_63pjw"]
 normal = Vector2(0.0126572, 0.99992)
@@ -43,9 +42,9 @@ enemy_spawn = NodePath("SpawnPoint2")
 [node name="space" parent="." instance=ExtResource("1_cxtyd")]
 
 [node name="SpawnPoint" type="Node2D" parent="."]
-position = Vector2(346, 360)
+position = Vector2(4490, 488)
 script = ExtResource("2_u1qjm")
-fleet = SubResource("Resource_o0kur")
+fleet = SubResource("Resource_b00q4")
 
 [node name="SpawnPoint2" type="Node2D" parent="."]
 position = Vector2(2282, 537)
@@ -184,6 +183,15 @@ theme_override_font_sizes/font_size = 32
 text = "Together, we can rid this galaxy of the blue filth
 that has spread like a disease. good luck."
 
+[node name="ExitTutorial" type="Button" parent="tutorials"]
+offset_left = 5014.0
+offset_top = 869.0
+offset_right = 5341.0
+offset_bottom = 942.0
+theme = ExtResource("9_ygtd7")
+theme_override_font_sizes/font_size = 30
+text = "Exit Tutorial"
+
 [node name="asteroids" type="Node2D" parent="."]
 
 [node name="asteriod_small" parent="asteroids" instance=ExtResource("11_488nd")]
@@ -321,10 +329,14 @@ position = Vector2(895, -103)
 shape = SubResource("WorldBoundaryShape2D_sfegj")
 
 [node name="Shop" parent="." instance=ExtResource("13_acpwn")]
-
 visible = false
 
 [node name="BasicShip" parent="." instance=ExtResource("16_aai64")]
 position = Vector2(578, 128)
 faction = 0
 
+[node name="Node" type="Node2D" parent="." node_paths=PackedStringArray("player_defend_point")]
+script = ExtResource("15_8d6cj")
+player_defend_point = NodePath("../SpawnPoint")
+
+[connection signal="pressed" from="tutorials/ExitTutorial" to="." method="_on_exit_tutorial_pressed"]
