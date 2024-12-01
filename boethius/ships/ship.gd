@@ -343,21 +343,21 @@ func check_for_crash():
 
 func die() -> void:
 	reset_visuals()
-
+	Main.world.ship_database.remove_ship(self)
 	if is_instance_valid(Main.world):
 		var explosion = explosion_scene.instantiate()
 		explosion.global_position = global_position
 		Main.world.add_child(explosion)
 		if !under_player_control:
 			explosion.blow_up()
-			Main.world.outcome_tracker.handle_event(OutcomeTracker.Event.SHIP_DESTROYED)
+			#Main.world.outcome_tracker.handle_event(OutcomeTracker.Event.SHIP_DESTROYED)
 		elif under_player_control:
 			explosion.blow_up_cam()
 			Hud.reset_animations()
 
 	if selected:
 		Main.world.command_mode.deselect_ship(self)
-	Main.world.ship_database.remove_ship(self)
+	
 	#Main.world.outcome_tracker.handle_event(OutcomeTracker.Event.SHIP_DESTROYED)
 
 	queue_free()
