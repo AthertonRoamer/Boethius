@@ -6,6 +6,8 @@ signal lost
 
 enum Event {SHIP_DESTROYED}
 
+var resolved : bool = false
+
 func handle_event(event : Event) -> void:
 	match event:
 		Event.SHIP_DESTROYED:
@@ -25,12 +27,16 @@ func check_for_outcome() -> void:
 	
 	
 func announce_win() -> void:
-	won.emit()
-	if is_instance_valid(Main.game):       
-		Main.game.level_manager.transfer_to_next_level()
+	if not resolved:
+		resolved = true
+		won.emit()
+		if is_instance_valid(Main.game):       
+			Main.game.level_manager.transfer_to_next_level()
 	
 	
 func announce_loss() -> void:
-	lost.emit()
-	Hud.respawn_button.show()
-	get_tree().paused = true
+	if not resolved:
+		resolved = true
+		lost.emit()
+		Hud.respawn_button.show()
+		get_tree().paused = true
