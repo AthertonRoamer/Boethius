@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ShipData" load_steps=3 format=3 uid="uid://crb264v3vgpbx"]
+
+[ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="1_e22kv"]
+[ext_resource type="Texture2D" uid="uid://dc85bt8da7gd6" path="res://ship_art/Ship7.png" id="2_k41cg"]
+
+[resource]
+script = ExtResource("1_e22kv")
+ship_price = 100
+ship_image = ExtResource("2_k41cg")
+name = "Shield Ship"
+health = "100"
+dmg = "10"
+short_description = "A really great member of the fleet"
+full_description = ""

@@ -6,5 +6,10 @@ extends Node2D
 @export var enabled : bool = true
 
 func _ready() -> void:
+	#spawn()
+	pass
+		
+		
+func spawn() -> void:
 	if enabled:
 		fleet.call_deferred("launch", global_position, faction)

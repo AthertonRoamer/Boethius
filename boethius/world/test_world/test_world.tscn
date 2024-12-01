@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c45yj6q8tsgun"]
+[gd_scene load_steps=19 format=3 uid="uid://c45yj6q8tsgun"]
 
 [ext_resource type="Script" path="res://world/test_world/test_world.gd" id="1_v873r"]
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space/space.tscn" id="2_m21cc"]
@@ -16,14 +16,17 @@
 [ext_resource type="PackedScene" uid="uid://ckgqun7x0sidn" path="res://world/asteroid/asteroid_small.tscn" id="14_djxwq"]
 [ext_resource type="AudioStream" uid="uid://dl7ppg3ro4gdu" path="res://sound/music/Interstellar Reverie (1).mp3" id="14_hiq3a"]
 [ext_resource type="PackedScene" uid="uid://bonw3e76ml24p" path="res://ships/shield_ship/shield.tscn" id="15_pdo6v"]
+[ext_resource type="PackedScene" uid="uid://dcjqjmcyqvlhh" path="res://shop/shop.tscn" id="17_n05dp"]
 
 [sub_resource type="Resource" id="Resource_0080v"]
 script = ExtResource("8_5kkxw")
 ships = Array[ExtResource("9_gk5pd")]([ExtResource("10_14dbh"), ExtResource("10_14dbh"), ExtResource("10_14dbh"), ExtResource("10_14dbh"), ExtResource("10_14dbh"), ExtResource("9_pjmmk"), ExtResource("10_0tdek")])
 
-[node name="TestWorld" type="Node2D" node_paths=PackedStringArray("command_mode_camera")]
+[node name="TestWorld" type="Node2D" node_paths=PackedStringArray("command_mode_camera", "friendly_spawn", "enemy_spawn")]
 script = ExtResource("1_v873r")
 command_mode_camera = NodePath("CommandCamera")
+friendly_spawn = NodePath("SpawnPoint")
+enemy_spawn = NodePath("SpawnPoint2")
 
 [node name="space" parent="." instance=ExtResource("2_m21cc")]
 
@@ -84,7 +87,6 @@ stream = ExtResource("14_hiq3a")
 volume_db = -11.244
 autoplay = true
 
-
 [node name="shield_blue" parent="." instance=ExtResource("15_pdo6v")]
 position = Vector2(1252, 216)
 
@@ -92,3 +94,4 @@ position = Vector2(1252, 216)
 position = Vector2(-28, 225)
 allignment = 0
 
+[node name="Shop" parent="." instance=ExtResource("17_n05dp")]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://mr6qkx0ghwey"]
+
+[ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://art/BOETHIUS_THEME.tres" id="1_4crlf"]
+[ext_resource type="Script" path="res://shop/ship_info.gd" id="1_75vky"]
+[ext_resource type="Texture2D" uid="uid://cemwigan82p5i" path="res://ship_art/Ship1.png" id="2_f2co6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fd8sb"]
+bg_color = Color(0.9063, 0.448117, 0.307146, 1)
+
+[node name="ShipInfo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_4crlf")
+script = ExtResource("1_75vky")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fd8sb")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_f2co6")

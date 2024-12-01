@@ -1,8 +1,11 @@
-[gd_resource type="Resource" script_class="ShipData" load_steps=3 format=3 uid="uid://dqm4uojftwqoo"]
+[gd_resource type="Resource" script_class="ShipData" load_steps=4 format=3 uid="uid://dqm4uojftwqoo"]
 
 [ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="1_h1og6"]
 [ext_resource type="PackedScene" uid="uid://dn6elo7vpye1c" path="res://ships/basic_ship/basic_ship.tscn" id="2_fcerk"]
+[ext_resource type="Texture2D" uid="uid://cemwigan82p5i" path="res://ship_art/Ship1.png" id="2_teaa0"]
 
 [resource]
 script = ExtResource("1_h1og6")
 ship_scene = ExtResource("2_fcerk")
+ship_price = 100
+ship_image = ExtResource("2_teaa0")
