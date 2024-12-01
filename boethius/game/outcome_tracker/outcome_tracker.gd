@@ -14,7 +14,7 @@ func handle_event(event : Event) -> void:
 			
 			
 func handle_ship_destroyed() -> void:
-	pass
+	check_for_outcome()
 	
 	
 func check_for_outcome() -> void:

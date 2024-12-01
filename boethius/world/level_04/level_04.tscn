@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://blj3ecgwgptea"]
+[gd_scene load_steps=23 format=3 uid="uid://blj3ecgwgptea"]
 
 [ext_resource type="Script" path="res://world/level_01/level_01.gd" id="1_i5e0e"]
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space/space.tscn" id="2_lsvva"]
@@ -15,6 +15,7 @@
 [ext_resource type="Resource" uid="uid://q27pgqwrmx7c" path="res://ships/laser_ship/laser_ship_data.tres" id="13_qx4wn"]
 [ext_resource type="Resource" uid="uid://ckwk02fa62a07" path="res://ships/shield_ship/shield_ship_data.tres" id="14_coywm"]
 [ext_resource type="PackedScene" uid="uid://bb1kkjqy42iqn" path="res://orders/OrderMaker.tscn" id="15_8vynr"]
+[ext_resource type="AudioStream" uid="uid://dl7ppg3ro4gdu" path="res://sound/music/Interstellar Reverie (1).mp3" id="16_rq8hx"]
 
 [sub_resource type="Resource" id="Resource_jfoqa"]
 script = ExtResource("4_6qbjr")
@@ -153,3 +154,8 @@ starting_credits = 2000
 
 [node name="OrderMaker" parent="." instance=ExtResource("15_8vynr")]
 position = Vector2(2150, 642)
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_rq8hx")
+volume_db = -11.244
+autoplay = true

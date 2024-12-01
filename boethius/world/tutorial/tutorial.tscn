@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://jgxqujibaj5b"]
+[gd_scene load_steps=22 format=3 uid="uid://jgxqujibaj5b"]
 
 [ext_resource type="Script" path="res://world/tutorial/tutorial.gd" id="1_7bpfg"]
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space/space.tscn" id="1_cxtyd"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://fpde8apg7q2f" path="res://world/asteroid/asteroid_big.tscn" id="14_txbab"]
 [ext_resource type="Script" path="res://world/tutorial/tutorial_order.gd" id="15_8d6cj"]
 [ext_resource type="PackedScene" uid="uid://dn6elo7vpye1c" path="res://ships/basic_ship/basic_ship.tscn" id="16_aai64"]
+[ext_resource type="AudioStream" uid="uid://dl7ppg3ro4gdu" path="res://sound/music/Interstellar Reverie (1).mp3" id="16_wdagm"]
 
 [sub_resource type="Resource" id="Resource_b00q4"]
 script = ExtResource("3_nl68g")
@@ -338,5 +339,10 @@ faction = 0
 [node name="Node" type="Node2D" parent="." node_paths=PackedStringArray("player_defend_point")]
 script = ExtResource("15_8d6cj")
 player_defend_point = NodePath("../SpawnPoint")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_wdagm")
+volume_db = -11.244
+autoplay = true
 
 [connection signal="pressed" from="tutorials/ExitTutorial" to="." method="_on_exit_tutorial_pressed"]

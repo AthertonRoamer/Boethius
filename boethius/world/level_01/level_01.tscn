@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cvgondg435tm"]
+[gd_scene load_steps=20 format=3 uid="uid://cvgondg435tm"]
 
 [ext_resource type="Script" path="res://world/level_01/level_01.gd" id="1_pm0s0"]
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space/space.tscn" id="2_bltjc"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ckgqun7x0sidn" path="res://world/asteroid/asteroid_small.tscn" id="11_dh3vn"]
 [ext_resource type="Script" path="res://world/level_01/label.gd" id="12_ckeuh"]
 [ext_resource type="PackedScene" uid="uid://bb1kkjqy42iqn" path="res://orders/OrderMaker.tscn" id="12_t0cvo"]
+[ext_resource type="AudioStream" uid="uid://dl7ppg3ro4gdu" path="res://sound/music/Interstellar Reverie (1).mp3" id="13_0815s"]
 
 [sub_resource type="Resource" id="Resource_jfoqa"]
 script = ExtResource("4_d5vf4")
@@ -132,5 +133,23 @@ vertical_alignment = 1
 autowrap_mode = 2
 script = ExtResource("12_ckeuh")
 
+[node name="Label2" type="Label" parent="."]
+offset_left = 1828.0
+offset_top = 615.0
+offset_right = 2459.0
+offset_bottom = 908.0
+theme = ExtResource("11_4w2tu")
+theme_override_font_sizes/font_size = 41
+text = "Remember, you can always exit command mode and control ships yourself by right clicking on them and then tab. Eliminate the blue scum."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+script = ExtResource("12_ckeuh")
+
 [node name="OrderMaker" parent="." instance=ExtResource("12_t0cvo")]
 position = Vector2(2117, 647)
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_0815s")
+volume_db = -11.244
+autoplay = true
