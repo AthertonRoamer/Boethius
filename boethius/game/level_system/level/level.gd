@@ -19,6 +19,9 @@ var movement_permitted : bool = false
 
 func _init() -> void:
 	Main.world = self
+	
+	
+	
 
 
 func _ready() -> void:
@@ -26,7 +29,7 @@ func _ready() -> void:
 	command_mode.level = self
 	add_child(command_mode)
 	add_child(outcome_tracker)
-	setup_complete.emit()
+	#setup_complete.emit()
 	reslove_next_phase()
 	
 	
@@ -42,6 +45,7 @@ func reslove_next_phase() -> void:
 			friendly_spawn.fleet = shop.player_fleet
 			friendly_spawn.spawn()
 			enemy_spawn.spawn()
+			setup_complete.emit()
 			reslove_next_phase()
 		2: #plan phase
 			beginning_game.emit()

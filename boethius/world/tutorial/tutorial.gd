@@ -23,6 +23,7 @@ func reslove_next_phase() -> void:
 			#command_mode.pre_game_activate()
 		#3:
 			friendly_spawn.spawn()
+			setup_complete.emit()
 			movement_permitted = true
 			command_mode.pre_game_deactivate()
 			command_mode.occupied_ship = ship
