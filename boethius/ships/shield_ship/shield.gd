@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 @export var max_health : int = 1000
 @export var starting_health : int = 1000
-@export var allignment : Ship.Faction = Ship.Faction.ENEMY
+@export var faction : Ship.Faction = Ship.Faction.ENEMY
 
 var health : float = starting_health:
 
@@ -20,9 +20,11 @@ var health : float = starting_health:
 
 
 func _ready() -> void:
+	if get_parent() is Ship:
+		faction = get_parent().faction
 	add_to_group("damageable")
 	add_to_group("crashable")
-	if allignment == Ship.Faction.PLAYER:
+	if faction == Ship.Faction.PLAYER:
 		$shield_image.frame = 0
 		set_collision_layer_value(5,true)
 	else:
@@ -44,6 +46,7 @@ func activate():
 
 func deactivate():
 	$AnimationPlayer.play("deactivate")
+	$dead_timer.start()
 
 
 var sound_ready = true
@@ -63,3 +66,7 @@ func play_crash_sound():
 
 func _on_sound_timer_timeout() -> void:
 	sound_ready = true
+
+
+func _on_dead_timer_timeout() -> void:
+	activate()

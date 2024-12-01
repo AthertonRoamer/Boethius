@@ -22,31 +22,31 @@
 [ext_resource type="PackedScene" uid="uid://gfmjiblkd7jf" path="res://turret/turret.tscn" id="19_o86k0"]
 [ext_resource type="Texture2D" uid="uid://csywqnh36wcu7" path="res://art/Turrets.png" id="20_ju0ug"]
 
-[sub_resource type="Curve" id="Curve_xjb1h"]
+[sub_resource type="Curve" id="Curve_ffdcr"]
 _data = [Vector2(0, 0.615385), 0.0, 0.0, 0, 0, Vector2(0.846667, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_gkwdo"]
-curve = SubResource("Curve_xjb1h")
+curve = SubResource("Curve_ffdcr")
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_isw5s"]
 resource_local_to_scene = true
 gradient = ExtResource("3_6y6sg")
 
-[sub_resource type="Curve" id="Curve_7blia"]
+[sub_resource type="Curve" id="Curve_3c6p3"]
 max_value = 12.0
 _data = [Vector2(0, 12), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_0papf"]
-curve = SubResource("Curve_7blia")
+curve = SubResource("Curve_3c6p3")
 
-[sub_resource type="Curve" id="Curve_i7yo7"]
+[sub_resource type="Curve" id="Curve_8bx5e"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_jvgtt"]
-curve = SubResource("Curve_i7yo7")
+curve = SubResource("Curve_8bx5e")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wjaof"]
 resource_local_to_scene = true
@@ -102,11 +102,11 @@ emission_curve = SubResource("CurveTexture_0papf")
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kotcs"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
-[sub_resource type="Gradient" id="Gradient_phvpi"]
+[sub_resource type="Gradient" id="Gradient_yh6wb"]
 colors = PackedColorArray(0.0470588, 0.901961, 0.94902, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_wemo8"]
-gradient = SubResource("Gradient_phvpi")
+gradient = SubResource("Gradient_yh6wb")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_645os"]
 resource_local_to_scene = true
@@ -126,11 +126,11 @@ emission_curve = SubResource("CurveTexture_0papf")
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c75ca"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
-[sub_resource type="Gradient" id="Gradient_5uipf"]
+[sub_resource type="Gradient" id="Gradient_nk8li"]
 colors = PackedColorArray(0.0470588, 0.901961, 0.94902, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8v2pm"]
-gradient = SubResource("Gradient_5uipf")
+gradient = SubResource("Gradient_nk8li")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_80dav"]
 resource_local_to_scene = true
@@ -150,11 +150,11 @@ emission_curve = SubResource("CurveTexture_0papf")
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u3dir"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
-[sub_resource type="Gradient" id="Gradient_wujah"]
+[sub_resource type="Gradient" id="Gradient_vgsuk"]
 colors = PackedColorArray(0.0470588, 0.901961, 0.94902, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ghfwd"]
-gradient = SubResource("Gradient_wujah")
+gradient = SubResource("Gradient_vgsuk")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rhjb0"]
 resource_local_to_scene = true

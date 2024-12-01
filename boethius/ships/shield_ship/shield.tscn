@@ -142,4 +142,9 @@ libraries = {
 
 [node name="deactivate" type="AudioStreamPlayer2D" parent="."]
 
+[node name="dead_timer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
 [connection signal="timeout" from="sound_timer" to="." method="_on_sound_timer_timeout"]
+[connection signal="timeout" from="dead_timer" to="." method="_on_dead_timer_timeout"]
