@@ -17,21 +17,26 @@ var occupied_ship : Ship = null
 @export var selected_color : Color = Color.WHITE
 @export var occupied_color : Color = Color.BLUE
 
+
+var not_available = false
+
 @onready var waypoint_master : WayPointMaster = $WaypointMaster
 @onready var ship_selector : ShipSelector = $ShipSelector
 
 func enter() -> void:
-	if not enabled:
+	if not enabled not not_available::
 		waypoint_master.active = true
+
 		enabled = true
 		level.command_mode_camera.enabled = true
+		Hud.deactivate()
 		enabled_changed.emit(enabled)
 		if is_instance_valid(occupied_ship):
 			if occupied_ship.under_player_control:
 				occupied_ship.under_player_control = false
 				exited_ship.emit(occupied_ship)
-				
-	
+
+
 func exit() -> void:
 	if enabled and is_instance_valid(occupied_ship):
 		waypoint_master.active = false
@@ -42,7 +47,8 @@ func exit() -> void:
 		enabled_changed.emit(enabled)
 		occupied_ship.under_player_control = true
 		entered_ship.emit(occupied_ship)
-		
+		Hud.activate()
+		occupied_ship.set_up_HUD()
 		
 func select_ship(ship : Ship) -> void:
 	deselect_all_ships()
@@ -79,11 +85,14 @@ func _input(event) -> void:
 			exit()
 		else:
 			enter()
+
+
 	#if event.is_action_pressed("toggle_waypoint"):
 		#if enabled:
 			#waypoint_master.active = not waypoint_master.active
 			
 			
+
 func _process(_delta: float) -> void:
 	if enabled:
 		queue_redraw()

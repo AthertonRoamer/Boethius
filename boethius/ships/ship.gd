@@ -12,7 +12,7 @@ extends CharacterBody2D
 #ai weights
 #agression, loneliness, courage/fear, max range to fire, ideal range to fire
 #priorities - hit big ships first, hit small ships first
-@export var explosion_scene : PackedScene
+@export var explosion_scene : PackedScene = preload("res://death_explosion.tscn")
 @export var debug_output : bool = false
 @export var benched : bool = false
 
@@ -35,6 +35,7 @@ signal under_player_control_changed(under_player_control : bool)
 @export var mass : float = 100
 @export var max_health : int = 100
 @export var starting_health : int = 100
+
 var health : float = starting_health:
 
 	set(v):
@@ -58,6 +59,14 @@ var health : float = starting_health:
 
 @export var boost_accel : float = 600
 @export var boost_max_speed : float = 1000
+
+@export var full_boost_spent_time : float = 5
+@export var time_spent_boosting = 0
+@export var boost_recharge_rate = 0.05
+@export var boost_out_time = 2
+var boost_gone = false
+var boost_timer : Timer
+
 @export var speed_interpolation_rate : float = 5.0
 @export var rotation_speed : float = 360
 @export var sight_range : float = 400
@@ -94,6 +103,7 @@ func _ready() -> void:
 		queue_free()
 	if under_player_control:
 		faction = Faction.PLAYER
+	set_up_boost_timer()
 	add_child(obstacle_detector)
 	add_to_group("damageable")
 	
@@ -125,7 +135,7 @@ func _physics_process(delta) -> void:
 	if under_player_control:
 		register_player_input(delta)
 		compute_physics(delta)
-		
+		process_boost(delta)
 
 	else:
 		process_independenly(delta)
@@ -145,6 +155,34 @@ func _physics_process(delta) -> void:
 	move_and_slide()
 
 	update_rotation()
+
+
+func set_up_boost_timer():
+	boost_timer = Timer.new()
+	add_child(boost_timer)
+	boost_timer.wait_time = boost_out_time
+	boost_timer.timeout.connect(_on_boost_timer_timeout)
+	boost_timer.one_shot = true
+
+func process_boost(delta):
+	if !boost_gone:
+		if Input.is_action_pressed("ship_boost"):
+			time_spent_boosting += delta
+			Hud.boostbar.value = (full_boost_spent_time - time_spent_boosting)
+			if time_spent_boosting >= full_boost_spent_time:
+				boost_gone = true
+				boosting = false
+		else:
+			if time_spent_boosting > 0:
+				time_spent_boosting = min(full_boost_spent_time, time_spent_boosting - boost_recharge_rate)
+				time_spent_boosting = max(0,time_spent_boosting)
+				Hud.boostbar.value = (full_boost_spent_time- time_spent_boosting)
+
+
+func _on_boost_timer_timeout():
+	boost_gone = false
+	time_spent_boosting = full_boost_spent_time
+	Hud.boostbar.value = 0
 
 
 func compute_physics(delta : float) -> void:
@@ -175,8 +213,9 @@ func register_player_input(delta : float) -> void:
 	
 	
 	if Input.is_action_just_pressed("ship_boost"):
-		$boost.play()
-		$thrust.play()
+		if !boost_gone:
+			$boost.play()
+			$thrust.play()
 	if Input.is_action_just_pressed("ship_thrust"):
 		$thrust.play()
 	if Input.is_action_just_released("ship_thrust") or Input.is_action_just_released("ship_boost"):
@@ -189,7 +228,8 @@ func register_player_input(delta : float) -> void:
 		visual_data.set_item("thrusting", false)
 	
 	if Input.is_action_pressed("ship_boost"):
-		boost(delta)
+		if !boost_gone:
+			boost(delta)
 	elif Input.is_action_just_released("ship_boost") and boosting:
 		visual_data.set_item("boosting", false)
 		stop_boost()
@@ -199,7 +239,16 @@ func register_player_input(delta : float) -> void:
 		begin_shooting_constantly()
 	if Input.is_action_just_released("ship_shoot"):
 		stop_shooting_constantly()
+	if Input.is_action_just_released("ship_boost"):
+		if time_spent_boosting >= full_boost_spent_time:
+			if boost_timer.is_stopped():
+				boost_timer.start()
 
+
+func set_up_HUD():
+	Hud.healthbar.max_value = max_health
+	Hud.healthbar.value = health
+	
 
 
 func boost(delta : float) -> void:
@@ -263,6 +312,9 @@ func take_knockback(knock : Vector2) -> void:
 
 func take_damage(damage : float, _damage_type : String = "none") -> void:
 	health -= damage
+	if under_player_control:
+		Hud.healthbar.value = health
+
 
 func check_for_crash():
 	for i in get_slide_collision_count():
@@ -271,7 +323,7 @@ func check_for_crash():
 
 		if is_instance_valid(collision.get_collider()) and collision.get_collider().is_in_group("crashable"):
 			if current_veloctiy.length() > crash_speed_dmg:
-				die()
+				take_damage(max_health)
 				collision.get_collider().play_crash_sound()
 			collision.get_collider().play_hit_sound()
 			var knock_angle = collision.get_normal()
@@ -284,15 +336,17 @@ func check_for_crash():
 
 func die() -> void:
 	reset_visuals()
-	if explosion_scene != null and explosion_scene.can_instantiate():
+
+	if is_instance_valid(Main.world):
 		var explosion = explosion_scene.instantiate()
 		explosion.global_position = global_position
-		if is_instance_valid(Main.world):
-			Main.world.add_child(explosion)
-	else:
-		push_warning("ship ", name, " has no explosion scene")
-	if under_player_control:
-		Main.world.command_mode.enter()
+		Main.world.add_child(explosion)
+		if !under_player_control:
+			explosion.blow_up()
+		elif under_player_control:
+			explosion.blow_up_cam()
+			Hud.reset_animations()
+
 	if selected:
 		Main.world.command_mode.deselect_ship(self)
 	Main.world.ship_database.remove_ship(self)
@@ -307,8 +361,8 @@ func shoot():
 	
 func begin_shooting_constantly() -> void:
 	pass
-	
-	
+
+
 func stop_shooting_constantly() -> void:
 	pass
 

@@ -1,7 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://ctdduf6tq2qx6"]
-
-[ext_resource type="FontFile" uid="uid://b7fshl57fxwb4" path="res://menu/upheavtt.ttf" id="1_3d3ym"]
-[ext_resource type="FontFile" uid="uid://bdsft0luywd14" path="res://menu/04B_20__.TTF" id="2_2p4en"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://ctdduf6tq2qx6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2hbm"]
 bg_color = Color(0.270588, 0.0117647, 0.152941, 1)
@@ -42,17 +39,17 @@ Button/colors/font_hover_color = Color(1, 0.0196078, 0.27451, 1)
 Button/colors/font_hover_pressed_color = Color(1, 0.0196078, 0.27451, 1)
 Button/colors/font_pressed_color = Color(0.4, 0.0588235, 0.192157, 1)
 Button/colors/icon_focus_color = Color(1, 0.0196078, 0.27451, 1)
-Button/fonts/font = ExtResource("1_3d3ym")
+Button/fonts/font = null
 Button/styles/hover = SubResource("StyleBoxFlat_t2hbm")
 Button/styles/normal = SubResource("StyleBoxFlat_a73l1")
 Button/styles/pressed = SubResource("StyleBoxFlat_1mytw")
 Label/colors/font_color = Color(0.4, 0.0588235, 0.192157, 1)
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/constants/outline_size = 2
-Label/fonts/font = ExtResource("1_3d3ym")
+Label/fonts/font = null
 Label/styles/normal = SubResource("StyleBoxFlat_bpdow")
 Panel/styles/panel = SubResource("StyleBoxFlat_aypim")
 ProgressBar/colors/font_color = Color(1, 0.0196078, 0.27451, 1)
-ProgressBar/fonts/font = ExtResource("2_2p4en")
+ProgressBar/fonts/font = null
 ProgressBar/styles/background = SubResource("StyleBoxFlat_q24yv")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_p8xpp")

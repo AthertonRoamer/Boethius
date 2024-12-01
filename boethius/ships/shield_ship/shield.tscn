@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bonw3e76ml24p"]
+[gd_scene load_steps=11 format=3 uid="uid://bonw3e76ml24p"]
 
 [ext_resource type="Texture2D" uid="uid://bu58dpa1lockc" path="res://art/Shield.png" id="1_aqndv"]
 [ext_resource type="Script" path="res://ships/shield_ship/shield.gd" id="1_f3noq"]
@@ -7,16 +7,111 @@
 [ext_resource type="AudioStream" uid="uid://cw0h1trbh5r42" path="res://sound/asteroids/hit-rock-02-266304.mp3" id="5_yirv7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1s124"]
-radius = 32.0624
+radius = 36.3034
+
+
+[sub_resource type="Animation" id="Animation_jyhip"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shield_image:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3mfmo"]
+resource_name = "activate"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shield_image:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.329877, 5.09824),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(3, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_id4fd"]
+resource_name = "deactivate"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shield_image:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(4.28709, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gu4jt"]
+_data = {
+"RESET": SubResource("Animation_jyhip"),
+"activate": SubResource("Animation_3mfmo"),
+"deactivate": SubResource("Animation_id4fd")
+}
 
 [node name="shield" type="CharacterBody2D"]
+z_index = 2
+z_as_relative = false
 collision_layer = 0
-collision_mask = 26
+collision_mask = 0
+
 script = ExtResource("1_f3noq")
+starting_health = 300
 
 [node name="shield_image" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(10, 10)
+scale = Vector2(3, 3)
 texture = ExtResource("1_aqndv")
 hframes = 2
 
@@ -39,5 +134,16 @@ max_distance = 1000.0
 
 [node name="sound_timer" type="Timer" parent="."]
 one_shot = true
+
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gu4jt")
+}
+
+[node name="activate" type="AudioStreamPlayer2D" parent="."]
+
+[node name="deactivate" type="AudioStreamPlayer2D" parent="."]
+
 
 [connection signal="timeout" from="sound_timer" to="." method="_on_sound_timer_timeout"]

@@ -1,14 +1,18 @@
+
 [gd_scene load_steps=63 format=4 uid="uid://dn6elo7vpye1c"]
+
 
 [ext_resource type="Script" path="res://ships/basic_ship/basic_ship.gd" id="1_233k0"]
 [ext_resource type="Gradient" uid="uid://dxbpa3wy4kkya" path="res://art/player_boost_gradient.tres" id="2_jep4j"]
 [ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_va7p6"]
 [ext_resource type="Script" path="res://ships/basic_ship/fire.gd" id="3_eog6w"]
+[ext_resource type="Texture2D" uid="uid://btyjlvpv16u0v" path="res://art/icon.svg" id="3_m2w2n"]
 [ext_resource type="PackedScene" uid="uid://do4o0k42eixaw" path="res://ships/ship_state_machine/ship_state_machine.tscn" id="3_q4maa"]
 [ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="4_0rp6a"]
 [ext_resource type="Script" path="res://ships/basic_ship/enemy_fire.gd" id="4_4jsor"]
 [ext_resource type="Script" path="res://ships/basic_ship/enemy_boost.gd" id="4_th7u7"]
 [ext_resource type="Script" path="res://ships/generic_states/circle.gd" id="5_fvppf"]
+[ext_resource type="Texture2D" uid="uid://uf55r0ulcrpc" path="res://art/Ships.png" id="7_0t6qa"]
 [ext_resource type="Script" path="res://ships/generic_states/follow_mouse.gd" id="7_3msbn"]
 [ext_resource type="PackedScene" uid="uid://b7ah13672ulr8" path="res://ships/selected_shader/selected_shader.tscn" id="8_2xw5y"]
 [ext_resource type="PackedScene" uid="uid://b16d8fcohve56" path="res://ships/ship_area/ship_area.tscn" id="8_05l4c"]
@@ -66,9 +70,6 @@ color_ramp = SubResource("GradientTexture1D_3w1nc")
 alpha_curve = SubResource("CurveTexture_48ebc")
 emission_curve = SubResource("CurveTexture_4q0gf")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c4a68"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
-
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7728x"]
 resource_local_to_scene = true
 particle_flag_disable_z = true
@@ -84,9 +85,6 @@ color_ramp = SubResource("GradientTexture1D_3w1nc")
 alpha_curve = SubResource("CurveTexture_48ebc")
 emission_curve = SubResource("CurveTexture_4q0gf")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_akv2g"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
-
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hth4b"]
 resource_local_to_scene = true
 particle_flag_disable_z = true
@@ -101,9 +99,6 @@ scale_curve = SubResource("CurveTexture_wyopl")
 color_ramp = SubResource("GradientTexture1D_3w1nc")
 alpha_curve = SubResource("CurveTexture_48ebc")
 emission_curve = SubResource("CurveTexture_4q0gf")
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kotcs"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
 [sub_resource type="Gradient" id="Gradient_phvpi"]
 colors = PackedColorArray(0.0470588, 0.901961, 0.94902, 1, 0, 0, 0, 1)
@@ -126,9 +121,6 @@ color_ramp = SubResource("GradientTexture1D_y7vnx")
 alpha_curve = SubResource("CurveTexture_48ebc")
 emission_curve = SubResource("CurveTexture_4q0gf")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c75ca"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
-
 [sub_resource type="Gradient" id="Gradient_5uipf"]
 colors = PackedColorArray(0.0470588, 0.901961, 0.94902, 1, 0, 0, 0, 1)
 
@@ -150,9 +142,6 @@ color_ramp = SubResource("GradientTexture1D_0oqqn")
 alpha_curve = SubResource("CurveTexture_48ebc")
 emission_curve = SubResource("CurveTexture_4q0gf")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u3dir"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
-
 [sub_resource type="Gradient" id="Gradient_wujah"]
 colors = PackedColorArray(0.0470588, 0.901961, 0.94902, 1, 0, 0, 0, 1)
 
@@ -173,12 +162,6 @@ scale_curve = SubResource("CurveTexture_wyopl")
 color_ramp = SubResource("GradientTexture1D_2p8iq")
 alpha_curve = SubResource("CurveTexture_48ebc")
 emission_curve = SubResource("CurveTexture_4q0gf")
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v8vlh"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_alpew"]
-load_path = "res://.godot/imported/Ships.png-a79435ddc1b1eeee2f87818eaaed4e55.ctex"
 
 [sub_resource type="Shader" id="Shader_yo7lj"]
 code = "// Flashing Shader
@@ -259,9 +242,6 @@ shader_parameter/flash_amount = 0.0
 shader_parameter/flash_speed = 1.0
 shader_parameter/transparency = 0.0
 shader_parameter/intensity = 1.0
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_snwgn"]
-load_path = "res://.godot/imported/Ships.png-a79435ddc1b1eeee2f87818eaaed4e55.ctex"
 
 [sub_resource type="Shader" id="Shader_yg06u"]
 code = "// Flashing Shader
@@ -577,7 +557,6 @@ loop = true
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_233k0")
-explosion_scene = ExtResource("12_m6u1j")
 rotation_speed = 180.0
 sight_range = 750.0
 
@@ -588,7 +567,7 @@ visible = false
 position = Vector2(-10, -17)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wjaof")
-texture = SubResource("CompressedTexture2D_c4a68")
+texture = ExtResource("3_m2w2n")
 lifetime = 0.5
 local_coords = true
 script = ExtResource("3_eog6w")
@@ -598,7 +577,7 @@ visible = false
 position = Vector2(-10, 17)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_7728x")
-texture = SubResource("CompressedTexture2D_akv2g")
+texture = ExtResource("3_m2w2n")
 lifetime = 0.5
 local_coords = true
 script = ExtResource("3_eog6w")
@@ -608,7 +587,7 @@ visible = false
 position = Vector2(-10, 0)
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_hth4b")
-texture = SubResource("CompressedTexture2D_kotcs")
+texture = ExtResource("3_m2w2n")
 lifetime = 0.5
 local_coords = true
 script = ExtResource("2_va7p6")
@@ -618,7 +597,7 @@ visible = false
 position = Vector2(-13, -19)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_645os")
-texture = SubResource("CompressedTexture2D_c75ca")
+texture = ExtResource("3_m2w2n")
 lifetime = 0.5
 local_coords = true
 script = ExtResource("4_4jsor")
@@ -628,7 +607,7 @@ visible = false
 position = Vector2(-13, 19)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_80dav")
-texture = SubResource("CompressedTexture2D_u3dir")
+texture = ExtResource("3_m2w2n")
 lifetime = 0.5
 local_coords = true
 script = ExtResource("4_4jsor")
@@ -638,7 +617,7 @@ visible = false
 position = Vector2(-17, 0)
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_rhjb0")
-texture = SubResource("CompressedTexture2D_v8vlh")
+texture = ExtResource("3_m2w2n")
 lifetime = 0.5
 local_coords = true
 script = ExtResource("4_th7u7")
@@ -647,7 +626,7 @@ script = ExtResource("4_th7u7")
 texture_filter = 1
 position = Vector2(11, 0)
 scale = Vector2(1.65, 1.65)
-texture = SubResource("CompressedTexture2D_alpew")
+texture = ExtResource("7_0t6qa")
 hframes = 8
 vframes = 2
 
@@ -656,7 +635,7 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_67vke")
 position = Vector2(11, 0)
 scale = Vector2(1.65, 1.65)
-texture = SubResource("CompressedTexture2D_snwgn")
+texture = ExtResource("7_0t6qa")
 hframes = 8
 vframes = 2
 
@@ -737,6 +716,7 @@ libraries = {
 }
 
 [node name="death" parent="." instance=ExtResource("12_m6u1j")]
+texture = null
 
 [node name="ShipWeightDebugger" parent="." instance=ExtResource("17_jn7rj")]
 visible = false

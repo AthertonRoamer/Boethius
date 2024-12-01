@@ -9,9 +9,13 @@ extends Ship
 func _ready() -> void:
 	super()
 	if faction == Faction.ENEMY:
+		set_collision_mask_value(5,true)
 		$ship_sprite.frame = 1
 		$damage_shader.frame = 1
 	else:
+
+		set_collision_mask_value(4,true)
+
 		$ship_sprite.frame = 0
 		$damage_shader.frame = 0
 
@@ -37,6 +41,10 @@ func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 
 
 func take_damage(damage : float, _damage_type : String = "none") -> void:
+	health -= damage
+	if under_player_control:
+		Hud.healthbar.value = health
+		if health < (max_health/2.0):
+			Hud.low_health_warning()
 	$AnimationPlayer.play("dmg")
 	$damage.play()
-	health -= damage

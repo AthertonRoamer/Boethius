@@ -19,14 +19,13 @@ func _ready() -> void:
 
 func shoot():
 	gun1.fire()
-	$shoot.play()
-	$beam.play()
+
 
 
 func release_laser() -> void:
 	gun1.release_laser()
-	$shoot.stop()
-	$beam.stop()
+	#$shoot.stop()
+	#$beam.stop()
 
 
 func register_player_input(delta : float) -> void:
@@ -57,10 +56,13 @@ func register_player_input(delta : float) -> void:
 	
 	if Input.is_action_pressed("ship_shoot"):
 		aim_mode = true
-		shoot()
+		begin_shooting_constantly()
 	else:
 		aim_mode = false
 		release_laser()
+	
+	if Input.is_action_just_released("ship_shoot"):
+		stop_shooting_constantly()
 
 
 func take_damage(damage : float, _damage_type : String = "none") -> void:
@@ -71,3 +73,6 @@ func take_damage(damage : float, _damage_type : String = "none") -> void:
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	match _anim_name:
 		"dmg"   : $AnimationPlayer.play("RESET")
+
+func begin_shooting_constantly() -> void:
+	pass
