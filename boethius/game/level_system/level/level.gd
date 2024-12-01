@@ -9,7 +9,8 @@ var command_mode_scene : PackedScene = preload("res://game/command_mode/command_
 var ship_database : ShipDatabase = ShipDatabase.new()
 var outcome_tracker : OutcomeTracker = OutcomeTracker.new()
 @onready var shop : Shop = $Shop
-var phase_index : int = 0
+var phase_index : int = -1
+var movement_permitted : bool = false
 
 @export var friendly_spawn : SpawnPoint 
 @export var enemy_spawn : SpawnPoint
@@ -28,14 +29,22 @@ func _ready() -> void:
 	
 	
 func reslove_next_phase() -> void:
+	phase_index += 1
 	match phase_index:
 		0: #shop phase
 			get_tree().paused = true
 			shop.activate()
-		1: #spawn and play game
+		1: #spawn 
 			shop.deactivate()
-			get_tree().paused = false
 			friendly_spawn.fleet = shop.player_fleet
 			friendly_spawn.spawn()
 			enemy_spawn.spawn()
-	phase_index += 1
+			reslove_next_phase()
+		2: #plan phase
+			get_tree().paused = false
+			command_mode.pre_game_activate()
+		3:
+			movement_permitted = true
+			command_mode.pre_game_deactivate()
+			get_tree().paused = false
+	

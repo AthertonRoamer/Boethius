@@ -23,6 +23,18 @@ var not_available = false
 @onready var waypoint_master : WayPointMaster = $WaypointMaster
 @onready var ship_selector : ShipSelector = $ShipSelector
 
+
+func pre_game_activate() -> void:
+	$CanvasLayer.layer = 4
+	process_mode = ProcessMode.PROCESS_MODE_ALWAYS
+	enter()
+	
+	
+func pre_game_deactivate() -> void:
+	$CanvasLayer.layer = -2
+	process_mode = ProcessMode.PROCESS_MODE_INHERIT
+	$CanvasLayer.visible = false
+
 func enter() -> void:
 	if not enabled and not not_available:
 		waypoint_master.active = true
@@ -110,3 +122,7 @@ func _draw() -> void:
 func _ready() -> void:
 	enter()
 			
+
+
+func _on_button_pressed() -> void:
+	Main.world.reslove_next_phase()

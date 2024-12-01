@@ -30,3 +30,18 @@ func _ready() -> void:
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	queue_free()
+	
+	
+func effect_body(body : Node2D) -> void:
+	var extinguish_triggered : bool = false
+	if body.get("faction") == faction:
+		return
+	if body.is_in_group("damageable"):
+		body.take_damage(damage, damage_type)
+		hit_entities.append(body)
+		extinguish_triggered = true
+	if body.is_in_group("knockable") and impact_knockback > 0:
+		body.take_knockback(impact_knockback * velocity.normalized())
+		extinguish_triggered = true
+	if extinguish_on_effect_body and extinguish_triggered:
+		extinguish()
