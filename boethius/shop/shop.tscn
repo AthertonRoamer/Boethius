@@ -1,0 +1,89 @@
+[gd_scene load_steps=9 format=3 uid="uid://dcjqjmcyqvlhh"]
+
+[ext_resource type="Script" path="res://shop/shop.gd" id="1_j38f1"]
+[ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://art/BOETHIUS_THEME.tres" id="2_7w4s8"]
+[ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="2_pd6c3"]
+[ext_resource type="Resource" uid="uid://dqm4uojftwqoo" path="res://ships/basic_ship/basic_ship_data.tres" id="3_c2ogs"]
+[ext_resource type="Script" path="res://shop/credits_label.gd" id="3_m8na3"]
+[ext_resource type="Resource" uid="uid://q27pgqwrmx7c" path="res://ships/laser_ship/laser_ship_data.tres" id="4_4j08u"]
+[ext_resource type="Resource" uid="uid://c8x7n5cg4twr8" path="res://ships/missile_ship/missile_ship_data.tres" id="5_sply4"]
+[ext_resource type="Script" path="res://shop/info_holder.gd" id="8_iuh56"]
+
+[node name="Shop" type="CanvasLayer" node_paths=PackedStringArray("info_holder", "cred_label")]
+layer = 3
+script = ExtResource("1_j38f1")
+available_ships = Array[ExtResource("2_pd6c3")]([ExtResource("3_c2ogs"), ExtResource("4_4j08u"), ExtResource("5_sply4")])
+info_holder = NodePath("Control/InfoHolder")
+cred_label = NodePath("Control/CreditsLabel")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_7w4s8")
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CreditsLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.159
+anchor_top = 0.083
+anchor_right = 0.159
+anchor_bottom = 0.083
+offset_left = -71.168
+offset_top = -22.784
+offset_right = 71.832
+offset_bottom = 13.216
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_m8na3")
+
+[node name="GridContainer" type="GridContainer" parent="Control"]
+layout_mode = 2
+anchor_left = 0.096
+anchor_top = 0.119
+anchor_right = 0.096
+anchor_bottom = 0.119
+offset_left = 0.407997
+offset_top = -0.112
+offset_right = 556.408
+offset_bottom = 434.888
+columns = 3
+
+[node name="StartGame" type="Button" parent="Control"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+anchor_left = 0.09
+anchor_top = 0.872
+anchor_right = 0.931
+anchor_bottom = 0.872
+offset_left = 0.319992
+offset_top = -25.056
+offset_right = 0.487915
+offset_bottom = 24.944
+size_flags_vertical = 8
+text = "Start Game"
+
+[node name="InfoHolder" type="Control" parent="Control"]
+layout_mode = 1
+anchor_left = 0.601
+anchor_top = 0.128
+anchor_right = 0.923
+anchor_bottom = 0.778
+offset_left = -0.35199
+offset_top = 0.0559998
+offset_right = -0.296021
+offset_bottom = -0.144043
+script = ExtResource("8_iuh56")
+
+[connection signal="pressed" from="Control/StartGame" to="." method="_on_start_game_pressed"]

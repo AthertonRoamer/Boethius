@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://4gjmloo0js8e"]
+
+[ext_resource type="Script" path="res://shop/ship_button_system.gd" id="1_hghla"]
+[ext_resource type="Texture2D" uid="uid://cemwigan82p5i" path="res://ship_art/Ship1.png" id="2_jjdao"]
+
+[node name="ShipButtonSystem" type="VBoxContainer"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_hghla")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_jjdao")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Up" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Up"
+
+[node name="Down" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Down"
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "   "
+
+[node name="Count" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Up" to="." method="_on_up_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Down" to="." method="_on_down_pressed"]
