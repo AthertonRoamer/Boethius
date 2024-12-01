@@ -11,8 +11,8 @@ var outcome_tracker : OutcomeTracker = OutcomeTracker.new()
 
 func _init() -> void:
 	Main.world = self
-	
-	
+
+
 func _ready() -> void:
 	command_mode = command_mode_scene.instantiate()
 	command_mode.level = self

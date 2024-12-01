@@ -267,7 +267,6 @@ loop = true
 [node name="MissileShip" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_wggi2")
-explosion_scene = ExtResource("11_ne02d")
 
 [node name="Fire" type="GPUParticles2D" parent="."]
 position = Vector2(-17, -34)
@@ -341,10 +340,10 @@ id = "circle"
 
 [node name="FollowMouse" type="Node" parent="ShipStateMachine"]
 script = ExtResource("7_gupu5")
-first_active_state = true
 
 [node name="DefendPoint" type="Node" parent="ShipStateMachine"]
 script = ExtResource("8_88c54")
+first_active_state = true
 
 [node name="Shoot" type="Node" parent="ShipStateMachine"]
 script = ExtResource("9_egwed")

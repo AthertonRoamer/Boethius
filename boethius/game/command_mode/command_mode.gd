@@ -24,7 +24,7 @@ var not_available = false
 @onready var ship_selector : ShipSelector = $ShipSelector
 
 func enter() -> void:
-	if not enabled not not_available::
+	if not enabled and not not_available:
 		waypoint_master.active = true
 
 		enabled = true

@@ -1,26 +1,26 @@
-[gd_scene load_steps=52 format=3 uid="uid://i2xcw82s5paj"]
+[gd_scene load_steps=53 format=3 uid="uid://ckr1k343ggrxv"]
 
-[ext_resource type="Script" path="res://ships/heavy_A/heavy_a.gd" id="1_lro4a"]
-[ext_resource type="Gradient" uid="uid://dxbpa3wy4kkya" path="res://art/player_boost_gradient.tres" id="3_6y6sg"]
-[ext_resource type="Script" path="res://ships/basic_ship/fire.gd" id="4_qyuif"]
-[ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="5_yg480"]
-[ext_resource type="Script" path="res://ships/basic_ship/enemy_fire.gd" id="6_qy03o"]
-[ext_resource type="Script" path="res://ships/basic_ship/enemy_boost.gd" id="7_eh0hy"]
-[ext_resource type="Shader" path="res://ships/basic_ship/damage.gdshader" id="8_lhmcb"]
-[ext_resource type="Texture2D" uid="uid://dxx33fetgybyg" path="res://art/Heavy.png" id="8_uojxa"]
-[ext_resource type="PackedScene" uid="uid://do4o0k42eixaw" path="res://ships/ship_state_machine/ship_state_machine.tscn" id="9_7ggaa"]
-[ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="10_p6fbi"]
-[ext_resource type="Script" path="res://ships/generic_states/follow_mouse.gd" id="11_wgxc7"]
-[ext_resource type="Script" path="res://ships/generic_states/circle.gd" id="12_p1i7p"]
-[ext_resource type="Script" path="res://ships/generic_states/defend.gd" id="13_04bbe"]
-[ext_resource type="Script" path="res://ships/generic_states/shoot.gd" id="14_bk0a1"]
-[ext_resource type="PackedScene" uid="uid://b16d8fcohve56" path="res://ships/ship_area/ship_area.tscn" id="15_mcwel"]
-[ext_resource type="Script" path="res://ships/ship_camera.gd" id="16_8gfso"]
-[ext_resource type="Script" path="res://ships/basic_ship/smg.gd" id="16_q7gj5"]
-[ext_resource type="PackedScene" uid="uid://jnajxsxwxoer" path="res://ships/basic_ship/projectile/smg_bullet.tscn" id="17_wi7e5"]
-[ext_resource type="Script" path="res://ships/basic_ship/ship_weight_debugger.gd" id="18_jw3el"]
-[ext_resource type="PackedScene" uid="uid://gfmjiblkd7jf" path="res://turret/turret.tscn" id="19_o86k0"]
-[ext_resource type="Texture2D" uid="uid://csywqnh36wcu7" path="res://art/Turrets.png" id="20_ju0ug"]
+[ext_resource type="Script" path="res://ships/heavy_B/heavy_b.gd" id="1_ju2ya"]
+[ext_resource type="Gradient" uid="uid://dxbpa3wy4kkya" path="res://art/player_boost_gradient.tres" id="2_g1vls"]
+[ext_resource type="Script" path="res://ships/basic_ship/fire.gd" id="3_qai0q"]
+[ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="4_wpfyd"]
+[ext_resource type="Script" path="res://ships/basic_ship/enemy_fire.gd" id="5_st0g0"]
+[ext_resource type="Script" path="res://ships/basic_ship/enemy_boost.gd" id="6_ykr8x"]
+[ext_resource type="Texture2D" uid="uid://dxx33fetgybyg" path="res://art/Heavy.png" id="7_cuu84"]
+[ext_resource type="Texture2D" uid="uid://csywqnh36wcu7" path="res://art/Turrets.png" id="8_2savm"]
+[ext_resource type="Shader" path="res://ships/basic_ship/damage.gdshader" id="9_4583i"]
+[ext_resource type="PackedScene" uid="uid://do4o0k42eixaw" path="res://ships/ship_state_machine/ship_state_machine.tscn" id="10_gptgf"]
+[ext_resource type="Script" path="res://ships/generic_states/boid_state.gd" id="11_e6xln"]
+[ext_resource type="Script" path="res://ships/generic_states/follow_mouse.gd" id="12_wc2vp"]
+[ext_resource type="Script" path="res://ships/generic_states/circle.gd" id="13_qwl36"]
+[ext_resource type="Script" path="res://ships/generic_states/defend.gd" id="14_5l5y3"]
+[ext_resource type="Script" path="res://ships/generic_states/shoot.gd" id="15_sxsrw"]
+[ext_resource type="Script" path="res://ships/ship_camera.gd" id="16_kfw8l"]
+[ext_resource type="Script" path="res://ships/basic_ship/smg.gd" id="17_aj8vi"]
+[ext_resource type="PackedScene" uid="uid://jnajxsxwxoer" path="res://ships/basic_ship/projectile/smg_bullet.tscn" id="18_4sj0y"]
+[ext_resource type="Script" path="res://ships/basic_ship/ship_weight_debugger.gd" id="19_uw58m"]
+[ext_resource type="PackedScene" uid="uid://b16d8fcohve56" path="res://ships/ship_area/ship_area.tscn" id="20_mtxn8"]
+[ext_resource type="PackedScene" uid="uid://gfmjiblkd7jf" path="res://turret/turret.tscn" id="21_3yypf"]
 
 [sub_resource type="Curve" id="Curve_xjb1h"]
 _data = [Vector2(0, 0.615385), 0.0, 0.0, 0, 0, Vector2(0.846667, 0), 0.0, 0.0, 0, 0]
@@ -31,7 +31,7 @@ curve = SubResource("Curve_xjb1h")
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_isw5s"]
 resource_local_to_scene = true
-gradient = ExtResource("3_6y6sg")
+gradient = ExtResource("2_g1vls")
 
 [sub_resource type="Curve" id="Curve_7blia"]
 max_value = 12.0
@@ -176,7 +176,7 @@ load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.cte
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_67vke"]
 resource_local_to_scene = true
-shader = ExtResource("8_lhmcb")
+shader = ExtResource("9_4583i")
 shader_parameter/color_a = Color(0.439216, 0.054902, 0.196078, 1)
 shader_parameter/color_b = Color(0.4, 0.0588235, 0.192157, 1)
 shader_parameter/colors_affect_alpha = true
@@ -186,8 +186,12 @@ shader_parameter/transparency = 0.0
 shader_parameter/intensity = 1.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a51ba"]
-radius = 80.7872
-height = 257.912
+radius = 75.0165
+height = 333.362
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gjhrf"]
+radius = 32.0255
+height = 109.973
 
 [sub_resource type="Animation" id="Animation_esfsr"]
 length = 0.001
@@ -262,205 +266,169 @@ _data = {
 "dmg": SubResource("Animation_eh7qf")
 }
 
-[node name="heavy_A" type="CharacterBody2D"]
+[node name="heavy_B" type="CharacterBody2D"]
 collision_mask = 2
-script = ExtResource("1_lro4a")
+script = ExtResource("1_ju2ya")
 inertia = 15.0
 max_health = 2000
 starting_health = 2000
-thrust_accel = 300.0
-max_speed = 100.0
-boost_max_speed = 200.0
-rotation_speed = 50.0
+thrust_accel = 350.0
+max_speed = 250.0
+boost_max_speed = 350.0
+rotation_speed = 60.0
 
 [node name="boosts" type="Node2D" parent="."]
 
 [node name="player_fire1" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-106, -84)
+position = Vector2(-150, -64)
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_wjaof")
 texture = SubResource("CompressedTexture2D_c4a68")
 lifetime = 0.5
 local_coords = true
-script = ExtResource("4_qyuif")
+script = ExtResource("3_qai0q")
 
 [node name="player_fire2" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-131, -52)
+position = Vector2(-134, -18)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_7728x")
 texture = SubResource("CompressedTexture2D_akv2g")
 lifetime = 0.5
 local_coords = true
-script = ExtResource("4_qyuif")
+script = ExtResource("3_qai0q")
 
 [node name="player_fire3" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-149, -24)
+position = Vector2(-134, 17)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wjaof")
 texture = SubResource("CompressedTexture2D_c4a68")
 lifetime = 0.5
 local_coords = true
-script = ExtResource("4_qyuif")
+script = ExtResource("3_qai0q")
 
 [node name="player_fire4" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-168, 1)
+position = Vector2(-150, 64)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wjaof")
 texture = SubResource("CompressedTexture2D_c4a68")
 lifetime = 0.5
 local_coords = true
-script = ExtResource("4_qyuif")
-
-[node name="player_fire5" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-150, 23)
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wjaof")
-texture = SubResource("CompressedTexture2D_c4a68")
-lifetime = 0.5
-local_coords = true
-script = ExtResource("4_qyuif")
-
-[node name="player_fire6" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-131, 51)
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wjaof")
-texture = SubResource("CompressedTexture2D_c4a68")
-lifetime = 0.5
-local_coords = true
-script = ExtResource("4_qyuif")
-
-[node name="player_fire7" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-104, 84)
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wjaof")
-texture = SubResource("CompressedTexture2D_c4a68")
-lifetime = 0.5
-local_coords = true
-script = ExtResource("4_qyuif")
+script = ExtResource("3_qai0q")
 
 [node name="player_boost" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-57, -130)
+position = Vector2(-150, -89)
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_hth4b")
 texture = SubResource("CompressedTexture2D_kotcs")
 lifetime = 0.5
 local_coords = true
-script = ExtResource("5_yg480")
+script = ExtResource("4_wpfyd")
 
 [node name="player_boost2" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-57, 130)
+position = Vector2(-150, 90)
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_hth4b")
 texture = SubResource("CompressedTexture2D_kotcs")
 lifetime = 0.5
 local_coords = true
-script = ExtResource("5_yg480")
+script = ExtResource("4_wpfyd")
 
 [node name="enemy_fire1" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-105, -84)
+position = Vector2(-150, -64)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_645os")
 texture = SubResource("CompressedTexture2D_c75ca")
 lifetime = 0.5
 local_coords = true
-script = ExtResource("6_qy03o")
+script = ExtResource("5_st0g0")
 
 [node name="enemy_fire2" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-134, -52)
+position = Vector2(-134, -18)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_80dav")
 texture = SubResource("CompressedTexture2D_u3dir")
 lifetime = 0.5
 local_coords = true
-script = ExtResource("6_qy03o")
+script = ExtResource("5_st0g0")
 
 [node name="enemy_fire3" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-150, -23)
+position = Vector2(-134, 17)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_80dav")
 texture = SubResource("CompressedTexture2D_u3dir")
 lifetime = 0.5
 local_coords = true
-script = ExtResource("6_qy03o")
+script = ExtResource("5_st0g0")
 
 [node name="enemy_fire4" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-168, 1)
+position = Vector2(-150, 64)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_80dav")
 texture = SubResource("CompressedTexture2D_u3dir")
 lifetime = 0.5
 local_coords = true
-script = ExtResource("6_qy03o")
-
-[node name="enemy_fire5" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-150, 23)
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_80dav")
-texture = SubResource("CompressedTexture2D_u3dir")
-lifetime = 0.5
-local_coords = true
-script = ExtResource("6_qy03o")
-
-[node name="enemy_fire6" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-132, 51)
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_80dav")
-texture = SubResource("CompressedTexture2D_u3dir")
-lifetime = 0.5
-local_coords = true
-script = ExtResource("6_qy03o")
-
-[node name="enemy_fire7" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-104, 85)
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_80dav")
-texture = SubResource("CompressedTexture2D_u3dir")
-lifetime = 0.5
-local_coords = true
-script = ExtResource("6_qy03o")
+script = ExtResource("5_st0g0")
 
 [node name="enemy_boost" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-58, -130)
+position = Vector2(-150, -89)
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_rhjb0")
 texture = SubResource("CompressedTexture2D_v8vlh")
 lifetime = 0.5
 local_coords = true
-script = ExtResource("7_eh0hy")
+script = ExtResource("6_ykr8x")
 
 [node name="enemy_boost2" type="GPUParticles2D" parent="boosts"]
-position = Vector2(-61, 130)
+position = Vector2(-150, 90)
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_rhjb0")
 texture = SubResource("CompressedTexture2D_v8vlh")
 lifetime = 0.5
 local_coords = true
-script = ExtResource("7_eh0hy")
+script = ExtResource("6_ykr8x")
 
 [node name="ship_sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(11, 0)
 rotation = 1.5708
 scale = Vector2(1.65, 1.65)
-texture = ExtResource("8_uojxa")
+texture = ExtResource("7_cuu84")
 hframes = 8
-frame = 3
+frame = 5
 
 [node name="big_gun" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(69, -41)
+position = Vector2(52, -44)
 rotation = -1.5708
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("20_ju0ug")
+texture = ExtResource("8_2savm")
+hframes = 5
+frame = 4
+
+[node name="big_gun3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-55, -92)
+rotation = -1.5708
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("8_2savm")
+hframes = 5
+frame = 4
+
+[node name="big_gun4" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-55, 93)
+rotation = -1.5708
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("8_2savm")
 hframes = 5
 frame = 4
 
 [node name="big_gun2" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(69, 42)
+position = Vector2(53, 42)
 rotation = -1.5708
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("20_ju0ug")
+texture = ExtResource("8_2savm")
 hframes = 5
 frame = 4
 
@@ -470,57 +438,79 @@ material = SubResource("ShaderMaterial_67vke")
 position = Vector2(11, 0)
 rotation = 1.5708
 scale = Vector2(1.65, 1.65)
-texture = ExtResource("8_uojxa")
+texture = ExtResource("7_cuu84")
 hframes = 8
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.14441e-05, 0)
+position = Vector2(18, 0)
 rotation = 1.57509
 shape = SubResource("CapsuleShape2D_a51ba")
 
-[node name="ShipStateMachine" parent="." instance=ExtResource("9_7ggaa")]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-103, -75)
+rotation = 1.57509
+shape = SubResource("CapsuleShape2D_gjhrf")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(-100, 74)
+rotation = 1.57509
+shape = SubResource("CapsuleShape2D_gjhrf")
+
+[node name="ShipStateMachine" parent="." instance=ExtResource("10_gptgf")]
 
 [node name="BoidState" type="Node" parent="ShipStateMachine"]
-script = ExtResource("10_p6fbi")
+script = ExtResource("11_e6xln")
 
 [node name="FollowMouse" type="Node" parent="ShipStateMachine"]
-script = ExtResource("11_wgxc7")
+script = ExtResource("12_wc2vp")
 id = "follow_mouse"
 
 [node name="Circle" type="Node" parent="ShipStateMachine"]
-script = ExtResource("12_p1i7p")
+script = ExtResource("13_qwl36")
 id = "circle"
 
 [node name="Defend" type="Node" parent="ShipStateMachine"]
-script = ExtResource("13_04bbe")
+script = ExtResource("14_5l5y3")
 id = "defend"
 first_active_state = true
 
 [node name="Shoot" type="Node" parent="ShipStateMachine"]
-script = ExtResource("14_bk0a1")
+script = ExtResource("15_sxsrw")
 id = "shoot"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
-script = ExtResource("16_8gfso")
+script = ExtResource("16_kfw8l")
 
 [node name="gun1" type="Node2D" parent="." node_paths=PackedStringArray("fire_position_node")]
-position = Vector2(114, -41)
-script = ExtResource("16_q7gj5")
-projectile_scene = ExtResource("17_wi7e5")
+position = Vector2(96, -44)
+script = ExtResource("17_aj8vi")
+projectile_scene = ExtResource("18_4sj0y")
 fire_position_node = NodePath(".")
 
 [node name="gun2" type="Node2D" parent="." node_paths=PackedStringArray("fire_position_node")]
-position = Vector2(115, 42)
-script = ExtResource("16_q7gj5")
-projectile_scene = ExtResource("17_wi7e5")
+position = Vector2(96, 43)
+script = ExtResource("17_aj8vi")
+projectile_scene = ExtResource("18_4sj0y")
+fire_position_node = NodePath(".")
+
+[node name="gun3" type="Node2D" parent="." node_paths=PackedStringArray("fire_position_node")]
+position = Vector2(-10, -92)
+script = ExtResource("17_aj8vi")
+projectile_scene = ExtResource("18_4sj0y")
+fire_position_node = NodePath(".")
+
+[node name="gun4" type="Node2D" parent="." node_paths=PackedStringArray("fire_position_node")]
+position = Vector2(-10, 93)
+script = ExtResource("17_aj8vi")
+projectile_scene = ExtResource("18_4sj0y")
 fire_position_node = NodePath(".")
 
 [node name="ShipWeightDebugger" type="Node2D" parent="."]
 visible = false
-script = ExtResource("18_jw3el")
+script = ExtResource("19_uw58m")
 highest_color = Color(0, 0, 0.686275, 1)
 scale_factor = 50.0
 
@@ -529,30 +519,18 @@ libraries = {
 "": SubResource("AnimationLibrary_rwwpy")
 }
 
-[node name="ShipArea" parent="." instance=ExtResource("15_mcwel")]
+[node name="ShipArea" parent="." instance=ExtResource("20_mtxn8")]
 
-[node name="Turret" parent="." instance=ExtResource("19_o86k0")]
-position = Vector2(41, -99)
+[node name="Turret" parent="." instance=ExtResource("21_3yypf")]
+position = Vector2(-43, -64)
 
-[node name="Turret2" parent="." instance=ExtResource("19_o86k0")]
-position = Vector2(78, -85)
+[node name="Turret2" parent="." instance=ExtResource("21_3yypf")]
+position = Vector2(-6, -48)
 
-[node name="Turret3" parent="." instance=ExtResource("19_o86k0")]
-position = Vector2(107, -64)
+[node name="Turret3" parent="." instance=ExtResource("21_3yypf")]
+position = Vector2(-43, 64)
 
-[node name="Turret4" parent="." instance=ExtResource("19_o86k0")]
-position = Vector2(130, -36)
-
-[node name="Turret5" parent="." instance=ExtResource("19_o86k0")]
-position = Vector2(40, 98)
-
-[node name="Turret6" parent="." instance=ExtResource("19_o86k0")]
-position = Vector2(78, 84)
-
-[node name="Turret7" parent="." instance=ExtResource("19_o86k0")]
-position = Vector2(109, 59)
-
-[node name="Turret8" parent="." instance=ExtResource("19_o86k0")]
-position = Vector2(131, 35)
+[node name="Turret4" parent="." instance=ExtResource("21_3yypf")]
+position = Vector2(-6, 49)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

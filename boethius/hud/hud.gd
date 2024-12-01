@@ -22,9 +22,11 @@ func deactivate() -> void:
 	self.visible = false
 	layer = -1
 
+var overheatable = true
 func overheat_warning():
 	if $overheat_animator.current_animation != "overheat_warning":
 		$overheat_animator.play("overheat_warning")
+		$overheat_timer.start()
 
 func low_health_warning():
 	if $health_animator.current_animation != "low_health":
@@ -36,3 +38,7 @@ func reset_animations():
 	%overheatbar.value = 0
 	%healthbar.value = 0
 	%shieldbar.value = 0
+
+
+func _on_overheat_timer_timeout() -> void:
+	pass # Replace with function body.

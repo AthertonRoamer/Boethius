@@ -5,7 +5,7 @@ extends Area2D
 @export var speed : float
 @export var damage : int
 @export var damage_type : String
-@export var wielder : Ship
+@export var wielder : Node2D
 @export var extinguish_on_impact : bool
 @export var extinguish_on_effect_body : bool
 @export var duration_timer : Timer

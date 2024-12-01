@@ -650,3 +650,9 @@ parameters/looping = true
 stream = ExtResource("6_gk84b")
 volume_db = -13.565
 pitch_scale = 3.0
+
+[node name="overheat_timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="overheat_timer" to="." method="_on_overheat_timer_timeout"]
