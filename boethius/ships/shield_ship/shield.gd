@@ -38,11 +38,11 @@ func die() -> void:
 
 
 func activate():
-	pass
+	$AnimationPlayer.play("activate")
 
 
 func deactivate():
-	pass
+	$AnimationPlayer.play("deactivate")
 
 
 var sound_ready = true

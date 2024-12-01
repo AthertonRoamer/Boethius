@@ -59,6 +59,13 @@ var health : float = starting_health:
 
 @export var boost_accel : float = 600
 @export var boost_max_speed : float = 1000
+
+@export var full_boost_spent_time : float = 5
+@export var time_spent_boosting = 0
+@export var boost_recharge_rate = 0.1
+var boost_gone = false
+
+
 @export var speed_interpolation_rate : float = 5.0
 @export var rotation_speed : float = 360
 @export var sight_range : float = 400
@@ -123,7 +130,7 @@ func _physics_process(delta) -> void:
 	if under_player_control:
 		register_player_input(delta)
 		compute_physics(delta)
-		
+		process_boost(delta)
 
 	else:
 		process_independenly(delta)
@@ -143,6 +150,16 @@ func _physics_process(delta) -> void:
 	move_and_slide()
 
 	update_rotation()
+
+
+func process_boost(delta):
+	if Input.is_action_pressed("ship_boost"):
+		time_spent_boosting += delta
+		Hud.boostbar.value = (full_boost_spent_time - time_spent_boosting)
+	else:
+		if time_spent_boosting < full_boost_spent_time:
+			time_spent_boosting = min(full_boost_spent_time, time_spent_boosting - boost_recharge_rate)
+			Hud.boostbar.value = (full_boost_spent_time- time_spent_boosting)
 
 
 func compute_physics(delta : float) -> void:

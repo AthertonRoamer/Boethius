@@ -10,7 +10,7 @@ var overheated : bool = false
 @export var time_required_to_overheat : float = 3
 @export var time_spent_shooting : float = 0
 @export var cool_down_rate : float = 0.2
-@export var full_cool_down_time : float = 3
+@export var full_cool_down_time : float = 2.5
 var overheat_timer : Timer
 
 func _ready() -> void:
@@ -52,7 +52,7 @@ func _process(delta: float) -> void:
 		pass
 	
 	if overheated:
-		Hud.overheatbar
+		Hud.overheat_warning()
 
 
 func can_fire() -> bool:
@@ -72,5 +72,6 @@ func _on_ship_entered(ship : Ship) -> void:
 	if ship.under_player_control == true:
 		Hud.overheatbar.max_value = time_required_to_overheat
 		Hud.overheatbar.value = 0
-		print("yuas")
+		Hud.boostbar.max_value = ship.full_boost_spent_time
+		Hud.boostbar.value = ship.full_boost_spent_time
 	#pass
