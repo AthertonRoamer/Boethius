@@ -24,13 +24,15 @@ func _on_setup() -> void:
 
 
 func select_desired_direction() -> void:
-	#if is_instance_valid(get_ship()):
+	if is_instance_valid(waypoint):
 		if get_ship().global_position.distance_to(waypoint.global_position) <= waypoint_achieved_radius:
 			if waypoint.has_next_waypoint() and waypoint.next_waypoint != waypoint:
 				waypoint = waypoint.next_waypoint
 			else:
 				following = false
 		desired_direction = get_ship().global_position.direction_to(waypoint.global_position)
+	else:
+		following = false
 	
 	
 func set_waypoint(new_waypoint : WayPoint) -> void:
