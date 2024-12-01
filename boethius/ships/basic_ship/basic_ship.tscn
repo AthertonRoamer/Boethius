@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://dn6elo7vpye1c"]
+[gd_scene load_steps=63 format=4 uid="uid://dn6elo7vpye1c"]
 
 [ext_resource type="Script" path="res://ships/basic_ship/basic_ship.gd" id="1_233k0"]
 [ext_resource type="Gradient" uid="uid://dxbpa3wy4kkya" path="res://art/player_boost_gradient.tres" id="2_jep4j"]
@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://jnajxsxwxoer" path="res://ships/basic_ship/projectile/smg_bullet.tscn" id="10_0nv4q"]
 [ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_explosion.tscn" id="12_m6u1j"]
 [ext_resource type="Script" path="res://ships/ship_camera.gd" id="15_3r271"]
+[ext_resource type="Script" path="res://ships/generic_states/follow_waypoint.gd" id="15_qv6ev"]
+[ext_resource type="Script" path="res://ships/generic_states/idle.gd" id="16_2evlh"]
 [ext_resource type="PackedScene" uid="uid://bw1jqqaydcxqo" path="res://ships/weight_system/weight_debugger/ship_weight_debugger.tscn" id="17_jn7rj"]
 [ext_resource type="AudioStream" uid="uid://mwrnjn4ghntx" path="res://sound/ships/boost-100537.mp3" id="20_45y5d"]
 [ext_resource type="AudioStream" uid="uid://c0oqy72wmmsvj" path="res://sound/weapons/futuristic-smg-sound-effect-100378.mp3" id="21_vi7wr"]
@@ -702,6 +704,12 @@ first_active_state = true
 [node name="Shoot" type="Node" parent="ShipStateMachine"]
 script = ExtResource("9_w5jbb")
 id = "shoot"
+
+[node name="FollowWaypoint" type="Node" parent="ShipStateMachine"]
+script = ExtResource("15_qv6ev")
+
+[node name="Idle" type="Node" parent="ShipStateMachine"]
+script = ExtResource("16_2evlh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false

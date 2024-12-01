@@ -12,6 +12,8 @@ var previous_state_id : String = ""
 
 var states : Dictionary = {}
 #form::  key: state_id (String), value: state (EntityState)
+var past_states : Array = []
+
 
 
 func _ready() -> void:
@@ -65,3 +67,6 @@ func get_state(state_id : String) -> State:
 		return states[state_id]
 	else:
 		return null
+		
+		
+		

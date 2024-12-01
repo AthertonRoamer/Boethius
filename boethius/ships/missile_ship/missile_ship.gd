@@ -9,15 +9,21 @@ extends Ship
 @onready var gun6 = $gun6
 
 
+func register_player_input(delta : float) -> void:
+	super(delta)
+	if Input.is_action_pressed("ship_shoot"):
+		shoot()
+
+
 func shoot():
-	var mouse_pos = get_global_mouse_position() 
-	var direction_to_mouse = (mouse_pos - global_position).normalized()
-	gun1.projectile_direction = direction_to_mouse
-	gun2.projectile_direction = direction_to_mouse
-	gun3.projectile_direction = direction_to_mouse
-	gun4.projectile_direction = direction_to_mouse
-	gun5.projectile_direction = direction_to_mouse
-	gun6.projectile_direction = direction_to_mouse
+	#var mouse_pos = get_global_mouse_position() 
+	#var direction_to_mouse = (mouse_pos - global_position).normalized()
+	#gun1.projectile_direction = direction_to_mouse
+	#gun2.projectile_direction = direction_to_mouse
+	#gun3.projectile_direction = direction_to_mouse
+	#gun4.projectile_direction = direction_to_mouse
+	#gun5.projectile_direction = direction_to_mouse
+	#gun6.projectile_direction = direction_to_mouse
 	
 	gun1.fire()
 	gun2.fire()

@@ -3,9 +3,11 @@ extends State
 
 var desired_direction : Vector2 = Vector2.RIGHT #the literal direction the ship is trying to go right now, after obstacles and everything has been taken into account
 var direction_changed : bool = false
-var rotate_determinant : float = 0.97
+var rotate_determinant : float = 0.99
 var velocity_counter_threshold : float = 30
 var determinant : float = 0.5
+var new_thrust_determinant : float = 0.99
+
 
 func get_ship() -> Ship:
 	return state_machine.ship
@@ -18,11 +20,11 @@ func process_state(delta : float) -> void:
 	direction_changed = false
 	select_desired_direction() #where are we headed
 	desired_direction = get_direction_from_weight_system() #go the best route thats not blocked
-	if direction_changed:
+	if direction_changed and false:
 		adjust_direction_for_physics(delta) #figure out what direction to thrust so we actually go the right way
 	if should_rotate():
 		get_ship().rotate_toward_direction(desired_direction, delta)
-	if should_thrust():
+	if should_thrust(new_thrust_determinant):
 		get_ship().thrust(delta)
 	consider_changing_state()
 	

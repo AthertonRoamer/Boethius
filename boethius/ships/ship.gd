@@ -80,6 +80,7 @@ var state_machine : ShipStateMachine
 var ship_area : ShipArea
 var obstacle_detector : ObstacleDetector = ObstacleDetector.new()
 var weight_system : WeightSystem = WeightSystem.new()
+var order : Order = Order.new()
 
 signal selected_changed(selected : bool)
 var selected : bool = false:
@@ -115,6 +116,8 @@ func _ready() -> void:
 		set_collision_mask_value(5,true)
 	else:
 		set_collision_mask_value(4,true)
+		
+	order.ship = self
 
 
 func _physics_process(delta) -> void:
@@ -281,10 +284,13 @@ func check_for_crash():
 
 func die() -> void:
 	reset_visuals()
-	var explosion = explosion_scene.instantiate()
-	explosion.global_position = global_position
-	if is_instance_valid(Main.world):
-		Main.world.add_child(explosion)
+	if explosion_scene != null and explosion_scene.can_instantiate():
+		var explosion = explosion_scene.instantiate()
+		explosion.global_position = global_position
+		if is_instance_valid(Main.world):
+			Main.world.add_child(explosion)
+	else:
+		push_warning("ship ", name, " has no explosion scene")
 	if under_player_control:
 		Main.world.command_mode.enter()
 	if selected:

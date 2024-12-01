@@ -1,3 +1,4 @@
+class_name Shield
 extends CharacterBody2D
 
 
@@ -62,4 +63,3 @@ func play_crash_sound():
 
 func _on_sound_timer_timeout() -> void:
 	sound_ready = true
-

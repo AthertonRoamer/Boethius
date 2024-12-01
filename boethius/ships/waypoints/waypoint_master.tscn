@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmmq26il8ktn4"]
+
+[ext_resource type="Script" path="res://ships/waypoints/waypoint_master.gd" id="1_epyxp"]
+
+[node name="WaypointMaster" type="Node2D"]
+script = ExtResource("1_epyxp")

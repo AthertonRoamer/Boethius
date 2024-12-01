@@ -29,6 +29,8 @@ func _ready() -> void:
 	add_to_group("damageable")
 	add_to_group("knockable")
 	add_to_group("crashable")
+	set_collision_mask_value(4, true)
+	set_collision_mask_value(5, true)
 
 #func _physics_process(delta: float) -> void:
 	#var dir : Vector2 = velocity.normalized()
@@ -59,6 +61,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 func take_knockback(knock : Vector2) -> void:
 	velocity += knock/mass
 	pass
+
 
 func die() -> void:
 	var explosion = explosion_scene.instantiate()

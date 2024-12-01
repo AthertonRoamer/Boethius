@@ -3,6 +3,8 @@ extends StateMachine
 
 var ship : Ship
 
+
+
 func _ready() -> void:
 	super()
 	if get_parent() is Ship:
