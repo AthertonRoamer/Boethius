@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://jgxqujibaj5b"]
+[gd_scene load_steps=21 format=3 uid="uid://jgxqujibaj5b"]
 
 [ext_resource type="Script" path="res://world/tutorial/tutorial.gd" id="1_7bpfg"]
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space/space.tscn" id="1_cxtyd"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://bos66mom7yrro" path="res://world/asteroid/asteroid_med.tscn" id="13_243x6"]
 [ext_resource type="PackedScene" uid="uid://dcjqjmcyqvlhh" path="res://shop/shop.tscn" id="13_acpwn"]
 [ext_resource type="PackedScene" uid="uid://fpde8apg7q2f" path="res://world/asteroid/asteroid_big.tscn" id="14_txbab"]
-[ext_resource type="PackedScene" uid="uid://dn6elo7vpye1c" path="res://ships/basic_ship/basic_ship.tscn" id="16_aai64"]
 
 [sub_resource type="Resource" id="Resource_o0kur"]
 script = ExtResource("3_nl68g")
@@ -33,9 +32,8 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sfegj"]
 normal = Vector2(-0.999996, -0.00271738)
 
-[node name="Tutorial" type="Node2D" node_paths=PackedStringArray("ship", "command_mode_camera", "friendly_spawn", "enemy_spawn")]
+[node name="Tutorial" type="Node2D" node_paths=PackedStringArray("command_mode_camera", "friendly_spawn", "enemy_spawn")]
 script = ExtResource("1_7bpfg")
-ship = NodePath("BasicShip")
 command_mode_camera = NodePath("CommandCamera")
 friendly_spawn = NodePath("SpawnPoint")
 enemy_spawn = NodePath("SpawnPoint2")
@@ -322,7 +320,3 @@ shape = SubResource("WorldBoundaryShape2D_sfegj")
 
 [node name="Shop" parent="." instance=ExtResource("13_acpwn")]
 visible = false
-
-[node name="BasicShip" parent="." instance=ExtResource("16_aai64")]
-position = Vector2(578, 128)
-faction = 0

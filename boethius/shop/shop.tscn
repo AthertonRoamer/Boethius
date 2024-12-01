@@ -97,7 +97,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_bd416")
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 8
-columns = 4
+columns = 5
 
 [node name="Label2" type="Label" parent="Control/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)

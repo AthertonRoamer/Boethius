@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://baaluob8u3ca0"]
+[gd_scene load_steps=4 format=3 uid="uid://baaluob8u3ca0"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_hica5"]
 [ext_resource type="Script" path="res://game/game_level_manager.gd" id="2_erbt7"]
-[ext_resource type="PackedScene" uid="uid://jgxqujibaj5b" path="res://world/tutorial/tutorial.tscn" id="3_75tl4"]
 [ext_resource type="PackedScene" uid="uid://c45yj6q8tsgun" path="res://world/test_world/test_world.tscn" id="3_ckd7p"]
 
 [node name="Game" type="Node"]
@@ -10,4 +9,4 @@ script = ExtResource("1_hica5")
 
 [node name="LevelManager" type="Node" parent="."]
 script = ExtResource("2_erbt7")
-level_list = Array[PackedScene]([ExtResource("3_75tl4"), ExtResource("3_ckd7p")])
+level_list = Array[PackedScene]([ExtResource("3_ckd7p"), ExtResource("3_ckd7p")])
