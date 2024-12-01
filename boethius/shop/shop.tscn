@@ -1,0 +1,129 @@
+[gd_scene load_steps=11 format=3 uid="uid://dcjqjmcyqvlhh"]
+
+[ext_resource type="Script" path="res://shop/shop.gd" id="1_j38f1"]
+[ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://art/BOETHIUS_THEME.tres" id="2_7w4s8"]
+[ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="2_pd6c3"]
+[ext_resource type="Resource" uid="uid://dqm4uojftwqoo" path="res://ships/basic_ship/basic_ship_data.tres" id="3_c2ogs"]
+[ext_resource type="Script" path="res://shop/credits_label.gd" id="3_m8na3"]
+[ext_resource type="Resource" uid="uid://q27pgqwrmx7c" path="res://ships/laser_ship/laser_ship_data.tres" id="4_4j08u"]
+[ext_resource type="Resource" uid="uid://c8x7n5cg4twr8" path="res://ships/missile_ship/missile_ship_data.tres" id="5_sply4"]
+[ext_resource type="Script" path="res://shop/info_holder.gd" id="8_iuh56"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyt4g"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bd416"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Shop" type="CanvasLayer" node_paths=PackedStringArray("info_holder", "grid_container", "cred_label")]
+layer = 3
+script = ExtResource("1_j38f1")
+available_ships = Array[ExtResource("2_pd6c3")]([ExtResource("3_c2ogs"), ExtResource("4_4j08u"), ExtResource("5_sply4")])
+info_holder = NodePath("Control/HBoxContainer/InfoHolder")
+grid_container = NodePath("Control/HBoxContainer/VBoxContainer/GridContainer")
+cred_label = NodePath("Control/HBoxContainer/VBoxContainer/CreditsLabel")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_7w4s8")
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.089
+anchor_top = 0.065
+anchor_right = 0.938
+anchor_bottom = 0.17
+offset_left = -0.528
+offset_top = -0.120003
+offset_right = 0.42395
+offset_bottom = -0.160004
+theme_override_font_sizes/font_size = 45
+text = "ARMORY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.049
+anchor_top = 0.218
+anchor_right = 0.959
+anchor_bottom = 0.835
+offset_left = 0.551998
+offset_top = -0.264008
+offset_right = 0.231934
+offset_bottom = -0.0800171
+
+[node name="Label" type="Label" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_xyt4g")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="CreditsLabel" type="Label" parent="Control/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_m8na3")
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_bd416")
+
+[node name="GridContainer" type="GridContainer" parent="Control/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+columns = 5
+
+[node name="Label2" type="Label" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_xyt4g")
+
+[node name="InfoHolder" type="Control" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+script = ExtResource("8_iuh56")
+
+[node name="Label3" type="Label" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_xyt4g")
+
+[node name="StartGame" type="Button" parent="Control"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+anchor_left = 0.09
+anchor_top = 0.924
+anchor_right = 0.931
+anchor_bottom = 0.924
+offset_left = 0.319992
+offset_top = -32.752
+offset_right = 0.488037
+offset_bottom = 33.248
+size_flags_vertical = 8
+text = "Start Game"
+
+[connection signal="pressed" from="Control/StartGame" to="." method="_on_start_game_pressed"]

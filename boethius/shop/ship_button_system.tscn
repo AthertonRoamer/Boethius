@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://4gjmloo0js8e"]
+
+[ext_resource type="Script" path="res://shop/ship_button_system.gd" id="1_hghla"]
+[ext_resource type="Texture2D" uid="uid://cemwigan82p5i" path="res://ship_art/Ship1.png" id="2_jjdao"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dig1o"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4alsp"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_611j7"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="ShipButtonSystem" type="VBoxContainer"]
+script = ExtResource("1_hghla")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_dig1o")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_jjdao")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Up" type="Button" parent="HBoxContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 35)
+layout_mode = 2
+text = "Buy"
+
+[node name="Down" type="Button" parent="HBoxContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 35)
+layout_mode = 2
+text = "Sell"
+
+[node name="Count" type="Label" parent="HBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_4alsp")
+
+[node name="Label" type="Label" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_611j7")
+
+[connection signal="pressed" from="HBoxContainer2/VBoxContainer/HBoxContainer/VBoxContainer/Up" to="." method="_on_up_pressed"]
+[connection signal="pressed" from="HBoxContainer2/VBoxContainer/HBoxContainer/VBoxContainer/Down" to="." method="_on_down_pressed"]

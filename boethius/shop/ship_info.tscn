@@ -1,0 +1,119 @@
+[gd_scene load_steps=9 format=3 uid="uid://mr6qkx0ghwey"]
+
+[ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://art/BOETHIUS_THEME.tres" id="1_4crlf"]
+[ext_resource type="Script" path="res://shop/ship_info.gd" id="1_75vky"]
+[ext_resource type="Texture2D" uid="uid://cemwigan82p5i" path="res://ship_art/Ship1.png" id="2_f2co6"]
+[ext_resource type="PackedScene" uid="uid://bi4yuhlld17tk" path="res://shop/spacer.tscn" id="4_fhlsy"]
+[ext_resource type="PackedScene" uid="uid://balvu1rygmluj" path="res://shop/new_spacer.tscn" id="5_flwcl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fd8sb"]
+bg_color = Color(0.9063, 0.448117, 0.307146, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hfv0"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atm64"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="ShipInfo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_4crlf")
+script = ExtResource("1_75vky")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fd8sb")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Spacer2" parent="ScrollContainer/HBoxContainer" instance=ExtResource("4_fhlsy")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NewSpacer5" parent="ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_flwcl")]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_f2co6")
+
+[node name="NameLabel" type="Label" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_6hfv0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NewSpacer2" parent="ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_flwcl")]
+layout_mode = 2
+
+[node name="ShortD" type="Label" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_atm64")
+vertical_alignment = 1
+
+[node name="NewSpacer3" parent="ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_flwcl")]
+layout_mode = 2
+
+[node name="PriceLabel" type="Label" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_atm64")
+vertical_alignment = 1
+
+[node name="NewSpacer4" parent="ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_flwcl")]
+layout_mode = 2
+
+[node name="HealthLabel" type="Label" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_atm64")
+vertical_alignment = 1
+
+[node name="NewSpacer7" parent="ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_flwcl")]
+layout_mode = 2
+
+[node name="DamageLabel" type="Label" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_atm64")
+vertical_alignment = 1
+
+[node name="NewSpacer6" parent="ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_flwcl")]
+layout_mode = 2
+
+[node name="FullD" type="Label" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_atm64")
+
+[node name="Spacer3" parent="ScrollContainer/HBoxContainer" instance=ExtResource("4_fhlsy")]
+layout_mode = 2
+size_flags_horizontal = 3
