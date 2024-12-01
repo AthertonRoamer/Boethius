@@ -46,11 +46,14 @@ func _physics_process(delta: float) -> void:
 	collision_particles_2.emitting = is_colliding()
 	
 	if is_colliding():
-		cast_point = to_local(get_collision_point())
-		collision_particles_2.global_rotation = get_collision_normal().angle()
-		collision_particles_2.position = cast_point
-		if get_collider().is_in_group("damageable"):
-			get_collider().take_damage(dmg*delta)
+		if get_collider().get("faction") == $"../..".faction:
+			add_exception(get_collider())
+		else:
+			cast_point = to_local(get_collision_point())
+			collision_particles_2.global_rotation = get_collision_normal().angle()
+			collision_particles_2.position = cast_point
+			if get_collider().is_in_group("damageable"):
+				get_collider().take_damage(dmg*delta)
 	
 	$Line2D.points[0] = cast_point
 	beam_particle_2d.position = cast_point * 0.5

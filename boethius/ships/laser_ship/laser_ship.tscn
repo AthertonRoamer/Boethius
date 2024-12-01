@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://drotwycof3eg7"]
+[gd_scene load_steps=53 format=4 uid="uid://drotwycof3eg7"]
 
 [ext_resource type="Script" path="res://ships/laser_ship/laser_ship.gd" id="1_c0m2i"]
 [ext_resource type="Script" path="res://ships/basic_ship/boost.gd" id="2_1wkbu"]
@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://dnur25oatr5ml" path="res://laser.tscn" id="11_v0eli"]
 [ext_resource type="PackedScene" uid="uid://b16d8fcohve56" path="res://ships/ship_area/ship_area.tscn" id="12_hjqmc"]
 [ext_resource type="PackedScene" uid="uid://bw1jqqaydcxqo" path="res://ships/weight_system/weight_debugger/ship_weight_debugger.tscn" id="13_pblyv"]
+[ext_resource type="Script" path="res://ships/generic_states/follow_waypoint.gd" id="16_mag01"]
+[ext_resource type="Script" path="res://ships/generic_states/idle.gd" id="17_lfoxw"]
 [ext_resource type="AudioStream" uid="uid://b3awfo2rvghis" path="res://sound/weapons/laser-zap-90575 (1).mp3" id="19_51dxa"]
 
 [sub_resource type="Curve" id="Curve_yxqlr"]
@@ -390,6 +392,12 @@ first_active_state = true
 
 [node name="LaserShoot" type="Node" parent="ShipStateMachine"]
 script = ExtResource("8_sdqbw")
+
+[node name="FollowWaypoint" type="Node" parent="ShipStateMachine"]
+script = ExtResource("16_mag01")
+
+[node name="Idle" type="Node" parent="ShipStateMachine"]
+script = ExtResource("17_lfoxw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
