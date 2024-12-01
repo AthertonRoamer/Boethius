@@ -321,8 +321,10 @@ position = Vector2(895, -103)
 shape = SubResource("WorldBoundaryShape2D_sfegj")
 
 [node name="Shop" parent="." instance=ExtResource("13_acpwn")]
+
 visible = false
 
 [node name="BasicShip" parent="." instance=ExtResource("16_aai64")]
 position = Vector2(578, 128)
 faction = 0
+

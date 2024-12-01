@@ -8,3 +8,8 @@ func follow_waypoint(waypoint : WayPoint) -> void:
 		ship.state_machine.set_state("follow_waypoint")
 	else:
 		push_warning("ship: " + str(ship) + "doesnt have follow waypoint state configured")
+
+
+func go_to_point(point):
+	ship.state_machine.set_state("circle")
+	ship.state_machine.get_state("circle").center_point = point

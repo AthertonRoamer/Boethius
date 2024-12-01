@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="1_nijcf"]
 [ext_resource type="Texture2D" uid="uid://be70pv4j6wsoy" path="res://art/Heavy2.png" id="2_ov3yq"]
-[ext_resource type="PackedScene" uid="uid://i2xcw82s5paj" path="res://ships/heavy_A/heavy_A.tscn" id="3_d3qx3"]
+[ext_resource type="PackedScene" uid="uid://ckr1k343ggrxv" path="res://ships/heavy_B/heavy_B.tscn" id="3_seql7"]
 
 [resource]
 script = ExtResource("1_nijcf")
-ship_scene = ExtResource("3_d3qx3")
+ship_scene = ExtResource("3_seql7")
 ship_price = 3000
 ship_image = ExtResource("2_ov3yq")
 name = "Terminator"

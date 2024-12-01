@@ -1,4 +1,6 @@
+
 [gd_scene load_steps=21 format=3 uid="uid://c45yj6q8tsgun"]
+
 
 [ext_resource type="Script" path="res://world/test_world/test_world.gd" id="1_v873r"]
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space/space.tscn" id="2_m21cc"]
@@ -17,12 +19,14 @@
 [ext_resource type="PackedScene" uid="uid://ckgqun7x0sidn" path="res://world/asteroid/asteroid_small.tscn" id="14_djxwq"]
 [ext_resource type="AudioStream" uid="uid://dl7ppg3ro4gdu" path="res://sound/music/Interstellar Reverie (1).mp3" id="14_hiq3a"]
 [ext_resource type="PackedScene" uid="uid://dcjqjmcyqvlhh" path="res://shop/shop.tscn" id="17_n05dp"]
+
 [ext_resource type="PackedScene" uid="uid://i2xcw82s5paj" path="res://ships/heavy_A/heavy_A.tscn" id="18_7f6kr"]
 [ext_resource type="PackedScene" uid="uid://ckr1k343ggrxv" path="res://ships/heavy_B/heavy_B.tscn" id="19_6wiu7"]
 
+
 [sub_resource type="Resource" id="Resource_0080v"]
 script = ExtResource("8_5kkxw")
-ships = Array[ExtResource("9_gk5pd")]([ExtResource("10_14dbh"), ExtResource("10_14dbh"), ExtResource("10_14dbh"), ExtResource("10_14dbh"), ExtResource("10_14dbh"), ExtResource("9_pjmmk"), ExtResource("10_0tdek")])
+ships = Array[ExtResource("9_gk5pd")]([ExtResource("10_14dbh"), ExtResource("10_14dbh"), ExtResource("10_14dbh"), ExtResource("10_14dbh"), ExtResource("10_14dbh"), ExtResource("9_pjmmk"), ExtResource("10_0tdek"), null])
 
 [node name="TestWorld" type="Node2D" node_paths=PackedStringArray("command_mode_camera", "friendly_spawn", "enemy_spawn")]
 script = ExtResource("1_v873r")
@@ -100,3 +104,4 @@ position = Vector2(-1228, 278)
 faction = 0
 
 [node name="Shop" parent="." instance=ExtResource("17_n05dp")]
+starting_credits = 12945

@@ -3,9 +3,12 @@ extends Ship
 
 @onready var gun1 = $gun1
 @onready var gun2 = $gun2
+@onready var gun3 = $gun3
+@onready var gun4 = $gun4
 @export var rot_mouse_speed = 90
 
 func _ready() -> void:
+	obstacle_detector.ray_length = 250
 	super()
 	if faction == Faction.ENEMY:
 		$ship_sprite.frame = 7
@@ -37,6 +40,8 @@ func register_player_input(delta : float) -> void:
 func shoot():
 	gun1.fire()
 	gun2.fire()
+	gun3.fire()
+	gun4.fire()
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
