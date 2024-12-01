@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0ed21k063o7l"]
+[gd_scene load_steps=9 format=3 uid="uid://c0ed21k063o7l"]
 
 [ext_resource type="Texture2D" uid="uid://c8aajy3gtn3kb" path="res://art/Space station.png" id="1_pxsfa"]
 [ext_resource type="Script" path="res://space_station/space_station.gd" id="1_vhj2i"]
@@ -6,6 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://c1ijpkbhq0p7p" path="res://sound/asteroids/hit-rock-01-266301.mp3" id="4_f0uvr"]
 [ext_resource type="AudioStream" uid="uid://cviamot3hrq4u" path="res://sound/asteroids/small-rock-break-194553.mp3" id="5_qwgjk"]
 [ext_resource type="AudioStream" uid="uid://cp8inmyfwktwf" path="res://sound/ships/080884_bullet-hit-39872.mp3" id="6_vegux"]
+[ext_resource type="PackedScene" uid="uid://gfmjiblkd7jf" path="res://turret/turret.tscn" id="7_ddqye"]
+[ext_resource type="PackedScene" uid="uid://ckeosvaiwg00n" path="res://turret/pillbox.tscn" id="8_8h8b8"]
 
 [node name="SpaceStation" type="RigidBody2D"]
 collision_layer = 3
@@ -14,6 +16,8 @@ script = ExtResource("1_vhj2i")
 explosion_scene = ExtResource("2_v53r3")
 friction = 1.0
 max_speed = 200.0
+max_health = 8000
+starting_health = 8000
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -25,16 +29,6 @@ hframes = 2
 visible = false
 scale = Vector2(5, 5)
 polygon = PackedVector2Array(-4, -99, -4, -87.5, -8.4, -84, -14, -84, -14, -76.9, -32, -71.8, -32.8, -72, -34.6, -72, -43, -80.4, -43, -81.6, -44.1, -82.2, -50, -77.5, -52, -77, -54.7, -79, -58.4, -79, -61, -76.4, -61, -74.4, -61.4, -74, -63.4, -74, -66, -71.4, -66, -69.4, -66.4, -69, -68.4, -69, -71, -66.4, -71, -64.5, -74.3, -62, -76, -62, -76, -58.6, -73, -55.6, -79, -49.4, -79, -46.6, -69.4, -37, -69, -35, -74, -21.2, -74, -17.4, -76, -15.4, -76, -14, -82.9, -14, -84, -6.1, -84, -4.9, -96.2, -3, -98.3, -3, -97, 2.2, -97, 3.9, -85, 5, -83.6, 5, -83, 6.2, -83, 14.4, -79, 13, -78, 13, -78, 14, -75.8, 14, -74.8, 18, -73.8, 18, -73, 21.2, -73, 25.2, -68, 35.2, -79, 46.6, -79, 49.4, -74.4, 54, -74, 57.4, -76, 58.4, -76, 61.4, -73.4, 64, -71.4, 64, -71, 64.4, -71, 66.4, -68.4, 69, -66.4, 69, -66, 69.4, -66, 71.4, -63.4, 74, -61.4, 74, -61, 74.4, -61, 76.6, -59, 77.6, -59, 79, -54.6, 79, -51.6, 76, -45.4, 82, -43.6, 82, -32.6, 71, -31.2, 71, -30, 71.6, -30, 72.8, -15.1, 77, -13.6, 77, -13, 78.2, -15, 80.6, -15, 82.4, -13.4, 84, -8.4, 84, -4, 87.4, -4, 99, 3.9, 99, 5, 87, 5, 85.6, 8.2, 84, 13.4, 84, 15, 82.4, 15, 80.6, 13.4, 79, 14, 79, 14, 77, 16, 77, 16, 76, 20.2, 76, 31.2, 71, 32.6, 71, 43, 80.4, 43, 81.6, 44.1, 82.2, 50, 77.5, 52, 77, 54.7, 79, 58.4, 79, 61, 76.4, 61, 74.4, 61.4, 74, 63.4, 74, 66, 71.4, 66, 69.4, 66.4, 69, 68.4, 69, 71, 66.4, 71, 64.5, 74.3, 62, 76, 62, 76, 58.6, 73, 55.6, 79, 49.4, 79, 46.6, 69.4, 37, 69, 35, 74, 21.2, 74, 17.4, 76, 15.4, 76, 14, 82.9, 14, 84, 6.1, 84, 4.8, 96.2, 3, 98.3, 3, 97, -2.2, 97, -3.9, 85, -5, 83.6, -5, 83, -6.2, 83, -14.4, 79, -13, 78, -13, 78, -14, 75.8, -14, 74.8, -18, 73.8, -18, 73, -21.2, 73, -25.2, 68, -35.3, 77.4, -46, 79, -46, 79, -49.4, 74.4, -54, 74, -56, 76, -58.7, 76, -61.4, 73.4, -64, 71.4, -64, 71, -64.4, 71, -66.4, 68.4, -69, 66.4, -69, 66, -69.4, 66, -71.4, 63.4, -74, 61.5, -74, 59, -77.4, 59, -79, 54.6, -79, 51.6, -76, 45.4, -82, 43.6, -82, 34, -72.4, 32, -72, 20.2, -76, 16, -76, 16, -77, 14, -77, 14, -79, 15, -80.7, 15, -82.4, 13.4, -84, 8.39999, -84, 4, -87.5, 4, -99)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
-visible = false
-scale = Vector2(5, 5)
-polygon = PackedVector2Array(-2, -33, -2, -16, 2, -16, 2, -18, 3.6, -18, 2, -21.2, 2, -33)
-
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="."]
-visible = false
-scale = Vector2(5, 5)
-polygon = PackedVector2Array(-2, 16, -2, 33, 2, 33, 2, 22, 3.6, 22, 2, 18.8, 2, 16)
 
 [node name="hit" type="AudioStreamPlayer2D" parent="."]
 scale = Vector2(5, 5)
@@ -52,3 +46,83 @@ max_distance = 1000.0
 
 [node name="sound_timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Turret" parent="." instance=ExtResource("7_ddqye")]
+position = Vector2(327, -418)
+scale = Vector2(2, 2)
+
+[node name="Turret2" parent="." instance=ExtResource("7_ddqye")]
+position = Vector2(352, -393)
+scale = Vector2(2, 2)
+
+[node name="Turret3" parent="." instance=ExtResource("7_ddqye")]
+position = Vector2(378, -367)
+scale = Vector2(2, 2)
+
+[node name="Turret4" parent="." instance=ExtResource("7_ddqye")]
+position = Vector2(403, -343)
+scale = Vector2(2, 2)
+
+[node name="Turret5" parent="." instance=ExtResource("7_ddqye")]
+position = Vector2(404, 342)
+scale = Vector2(2, 2)
+
+[node name="Turret6" parent="." instance=ExtResource("7_ddqye")]
+position = Vector2(378, 368)
+scale = Vector2(2, 2)
+
+[node name="Turret7" parent="." instance=ExtResource("7_ddqye")]
+position = Vector2(354, 393)
+scale = Vector2(2, 2)
+
+[node name="Turret8" parent="." instance=ExtResource("7_ddqye")]
+position = Vector2(328, 419)
+scale = Vector2(2, 2)
+
+[node name="Turret9" parent="." instance=ExtResource("7_ddqye")]
+position = Vector2(-328, 419)
+scale = Vector2(2, 2)
+
+[node name="Turret10" parent="." instance=ExtResource("7_ddqye")]
+position = Vector2(-353, 392)
+scale = Vector2(2, 2)
+
+[node name="Turret11" parent="." instance=ExtResource("7_ddqye")]
+position = Vector2(-379, 367)
+scale = Vector2(2, 2)
+
+[node name="Turret12" parent="." instance=ExtResource("7_ddqye")]
+position = Vector2(-403, 343)
+scale = Vector2(2, 2)
+
+[node name="Turret13" parent="." instance=ExtResource("7_ddqye")]
+position = Vector2(-404, -343)
+scale = Vector2(2, 2)
+
+[node name="Turret14" parent="." instance=ExtResource("7_ddqye")]
+position = Vector2(-377, -368)
+scale = Vector2(2, 2)
+
+[node name="Turret15" parent="." instance=ExtResource("7_ddqye")]
+position = Vector2(-353, -394)
+scale = Vector2(2, 2)
+
+[node name="Turret16" parent="." instance=ExtResource("7_ddqye")]
+position = Vector2(-326, -417)
+scale = Vector2(2, 2)
+
+[node name="Turret17" parent="." instance=ExtResource("8_8h8b8")]
+position = Vector2(-2, -489)
+scale = Vector2(4, 4)
+
+[node name="Turret18" parent="." instance=ExtResource("8_8h8b8")]
+position = Vector2(487, 0)
+scale = Vector2(4, 4)
+
+[node name="Turret19" parent="." instance=ExtResource("8_8h8b8")]
+position = Vector2(-1, 494)
+scale = Vector2(4, 4)
+
+[node name="Turret20" parent="." instance=ExtResource("8_8h8b8")]
+position = Vector2(-491, 0)
+scale = Vector2(4, 4)

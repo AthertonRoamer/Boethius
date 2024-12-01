@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckeosvaiwg00n"]
+
+[ext_resource type="Script" path="res://turret/turret.gd" id="1_ba3cx"]
+[ext_resource type="PackedScene" uid="uid://dncysgcenw0qx" path="res://death_explosion.tscn" id="2_riupb"]
+[ext_resource type="Texture2D" uid="uid://csywqnh36wcu7" path="res://art/Turrets.png" id="2_v0dsd"]
+[ext_resource type="Script" path="res://turret/turret_smg.gd" id="3_3o3y7"]
+[ext_resource type="PackedScene" uid="uid://dlprehnceagnv" path="res://ships/basic_ship/projectile/smg_bullet_big.tscn" id="4_pkxfq"]
+[ext_resource type="Script" path="res://turret/turret_area.gd" id="5_wy2tx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s81uv"]
+radius = 19.0263
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pak7c"]
+radius = 1.0
+
+[node name="Turret" type="CharacterBody2D"]
+script = ExtResource("1_ba3cx")
+sight_range = 1000.0
+explosion_scene = ExtResource("2_riupb")
+max_health = 500
+starting_health = 500
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_s81uv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = 4.71239
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_v0dsd")
+hframes = 5
+
+[node name="gun" type="Node2D" parent="." node_paths=PackedStringArray("fire_position_node")]
+position = Vector2(24, 0)
+script = ExtResource("3_3o3y7")
+shot_interval = 2.0
+projectile_scene = ExtResource("4_pkxfq")
+fire_position_node = NodePath(".")
+
+[node name="TurretArea" type="Area2D" parent="."]
+script = ExtResource("5_wy2tx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurretArea"]
+shape = SubResource("CircleShape2D_pak7c")

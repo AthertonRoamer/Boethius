@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://4gjmloo0js8e"]
+[gd_scene load_steps=7 format=3 uid="uid://4gjmloo0js8e"]
 
+[ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://art/BOETHIUS_THEME.tres" id="1_add2f"]
 [ext_resource type="Script" path="res://shop/ship_button_system.gd" id="1_hghla"]
 [ext_resource type="Texture2D" uid="uid://cemwigan82p5i" path="res://ship_art/Ship1.png" id="2_jjdao"]
 
@@ -13,6 +14,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="ShipButtonSystem" type="VBoxContainer"]
+theme = ExtResource("1_add2f")
 script = ExtResource("1_hghla")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
@@ -54,6 +56,7 @@ custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1

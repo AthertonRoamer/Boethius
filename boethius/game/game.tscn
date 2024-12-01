@@ -9,4 +9,4 @@ script = ExtResource("1_hica5")
 
 [node name="LevelManager" type="Node" parent="."]
 script = ExtResource("2_erbt7")
-level_list = Array[PackedScene]([ExtResource("3_ckd7p")])
+level_list = Array[PackedScene]([ExtResource("3_ckd7p"), ExtResource("3_ckd7p")])
