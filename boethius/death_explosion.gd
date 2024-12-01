@@ -9,6 +9,7 @@ var cam = false
 func blow_up():
 	$AnimationPlayer.play("blow up")
 	$Camera2D.enabled = false
+	Main.world.outcome_tracker.handle_event(OutcomeTracker.Event.SHIP_DESTROYED)
 
 
 func blow_up_cam():

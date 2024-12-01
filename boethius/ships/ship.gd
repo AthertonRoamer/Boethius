@@ -35,6 +35,7 @@ signal under_player_control_changed(under_player_control : bool)
 @export var mass : float = 100
 @export var max_health : int = 100
 @export var starting_health : int = 100
+@export var starting_enemy_health : int = 80
 
 var health : float = starting_health:
 
@@ -123,11 +124,14 @@ func _ready() -> void:
 		ship_area.sight_range = sight_range
 	Main.world.ship_database.register_ship(self)
 	if faction == Faction.ENEMY:
+		health = starting_enemy_health
 		set_collision_mask_value(5,true)
 	else:
+		health = starting_health
 		set_collision_mask_value(4,true)
 		
 	order.ship = self
+	
 
 
 func _physics_process(delta) -> void:
@@ -346,6 +350,7 @@ func die() -> void:
 		Main.world.add_child(explosion)
 		if !under_player_control:
 			explosion.blow_up()
+			Main.world.outcome_tracker.handle_event(OutcomeTracker.Event.SHIP_DESTROYED)
 		elif under_player_control:
 			explosion.blow_up_cam()
 			Hud.reset_animations()

@@ -47,7 +47,7 @@ func place_waypoint(wposition : Vector2) -> void:
 	queue_redraw()
 	
 	
-func _input(event : InputEvent) -> void:
+func _unhandled_input(event : InputEvent) -> void:
 	if active and not command_mode.ship_selector.ship_detected:
 		if event.is_action_pressed("place_waypoint"):
 			if not has_selected_waypoint():
