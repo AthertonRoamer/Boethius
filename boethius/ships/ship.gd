@@ -131,30 +131,31 @@ func _ready() -> void:
 
 
 func _physics_process(delta) -> void:
-	reset_visuals()
-	if under_player_control:
-		register_player_input(delta)
-		compute_physics(delta)
-		process_boost(delta)
-
-	else:
-		process_independenly(delta)
-		$Camera2D.enabled = false
-
-		if auto_uses_space_physics:
-			#physics_thrust(delta)
+	if Main.world.movement_permitted:
+		reset_visuals()
+		if under_player_control:
+			register_player_input(delta)
 			compute_physics(delta)
+			process_boost(delta)
+
 		else:
-			#thrust_without_physics()
-			pass
-	if crashable:
-		check_for_crash()
+			process_independenly(delta)
+			$Camera2D.enabled = false
+
+			if auto_uses_space_physics:
+				#physics_thrust(delta)
+				compute_physics(delta)
+			else:
+				#thrust_without_physics()
+				pass
+		if crashable:
+			check_for_crash()
 
 
-	velocity = current_veloctiy
-	move_and_slide()
+		velocity = current_veloctiy
+		move_and_slide()
 
-	update_rotation()
+		update_rotation()
 
 
 func set_up_boost_timer():
