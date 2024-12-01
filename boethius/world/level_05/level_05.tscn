@@ -18,9 +18,9 @@
 [ext_resource type="Script" path="res://world/level_01/label.gd" id="16_6c4ye"]
 [ext_resource type="AudioStream" uid="uid://dl7ppg3ro4gdu" path="res://sound/music/Interstellar Reverie (1).mp3" id="17_yf5hn"]
 
-[sub_resource type="Resource" id="Resource_jfoqa"]
+[sub_resource type="Resource" id="Resource_hnre3"]
 script = ExtResource("4_d51ab")
-ships = Array[ExtResource("5_pxuur")]([ExtResource("6_uhj3c")])
+ships = Array[ExtResource("5_pxuur")]([])
 
 [sub_resource type="Resource" id="Resource_yly2n"]
 script = ExtResource("4_d51ab")
@@ -49,7 +49,7 @@ enemy_spawn = NodePath("SpawnPoint2")
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(1069, -306)
 script = ExtResource("3_qdugv")
-fleet = SubResource("Resource_jfoqa")
+fleet = SubResource("Resource_hnre3")
 
 [node name="SpawnPoint2" type="Node2D" parent="."]
 position = Vector2(2923, 1546)

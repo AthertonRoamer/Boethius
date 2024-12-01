@@ -9,7 +9,7 @@ var cam = false
 func blow_up():
 	$AnimationPlayer.play("blow up")
 	$Camera2D.enabled = false
-	Main.world.outcome_tracker.handle_event(OutcomeTracker.Event.SHIP_DESTROYED)
+	#Main.world.outcome_tracker.handle_event(OutcomeTracker.Event.SHIP_DESTROYED)
 
 
 func blow_up_cam():
@@ -22,5 +22,5 @@ func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	if cam:
 		Main.world.command_mode.not_available = false
 		Main.world.command_mode.enter()
-		Main.world.outcome_tracker.handle_event(OutcomeTracker.Event.SHIP_DESTROYED)
+	Main.world.outcome_tracker.handle_event(OutcomeTracker.Event.SHIP_DESTROYED)
 	queue_free()
