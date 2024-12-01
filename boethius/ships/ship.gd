@@ -62,9 +62,10 @@ var health : float = starting_health:
 
 @export var full_boost_spent_time : float = 5
 @export var time_spent_boosting = 0
-@export var boost_recharge_rate = 0.1
+@export var boost_recharge_rate = 0.05
+@export var boost_out_time = 2
 var boost_gone = false
-
+var boost_timer : Timer
 
 @export var speed_interpolation_rate : float = 5.0
 @export var rotation_speed : float = 360
@@ -101,6 +102,7 @@ func _ready() -> void:
 		queue_free()
 	if under_player_control:
 		faction = Faction.PLAYER
+	set_up_boost_timer()
 	add_child(obstacle_detector)
 	add_to_group("damageable")
 	
@@ -152,14 +154,32 @@ func _physics_process(delta) -> void:
 	update_rotation()
 
 
+func set_up_boost_timer():
+	boost_timer = Timer.new()
+	add_child(boost_timer)
+	boost_timer.wait_time = boost_out_time
+	boost_timer.timeout.connect(_on_boost_timer_timeout)
+	boost_timer.one_shot = true
+
 func process_boost(delta):
-	if Input.is_action_pressed("ship_boost"):
-		time_spent_boosting += delta
-		Hud.boostbar.value = (full_boost_spent_time - time_spent_boosting)
-	else:
-		if time_spent_boosting < full_boost_spent_time:
-			time_spent_boosting = min(full_boost_spent_time, time_spent_boosting - boost_recharge_rate)
-			Hud.boostbar.value = (full_boost_spent_time- time_spent_boosting)
+	if !boost_gone:
+		if Input.is_action_pressed("ship_boost"):
+			time_spent_boosting += delta
+			Hud.boostbar.value = (full_boost_spent_time - time_spent_boosting)
+			if time_spent_boosting >= full_boost_spent_time:
+				boost_gone = true
+				boosting = false
+		else:
+			if time_spent_boosting > 0:
+				time_spent_boosting = min(full_boost_spent_time, time_spent_boosting - boost_recharge_rate)
+				time_spent_boosting = max(0,time_spent_boosting)
+				Hud.boostbar.value = (full_boost_spent_time- time_spent_boosting)
+
+
+func _on_boost_timer_timeout():
+	boost_gone = false
+	time_spent_boosting = full_boost_spent_time
+	Hud.boostbar.value = 0
 
 
 func compute_physics(delta : float) -> void:
@@ -190,8 +210,9 @@ func register_player_input(delta : float) -> void:
 	
 	
 	if Input.is_action_just_pressed("ship_boost"):
-		$boost.play()
-		$thrust.play()
+		if !boost_gone:
+			$boost.play()
+			$thrust.play()
 	if Input.is_action_just_pressed("ship_thrust"):
 		$thrust.play()
 	if Input.is_action_just_released("ship_thrust") or Input.is_action_just_released("ship_boost"):
@@ -204,7 +225,8 @@ func register_player_input(delta : float) -> void:
 		visual_data.set_item("thrusting", false)
 	
 	if Input.is_action_pressed("ship_boost"):
-		boost(delta)
+		if !boost_gone:
+			boost(delta)
 	elif Input.is_action_just_released("ship_boost") and boosting:
 		visual_data.set_item("boosting", false)
 		stop_boost()
@@ -214,6 +236,10 @@ func register_player_input(delta : float) -> void:
 		begin_shooting_constantly()
 	if Input.is_action_just_released("ship_shoot"):
 		stop_shooting_constantly()
+	if Input.is_action_just_released("ship_boost"):
+		if time_spent_boosting >= full_boost_spent_time:
+			if boost_timer.is_stopped():
+				boost_timer.start()
 
 
 func set_up_HUD():

@@ -9,9 +9,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_1s124"]
 radius = 36.3034
 
-[sub_resource type="Animation" id="Animation_3mfmo"]
-resource_name = "activate"
-length = 0.5
+[sub_resource type="Animation" id="Animation_jyhip"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -19,10 +18,10 @@ tracks/0/path = NodePath("shield_image:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.329877, 5.09824),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(3, 3)]
+"values": [Vector2(3, 3)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -37,8 +36,9 @@ tracks/1/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_jyhip"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_3mfmo"]
+resource_name = "activate"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -46,10 +46,10 @@ tracks/0/path = NodePath("shield_image:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.329877, 5.09824),
 "update": 0,
-"values": [Vector2(3, 3)]
+"values": [Vector2(1e-05, 1e-05), Vector2(3, 3)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false

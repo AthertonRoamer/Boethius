@@ -36,4 +36,3 @@ func reset_animations():
 	%overheatbar.value = 0
 	%healthbar.value = 0
 	%shieldbar.value = 0
-	
