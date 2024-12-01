@@ -11,6 +11,12 @@ func _ready() -> void:
 	Main.world.setup_complete.connect(_on_setup)
 	
 
+	
+func _on_setup() -> void:
+	Main.world.command_mode.enabled_changed.connect(_on_command_mode_enabled_changed)
+	
+
+
 func _process(delta: float) -> void:
 	var direction : Vector2 = Vector2.ZERO
 	if Main.world.command_mode.enabled:
@@ -35,5 +41,5 @@ func _on_command_mode_enabled_changed(e : bool) -> void:
 	if e:
 		reset()
 
-func _on_setup() -> void:
-	Main.world.command_mode.enabled_changed.connect(_on_command_mode_enabled_changed)
+
+
