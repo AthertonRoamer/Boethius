@@ -126,6 +126,7 @@ position = Vector2(4, -460)
 position = Vector2(947, 469)
 
 [node name="Shop" parent="." instance=ExtResource("12_o1kvh")]
+visible = false
 available_ships = Array[ExtResource("5_p4syx")]([ExtResource("6_asjol"), ExtResource("13_4qqh4")])
 starting_credits = 500
 
