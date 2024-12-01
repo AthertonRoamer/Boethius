@@ -6,10 +6,10 @@ var ship_data : ShipData = load("res://ships/basic_ship/basic_ship_data.tres")
 var count : int = 0:
 	set(v):
 		count = v
-		$HBoxContainer/Count.text = str(count)
+		$HBoxContainer2/VBoxContainer/HBoxContainer/Count.text = str(count)
 
 func _ready() -> void:
-	$TextureRect.texture = ship_data.ship_image
+	$HBoxContainer2/VBoxContainer/TextureRect.texture = ship_data.ship_image
 
 
 func _on_up_pressed() -> void:
