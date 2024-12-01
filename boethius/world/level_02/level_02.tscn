@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://css6jwh8kh5rw"]
+[gd_scene load_steps=22 format=3 uid="uid://css6jwh8kh5rw"]
 
 [ext_resource type="Script" path="res://world/level_01/level_01.gd" id="1_cmk76"]
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space/space.tscn" id="2_v4h50"]
@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://dcjqjmcyqvlhh" path="res://shop/shop.tscn" id="10_c63vd"]
 [ext_resource type="PackedScene" uid="uid://bos66mom7yrro" path="res://world/asteroid/asteroid_med.tscn" id="11_xkc1a"]
 [ext_resource type="PackedScene" uid="uid://bb1kkjqy42iqn" path="res://orders/OrderMaker.tscn" id="12_jxssc"]
+[ext_resource type="AudioStream" uid="uid://dl7ppg3ro4gdu" path="res://sound/music/Interstellar Reverie (1).mp3" id="13_r20rq"]
+[ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://art/BOETHIUS_THEME.tres" id="14_868vh"]
+[ext_resource type="Script" path="res://world/level_01/label.gd" id="15_j2sjw"]
 
 [sub_resource type="Resource" id="Resource_jfoqa"]
 script = ExtResource("4_t068e")
@@ -19,7 +22,7 @@ ships = Array[ExtResource("5_c2ncp")]([ExtResource("6_dnk4g")])
 
 [sub_resource type="Resource" id="Resource_45vps"]
 script = ExtResource("4_t068e")
-ships = Array[ExtResource("5_c2ncp")]([ExtResource("6_dnk4g"), ExtResource("6_dnk4g"), ExtResource("6_dnk4g"), ExtResource("6_dnk4g"), ExtResource("6_dnk4g")])
+ships = Array[ExtResource("5_c2ncp")]([ExtResource("6_dnk4g"), ExtResource("6_dnk4g"), ExtResource("6_dnk4g")])
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_px787"]
 normal = Vector2(0.0126572, 0.99992)
@@ -126,3 +129,29 @@ starting_credits = 300
 
 [node name="OrderMaker" parent="." instance=ExtResource("12_jxssc")]
 position = Vector2(2127, 680)
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_r20rq")
+volume_db = -11.244
+autoplay = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1646.0
+offset_top = 80.0
+offset_right = 2387.0
+offset_bottom = 149.0
+theme = ExtResource("14_868vh")
+theme_override_font_sizes/font_size = 32
+text = "        practice using your waypoints
+ to eliminate the blue ships. Get creative."
+script = ExtResource("15_j2sjw")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 1713.0
+offset_top = 858.0
+offset_right = 2454.0
+offset_bottom = 927.0
+theme = ExtResource("14_868vh")
+theme_override_font_sizes/font_size = 32
+text = "Use WASD to move the command mode camera"
+script = ExtResource("15_j2sjw")

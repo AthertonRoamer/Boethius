@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cjsdu6qf1qxun"]
+[gd_scene load_steps=23 format=3 uid="uid://cjsdu6qf1qxun"]
 
 [ext_resource type="Script" path="res://world/level_01/level_01.gd" id="1_epwvx"]
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space/space.tscn" id="2_ta8dx"]
@@ -14,6 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://dcjqjmcyqvlhh" path="res://shop/shop.tscn" id="12_o1kvh"]
 [ext_resource type="Resource" uid="uid://q27pgqwrmx7c" path="res://ships/laser_ship/laser_ship_data.tres" id="13_4qqh4"]
 [ext_resource type="PackedScene" uid="uid://bb1kkjqy42iqn" path="res://orders/OrderMaker.tscn" id="14_q5qya"]
+[ext_resource type="AudioStream" uid="uid://dl7ppg3ro4gdu" path="res://sound/music/Interstellar Reverie (1).mp3" id="15_kk7pg"]
+[ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://art/BOETHIUS_THEME.tres" id="16_vubwj"]
+[ext_resource type="Script" path="res://world/level_01/label.gd" id="17_vjp1w"]
 
 [sub_resource type="Resource" id="Resource_jfoqa"]
 script = ExtResource("4_n21wl")
@@ -128,3 +131,34 @@ starting_credits = 500
 
 [node name="OrderMaker" parent="." instance=ExtResource("14_q5qya")]
 position = Vector2(2221, 267)
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_kk7pg")
+volume_db = -11.244
+autoplay = true
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 1643.0
+offset_top = 135.0
+offset_right = 2139.0
+offset_bottom = 224.0
+theme = ExtResource("16_vubwj")
+theme_override_font_sizes/font_size = 20
+text = "different ship types create even more ways
+to destroy blue scum. practice adapting your
+strategy at the start of levels, as you never
+          know what is waiting for you."
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 1720.0
+offset_top = 40.0
+offset_right = 2461.0
+offset_bottom = 109.0
+theme = ExtResource("16_vubwj")
+theme_override_font_sizes/font_size = 32
+text = "different ship types create even more ways
+to destroy blue scum. practice adapting your
+strategy at the start of levels, as you never
+know what secret enemy fleet is waiting for you."
+script = ExtResource("17_vjp1w")
