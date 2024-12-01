@@ -79,16 +79,11 @@ position = Vector2(190, 208)
 [node name="SpaceStation" parent="crashables" instance=ExtResource("12_8v163")]
 position = Vector2(562, 747)
 
-[node name="music" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_hiq3a")
-volume_db = -11.244
+volume_db = -19.81
 autoplay = true
 
-
-[node name="shield_blue" parent="." instance=ExtResource("15_pdo6v")]
-position = Vector2(1252, 216)
-
-[node name="shield_red" parent="." instance=ExtResource("15_pdo6v")]
-position = Vector2(-28, 225)
-allignment = 0
-
+[node name="shield" parent="." instance=ExtResource("15_pdo6v")]
+z_index = 2
+position = Vector2(-1538, 881)

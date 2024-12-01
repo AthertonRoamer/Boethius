@@ -1,3 +1,4 @@
+class_name Shield
 extends CharacterBody2D
 
 

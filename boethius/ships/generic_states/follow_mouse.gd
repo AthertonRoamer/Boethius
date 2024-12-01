@@ -10,3 +10,4 @@ func _init() -> void:
 func process_state(delta : float) -> void:
 	center_point = get_ship().get_global_mouse_position()
 	super(delta)
+	

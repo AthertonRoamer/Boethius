@@ -17,10 +17,16 @@ var occupied_ship : Ship = null
 @export var selected_color : Color = Color.WHITE
 @export var occupied_color : Color = Color.BLUE
 
+
 var not_available = false
 
+@onready var waypoint_master : WayPointMaster = $WaypointMaster
+@onready var ship_selector : ShipSelector = $ShipSelector
+
 func enter() -> void:
-	if not enabled and not not_available:
+	if not enabled not not_available::
+		waypoint_master.active = true
+
 		enabled = true
 		level.command_mode_camera.enabled = true
 		Hud.deactivate()
@@ -33,6 +39,7 @@ func enter() -> void:
 
 func exit() -> void:
 	if enabled and is_instance_valid(occupied_ship):
+		waypoint_master.active = false
 		enabled = false
 		level.command_mode_camera.enabled = false
 		deselect_all_ships()
@@ -80,6 +87,11 @@ func _input(event) -> void:
 			enter()
 
 
+	#if event.is_action_pressed("toggle_waypoint"):
+		#if enabled:
+			#waypoint_master.active = not waypoint_master.active
+			
+			
 
 func _process(_delta: float) -> void:
 	if enabled:

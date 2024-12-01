@@ -4,6 +4,8 @@ extends Area2D
 @export var command_mode : CommandMode
 @export var preselect_color : Color = Color.WHITE
 
+var ship_detected : bool = false
+
 func _ready() -> void:
 	if is_instance_valid(command_mode):
 		command_mode.enabled_changed.connect(_on_enabled_changed)
@@ -12,6 +14,11 @@ func _process(_delta: float) -> void:
 	global_position = get_global_mouse_position()
 	if command_mode.enabled:
 		queue_redraw()
+	for body in get_overlapping_bodies():
+			if body is Ship and body.faction == command_mode.faction:
+				ship_detected = true
+				return
+	ship_detected = false
 	
 	
 func _input(event: InputEvent) -> void:
@@ -54,8 +61,10 @@ func _draw() -> void:
 		for body in get_overlapping_bodies():
 			if body is Ship and body.faction == command_mode.faction:
 				draw_circle(to_local(body.global_position), body.radius + 20, preselect_color, false)
+				#ship_detected = true
 				break
-				
+		#ship_detected = false
+	
 
 func _on_enabled_changed(_enabled) -> void:
 	queue_redraw()

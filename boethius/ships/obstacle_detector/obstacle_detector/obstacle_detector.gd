@@ -2,7 +2,7 @@ class_name ObstacleDetector
 extends Node2D
 
 @export var ray_count : int = 16
-@export var ray_length : float = 400
+@export var ray_length : float = 50
 
 var rays : Array[RayCast2D]
 
