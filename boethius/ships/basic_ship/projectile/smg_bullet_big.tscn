@@ -1,0 +1,199 @@
+[gd_scene load_steps=20 format=3 uid="uid://dlprehnceagnv"]
+
+[ext_resource type="Script" path="res://ships/basic_ship/projectile/smg_bullet.gd" id="1_5aj0k"]
+[ext_resource type="Texture2D" uid="uid://be7nkfmsti5gy" path="res://art/Projectiles.png" id="2_ptxie"]
+[ext_resource type="AudioStream" uid="uid://c0oqy72wmmsvj" path="res://sound/weapons/futuristic-smg-sound-effect-100378.mp3" id="3_ulu6m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_daedc"]
+radius = 2.0
+height = 50.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_g0ebo"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_n0d7x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.653333, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_iwvrl"]
+curve = SubResource("Curve_n0d7x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1brg8"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 2.528
+initial_velocity_min = 102.15
+initial_velocity_max = 215.05
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_iwvrl")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_61q2t"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Animation" id="Animation_vjwq2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hit:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_y67cr"]
+resource_name = "blow up"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hit:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xhjti"]
+_data = {
+"RESET": SubResource("Animation_vjwq2"),
+"blow up": SubResource("Animation_y67cr")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3ctt8"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_qq4gb"]
+colors = PackedColorArray(1, 1, 1, 1, 0.321728, 0.321728, 0.321728, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ov85m"]
+gradient = SubResource("Gradient_qq4gb")
+
+[sub_resource type="Curve" id="Curve_mxj4l"]
+_data = [Vector2(0.473333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ioued"]
+curve = SubResource("Curve_mxj4l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_54rnq"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 86.02
+initial_velocity_max = 150.54
+gravity = Vector3(0, 0, 0)
+damping_max = 100.0
+scale_curve = SubResource("CurveTexture_ioued")
+color_ramp = SubResource("GradientTexture1D_ov85m")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nalc4"]
+load_path = "res://.godot/imported/Projectiles.png-b307ba4bad30a73c32d866812224e064.ctex"
+
+[node name="smg_bullet_big" type="Area2D" node_paths=PackedStringArray("duration_timer")]
+collision_mask = 3
+script = ExtResource("1_5aj0k")
+speed = 1800.0
+damage = 75
+extinguish_on_effect_body = true
+duration_timer = NodePath("lifespan")
+duration = 10.0
+impact_knockback = 400
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("2_ptxie")
+hframes = 8
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+rotation = -1.5708
+scale = Vector2(4, 4)
+shape = SubResource("CapsuleShape2D_daedc")
+
+[node name="lifespan" type="Timer" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_g0ebo")
+position = Vector2(-12, 0)
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_1brg8")
+texture = ExtResource("2_ptxie")
+lifetime = 0.3
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_61q2t")
+position = Vector2(18, 0)
+texture = ExtResource("2_ptxie")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xhjti")
+}
+
+[node name="hit" type="GPUParticles2D" parent="."]
+z_index = 10
+z_as_relative = false
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_3ctt8")
+position = Vector2(21, 0)
+scale = Vector2(0.5, 0.295)
+emitting = false
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_54rnq")
+texture = SubResource("CompressedTexture2D_nalc4")
+one_shot = true
+speed_scale = 4.0
+explosiveness = 0.75
+
+[node name="shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ulu6m")
+volume_db = -17.333
+autoplay = true
+max_distance = 500.0
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

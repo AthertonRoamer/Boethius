@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="ShipData" load_steps=3 format=3 uid="uid://crb264v3vgpbx"]
+[gd_resource type="Resource" script_class="ShipData" load_steps=4 format=3 uid="uid://ckwk02fa62a07"]
 
 [ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="1_e22kv"]
 [ext_resource type="Texture2D" uid="uid://dc85bt8da7gd6" path="res://ship_art/Ship7.png" id="2_k41cg"]
+[ext_resource type="PackedScene" uid="uid://w4lyi0418hhc" path="res://ships/shield_ship/shield_ship.tscn" id="3_ctqqh"]
 
 [resource]
 script = ExtResource("1_e22kv")
-ship_price = 100
+ship_scene = ExtResource("3_ctqqh")
+ship_price = 500
 ship_image = ExtResource("2_k41cg")
 name = "Shield Ship"
 health = "100"
-dmg = "10"
-short_description = "A really great member of the fleet"
-full_description = ""
+dmg = "5"
+short_description = "Provides cover."
+full_description = "Generates a shield that can stop all incoming fire until broken. "

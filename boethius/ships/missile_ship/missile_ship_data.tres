@@ -7,10 +7,10 @@
 [resource]
 script = ExtResource("1_e4bln")
 ship_scene = ExtResource("2_clkq3")
-ship_price = 100
+ship_price = 300
 ship_image = ExtResource("2_4csyd")
 name = "Missile Ship"
 health = "100"
 dmg = "10"
-short_description = "A really great member of the fleet"
-full_description = ""
+short_description = "Specialized unit."
+full_description = "Launches seeking missiles."

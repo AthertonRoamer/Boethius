@@ -5,14 +5,30 @@ extends CharacterBody2D
 @export var sight_range : float = 500
 
 @onready var turret_area = $TurretArea
+@export var explosion_scene : PackedScene
+
 
 var target : Node2D
 var current_direction = Vector2.RIGHT
 
 @export var rotation_speed = 180
 
+@export var max_health : int = 1000
+@export var starting_health : int = 1000
+
+var health : float = starting_health:
+
+	set(v):
+		if v <= 0:
+			health = 0
+			die()
+		elif v > max_health:
+			health = v
+		else:
+			health = v
+
 func _ready() -> void:
-	if get_parent() is Ship:
+	if get_parent() is Ship or get_parent() is SpaceStation:
 		faction = get_parent().faction
 		if faction == Ship.Faction.PLAYER:
 			$Sprite2D.frame = 2
@@ -47,3 +63,14 @@ func rotate_to_target(target,delta):
 func assess_targets() -> void:
 	if not turret_area.get_visible_enemies().is_empty():
 		target = turret_area.get_visible_enemies()[0]
+
+
+func take_damage(damage : float, _damage_type : String = "none") -> void:
+	health -= damage
+
+func die() -> void:
+	var explosion = explosion_scene.instantiate()
+	explosion.global_position = global_position
+	if is_instance_valid(Main.world):
+		Main.world.add_child(explosion)
+	queue_free()
