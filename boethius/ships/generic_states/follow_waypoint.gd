@@ -12,6 +12,9 @@ var waypoint_achieved_radius : float = 150
 
 func _ready() -> void:
 	super()
+	Main.world.setup_complete.connect(_on_setup)
+	
+func _on_setup():
 	Main.world.command_mode.waypoint_master.deleted_waypoint.connect(_on_waypoint_deleted)
 
 

@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="1_m4eig"]
 [ext_resource type="Texture2D" uid="uid://byau5og4dvt38" path="res://art/Heavy1.png" id="2_0t0hj"]
-[ext_resource type="PackedScene" uid="uid://ckr1k343ggrxv" path="res://ships/heavy_B/heavy_B.tscn" id="3_1qy11"]
+[ext_resource type="PackedScene" uid="uid://i2xcw82s5paj" path="res://ships/heavy_A/heavy_A.tscn" id="3_v6bek"]
 
 [resource]
 script = ExtResource("1_m4eig")
-ship_scene = ExtResource("3_1qy11")
+ship_scene = ExtResource("3_v6bek")
 ship_price = 2500
 ship_image = ExtResource("2_0t0hj")
 name = "Giant"

@@ -6,6 +6,7 @@ extends Ship
 @export var rot_mouse_speed = 90
 
 func _ready() -> void:
+	obstacle_detector.ray_length = 250
 	super()
 	if faction == Faction.ENEMY:
 		$ship_sprite.frame = 3

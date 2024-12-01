@@ -66,26 +66,28 @@ texture = ExtResource("2_f2co6")
 
 [node name="NameLabel" type="Label" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_6hfv0")
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
 
 [node name="NewSpacer2" parent="ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_flwcl")]
 layout_mode = 2
 
 [node name="ShortD" type="Label" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 10)
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_atm64")
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="NewSpacer3" parent="ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_flwcl")]
 layout_mode = 2
 
 [node name="PriceLabel" type="Label" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_atm64")
 vertical_alignment = 1
 
@@ -94,7 +96,7 @@ layout_mode = 2
 
 [node name="HealthLabel" type="Label" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_atm64")
 vertical_alignment = 1
 
@@ -103,7 +105,7 @@ layout_mode = 2
 
 [node name="DamageLabel" type="Label" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_atm64")
 vertical_alignment = 1
 
@@ -111,10 +113,12 @@ vertical_alignment = 1
 layout_mode = 2
 
 [node name="FullD" type="Label" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 10)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_atm64")
+autowrap_mode = 2
 
 [node name="Spacer3" parent="ScrollContainer/HBoxContainer" instance=ExtResource("4_fhlsy")]
 layout_mode = 2
