@@ -689,7 +689,6 @@ script = ExtResource("15_qv6ev")
 script = ExtResource("16_2evlh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
 script = ExtResource("15_3r271")
