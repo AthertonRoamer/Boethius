@@ -37,7 +37,7 @@ frame = 2
 [node name="gun" type="Node2D" parent="." node_paths=PackedStringArray("fire_position_node")]
 position = Vector2(24, 0)
 script = ExtResource("3_8uehm")
-shot_interval = 1.0
+shot_interval = 0.5
 projectile_scene = ExtResource("4_31mcg")
 fire_position_node = NodePath(".")
 

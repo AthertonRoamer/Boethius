@@ -1,0 +1,226 @@
+[gd_scene load_steps=23 format=3 uid="uid://cubijeushvgs4"]
+
+[ext_resource type="Script" path="res://world/level_01/level_01.gd" id="1_vdi8i"]
+[ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space/space.tscn" id="2_x5o67"]
+[ext_resource type="Script" path="res://ships/spawn_point/spawn_point.gd" id="3_wnhpg"]
+[ext_resource type="Script" path="res://ships/ship_data/fleet_data.gd" id="4_ugte2"]
+[ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="5_8fav6"]
+[ext_resource type="Script" path="res://game/command_mode/command_camera/command_camera.gd" id="7_xrrbo"]
+[ext_resource type="PackedScene" uid="uid://ckgqun7x0sidn" path="res://world/asteroid/asteroid_small.tscn" id="8_dei01"]
+[ext_resource type="PackedScene" uid="uid://fpde8apg7q2f" path="res://world/asteroid/asteroid_big.tscn" id="9_p8l2p"]
+[ext_resource type="PackedScene" uid="uid://bos66mom7yrro" path="res://world/asteroid/asteroid_med.tscn" id="10_eeotf"]
+[ext_resource type="PackedScene" uid="uid://dcjqjmcyqvlhh" path="res://shop/shop.tscn" id="11_do4ml"]
+[ext_resource type="Resource" uid="uid://dqm4uojftwqoo" path="res://ships/basic_ship/basic_ship_data.tres" id="12_0ro84"]
+[ext_resource type="Resource" uid="uid://q27pgqwrmx7c" path="res://ships/laser_ship/laser_ship_data.tres" id="13_g8ers"]
+[ext_resource type="PackedScene" uid="uid://bb1kkjqy42iqn" path="res://orders/OrderMaker.tscn" id="14_fxh3a"]
+[ext_resource type="AudioStream" uid="uid://dl7ppg3ro4gdu" path="res://sound/music/Interstellar Reverie (1).mp3" id="15_ps76g"]
+[ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://art/BOETHIUS_THEME.tres" id="16_kwjl6"]
+[ext_resource type="Script" path="res://world/level_01/label.gd" id="17_j6k78"]
+
+[sub_resource type="Resource" id="Resource_phfip"]
+script = ExtResource("4_ugte2")
+ships = Array[ExtResource("5_8fav6")]([])
+
+[sub_resource type="Resource" id="Resource_cp620"]
+script = ExtResource("4_ugte2")
+ships = Array[ExtResource("5_8fav6")]([ExtResource("12_0ro84"), ExtResource("12_0ro84"), ExtResource("12_0ro84"), ExtResource("12_0ro84"), ExtResource("12_0ro84"), ExtResource("12_0ro84"), ExtResource("12_0ro84"), ExtResource("12_0ro84"), ExtResource("12_0ro84"), ExtResource("12_0ro84"), ExtResource("12_0ro84"), ExtResource("13_g8ers"), ExtResource("13_g8ers")])
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_px787"]
+normal = Vector2(0.0126572, 0.99992)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2503l"]
+normal = Vector2(-0.0067566, -0.999977)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2wqpc"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7ew7n"]
+normal = Vector2(-0.999996, -0.00271738)
+
+[node name="Level01" type="Node2D" node_paths=PackedStringArray("command_mode_camera", "friendly_spawn", "enemy_spawn")]
+script = ExtResource("1_vdi8i")
+command_mode_camera = NodePath("CommandCamera")
+friendly_spawn = NodePath("SpawnPoint")
+enemy_spawn = NodePath("SpawnPoint2")
+metadata/_edit_horizontal_guides_ = [-396.0]
+
+[node name="space" parent="." instance=ExtResource("2_x5o67")]
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(910, 536)
+script = ExtResource("3_wnhpg")
+fleet = SubResource("Resource_phfip")
+
+[node name="SpawnPoint2" type="Node2D" parent="."]
+position = Vector2(3335, 530)
+script = ExtResource("3_wnhpg")
+fleet = SubResource("Resource_cp620")
+faction = 1
+
+[node name="CommandCamera" type="Camera2D" parent="."]
+position = Vector2(2116, 445)
+enabled = false
+zoom = Vector2(0.5, 0.5)
+script = ExtResource("7_xrrbo")
+
+[node name="barrier_top" type="StaticBody2D" parent="."]
+position = Vector2(200, -898)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barrier_top"]
+position = Vector2(895, -103)
+shape = SubResource("WorldBoundaryShape2D_px787")
+
+[node name="barrier_bottom" type="StaticBody2D" parent="."]
+position = Vector2(249, 2100)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barrier_bottom"]
+position = Vector2(895, -103)
+shape = SubResource("WorldBoundaryShape2D_2503l")
+
+[node name="barrier_left" type="StaticBody2D" parent="."]
+position = Vector2(-1689, 465)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barrier_left"]
+position = Vector2(895, -103)
+shape = SubResource("WorldBoundaryShape2D_2wqpc")
+
+[node name="barrier_right" type="StaticBody2D" parent="."]
+position = Vector2(4158, 545)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barrier_right"]
+position = Vector2(895, -103)
+shape = SubResource("WorldBoundaryShape2D_7ew7n")
+
+[node name="asteroids" type="Node2D" parent="."]
+position = Vector2(2118, 449)
+
+[node name="asteriod_small" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(-83, -686)
+
+[node name="asteriod_small2" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(201, 19)
+
+[node name="asteriod_small3" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(-982, -749)
+
+[node name="asteriod_small4" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(-80, 554)
+
+[node name="asteriod_small8" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(-305, -186)
+
+[node name="asteriod_small9" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(-153, -265)
+
+[node name="asteriod_small10" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(279, -132)
+
+[node name="asteriod_small11" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(50, 310)
+
+[node name="asteriod_small12" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(285, 589)
+
+[node name="asteriod_small23" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(621, 146)
+
+[node name="asteriod_small24" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(472, 343)
+
+[node name="asteriod_small25" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(226, 381)
+
+[node name="asteriod_small13" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(-461, 17)
+
+[node name="asteriod_small14" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(-127, -37)
+
+[node name="asteriod_small18" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(-352, 534)
+
+[node name="asteriod_small19" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(308, -358)
+
+[node name="asteriod_small20" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(546, -25)
+
+[node name="asteriod_small21" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(-158, 721)
+
+[node name="asteriod_small22" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(147, 769)
+
+[node name="asteriod_small15" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(-48, 176)
+
+[node name="asteriod_small16" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(-690, 341)
+
+[node name="asteriod_small17" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(-356, 256)
+
+[node name="asteriod_small5" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(325, 981)
+
+[node name="asteriod_small6" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(-793, 853)
+
+[node name="asteriod_small7" parent="asteroids" instance=ExtResource("8_dei01")]
+position = Vector2(647, -690)
+
+[node name="asteriod_big" parent="asteroids" instance=ExtResource("9_p8l2p")]
+position = Vector2(-57, 1171)
+
+[node name="asteriod_med" parent="asteroids" instance=ExtResource("10_eeotf")]
+position = Vector2(4, -460)
+
+[node name="asteriod_med2" parent="asteroids" instance=ExtResource("10_eeotf")]
+position = Vector2(947, 469)
+
+[node name="asteriod_med3" parent="asteroids" instance=ExtResource("10_eeotf")]
+position = Vector2(-892, 26)
+
+[node name="Shop" parent="." instance=ExtResource("11_do4ml")]
+visible = false
+available_ships = Array[ExtResource("5_8fav6")]([ExtResource("12_0ro84"), ExtResource("13_g8ers")])
+starting_credits = 1200
+
+[node name="OrderMaker" parent="." instance=ExtResource("14_fxh3a")]
+position = Vector2(2005, 794)
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_ps76g")
+volume_db = -11.244
+autoplay = true
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 1643.0
+offset_top = 135.0
+offset_right = 2139.0
+offset_bottom = 224.0
+theme = ExtResource("16_kwjl6")
+theme_override_font_sizes/font_size = 20
+text = "different ship types create even more ways
+to destroy blue scum. practice adapting your
+strategy at the start of levels, as you never
+          know what is waiting for you."
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+offset_left = 1720.0
+offset_top = 40.0
+offset_right = 2461.0
+offset_bottom = 109.0
+theme = ExtResource("16_kwjl6")
+theme_override_font_sizes/font_size = 32
+text = "different ship types create even more ways
+to destroy blue scum. practice adapting your
+strategy at the start of levels, as you never
+know what secret enemy fleet is waiting for you."
+script = ExtResource("17_j6k78")

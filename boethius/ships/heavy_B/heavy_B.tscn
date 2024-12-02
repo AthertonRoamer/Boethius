@@ -18,8 +18,8 @@
 [ext_resource type="Script" path="res://ships/generic_states/follow_waypoint.gd" id="16_fhi56"]
 [ext_resource type="Script" path="res://ships/ship_camera.gd" id="16_kfw8l"]
 [ext_resource type="Script" path="res://ships/basic_ship/smg.gd" id="17_aj8vi"]
-[ext_resource type="PackedScene" uid="uid://jnajxsxwxoer" path="res://ships/basic_ship/projectile/smg_bullet.tscn" id="18_4sj0y"]
 [ext_resource type="Script" path="res://ships/basic_ship/ship_weight_debugger.gd" id="19_uw58m"]
+[ext_resource type="PackedScene" uid="uid://dlprehnceagnv" path="res://ships/basic_ship/projectile/smg_bullet_big.tscn" id="19_x8adx"]
 [ext_resource type="PackedScene" uid="uid://b16d8fcohve56" path="res://ships/ship_area/ship_area.tscn" id="20_mtxn8"]
 [ext_resource type="PackedScene" uid="uid://gfmjiblkd7jf" path="res://turret/turret.tscn" id="21_3yypf"]
 [ext_resource type="AudioStream" uid="uid://mwrnjn4ghntx" path="res://sound/ships/boost-100537.mp3" id="22_1jjy4"]
@@ -284,7 +284,8 @@ starting_enemy_health = 2500
 thrust_accel = 350.0
 max_speed = 250.0
 boost_max_speed = 350.0
-rotation_speed = 60.0
+rotation_speed = 90.0
+sight_range = 1000.0
 radius = 100.0
 
 [node name="boosts" type="Node2D" parent="."]
@@ -500,25 +501,25 @@ script = ExtResource("16_kfw8l")
 [node name="gun1" type="Node2D" parent="." node_paths=PackedStringArray("fire_position_node")]
 position = Vector2(96, -44)
 script = ExtResource("17_aj8vi")
-projectile_scene = ExtResource("18_4sj0y")
+projectile_scene = ExtResource("19_x8adx")
 fire_position_node = NodePath(".")
 
 [node name="gun2" type="Node2D" parent="." node_paths=PackedStringArray("fire_position_node")]
 position = Vector2(96, 43)
 script = ExtResource("17_aj8vi")
-projectile_scene = ExtResource("18_4sj0y")
+projectile_scene = ExtResource("19_x8adx")
 fire_position_node = NodePath(".")
 
 [node name="gun3" type="Node2D" parent="." node_paths=PackedStringArray("fire_position_node")]
 position = Vector2(-10, -92)
 script = ExtResource("17_aj8vi")
-projectile_scene = ExtResource("18_4sj0y")
+projectile_scene = ExtResource("19_x8adx")
 fire_position_node = NodePath(".")
 
 [node name="gun4" type="Node2D" parent="." node_paths=PackedStringArray("fire_position_node")]
 position = Vector2(-10, 93)
 script = ExtResource("17_aj8vi")
-projectile_scene = ExtResource("18_4sj0y")
+projectile_scene = ExtResource("19_x8adx")
 fire_position_node = NodePath(".")
 
 [node name="ShipWeightDebugger" type="Node2D" parent="."]
