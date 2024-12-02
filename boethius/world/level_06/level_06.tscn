@@ -1,0 +1,149 @@
+[gd_scene load_steps=24 format=3 uid="uid://xu31csw4qrxv"]
+
+[ext_resource type="Script" path="res://world/level_01/level_01.gd" id="1_xal28"]
+[ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space/space.tscn" id="2_82f8y"]
+[ext_resource type="Script" path="res://ships/spawn_point/spawn_point.gd" id="3_v1f1h"]
+[ext_resource type="Script" path="res://ships/ship_data/fleet_data.gd" id="4_hrw8u"]
+[ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="5_eroxp"]
+[ext_resource type="Resource" uid="uid://ckwk02fa62a07" path="res://ships/shield_ship/shield_ship_data.tres" id="6_g1pga"]
+[ext_resource type="Resource" uid="uid://dqm4uojftwqoo" path="res://ships/basic_ship/basic_ship_data.tres" id="7_3655g"]
+[ext_resource type="Resource" uid="uid://q27pgqwrmx7c" path="res://ships/laser_ship/laser_ship_data.tres" id="8_yp631"]
+[ext_resource type="Script" path="res://game/command_mode/command_camera/command_camera.gd" id="9_5sa6g"]
+[ext_resource type="PackedScene" uid="uid://ckgqun7x0sidn" path="res://world/asteroid/asteroid_small.tscn" id="10_c7diq"]
+[ext_resource type="PackedScene" uid="uid://fpde8apg7q2f" path="res://world/asteroid/asteroid_big.tscn" id="11_3tap7"]
+[ext_resource type="PackedScene" uid="uid://bos66mom7yrro" path="res://world/asteroid/asteroid_med.tscn" id="12_4yqgf"]
+[ext_resource type="PackedScene" uid="uid://dcjqjmcyqvlhh" path="res://shop/shop.tscn" id="13_dwfto"]
+[ext_resource type="PackedScene" uid="uid://bb1kkjqy42iqn" path="res://orders/OrderMaker.tscn" id="14_qfua4"]
+[ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://art/BOETHIUS_THEME.tres" id="15_ebyhh"]
+[ext_resource type="Script" path="res://world/level_01/label.gd" id="16_65hde"]
+[ext_resource type="AudioStream" uid="uid://dl7ppg3ro4gdu" path="res://sound/music/Interstellar Reverie (1).mp3" id="17_f02ec"]
+
+[sub_resource type="Resource" id="Resource_hnre3"]
+script = ExtResource("4_hrw8u")
+ships = Array[ExtResource("5_eroxp")]([])
+
+[sub_resource type="Resource" id="Resource_yly2n"]
+script = ExtResource("4_hrw8u")
+ships = Array[ExtResource("5_eroxp")]([ExtResource("6_g1pga"), ExtResource("7_3655g"), ExtResource("7_3655g"), ExtResource("7_3655g"), ExtResource("8_yp631")])
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_px787"]
+normal = Vector2(0.0126572, 0.99992)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2503l"]
+normal = Vector2(-0.0067566, -0.999977)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2wqpc"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7ew7n"]
+normal = Vector2(-0.999996, -0.00271738)
+
+[node name="Level01" type="Node2D" node_paths=PackedStringArray("command_mode_camera", "friendly_spawn", "enemy_spawn")]
+script = ExtResource("1_xal28")
+command_mode_camera = NodePath("CommandCamera")
+friendly_spawn = NodePath("SpawnPoint")
+enemy_spawn = NodePath("SpawnPoint2")
+
+[node name="space" parent="." instance=ExtResource("2_82f8y")]
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(1069, -306)
+script = ExtResource("3_v1f1h")
+fleet = SubResource("Resource_hnre3")
+
+[node name="SpawnPoint2" type="Node2D" parent="."]
+position = Vector2(2923, 1546)
+script = ExtResource("3_v1f1h")
+fleet = SubResource("Resource_yly2n")
+faction = 1
+
+[node name="CommandCamera" type="Camera2D" parent="."]
+position = Vector2(1905, 30)
+enabled = false
+zoom = Vector2(0.5, 0.5)
+script = ExtResource("9_5sa6g")
+
+[node name="barrier_top" type="StaticBody2D" parent="."]
+position = Vector2(200, -898)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barrier_top"]
+position = Vector2(895, -103)
+shape = SubResource("WorldBoundaryShape2D_px787")
+
+[node name="barrier_bottom" type="StaticBody2D" parent="."]
+position = Vector2(249, 2100)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barrier_bottom"]
+position = Vector2(895, -103)
+shape = SubResource("WorldBoundaryShape2D_2503l")
+
+[node name="barrier_left" type="StaticBody2D" parent="."]
+position = Vector2(-1689, 465)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barrier_left"]
+position = Vector2(895, -103)
+shape = SubResource("WorldBoundaryShape2D_2wqpc")
+
+[node name="barrier_right" type="StaticBody2D" parent="."]
+position = Vector2(4158, 545)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barrier_right"]
+position = Vector2(895, -103)
+shape = SubResource("WorldBoundaryShape2D_7ew7n")
+
+[node name="asteroids" type="Node2D" parent="."]
+position = Vector2(2118, 449)
+
+[node name="asteriod_small2" parent="asteroids" instance=ExtResource("10_c7diq")]
+position = Vector2(153, -345)
+
+[node name="asteriod_small3" parent="asteroids" instance=ExtResource("10_c7diq")]
+position = Vector2(-558, -717)
+
+[node name="asteriod_small8" parent="asteroids" instance=ExtResource("10_c7diq")]
+position = Vector2(-275, 974)
+
+[node name="asteriod_small11" parent="asteroids" instance=ExtResource("10_c7diq")]
+position = Vector2(-141, -761)
+
+[node name="asteriod_small12" parent="asteroids" instance=ExtResource("10_c7diq")]
+position = Vector2(396, 498)
+
+[node name="asteriod_small6" parent="asteroids" instance=ExtResource("10_c7diq")]
+position = Vector2(-141, 541)
+
+[node name="asteriod_big2" parent="asteroids" instance=ExtResource("11_3tap7")]
+position = Vector2(121, 728)
+
+[node name="asteriod_big4" parent="asteroids" instance=ExtResource("11_3tap7")]
+position = Vector2(323, -727)
+
+[node name="asteriod_med" parent="asteroids" instance=ExtResource("12_4yqgf")]
+position = Vector2(-169, -483)
+
+[node name="Shop" parent="." instance=ExtResource("13_dwfto")]
+visible = false
+available_ships = Array[ExtResource("5_eroxp")]([ExtResource("7_3655g"), ExtResource("8_yp631"), ExtResource("6_g1pga")])
+
+[node name="OrderMaker" parent="." instance=ExtResource("14_qfua4")]
+position = Vector2(2200, 656)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1643.0
+offset_top = 396.0
+offset_right = 2658.0
+offset_bottom = 465.0
+theme = ExtResource("15_ebyhh")
+theme_override_font_sizes/font_size = 32
+text = "navigate the map with the command camera to find the 
+enemy spawn. devise a plan to deal with their shield ship."
+script = ExtResource("16_65hde")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_f02ec")
+volume_db = -11.244
+autoplay = true
