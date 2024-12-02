@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://ships/ship_data/fleet_data.gd" id="4_6qbjr"]
 [ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="5_cq4n7"]
 [ext_resource type="Resource" uid="uid://dqm4uojftwqoo" path="res://ships/basic_ship/basic_ship_data.tres" id="6_ix20k"]
-[ext_resource type="Resource" uid="uid://d2naw84oj8aqq" path="res://ships/heavy_A/heavy_a.tres" id="7_aj846"]
+[ext_resource type="Resource" uid="uid://d2naw84oj8aqq" path="res://ships/heavy_B/heavy_b.tres" id="7_aj846"]
 [ext_resource type="Script" path="res://game/command_mode/command_camera/command_camera.gd" id="8_jbgej"]
 [ext_resource type="PackedScene" uid="uid://ckgqun7x0sidn" path="res://world/asteroid/asteroid_small.tscn" id="9_vh1r2"]
 [ext_resource type="PackedScene" uid="uid://fpde8apg7q2f" path="res://world/asteroid/asteroid_big.tscn" id="10_tsqvb"]
@@ -100,9 +100,6 @@ position = Vector2(2118, 449)
 [node name="asteriod_small" parent="asteroids" instance=ExtResource("9_vh1r2")]
 position = Vector2(-83, -686)
 
-[node name="asteriod_small2" parent="asteroids" instance=ExtResource("9_vh1r2")]
-position = Vector2(201, 19)
-
 [node name="asteriod_small3" parent="asteroids" instance=ExtResource("9_vh1r2")]
 position = Vector2(-558, -717)
 
@@ -111,12 +108,6 @@ position = Vector2(-12, 522)
 
 [node name="asteriod_small5" parent="asteroids" instance=ExtResource("9_vh1r2")]
 position = Vector2(201, 361)
-
-[node name="asteriod_small6" parent="asteroids" instance=ExtResource("9_vh1r2")]
-position = Vector2(-157, 301)
-
-[node name="asteriod_small7" parent="asteroids" instance=ExtResource("9_vh1r2")]
-position = Vector2(-193, 70)
 
 [node name="asteriod_small8" parent="asteroids" instance=ExtResource("9_vh1r2")]
 position = Vector2(-261, 619)
@@ -142,16 +133,9 @@ position = Vector2(-317, -588)
 [node name="asteriod_med2" parent="asteroids" instance=ExtResource("11_0ydln")]
 position = Vector2(410, 634)
 
-[node name="asteriod_med3" parent="asteroids" instance=ExtResource("11_0ydln")]
-position = Vector2(-663, 103)
-
-[node name="asteriod_med4" parent="asteroids" instance=ExtResource("11_0ydln")]
-position = Vector2(770, -107)
-
 [node name="Shop" parent="." instance=ExtResource("12_e48pg")]
 visible = false
-available_ships = Array[ExtResource("5_cq4n7")]([ExtResource("6_ix20k"), ExtResource("13_qx4wn"), ExtResource("14_coywm")])
-starting_credits = 2000
+starting_credits = 8000
 
 [node name="OrderMaker" parent="." instance=ExtResource("15_8vynr")]
 position = Vector2(2150, 642)

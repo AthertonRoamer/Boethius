@@ -22,7 +22,7 @@ ships = Array[ExtResource("5_c2ncp")]([])
 
 [sub_resource type="Resource" id="Resource_45vps"]
 script = ExtResource("4_t068e")
-ships = Array[ExtResource("5_c2ncp")]([ExtResource("6_dnk4g"), ExtResource("6_dnk4g"), ExtResource("6_dnk4g")])
+ships = Array[ExtResource("5_c2ncp")]([ExtResource("6_dnk4g"), ExtResource("6_dnk4g"), ExtResource("6_dnk4g"), ExtResource("6_dnk4g"), ExtResource("6_dnk4g")])
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_px787"]
 normal = Vector2(0.0126572, 0.99992)

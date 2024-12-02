@@ -280,6 +280,7 @@ script = ExtResource("1_ju2ya")
 inertia = 15.0
 max_health = 2000
 starting_health = 2000
+starting_enemy_health = 2500
 thrust_accel = 350.0
 max_speed = 250.0
 boost_max_speed = 350.0
