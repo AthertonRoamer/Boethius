@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_m4eig")
 ship_scene = ExtResource("3_nawb0")
-ship_price = 3000
+ship_price = 700
 ship_image = ExtResource("2_w7d4y")
 name = "Terminator"
 health = "2500"

@@ -128,7 +128,7 @@ position = Vector2(-2150, -611)
 [node name="Shop" parent="." instance=ExtResource("11_i3ggs")]
 visible = false
 available_ships = Array[ExtResource("5_fd86q")]([ExtResource("7_hsala"), ExtResource("12_2lv3u"), ExtResource("6_ba1m0"), ExtResource("8_mhr62")])
-starting_credits = 3000
+starting_credits = 4000
 
 [node name="OrderMaker" parent="." instance=ExtResource("13_alm5b")]
 position = Vector2(1217, 339)

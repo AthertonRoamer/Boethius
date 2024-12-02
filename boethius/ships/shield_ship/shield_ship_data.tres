@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_e22kv")
 ship_scene = ExtResource("3_ctqqh")
-ship_price = 500
+ship_price = 350
 ship_image = ExtResource("2_k41cg")
 name = "Shield Ship"
 health = "100"

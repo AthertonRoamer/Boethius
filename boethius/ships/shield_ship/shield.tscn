@@ -105,7 +105,7 @@ z_as_relative = false
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_f3noq")
-starting_health = 300
+starting_health = 450
 
 [node name="shield_image" type="Sprite2D" parent="."]
 texture_filter = 1
