@@ -133,6 +133,7 @@ camera_zoom_out={
 2d_physics/layer_2="PhysicsLayer"
 2d_physics/layer_4="enemy_shield"
 2d_physics/layer_5="player_shield"
+2d_physics/layer_7="NonPhysicsShootables"
 
 [rendering]
 

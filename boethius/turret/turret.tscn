@@ -14,7 +14,10 @@ radius = 19.0263
 radius = 1.0
 
 [node name="Turret" type="CharacterBody2D"]
+collision_layer = 64
+collision_mask = 64
 script = ExtResource("1_p4ano")
+sight_range = 1000.0
 explosion_scene = ExtResource("2_3uytq")
 max_health = 100
 starting_health = 100

@@ -32,8 +32,12 @@ func _ready() -> void:
 		faction = get_parent().faction
 		if faction == Ship.Faction.PLAYER:
 			$Sprite2D.frame = 2
+			#set_collision_layer_value(5, true)
+			#set_collision_mask_value(5, true)
 		else:
 			$Sprite2D.frame = 3
+			#set_collision_layer_value(4, true)
+			#set_collision_mask_value(4, true)
 	if is_instance_valid(turret_area):
 		turret_area.sight_range = sight_range
 
