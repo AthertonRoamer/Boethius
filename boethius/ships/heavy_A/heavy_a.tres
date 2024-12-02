@@ -1,16 +1,17 @@
-[gd_resource type="Resource" script_class="ShipData" load_steps=4 format=3 uid="uid://d2naw84oj8aqq"]
+[gd_resource type="Resource" script_class="ShipData" load_steps=4 format=3 uid="uid://i0eo73472dnx"]
 
-[ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="1_nijcf"]
-[ext_resource type="Texture2D" uid="uid://be70pv4j6wsoy" path="res://art/Heavy2.png" id="2_ov3yq"]
-[ext_resource type="PackedScene" uid="uid://ckr1k343ggrxv" path="res://ships/heavy_B/heavy_B.tscn" id="3_seql7"]
+[ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="1_m4eig"]
+[ext_resource type="Texture2D" uid="uid://byau5og4dvt38" path="res://art/Heavy1.png" id="2_0t0hj"]
+[ext_resource type="PackedScene" uid="uid://i2xcw82s5paj" path="res://ships/heavy_A/heavy_A.tscn" id="3_v6bek"]
 
 [resource]
-script = ExtResource("1_nijcf")
-ship_scene = ExtResource("3_seql7")
-ship_price = 3000
-ship_image = ExtResource("2_ov3yq")
-name = "Terminator"
-health = "2500"
-dmg = "50"
-short_description = "Terror of the night sky."
-full_description = "Reigns supreme among the stars as the toughest, heaviest hitting craft in existance. Can ram other ships to deal massive damage and knockback."
+script = ExtResource("1_m4eig")
+ship_scene = ExtResource("3_v6bek")
+ship_price = 2500
+ship_image = ExtResource("2_0t0hj")
+name = "Giant"
+health = "2000"
+dmg = "40"
+short_description = "The ultimate defensive craft."
+full_description = "Has a large amount of auto turrets that can eliminate swarms.
+"

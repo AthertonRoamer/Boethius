@@ -1,0 +1,149 @@
+[gd_scene load_steps=25 format=3 uid="uid://d3agjaxwpnimr"]
+
+[ext_resource type="Script" path="res://world/level_01/level_01.gd" id="1_j3oii"]
+[ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space/space.tscn" id="2_bf7fg"]
+[ext_resource type="Script" path="res://ships/spawn_point/spawn_point.gd" id="3_qg5ah"]
+[ext_resource type="Script" path="res://ships/ship_data/fleet_data.gd" id="4_7qhah"]
+[ext_resource type="Resource" uid="uid://dg1dskw58rjv3" path="res://ships/ship_data/test_fleet.tres" id="4_wuuq8"]
+[ext_resource type="Script" path="res://ships/ship_data/ship_data.gd" id="5_fd86q"]
+[ext_resource type="Resource" uid="uid://ckwk02fa62a07" path="res://ships/shield_ship/shield_ship_data.tres" id="6_ba1m0"]
+[ext_resource type="Resource" uid="uid://dqm4uojftwqoo" path="res://ships/basic_ship/basic_ship_data.tres" id="7_hsala"]
+[ext_resource type="Resource" uid="uid://i0eo73472dnx" path="res://ships/heavy_A/heavy_a.tres" id="8_mhr62"]
+[ext_resource type="Script" path="res://game/command_mode/command_camera/command_camera.gd" id="9_4ebt1"]
+[ext_resource type="PackedScene" uid="uid://ckgqun7x0sidn" path="res://world/asteroid/asteroid_small.tscn" id="10_0kw1k"]
+[ext_resource type="Resource" uid="uid://d2naw84oj8aqq" path="res://ships/heavy_B/heavy_b.tres" id="10_t6ppc"]
+[ext_resource type="PackedScene" uid="uid://dcjqjmcyqvlhh" path="res://shop/shop.tscn" id="11_i3ggs"]
+[ext_resource type="Resource" uid="uid://q27pgqwrmx7c" path="res://ships/laser_ship/laser_ship_data.tres" id="12_2lv3u"]
+[ext_resource type="PackedScene" uid="uid://fpde8apg7q2f" path="res://world/asteroid/asteroid_big.tscn" id="12_8nh64"]
+[ext_resource type="PackedScene" uid="uid://bb1kkjqy42iqn" path="res://orders/OrderMaker.tscn" id="13_alm5b"]
+[ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://art/BOETHIUS_THEME.tres" id="14_q1bvn"]
+[ext_resource type="Script" path="res://world/level_01/label.gd" id="15_1om4k"]
+[ext_resource type="AudioStream" uid="uid://dl7ppg3ro4gdu" path="res://sound/music/Interstellar Reverie (1).mp3" id="16_erlqs"]
+
+[sub_resource type="Resource" id="Resource_yly2n"]
+script = ExtResource("4_7qhah")
+ships = Array[ExtResource("5_fd86q")]([ExtResource("6_ba1m0"), ExtResource("7_hsala"), ExtResource("7_hsala"), ExtResource("7_hsala"), ExtResource("8_mhr62"), ExtResource("7_hsala"), ExtResource("7_hsala"), ExtResource("7_hsala"), ExtResource("10_t6ppc"), ExtResource("8_mhr62")])
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_px787"]
+normal = Vector2(0.0126572, 0.99992)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2503l"]
+normal = Vector2(-0.0067566, -0.999977)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2wqpc"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7ew7n"]
+normal = Vector2(-0.999996, -0.00271738)
+
+[node name="Level01" type="Node2D" node_paths=PackedStringArray("command_mode_camera", "friendly_spawn", "enemy_spawn")]
+script = ExtResource("1_j3oii")
+command_mode_camera = NodePath("CommandCamera")
+friendly_spawn = NodePath("SpawnPoint")
+enemy_spawn = NodePath("SpawnPoint2")
+
+[node name="space" parent="." instance=ExtResource("2_bf7fg")]
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(1133, 1164)
+script = ExtResource("3_qg5ah")
+fleet = ExtResource("4_wuuq8")
+
+[node name="SpawnPoint2" type="Node2D" parent="."]
+position = Vector2(1267, -1131)
+script = ExtResource("3_qg5ah")
+fleet = SubResource("Resource_yly2n")
+faction = 1
+
+[node name="CommandCamera" type="Camera2D" parent="."]
+position = Vector2(1905, 30)
+enabled = false
+zoom = Vector2(0.5, 0.5)
+script = ExtResource("9_4ebt1")
+
+[node name="barrier_top" type="StaticBody2D" parent="."]
+position = Vector2(311, -1936)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barrier_top"]
+position = Vector2(895, -103)
+shape = SubResource("WorldBoundaryShape2D_px787")
+
+[node name="barrier_bottom" type="StaticBody2D" parent="."]
+position = Vector2(249, 2100)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barrier_bottom"]
+position = Vector2(895, -103)
+shape = SubResource("WorldBoundaryShape2D_2503l")
+
+[node name="barrier_left" type="StaticBody2D" parent="."]
+position = Vector2(-1689, 465)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barrier_left"]
+position = Vector2(895, -103)
+shape = SubResource("WorldBoundaryShape2D_2wqpc")
+
+[node name="barrier_right" type="StaticBody2D" parent="."]
+position = Vector2(3153, 240)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barrier_right"]
+position = Vector2(895, -103)
+shape = SubResource("WorldBoundaryShape2D_7ew7n")
+
+[node name="asteroids" type="Node2D" parent="."]
+position = Vector2(2118, 449)
+
+[node name="asteriod_big" parent="asteroids" instance=ExtResource("12_8nh64")]
+
+[node name="asteriod_big2" parent="asteroids" instance=ExtResource("12_8nh64")]
+position = Vector2(-2003, -187)
+
+[node name="asteriod_big3" parent="asteroids" instance=ExtResource("12_8nh64")]
+position = Vector2(-1782, -956)
+
+[node name="asteriod_big4" parent="asteroids" instance=ExtResource("12_8nh64")]
+position = Vector2(-243, -1041)
+
+[node name="asteriod_small" parent="asteroids" instance=ExtResource("10_0kw1k")]
+position = Vector2(-351, -583)
+
+[node name="asteriod_small2" parent="asteroids" instance=ExtResource("10_0kw1k")]
+position = Vector2(-1754, -572)
+
+[node name="asteriod_small3" parent="asteroids" instance=ExtResource("10_0kw1k")]
+position = Vector2(-2173, -1092)
+
+[node name="asteriod_small4" parent="asteroids" instance=ExtResource("10_0kw1k")]
+position = Vector2(28, -628)
+
+[node name="asteriod_small5" parent="asteroids" instance=ExtResource("10_0kw1k")]
+position = Vector2(-204, -306)
+
+[node name="asteriod_small6" parent="asteroids" instance=ExtResource("10_0kw1k")]
+position = Vector2(-2150, -611)
+
+[node name="Shop" parent="." instance=ExtResource("11_i3ggs")]
+visible = false
+available_ships = Array[ExtResource("5_fd86q")]([ExtResource("7_hsala"), ExtResource("12_2lv3u"), ExtResource("6_ba1m0"), ExtResource("8_mhr62")])
+starting_credits = 3000
+
+[node name="OrderMaker" parent="." instance=ExtResource("13_alm5b")]
+position = Vector2(1217, 339)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 167.0
+offset_top = 1364.0
+offset_right = 490.0
+offset_bottom = 1410.0
+theme = ExtResource("14_q1bvn")
+theme_override_font_sizes/font_size = 32
+text = "Take out the terminator"
+script = ExtResource("15_1om4k")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_erlqs")
+volume_db = -11.244
+autoplay = true

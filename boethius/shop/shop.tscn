@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://shop/credits_label.gd" id="3_m8na3"]
 [ext_resource type="Resource" uid="uid://q27pgqwrmx7c" path="res://ships/laser_ship/laser_ship_data.tres" id="4_4j08u"]
 [ext_resource type="Resource" uid="uid://ckwk02fa62a07" path="res://ships/shield_ship/shield_ship_data.tres" id="6_3red1"]
-[ext_resource type="Resource" uid="uid://d2naw84oj8aqq" path="res://ships/heavy_A/heavy_a.tres" id="7_puhrh"]
-[ext_resource type="Resource" uid="uid://i0eo73472dnx" path="res://ships/heavy_B/heavy_b.tres" id="8_bs61i"]
+[ext_resource type="Resource" uid="uid://d2naw84oj8aqq" path="res://ships/heavy_B/heavy_b.tres" id="7_puhrh"]
+[ext_resource type="Resource" uid="uid://i0eo73472dnx" path="res://ships/heavy_A/heavy_a.tres" id="8_bs61i"]
 [ext_resource type="Script" path="res://shop/info_holder.gd" id="8_iuh56"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyt4g"]
