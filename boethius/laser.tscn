@@ -78,6 +78,7 @@ load_path = "res://.godot/imported/Projectiles.png-b307ba4bad30a73c32d866812224e
 [node name="laser" type="RayCast2D"]
 visible = false
 target_position = Vector2(2000, 0)
+collision_mask = 65
 script = ExtResource("1_3nrop")
 
 [node name="Line2D" type="Line2D" parent="."]

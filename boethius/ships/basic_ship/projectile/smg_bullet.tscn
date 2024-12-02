@@ -130,7 +130,7 @@ color_ramp = SubResource("GradientTexture1D_ov85m")
 load_path = "res://.godot/imported/Projectiles.png-b307ba4bad30a73c32d866812224e064.ctex"
 
 [node name="smg_bullet" type="Area2D" node_paths=PackedStringArray("duration_timer")]
-collision_mask = 3
+collision_mask = 67
 script = ExtResource("1_7oadl")
 speed = 1600.0
 damage = 5

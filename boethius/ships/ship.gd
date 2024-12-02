@@ -345,6 +345,7 @@ func die() -> void:
 	reset_visuals()
 	Main.world.ship_database.remove_ship(self)
 	if is_instance_valid(Main.world):
+		Main.world.outcome_tracker.explosions += 1
 		var explosion = explosion_scene.instantiate()
 		explosion.global_position = global_position
 		Main.world.add_child(explosion)
