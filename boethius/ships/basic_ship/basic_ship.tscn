@@ -555,6 +555,7 @@ loop = true
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_233k0")
+starting_enemy_health = 90
 rotation_speed = 180.0
 sight_range = 750.0
 
