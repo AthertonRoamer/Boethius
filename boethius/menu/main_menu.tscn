@@ -296,9 +296,10 @@ grow_horizontal = 2
 theme = ExtResource("2_d516e")
 theme_override_font_sizes/font_size = 120
 theme_override_styles/normal = SubResource("StyleBoxFlat_modkm")
-text = "Space Game"
+text = "s.e.c.r.e.t."
 horizontal_alignment = 1
 vertical_alignment = 1
+uppercase = true
 
 [node name="space" parent="." instance=ExtResource("3_wy4o3")]
 

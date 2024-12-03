@@ -36,12 +36,15 @@ func activate() -> void:
 	layer = 3
 	show()
 	process_mode = PROCESS_MODE_ALWAYS
+	$music.play()
 	
 	
 func deactivate() -> void:
 	layer = -2
 	hide()
+	$music.stop()
 	process_mode = PROCESS_MODE_DISABLED
+	
 
 
 func _on_start_game_pressed() -> void:

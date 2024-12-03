@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dcjqjmcyqvlhh"]
+[gd_scene load_steps=14 format=3 uid="uid://dcjqjmcyqvlhh"]
 
 [ext_resource type="Script" path="res://shop/shop.gd" id="1_j38f1"]
 [ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://art/BOETHIUS_THEME.tres" id="2_7w4s8"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://d2naw84oj8aqq" path="res://ships/heavy_B/heavy_b.tres" id="7_puhrh"]
 [ext_resource type="Resource" uid="uid://i0eo73472dnx" path="res://ships/heavy_A/heavy_a.tres" id="8_bs61i"]
 [ext_resource type="Script" path="res://shop/info_holder.gd" id="8_iuh56"]
+[ext_resource type="AudioStream" uid="uid://b5d2o6jp8ma40" path="res://sound/music/Interstellar Reverie.mp3" id="11_u1e2c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyt4g"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -131,5 +132,9 @@ size_flags_vertical = 8
 theme_override_font_sizes/font_size = 45
 text = "Start Game"
 flat = true
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_u1e2c")
+volume_db = -10.947
 
 [connection signal="pressed" from="Control/StartGame" to="." method="_on_start_game_pressed"]
