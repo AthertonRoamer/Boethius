@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://blj3ecgwgptea"]
+[gd_scene load_steps=26 format=3 uid="uid://blj3ecgwgptea"]
 
 [ext_resource type="Script" path="res://world/level_01/level_01.gd" id="1_i5e0e"]
 [ext_resource type="PackedScene" uid="uid://cu478du4hoeu4" path="res://space/space.tscn" id="2_lsvva"]
@@ -9,13 +9,16 @@
 [ext_resource type="Resource" uid="uid://d2naw84oj8aqq" path="res://ships/heavy_B/heavy_b.tres" id="7_aj846"]
 [ext_resource type="Script" path="res://game/command_mode/command_camera/command_camera.gd" id="8_jbgej"]
 [ext_resource type="PackedScene" uid="uid://ckgqun7x0sidn" path="res://world/asteroid/asteroid_small.tscn" id="9_vh1r2"]
+[ext_resource type="Resource" uid="uid://i0eo73472dnx" path="res://ships/heavy_A/heavy_a.tres" id="10_46t5y"]
 [ext_resource type="PackedScene" uid="uid://fpde8apg7q2f" path="res://world/asteroid/asteroid_big.tscn" id="10_tsqvb"]
 [ext_resource type="PackedScene" uid="uid://bos66mom7yrro" path="res://world/asteroid/asteroid_med.tscn" id="11_0ydln"]
 [ext_resource type="PackedScene" uid="uid://dcjqjmcyqvlhh" path="res://shop/shop.tscn" id="12_e48pg"]
 [ext_resource type="Resource" uid="uid://q27pgqwrmx7c" path="res://ships/laser_ship/laser_ship_data.tres" id="13_qx4wn"]
 [ext_resource type="Resource" uid="uid://ckwk02fa62a07" path="res://ships/shield_ship/shield_ship_data.tres" id="14_coywm"]
 [ext_resource type="PackedScene" uid="uid://bb1kkjqy42iqn" path="res://orders/OrderMaker.tscn" id="15_8vynr"]
-[ext_resource type="AudioStream" uid="uid://dl7ppg3ro4gdu" path="res://sound/music/Interstellar Reverie (1).mp3" id="16_rq8hx"]
+[ext_resource type="AudioStream" uid="uid://cn2olkdfdq675" path="res://sound/music/Interstellar Clash.mp3" id="16_8f70x"]
+[ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://art/BOETHIUS_THEME.tres" id="17_ku8kj"]
+[ext_resource type="Script" path="res://world/level_01/label.gd" id="18_bvocm"]
 
 [sub_resource type="Resource" id="Resource_yqcjc"]
 script = ExtResource("4_6qbjr")
@@ -23,7 +26,7 @@ ships = Array[ExtResource("5_cq4n7")]([])
 
 [sub_resource type="Resource" id="Resource_thfhx"]
 script = ExtResource("4_6qbjr")
-ships = Array[ExtResource("5_cq4n7")]([ExtResource("7_aj846"), ExtResource("13_qx4wn"), ExtResource("13_qx4wn"), ExtResource("6_ix20k"), ExtResource("6_ix20k"), ExtResource("6_ix20k"), ExtResource("6_ix20k"), ExtResource("6_ix20k"), ExtResource("14_coywm")])
+ships = Array[ExtResource("5_cq4n7")]([ExtResource("7_aj846"), ExtResource("13_qx4wn"), ExtResource("13_qx4wn"), ExtResource("6_ix20k"), ExtResource("6_ix20k"), ExtResource("6_ix20k"), ExtResource("6_ix20k"), ExtResource("6_ix20k"), ExtResource("14_coywm"), ExtResource("14_coywm"), ExtResource("10_46t5y"), ExtResource("7_aj846"), ExtResource("7_aj846"), ExtResource("7_aj846")])
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_px787"]
 normal = Vector2(0.0126572, 0.99992)
@@ -141,6 +144,27 @@ starting_credits = 8000
 position = Vector2(2150, 642)
 
 [node name="music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("16_rq8hx")
+stream = ExtResource("16_8f70x")
 volume_db = -11.244
 autoplay = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1872.0
+offset_top = 273.0
+offset_right = 2322.0
+offset_bottom = 310.0
+theme = ExtResource("17_ku8kj")
+theme_override_font_sizes/font_size = 32
+text = "May cause lag bahahahaha
+"
+script = ExtResource("18_bvocm")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 1940.0
+offset_top = 61.0
+offset_right = 2252.0
+offset_bottom = 98.0
+theme = ExtResource("17_ku8kj")
+theme_override_font_sizes/font_size = 32
+text = "You beat the game"
+script = ExtResource("18_bvocm")
