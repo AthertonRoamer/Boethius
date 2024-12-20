@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw01qeyxavh32"]
+
+[ext_resource type="Theme" uid="uid://ctdduf6tq2qx6" path="res://art/BOETHIUS_THEME.tres" id="1_4xidg"]
+[ext_resource type="Script" path="res://game/level_system/level_menu/level_menu.gd" id="1_bkd8b"]
+[ext_resource type="PackedScene" uid="uid://br35jxvmepdrn" path="res://game/level_system/level_menu/level_button/level_button.tscn" id="3_gtk5a"]
+
+[node name="LevelMenu" type="Control" node_paths=PackedStringArray("button_holder")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4xidg")
+script = ExtResource("1_bkd8b")
+button_holder = NodePath("VBoxContainer/CenterContainer/GridContainer")
+level_button_scene = ExtResource("3_gtk5a")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -3.9
+anchor_top = -3.95
+anchor_right = 33.4
+anchor_bottom = 20.75
+offset_top = 1.52588e-05
+offset_bottom = -6.10352e-05
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="Header" type="Label" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 60
+text = "Level Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/CenterContainer"]
+layout_mode = 2
+columns = 5

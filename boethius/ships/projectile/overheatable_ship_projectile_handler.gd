@@ -68,10 +68,10 @@ func _on_overheat_timer_timeout() -> void:
 	Hud.overheatbar.value = 0
 
 
-func _on_ship_entered(ship : Ship) -> void:
-	if ship.under_player_control == true:
+func _on_ship_entered(nship : Ship) -> void:
+	if nship.under_player_control == true:
 		Hud.overheatbar.max_value = time_required_to_overheat
 		Hud.overheatbar.value = 0
-		Hud.boostbar.max_value = ship.full_boost_spent_time
-		Hud.boostbar.value = ship.full_boost_spent_time
+		Hud.boostbar.max_value = nship.full_boost_spent_time
+		Hud.boostbar.value = nship.full_boost_spent_time
 	#pass

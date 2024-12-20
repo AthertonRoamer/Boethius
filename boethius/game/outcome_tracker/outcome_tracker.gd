@@ -35,7 +35,7 @@ func check_for_outcome() -> void:
 			should_announce_loss = true
 			
 			
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if explosions <= 0:
 		if should_announce_loss:
 			announce_loss()
