@@ -58,8 +58,8 @@ func _process(delta: float) -> void:
 func shoot():
 	$gun.fire()
 
-func rotate_to_target(target,delta):
-	var dir = global_position.direction_to(target.global_position)
+func rotate_to_target(ntarget, delta):
+	var dir = global_position.direction_to(ntarget.global_position)
 	rotate_toward_direction(dir,delta)
 	global_rotation = current_direction.angle()
 	shoot()

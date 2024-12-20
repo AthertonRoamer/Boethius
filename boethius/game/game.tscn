@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://baaluob8u3ca0"]
+[gd_scene load_steps=25 format=3 uid="uid://baaluob8u3ca0"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_hica5"]
+[ext_resource type="PackedScene" uid="uid://cw01qeyxavh32" path="res://game/level_system/level_menu/level_menu.tscn" id="2_2ckys"]
 [ext_resource type="Script" path="res://game/game_level_manager.gd" id="2_erbt7"]
 [ext_resource type="PackedScene" uid="uid://jgxqujibaj5b" path="res://world/tutorial/tutorial.tscn" id="3_75tl4"]
+[ext_resource type="Script" path="res://game/level_system/level/level_data.gd" id="3_edldn"]
 [ext_resource type="PackedScene" uid="uid://cvgondg435tm" path="res://world/level_01/level_01.tscn" id="4_12ioo"]
 [ext_resource type="PackedScene" uid="uid://css6jwh8kh5rw" path="res://world/level_02/level_02.tscn" id="5_yacdd"]
 [ext_resource type="PackedScene" uid="uid://cjsdu6qf1qxun" path="res://world/level_03/level_03.tscn" id="6_asl2s"]
@@ -13,9 +15,72 @@
 [ext_resource type="PackedScene" uid="uid://b7c72ttq66pbk" path="res://world/level_03c/level_03c.tscn" id="9_yrhri"]
 [ext_resource type="PackedScene" uid="uid://blj3ecgwgptea" path="res://world/level_04/level_04.tscn" id="10_ncctr"]
 
+[sub_resource type="Resource" id="Resource_eg6ye"]
+script = ExtResource("3_edldn")
+level_scene = ExtResource("3_75tl4")
+included_in_menu = false
+level_name = ""
+
+[sub_resource type="Resource" id="Resource_gc4hj"]
+script = ExtResource("3_edldn")
+level_scene = ExtResource("4_12ioo")
+included_in_menu = true
+level_name = ""
+
+[sub_resource type="Resource" id="Resource_2qkgd"]
+script = ExtResource("3_edldn")
+level_scene = ExtResource("5_yacdd")
+included_in_menu = true
+level_name = ""
+
+[sub_resource type="Resource" id="Resource_vyh8o"]
+script = ExtResource("3_edldn")
+level_scene = ExtResource("6_asl2s")
+included_in_menu = true
+level_name = ""
+
+[sub_resource type="Resource" id="Resource_dv5rq"]
+script = ExtResource("3_edldn")
+level_scene = ExtResource("7_0rvov")
+included_in_menu = true
+level_name = ""
+
+[sub_resource type="Resource" id="Resource_emt07"]
+script = ExtResource("3_edldn")
+level_scene = ExtResource("8_r5ndx")
+included_in_menu = true
+level_name = ""
+
+[sub_resource type="Resource" id="Resource_hlkjq"]
+script = ExtResource("3_edldn")
+level_scene = ExtResource("9_yrhri")
+included_in_menu = true
+level_name = ""
+
+[sub_resource type="Resource" id="Resource_p61rf"]
+script = ExtResource("3_edldn")
+level_scene = ExtResource("8_f8kqi")
+included_in_menu = true
+level_name = ""
+
+[sub_resource type="Resource" id="Resource_mcrfr"]
+script = ExtResource("3_edldn")
+level_scene = ExtResource("9_y1vlx")
+included_in_menu = true
+level_name = ""
+
+[sub_resource type="Resource" id="Resource_54cxe"]
+script = ExtResource("3_edldn")
+level_scene = ExtResource("10_ncctr")
+included_in_menu = true
+level_name = ""
+
 [node name="Game" type="Node"]
 script = ExtResource("1_hica5")
 
+[node name="LevelMenu" parent="." instance=ExtResource("2_2ckys")]
+
 [node name="LevelManager" type="Node" parent="."]
 script = ExtResource("2_erbt7")
-level_list = Array[PackedScene]([ExtResource("3_75tl4"), ExtResource("4_12ioo"), ExtResource("5_yacdd"), ExtResource("6_asl2s"), ExtResource("7_0rvov"), ExtResource("8_r5ndx"), ExtResource("9_yrhri"), ExtResource("8_f8kqi"), ExtResource("9_y1vlx"), ExtResource("10_ncctr")])
+open_level_on_load = false
+level_list = Array[ExtResource("3_edldn")]([SubResource("Resource_eg6ye"), SubResource("Resource_gc4hj"), SubResource("Resource_2qkgd"), SubResource("Resource_vyh8o"), SubResource("Resource_dv5rq"), SubResource("Resource_emt07"), SubResource("Resource_hlkjq"), SubResource("Resource_p61rf"), SubResource("Resource_mcrfr"), SubResource("Resource_54cxe")])
